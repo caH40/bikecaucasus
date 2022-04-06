@@ -8,6 +8,7 @@ import {
   descriptionPage,
   getCardData,
   createRoutePage,
+  sendFormCard,
 } from '../controllers/controler.js';
 const router = Router();
 
@@ -21,6 +22,6 @@ router.get('/description', descriptionPage);
 router.get('/create-route', createRoutePage);
 
 router.get('/routes/getcards', getCardData);
-// router.post('/', sendFormCard);
+router.post('/', sendFormCard);
 
 export default router;

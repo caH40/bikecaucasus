@@ -1,7 +1,8 @@
 import pkg from 'mongoose';
 const { Schema, model } = pkg;
 
-const testSchema = new Schema({
+const cardSchema = new Schema({
+  id: { type: Number },
   nameRoute: { type: String },
   state: { type: String },
   bikeType: { type: String },
@@ -11,10 +12,8 @@ const testSchema = new Schema({
   distance: { type: String },
   ascent: { type: String },
   descriptionArea: { type: String },
-  descPhoto: { type: String },
-  descPhoto: { type: Array },
   cardPhoto: { type: String },
   fileTrek: { type: String },
 });
 
-export default model('tests', testSchema);
+export default model('cards', cardSchema);
