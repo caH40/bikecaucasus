@@ -183,12 +183,15 @@ body {
   font-style: normal;
   font-weight: 700;
   font-size: 30px;
-  line-height: 63px;
+  line-height: 40px;
   letter-spacing: 0.05em;
   padding-top: 10px;
   margin-bottom: 30px;
 }
-
+.title__page-sub {
+  padding-top: 10px;
+  font-size: 26px;
+}
 .content__routes {
   display: flex;
   justify-content: flex-start;
@@ -432,23 +435,30 @@ option {
 }
 
 /* /* Страница  "description"------------------------------------------------ */
-
+.container-description {
+  max-width: 1280px;
+}
 .description {
   background: linear-gradient(90.53deg, #0a233a 38.59%, #133810 99.51%);
+  min-height: calc(100vh - 120px);
   padding-bottom: 20px;
+}
+.title__page-description {
+  text-align: center;
 }
 .description__inner {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  padding-bottom: 30px;
 }
 
 .description__block {
-  max-width: 750px;
-  margin-right: 50px;
+  width: 648px;
 }
 .description__box {
-  display: flex;
-  margin: 0px 10px 20px 0px;
+  max-width: 550px;
+}
+.description__box-right {
 }
 .description__text {
   font-family: 'Roboto';
@@ -456,23 +466,50 @@ option {
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
-  color: #f1f1f1;
-  margin-right: 30px;
   text-align: justify;
-  text-indent: 1.5em;
+  letter-spacing: 0.08em;
+  text-indent: 20px;
+  color: #f1f1f1;
+  padding-bottom: 30px;
 }
 .description__img {
   border-radius: 10px;
-  width: 363px;
-  margin-right: 30px;
+  max-width: 550px;
+  margin-bottom: 30px;
+}
+.description__video {
+  text-align: center;
+  padding-bottom: 50px;
 }
 
-.description__slider {
-  width: 788px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+.description__text-center {
+  font-size: 20px;
+  text-align: center;
 }
-.description__map {
-  border-radius: 10px;
-  width: 788px;
+.description__video-iframe {
+  width: 963px;
+  height: 500px;
+  border-radius: 15px;
+}
+.description__item {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: justify;
+  letter-spacing: 0.08em;
+  color: #f1f1f1;
+}
+.description__item > span {
+  margin-left: 10px;
+  color: #ec9c07;
+  font-weight: 300;
+  font-style: italic;
+}
+.link__strava {
+  margin-left: 10px;
+  color: #ec9c07;
+  font-weight: 300;
+  font-style: italic;
 }
