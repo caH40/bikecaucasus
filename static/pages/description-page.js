@@ -1,3 +1,4 @@
+import fixUrl from '../utilities/fix-url.js';
 async function descriptionPage() {
   const blockHandlebars = document.querySelector('.handlebars');
   const source = document.querySelector('#descriptionTemplate').innerHTML;
@@ -11,7 +12,7 @@ async function descriptionPage() {
   const text = data.card.descriptionArea.split('\n');
   let textPhotoL = [];
   let textPhotoR = [];
-
+  data.card.urlVideo = fixUrl(data.card.urlVideo);
   for (let i = 0; i < text.length; i++) {
     //необходимо сделать проверку на равное количество элементов в массивах текст и фото
     textPhotoL.push({ paragraph: text[i], paragraphPhoto: data.descPhoto[i] });
