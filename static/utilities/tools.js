@@ -53,8 +53,8 @@ export default async function sendData() {
     data.distance = distance.value;
     data.ascent = ascent.value;
     data.descriptionArea = descriptionArea.value;
-
     data.urlTrekStrava = urlTrekStrava.value;
+    data.author = 'Бережнев А.';
 
     let checker = true;
 

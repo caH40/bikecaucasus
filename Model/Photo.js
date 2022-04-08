@@ -2,7 +2,9 @@ import pkg from 'mongoose';
 const { Schema, model } = pkg;
 
 const photoSchema = new Schema({
-  id: { type: Number },
+  id: { type: String },
+  nameRoute: { type: String },
+  state: { type: String },
   descPhoto: { type: Array },
 });
 

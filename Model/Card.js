@@ -2,7 +2,7 @@ import pkg from 'mongoose';
 const { Schema, model } = pkg;
 
 const cardSchema = new Schema({
-  id: { type: Number },
+  id: { type: String },
   nameRoute: { type: String },
   state: { type: String },
   bikeType: { type: String },
@@ -14,6 +14,7 @@ const cardSchema = new Schema({
   descriptionArea: { type: String },
   cardPhoto: { type: String },
   fileTrek: { type: String },
+  author: { type: String },
 });
 
 export default model('cards', cardSchema);
