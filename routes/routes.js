@@ -9,6 +9,7 @@ import {
   getCardData,
   createRoutePage,
   sendFormCard,
+  getDescriptionData,
 } from '../controllers/controler.js';
 const router = Router();
 
@@ -22,6 +23,7 @@ router.get('/description', descriptionPage);
 router.get('/create-route', createRoutePage);
 
 router.get('/routes/getcards', getCardData);
+router.get('/description/getdata', getDescriptionData);
 router.post('/', sendFormCard);
 
 export default router;

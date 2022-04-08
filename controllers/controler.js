@@ -25,23 +25,20 @@ export function dzhilsuPage(req, res) {
   res.status(200);
   res.sendFile(path.resolve(__dirname, 'static', 'dzhilsu.html'));
 }
+//cтраница описания маршрута
 export async function descriptionPage(req, res) {
-  const id = Number(req.query.id);
-  const card = await Card.findOne({ id: id });
-  const photo = await Photo.findOne({ id: id });
-  console.log(card);
-  console.log(photo);
   res.status(200);
   res.sendFile(path.resolve(__dirname, 'static', 'description.html'));
 }
+//страница создания маршрута
 export function createRoutePage(req, res) {
   res.status(200);
   res.sendFile(path.resolve(__dirname, 'static', 'create-route.html'));
 }
 
+//сохранение данных маршрута в Монго
 export async function sendFormCard(req, res) {
   const data = req.body;
-  console.log(data);
   const id = new Date().getTime();
   const photo = await Photo({
     id,
@@ -56,13 +53,21 @@ export async function sendFormCard(req, res) {
   card.save();
   res.status(201);
 }
+// получение всех карточек маршрутов из Монго
 export async function getCardData(req, res) {
   res.status(200);
   const card = await Card.find({});
   res.send(card);
 }
-export async function getDescription(req, res) {
+// получение данных конкретного маршрута для формирования страницы description
+export async function getDescriptionData(req, res) {
   res.status(200);
-  const card = await Card.find({});
-  res.send(card);
+  const id = req.query.id;
+  const card = await Card.findOne({ id: id });
+  const photo = await Photo.findOne({ id: id });
+  const data = {
+    descPhoto: photo.descPhoto,
+    card,
+  };
+  res.send(data);
 }
