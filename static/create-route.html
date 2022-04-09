@@ -51,273 +51,280 @@
     </header>
     <section class="card-edit">
         <div class="container">
-            <h3 class="title__page">Добавление/редактирование маршрутов</h3>
-            <h4 class="title__page title__page-sub">Создание карточки</h4>
-            <form class="card-edit__form" id="card-edit__form" method="post" enctype="multipart/form-data">
-                <div class="card-edit__block">
+            <div class="inner__card-edit">
 
-                    <div class="box">
-                        <div class="box__data">
-                            <h4 class="box__title">Название маршрута:</h4>
-                            <input class="input" name="name-route" id="name-route" type="text"
-                                placeholder="введите данные" />
+
+                <h3 class="title__page">Добавление/редактирование маршрутов</h3>
+                <h4 class="title__page title__page-sub">Создание карточки</h4>
+                <form class="card-edit__form" id="card-edit__form" method="post" enctype="multipart/form-data">
+                    <div class="card-edit__block">
+
+                        <div class="box">
+                            <div class="box__data">
+                                <h4 class="box__title">Название маршрута:</h4>
+                                <input class="input" name="name-route" id="name-route" type="text"
+                                    placeholder="введите данные" />
+                            </div>
+                            <div class="box__status box__status-text">
+                                <svg class="box__checkmark" id="name-route-img" width="25" height="28"
+                                    viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
                         </div>
-                        <div class="box__status box__status-text">
-                            <svg class="box__checkmark" id="name-route-img" width="25" height="28" viewBox="0 0 25 28"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
+
+                        <div class="box">
+                            <div class="box__data">
+                                <h4 class="box__title">Республика по которой проходит маршрут:</h4>
+                                <select class="input select" name="state" id="state">
+                                    <option value="КавМинВоды">КавМинВоды</option>
+                                    <option value="Карачаево-Черкессия">Карачаево-Черкессия</option>
+                                    <option value="Кабардино-Балкария">Кабардино-Балкария</option>
+                                    <option value="Севераня Осетия">Севераня Осетия</option>
+                                    <option value="Адыгея">Адыгея</option>
+                                </select>
+                            </div>
+                            <div class="box__status box__status-text">
+                                <svg class="box__checkmark" id="state-img" width="25" height="28" viewBox="0 0 25 28"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                            <div class="box__data">
+                                <h4 class="box__title">Тип активности:</h4>
+                                <select class="input select" name="bike-type" id="bike-type">
+                                    <option value="Шоссейный велосипед">Шоссейный велосипед</option>
+                                    <option value="Горный велосипед">Горный велосипед</option>
+                                </select>
+                            </div>
+                            <div class="box__status box__status-text">
+                                <svg class="box__checkmark" id="bike-type-img" width="25" height="28"
+                                    viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                            <div class="box__data">
+                                <h4 class="box__title">Место старта маршрута:</h4>
+                                <input class="input" name="start" id="start" type="text" placeholder="введите данные" />
+                            </div>
+                            <div class="box__status box__status-text">
+                                <svg class="box__checkmark" id="start-img" width="25" height="28" viewBox="0 0 25 28"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                            <div class="box__data">
+                                <h4 class="box__title">Место разворота:</h4>
+                                <input class="input" name="turn" id="turn" type="text" placeholder="введите данные" />
+                            </div>
+                            <div class="box__status box__status-text">
+                                <svg class="box__checkmark" id="turn-img" width="25" height="28" viewBox="0 0 25 28"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                            <div class="box__data">
+                                <h4 class="box__title">Место финиша маршрута:</h4>
+                                <input class="input" name="finish" id="finish" type="text"
+                                    placeholder="введите данные" />
+                            </div>
+                            <div class="box__status box__status-text">
+                                <svg class="box__checkmark" id="finish-img" width="25" height="28" viewBox="0 0 25 28"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                            <div class="box__data">
+                                <h4 class="box__title">Длина маршрута в километрах:</h4>
+                                <input class="input" name="distance" id="distance" type="number"
+                                    placeholder="введите данные" />
+                            </div>
+                            <div class="box__status box__status-text">
+                                <svg class="box__checkmark" id="distance-img" width="25" height="28" viewBox="0 0 25 28"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                            <div class="box__data">
+                                <h4 class="box__title">Общий набор в метрах на маршруте:</h4>
+                                <input class="input" name="ascent" id="ascent" type="number"
+                                    placeholder="введите данные" />
+                            </div>
+                            <div class="box__status box__status-text">
+                                <svg class="box__checkmark" id="ascent-img" width="25" height="28" viewBox="0 0 25 28"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="box">
-                        <div class="box__data">
-                            <h4 class="box__title">Республика по которой проходит маршрут:</h4>
-                            <select class="input select" name="state" id="state">
-                                <option value="КавМинВоды">КавМинВоды</option>
-                                <option value="Карачаево-Черкессия">Карачаево-Черкессия</option>
-                                <option value="Кабардино-Балкария">Кабардино-Балкария</option>
-                                <option value="Севераня Осетия">Севераня Осетия</option>
-                                <option value="Адыгея">Адыгея</option>
-                            </select>
+                    <div class="card-edit__block">
+                        <div class="box box__file">
+                            <div class="box__data">
+                                <h4 class="box__title">Фотография для карточки:</h4>
+                                <input class="btn__input" id="input__card-photo" type="file">
+                            </div>
+                            <div class="box__status box__status-text">
+                                <svg class="box__checkmark" id="input__card-photo-img" width="25" height="28"
+                                    viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
                         </div>
-                        <div class="box__status box__status-text">
-                            <svg class="box__checkmark" id="state-img" width="25" height="28" viewBox="0 0 25 28"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
+
+                        <div class="box__images" id="input__card-photo-images">
+                        </div>
+                    </div>
+                    <h4 class="title__page title__page-sub">Создание страницы описания маршрута</h4>
+                    <div class="card-edit__block">
+                        <div class="area">
+                            <div class="box__data">
+                                <h4 class="box__title">Блок подробного описание маршрута. Особенности, детали,
+                                    достопримечательности, важные моменты на машруте.</h4>
+                                <textarea class="area__inner" name="description-area" id="description-area"
+                                    rows="9"></textarea>
+                            </div>
+                            <div class="box__status box__status-text">
+                                <svg class="box__checkmark" id="description-area-img" width="25" height="28"
+                                    viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="box">
-                        <div class="box__data">
-                            <h4 class="box__title">Тип активности:</h4>
-                            <select class="input select" name="bike-type" id="bike-type">
-                                <option value="Шоссейный велосипед">Шоссейный велосипед</option>
-                                <option value="Горный велосипед">Горный велосипед</option>
-                            </select>
+                    <div class="card-edit__block">
+                        <div class="box box__file">
+                            <div class="box__data">
+                                <h4 class="box__title">Фотографии для Блока подробное описание:</h4>
+                                <input class="btn__input" id="input__desc-photo" type="file">
+                            </div>
+                            <div class="box__status box__status-text">
+                                <svg class="box__checkmark" id="input__desc-photo-img" width="25" height="28"
+                                    viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
                         </div>
-                        <div class="box__status box__status-text">
-                            <svg class="box__checkmark" id="bike-type-img" width="25" height="28" viewBox="0 0 25 28"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
+
+                        <div class="box__images" id="input__desc-photo-images">
+                        </div>
+
+                    </div>
+                    <div class="card-edit__block">
+
+                        <div class="box">
+                            <div class="box__data">
+                                <h4 class="box__title">Ссылка на маршрут в Strave</h4>
+                                <input class="input" name="video" id="url-trek-strava" type="text"
+                                    placeholder="введите данные" />
+                            </div>
+                            <div class="box__status box__status-text">
+                                <span class="box__status-text"></span>
+                                <svg class="box__checkmark" id="url-trek-strava-img" width="25" height="28"
+                                    viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                            <div class="box__data">
+                                <h4 class="box__title">Ссылка на видео с маршрута (если есть) </h4>
+                                <input class="input" name="video" id="url-video" type="text"
+                                    placeholder="введите данные" />
+                            </div>
+                            <div class="box__status box__status-text">
+                                <span class="box__status-text">Опционально</span>
+                                <svg class="box__checkmark" id="url-video-img" width="25" height="28"
+                                    viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="box box__file">
+                            <div class="box__data">
+                                <h4 class="box__title">Трек в формате FIT/GPX/TCX</h4>
+                                <input class="btn__input" id="input__trek" type="file">
+                            </div>
+                            <div class="box__status box__status-text">
+                                <svg class="box__checkmark" id="input__trek-img" width="25" height="28"
+                                    viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-edit__block">
+                        <div class="box box__file box__submit">
+                            <div class="box__data">
+                                <h4 class="box__title">Отправка формы на сервер!</h4>
+                                <button class="box__btn" id="btn__send-form" type="submit">ОТПРАВИТЬ</button>
+                            </div>
+                            <div class="box__status box__status-text">
+                                <span class="box__status-text" id="btn__send-form-text"></span>
+                                <svg class="box__checkmark" id="btn__send-form-img" width="25" height="28"
+                                    viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
+                                        fill="#690000" />
+                                </svg>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="box">
-                        <div class="box__data">
-                            <h4 class="box__title">Место старта маршрута:</h4>
-                            <input class="input" name="start" id="start" type="text" placeholder="введите данные" />
-                        </div>
-                        <div class="box__status box__status-text">
-                            <svg class="box__checkmark" id="start-img" width="25" height="28" viewBox="0 0 25 28"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="box">
-                        <div class="box__data">
-                            <h4 class="box__title">Место разворота:</h4>
-                            <input class="input" name="turn" id="turn" type="text" placeholder="введите данные" />
-                        </div>
-                        <div class="box__status box__status-text">
-                            <svg class="box__checkmark" id="turn-img" width="25" height="28" viewBox="0 0 25 28"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="box">
-                        <div class="box__data">
-                            <h4 class="box__title">Место финиша маршрута:</h4>
-                            <input class="input" name="finish" id="finish" type="text" placeholder="введите данные" />
-                        </div>
-                        <div class="box__status box__status-text">
-                            <svg class="box__checkmark" id="finish-img" width="25" height="28" viewBox="0 0 25 28"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="box">
-                        <div class="box__data">
-                            <h4 class="box__title">Длина маршрута в километрах:</h4>
-                            <input class="input" name="distance" id="distance" type="number"
-                                placeholder="введите данные" />
-                        </div>
-                        <div class="box__status box__status-text">
-                            <svg class="box__checkmark" id="distance-img" width="25" height="28" viewBox="0 0 25 28"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="box">
-                        <div class="box__data">
-                            <h4 class="box__title">Общий набор в метрах на маршруте:</h4>
-                            <input class="input" name="ascent" id="ascent" type="number" placeholder="введите данные" />
-                        </div>
-                        <div class="box__status box__status-text">
-                            <svg class="box__checkmark" id="ascent-img" width="25" height="28" viewBox="0 0 25 28"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-edit__block">
-                    <div class="box box__file">
-                        <div class="box__data">
-                            <h4 class="box__title">Фотография для карточки:</h4>
-                            <input class="btn__input" id="input__card-photo" type="file">
-                        </div>
-                        <div class="box__status box__status-text">
-                            <svg class="box__checkmark" id="input__card-photo-img" width="25" height="28"
-                                viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="box__images" id="input__card-photo-images">
-                    </div>
-                </div>
-                <h4 class="title__page title__page-sub">Создание страницы описания маршрута</h4>
-                <div class="card-edit__block">
-                    <div class="area">
-                        <div class="box__data">
-                            <h4 class="box__title">Блок подробного описание маршрута. Особенности, детали,
-                                достопримечательности, важные моменты на машруте.</h4>
-                            <textarea class="area__inner" name="description-area" id="description-area"
-                                rows="9"></textarea>
-                        </div>
-                        <div class="box__status box__status-text">
-                            <svg class="box__checkmark" id="description-area-img" width="25" height="28"
-                                viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-edit__block">
-                    <div class="box box__file">
-                        <div class="box__data">
-                            <h4 class="box__title">Фотографии для Блока подробное описание:</h4>
-                            <input class="btn__input" id="input__desc-photo" type="file">
-                        </div>
-                        <div class="box__status box__status-text">
-                            <svg class="box__checkmark" id="input__desc-photo-img" width="25" height="28"
-                                viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="box__images" id="input__desc-photo-images">
-                    </div>
-
-                </div>
-                <div class="card-edit__block">
-
-                    <div class="box">
-                        <div class="box__data">
-                            <h4 class="box__title">Ссылка на маршрут в Strave</h4>
-                            <input class="input" name="video" id="url-trek-strava" type="text"
-                                placeholder="введите данные" />
-                        </div>
-                        <div class="box__status box__status-text">
-                            <span class="box__status-text"></span>
-                            <svg class="box__checkmark" id="url-trek-strava-img" width="25" height="28"
-                                viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="box">
-                        <div class="box__data">
-                            <h4 class="box__title">Ссылка на видео с маршрута (если есть) </h4>
-                            <input class="input" name="video" id="url-video" type="text" placeholder="введите данные" />
-                        </div>
-                        <div class="box__status box__status-text">
-                            <span class="box__status-text">Опционально</span>
-                            <svg class="box__checkmark" id="url-video-img" width="25" height="28" viewBox="0 0 25 28"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="box box__file">
-                        <div class="box__data">
-                            <h4 class="box__title">Трек в формате FIT/GPX/TCX</h4>
-                            <input class="btn__input" id="input__trek" type="file">
-                        </div>
-                        <div class="box__status box__status-text">
-                            <svg class="box__checkmark" id="input__trek-img" width="25" height="28" viewBox="0 0 25 28"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="card-edit__block">
-                    <div class="box box__file box__submit">
-                        <div class="box__data">
-                            <h4 class="box__title">Отправка формы на сервер!</h4>
-                            <button class="box__btn" id="btn__send-form" type="submit">ОТПРАВИТЬ</button>
-                        </div>
-                        <div class="box__status box__status-text">
-                            <span class="box__status-text" id="btn__send-form-text"></span>
-                            <svg class="box__checkmark" id="btn__send-form-img" width="25" height="28"
-                                viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
-                                    fill="#690000" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-            </form>
+                </form>
+            </div>
         </div>
     </section>
 

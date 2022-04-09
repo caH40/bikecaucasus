@@ -38,20 +38,24 @@ export function createRoutePage(req, res) {
 
 //сохранение данных маршрута в Монго
 export async function sendFormCard(req, res) {
-  const data = req.body;
-  const id = new Date().getTime();
-  const photo = await Photo({
-    id,
-    nameRoute: data.nameRoute,
-    state: data.state,
-    descPhoto: data.descPhoto,
-  });
-  photo.save();
-  delete data.descPhoto;
-  data.id = id;
-  const card = await Card(data);
-  card.save();
-  res.status(201);
+  try {
+    const data = req.body;
+    const id = new Date().getTime();
+    const photo = await Photo({
+      id,
+      nameRoute: data.nameRoute,
+      state: data.state,
+      descPhoto: data.descPhoto,
+    });
+    photo.save();
+    delete data.descPhoto;
+    data.id = id;
+    const card = await Card(data);
+    card.save();
+    res.status(201).send({ dispatched: true, id: data.id });
+  } catch (error) {
+    console.log(error);
+  }
 }
 // получение всех карточек маршрутов из Монго
 export async function getCardData(req, res) {
@@ -61,13 +65,21 @@ export async function getCardData(req, res) {
 }
 // получение данных конкретного маршрута для формирования страницы description
 export async function getDescriptionData(req, res) {
-  res.status(200);
-  const id = req.query.id;
-  const card = await Card.findOne({ id: id });
-  const photo = await Photo.findOne({ id: id });
-  const data = {
-    descPhoto: photo.descPhoto,
-    card,
-  };
-  res.send(data);
+  try {
+    res.status(200);
+    const id = req.query.id;
+    const card = await Card.findOne({ id: id });
+    const photo = await Photo.findOne({ id: id });
+    if (!photo) {
+      console.log('В базе данных нет данной коллекции!');
+      return;
+    }
+    const data = {
+      descPhoto: photo.descPhoto,
+      card,
+    };
+    res.send(data);
+  } catch (error) {
+    console.log(error);
+  }
 }

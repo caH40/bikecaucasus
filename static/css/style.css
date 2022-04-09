@@ -279,6 +279,7 @@ body {
 
 .card-edit {
   background: linear-gradient(90.53deg, #0a233a 38.59%, #133810 99.51%);
+  min-height: calc(100vh - 120px);
   padding-bottom: 20px;
 }
 
@@ -411,10 +412,14 @@ option {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: normal;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 20px;
   color: #ffffff;
   margin-bottom: 10px;
+}
+.empty {
+  color: #6d0101;
+  font-weight: 700;
 }
 
 .box__checkmark {
@@ -432,6 +437,24 @@ option {
 .box__submit {
   background: rgba(255, 255, 255, 0.4);
   width: 760px;
+}
+
+.answer {
+  font-family: 'Montserrat Alternates';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 0.05em;
+  background-color: rgb(255, 255, 255, 0.1);
+  border-radius: 7px;
+  padding: 24px;
+  display: inline-block;
+  box-shadow: 1px 1px 5px rgb(0, 0, 0);
+  color: #f1f1f1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
 }
 
 /* /* Страница  "description"------------------------------------------------ */

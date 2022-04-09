@@ -1,4 +1,5 @@
 import loadImg from './load-img.js';
+import pageUp from './pageup.js';
 import { checkEmpty, checkEmptySelect, checkAllInputs } from './check-empty.js';
 
 const svgAll = document.querySelectorAll('.box__checkmark');
@@ -25,7 +26,7 @@ data.descPhoto = [];
 // загрузка изображений
 loadImg(data);
 
-checkAllInputs(data);
+checkAllInputs();
 
 //контроль заполнения полей данных
 checkEmpty(nameRoute, '#name-route-img');
@@ -66,23 +67,23 @@ export default async function sendData() {
     //попытка исключить из проверки заполнености поля у data.urlVideo
     data.urlVideo = urlVideo.value;
 
-    if (checker) {
-      // getFetch('http://localhost:5500/', data);
-      // for prod
-      getFetch('http://62.113.105.136:80/', data);
-      event.target.reset();
-      const spanTrek = document.getElementById('trek-status-text');
-      if (spanTrek) {
-        spanTrek.textContent = '';
-      }
-      divBoxImageCard.innerHTML = '';
-      divBoxImageDesc.innerHTML = '';
-      svgAll.forEach((element) => {
-        element.classList.remove('notEmpty');
-      });
-    } else {
-      console.log('Не все поля заполены');
+    // if (checker) {
+    getFetch('http://localhost:5500/', data);
+    // for prod
+    // getFetch('http://62.113.105.136:80/', data);
+    event.target.reset();
+    const spanTrek = document.getElementById('trek-status-text');
+    if (spanTrek) {
+      spanTrek.textContent = '';
     }
+    divBoxImageCard.innerHTML = '';
+    divBoxImageDesc.innerHTML = '';
+    svgAll.forEach((element) => {
+      element.classList.remove('notEmpty');
+    });
+    // } else {
+    //   console.log('Не все поля заполены');
+    // }
   });
 
   async function getFetch(url, data) {
@@ -94,6 +95,18 @@ export default async function sendData() {
     if (response.ok) {
     }
     const answer = await response.json();
-    console.log(answer);
+    //формирование сообщения о выполнении, добавить карточку только что созданного маршрута
+    //что бы сразу оценить её и проверить на ошибки
+    const innerCardEdite = document.querySelector('.inner__card-edit');
+    const answerElement = document.createElement('div');
+    answerElement.classList.add('answer');
+    answerElement.textContent = 'Маршрут сохранён!';
+    if (answer.dispatched) {
+      innerCardEdite.replaceWith(answerElement);
+      pageUp();
+    } else {
+      answerElement.textContent = 'Произошла ОШИБКА!';
+      innerCardEdite.replaceWith(answerElement);
+    }
   }
 }

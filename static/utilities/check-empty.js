@@ -22,7 +22,7 @@ export function checkEmptySelect(nameInputElement, selectorSvg) {
   });
 }
 
-export function checkAllInputs(data) {
+export function checkAllInputs() {
   const svg = document.querySelector('#btn__send-form-img');
   const inputs = document.querySelectorAll('input');
   const buttonSendForm = document.querySelector('#btn__send-form');
@@ -49,11 +49,13 @@ export function checkAllInputs(data) {
       svg.classList.add('notEmpty');
     } else {
       finalSpan.textContent = 'Не все поля заполенны!';
+      finalSpan.classList.add('empty');
       svg.classList.remove('notEmpty');
     }
   });
 
   buttonSendForm.addEventListener('mouseout', () => {
+    finalSpan.classList.remove('empty');
     finalSpan.textContent = '';
   });
 }
