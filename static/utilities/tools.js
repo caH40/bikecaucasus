@@ -25,7 +25,7 @@ data.descPhoto = [];
 // загрузка изображений
 loadImg(data);
 
-checkAllInputs();
+checkAllInputs(data);
 
 //контроль заполнения полей данных
 checkEmpty(nameRoute, '#name-route-img');

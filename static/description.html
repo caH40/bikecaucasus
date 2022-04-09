@@ -130,7 +130,7 @@
         </div>
         
         <div class="description__video">
-            <p class="description__text description__text-center">Видео заезда по данному маршруту {{card.urlVideo}}</p>
+            <p class="description__text description__text-center">Видео заезда по данному маршруту</p>
             <iframe class="description__video-iframe" src="{{card.urlVideo}}?controls=0"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -152,16 +152,10 @@
                 <!-- <li class="description__item">Скачать трек для велокомпьютера <a class="link__strava"
                         href="#">GPX</a> -->
                 </li>
-                <li class="description__item">Создан:<span>{{card.dateCreate}},</span><a class="link__strava"  href="#">{{card.author}}</a></li>
+                <li class="description__item">Создан:<span>{{card.dateCreate}}</span></li>
             </ul>
-
         </div>
-
-
-
     </script>
-
-
 
     <script src="./pages/description-page.js" type="module"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

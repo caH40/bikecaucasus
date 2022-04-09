@@ -1,3 +1,4 @@
+import reduceImage from './reduce-image.js';
 export default function loadimg(data) {
   const inputAddCardPhoto = document.querySelector('#input__card-photo');
   const inputAddDescPhoto = document.querySelector('#input__desc-photo');
@@ -9,7 +10,6 @@ export default function loadimg(data) {
 
   function decorateInput(input, text) {
     const button = document.createElement('div');
-    // button.classList.add('box__btn');
     button.classList.add('box__btn', 'div__btn');
     button.textContent = text;
     input.insertAdjacentElement('afterend', button);
@@ -37,7 +37,7 @@ export default function loadimg(data) {
     const files = Array.from(event.target.files);
 
     const divImageCard = document.querySelector(`#${this.id}-images`);
-    //там где добовляется одна фотография, при повторном обращении к интупту очищать innerHTML от старого фото
+    //там где добовляется одна фотография, при повторном обращении к инпуту очищать innerHTML от старого фото
     if (this.id === 'input__card-photo') {
       divImageCard.innerHTML = '';
     }
@@ -47,16 +47,18 @@ export default function loadimg(data) {
       if (!file.type.match('image')) {
         return;
       }
-
       //обработчик события, так как reader.readAsDataURL асинхронная функция
       const reader = new FileReader();
-      reader.onload = (ev) => {
+      reader.onload = async (ev) => {
         const src = ev.target.result;
+        //проверка в какой блок добавляется фотография
+        //далее соответствующее уменьшение размеров фотографии
         //запись файлов в объект data
         if (this.id === 'input__card-photo') {
-          data.cardPhoto = src;
+          data.cardPhoto = await reduceImage(src, 250);
         } else {
-          arrPhoto.push(src);
+          const srcSmall = await reduceImage(src, 700);
+          arrPhoto.push(srcSmall);
         }
 
         divImageCard.insertAdjacentHTML(
@@ -65,10 +67,8 @@ export default function loadimg(data) {
         );
         svg.classList.add('notEmpty');
       };
-
       reader.readAsDataURL(file);
     });
-
     photo.descPhoto = arrPhoto;
   }
 

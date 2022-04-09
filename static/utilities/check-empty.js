@@ -22,7 +22,7 @@ export function checkEmptySelect(nameInputElement, selectorSvg) {
   });
 }
 
-export function checkAllInputs() {
+export function checkAllInputs(data) {
   const svg = document.querySelector('#btn__send-form-img');
   const inputs = document.querySelectorAll('input');
   const buttonSendForm = document.querySelector('#btn__send-form');
@@ -37,6 +37,9 @@ export function checkAllInputs() {
       checker = false;
     }
     inputs.forEach((element) => {
+      if (element.id === 'url-video') {
+        return;
+      }
       if (element.value === '') {
         checker = checker && false;
       }
