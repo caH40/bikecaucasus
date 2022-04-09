@@ -51,12 +51,16 @@ body {
   letter-spacing: 0.08em;
   color: #f1f1f1;
   border-bottom: solid transparent 2px;
-  transition: all 0.5s;
+  transition: all 0.4s;
 }
 
 .list__link:hover {
-  border-bottom: solid #f1f1f1 2px;
-  transition: all 0.5s;
+  border-bottom: solid #30832b 2px;
+  transition: all 0.4s;
+}
+.active-nav {
+  /* border-bottom: solid #f1f1f1 2px; */
+  color: #39a034;
 }
 
 .login {

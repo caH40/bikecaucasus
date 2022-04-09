@@ -12,12 +12,12 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
-		href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;700;900&family=Montserrat:wght@400;500;600;700;900&family=Roboto:wght@400;500&display=swap"
+		href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;600;700;900&family=Montserrat:wght@400;500;600;700;900&family=Roboto:wght@400;500&display=swap"
 		rel="stylesheet">
 	<title>Bike-Caucasus</title>
 </head>
 
-<body>
+<body data-id-page="dzhilsu">
 	<header class="header__next">
 		<div class="container">
 			<div class="header__top section__top">
@@ -25,19 +25,19 @@
 				<nav class="menu">
 					<ul class="list">
 						<li class="list__item">
-							<a class="list__link" href="/">Главная</a>
+							<a class="list__link" data-id-nav="main" href="/">Главная</a>
 						</li>
 						<li class="list__item">
-							<a class="list__link" href="routes">Маршруты</a>
+							<a class="list__link" data-id-nav="routes" href="routes">Маршруты</a>
 						</li>
 						<li class="list__item">
-							<a class="list__link" href="events">События</a>
+							<a class="list__link" data-id-nav="events" href="events">События</a>
 						</li>
 						<li class="list__item">
-							<a class="list__link" href="gallery">Галерея</a>
+							<a class="list__link" data-id-nav="gallery" href="gallery">Галерея</a>
 						</li>
 						<li class="list__item">
-							<a class="list__link" href="dzhilsu">Джилы-Су</a>
+							<a class="list__link" data-id-nav="dzhilsu" href="dzhilsu">Джилы-Су</a>
 						</li>
 					</ul>
 				</nav>
@@ -115,9 +115,8 @@
 
 
 
-
+	<script src="./utilities/dataid.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<!-- <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
 	<script type="text/javascript" src="js/slick.min.js"></script>
 	<script type="text/javascript" src="js/slick-theme.js"></script>
 </body>
