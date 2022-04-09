@@ -14,7 +14,8 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;700;900&family=Montserrat:wght@400;500;600;700;900&family=Roboto:wght@400;500&display=swap"
 		rel="stylesheet">
-	<script src="./js/handlebars.min-v4.7.7.js " type="text/javascript"></script>
+	<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+	<!-- <script src="./js/handlebars.min-v4.7.7.js " type="text/javascript"></script> -->
 	<title>Bike-Caucasus</title>
 </head>
 
@@ -112,16 +113,19 @@
 
 
 	<script id="cardRoutesTemplate" type="text/x-handlebars-template">
-		<h3 class="title__page">
+		<h3 class="title__page title__page-routes">
 				Маршруты для шоссейного велосипеда
 		</h3>
 		<nav class="menu__routes">
 			<ul class="list__routes">
 				<li class="item__routes">
-					<a class="link__routes" href="#">Сортировать</a>
+					<a class="link__routes link__btn" href="#">Сортировать</a>
 				</li>
 				<li class="item__routes">
-					<a class="link__routes" href="/create-route">Создать маршрут</a>
+					<a class="link__routes link__btn" href="#">Фильтр</a>
+				</li>
+				<li class="item__routes">
+					<a class="link__routes link__btn" href="/create-route">Создать маршрут</a>
 				</li>
 			</ul>
 		</nav>
@@ -163,7 +167,7 @@
 
 </script>
 
-	<script src='./index.js' type="module"></script>
+	<script src='./js/index.js' type="module"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="js/slick.min.js" type="text/javascript"></script>
 	<script src="js/slick-theme.js" type="text/javascript"></script>

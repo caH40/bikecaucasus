@@ -188,6 +188,9 @@ body {
   padding-top: 10px;
   margin-bottom: 30px;
 }
+.title__page-routes {
+  margin-bottom: 10px;
+}
 .title__page-sub {
   padding-top: 10px;
   font-size: 26px;
@@ -198,7 +201,6 @@ body {
   flex-wrap: wrap;
   padding-bottom: 30px;
 }
-
 .card {
   width: 303px;
   height: 419px;
@@ -260,13 +262,12 @@ body {
   border-radius: 10px;
 }
 
-/* /* Страница  "cardedit"------------------------------------------------ */
+/*  Страница  "cardedit"------------------------------------------------ */
 
 .menu__routes {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .list__routes {
-  /* width: 100%; */
   display: flex;
   justify-content: end;
 }
@@ -275,6 +276,30 @@ body {
 }
 .link__routes {
   color: #f1f1f1;
+}
+
+.link__btn {
+  display: block;
+  background-color: rgb(255, 255, 255, 0.1);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  font-family: 'Montserrat Alternates';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+  width: 180px;
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+.link__btn:hover {
+  background-color: #30832b;
+}
+.link__btn:active {
+  background: #ec9c07;
 }
 
 .card-edit {
@@ -457,7 +482,7 @@ option {
   position: absolute;
 }
 
-/* /* Страница  "description"------------------------------------------------ */
+/*  Страница  "description"------------------------------------------------ */
 .container-description {
   max-width: 1280px;
 }
@@ -480,8 +505,6 @@ option {
 }
 .description__box {
   max-width: 550px;
-}
-.description__box-right {
 }
 .description__text {
   font-family: 'Roboto';

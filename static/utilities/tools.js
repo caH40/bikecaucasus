@@ -68,9 +68,9 @@ export default async function sendData() {
     data.urlVideo = urlVideo.value;
 
     // if (checker) {
-    getFetch('http://localhost:5500/', data);
+    // getFetch('http://localhost:5500/', data);
     // for prod
-    // getFetch('http://62.113.105.136:80/', data);
+    getFetch('http://62.113.105.136:80/', data);
     event.target.reset();
     const spanTrek = document.getElementById('trek-status-text');
     if (spanTrek) {

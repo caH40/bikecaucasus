@@ -5,8 +5,8 @@ async function descriptionPage() {
   let id = document.location.search;
 
   const data = await fetch(
-    `http://localhost:5500/description/getdata${id}`
-    // `http://62.113.105.136:80/description/getdata${id}`
+    // `http://localhost:5500/description/getdata${id}`
+    `http://62.113.105.136:80/description/getdata${id}`
   ).then((data) => data.json());
   data.card.dateCreate = new Date(data.card.id).toLocaleDateString();
   const text = data.card.descriptionArea.split('\n');
