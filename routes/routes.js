@@ -11,6 +11,7 @@ import {
   sendFormCard,
   getDescriptionData,
   getResults,
+  getResult,
 } from '../controllers/controller.js';
 const router = Router();
 
@@ -26,6 +27,7 @@ router.get('/create-route', createTrailPage);
 router.get('/trail/getcards', getCardData);
 router.get('/description/getdata', getDescriptionData);
 router.get('/dzhilsu/getresults', getResults);
+router.get('/dzhilsu/getresult', getResult);
 router.post('/', sendFormCard);
 
 export default router;

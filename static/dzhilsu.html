@@ -54,9 +54,7 @@
 	</header>
 	<section class="main">
 		<div class="container">
-			<h3 class="title__page">
-				Высокогорные соревнования Джилы-Су
-			</h3>
+
 			<div class="handlebars">
 
 			</div>
@@ -118,7 +116,10 @@
 	</footer>
 
 	<script id="tableEventsTemplate" type="text/x-handlebars-template">
-		<table class="table table-dark table-striped" id="table-events">
+		<h3 class="title__page">
+			Высокогорные соревнования Джилы-Су
+		</h3>
+		<table class="table" id="table-events">
 			<thead>
 				<tr>
 					<th scope="col">#</th>
@@ -131,12 +132,12 @@
 			</thead>
 			<tbody>
 				{{#each list}}
-				<tr id="{{eventId}}">
- 					<td>{{tableNumber}}</td>
-					<td>{{eventDate}}</td>
-					<td><a class="table-dark" href="#{{eventId}}">{{eventName}}</a></td>
-					<td>{{eventCity}}</td>
-					<td>{{quantity}}</td>
+				<tr>
+ 					<td id="{{eventId}}">{{tableNumber}}</td>
+					<td id="{{eventId}}">{{eventDate}}</td>
+					<td id="{{eventId}}">{{eventName}}</td>
+					<td id="{{eventId}}">{{eventCity}}</td>
+					<td id="{{eventId}}">{{quantity}}</td>
 
 				</tr>
 				{{/each}}
@@ -146,7 +147,7 @@
 
 	</script>
 	<script id="tableResultTemplate" type="text/x-handlebars-template">
-
+		<h3 class="title__page">{{eventName}}, {{eventDate}}, город {{eventCity}}</h3>
 		<table class="table table-dark table-striped">
 			<thead>
 				<tr>

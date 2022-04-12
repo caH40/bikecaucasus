@@ -91,9 +91,16 @@ export async function getDescriptionData(req, res) {
 
 export async function getResults(req, res) {
   let dataEvent = await Event.find({});
-
   let dataResult = await Result.find({});
   const data = [dataEvent, dataResult];
 
+  res.status(200).json(data);
+}
+
+export async function getResult(req, res) {
+  const id = req.query.id;
+  let dataEvent = await Event.find({ eventId: id });
+  let dataResult = await Result.find({ eventId: id });
+  const data = [dataEvent, dataResult];
   res.status(200).json(data);
 }
