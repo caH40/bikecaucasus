@@ -1,4 +1,3 @@
-// export default async function routesPage() {
 Handlebars.registerHelper('type', function (items, options) {
   let result;
   if (items === 'Горный') {
@@ -17,4 +16,3 @@ data.sort(() => Math.random() - 0.5);
 var template = Handlebars.compile(source);
 const newElement = template({ list: data });
 blockHandlebars.innerHTML = newElement;
-// }
