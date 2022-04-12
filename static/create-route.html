@@ -63,7 +63,7 @@
                             <div class="box__data">
                                 <h4 class="box__title">Название маршрута:</h4>
                                 <input class="input" name="name-route" id="name-route" type="text"
-                                    placeholder="введите данные" />
+                                    placeholder="введите данные" maxlength="18" />
                             </div>
                             <div class="box__status box__status-text">
                                 <svg class="box__checkmark" id="name-route-img" width="25" height="28"
@@ -100,8 +100,8 @@
                             <div class="box__data">
                                 <h4 class="box__title">Тип активности:</h4>
                                 <select class="input select" name="bike-type" id="bike-type">
-                                    <option value="Шоссейный велосипед">Шоссейный велосипед</option>
-                                    <option value="Горный велосипед">Горный велосипед</option>
+                                    <option value="Шоссейный">Шоссейный велосипед</option>
+                                    <option value="Горный">Горный байк</option>
                                 </select>
                             </div>
                             <div class="box__status box__status-text">
@@ -117,7 +117,8 @@
                         <div class="box">
                             <div class="box__data">
                                 <h4 class="box__title">Место старта маршрута:</h4>
-                                <input class="input" name="start" id="start" type="text" placeholder="введите данные" />
+                                <input class="input" name="start" id="start" type="text" placeholder="введите данные"
+                                    maxlength="13" />
                             </div>
                             <div class="box__status box__status-text">
                                 <svg class="box__checkmark" id="start-img" width="25" height="28" viewBox="0 0 25 28"
@@ -132,7 +133,8 @@
                         <div class="box">
                             <div class="box__data">
                                 <h4 class="box__title">Место разворота:</h4>
-                                <input class="input" name="turn" id="turn" type="text" placeholder="введите данные" />
+                                <input class="input" name="turn" id="turn" type="text" placeholder="введите данные"
+                                    maxlength="13" />
                             </div>
                             <div class="box__status box__status-text">
                                 <svg class="box__checkmark" id="turn-img" width="25" height="28" viewBox="0 0 25 28"
@@ -147,8 +149,8 @@
                         <div class="box">
                             <div class="box__data">
                                 <h4 class="box__title">Место финиша маршрута:</h4>
-                                <input class="input" name="finish" id="finish" type="text"
-                                    placeholder="введите данные" />
+                                <input class="input" name="finish" id="finish" type="text" placeholder="введите данные"
+                                    maxlength="13" />
                             </div>
                             <div class="box__status box__status-text">
                                 <svg class="box__checkmark" id="finish-img" width="25" height="28" viewBox="0 0 25 28"
@@ -163,8 +165,8 @@
                         <div class="box">
                             <div class="box__data">
                                 <h4 class="box__title">Длина маршрута в километрах:</h4>
-                                <input class="input" name="distance" id="distance" type="number"
-                                    placeholder="введите данные" />
+                                <input class="input" name="distance" id="distance" type="tel"
+                                    placeholder="введите данные" maxlength="4" />
                             </div>
                             <div class="box__status box__status-text">
                                 <svg class="box__checkmark" id="distance-img" width="25" height="28" viewBox="0 0 25 28"
@@ -179,8 +181,8 @@
                         <div class="box">
                             <div class="box__data">
                                 <h4 class="box__title">Общий набор в метрах на маршруте:</h4>
-                                <input class="input" name="ascent" id="ascent" type="number"
-                                    placeholder="введите данные" />
+                                <input class="input" name="ascent" id="ascent" type="tel" placeholder="введите данные"
+                                    maxlength="5" />
                             </div>
                             <div class="box__status box__status-text">
                                 <svg class="box__checkmark" id="ascent-img" width="25" height="28" viewBox="0 0 25 28"
@@ -218,8 +220,15 @@
                             <div class="box__data">
                                 <h4 class="box__title">Блок подробного описание маршрута. Особенности, детали,
                                     достопримечательности, важные моменты на машруте.</h4>
-                                <textarea class="area__inner" name="description-area" id="description-area"
-                                    rows="9"></textarea>
+                                <textarea class="area__inner" name="description-area" id="description-area" rows="9"
+                                    placeholder="Для качественной разметки создаваемой страницы описания маршрута необходимо придерживаться следующих пунктов:
+                                    Абзац заканчивайте нажатием Enter.
+                                    Каждый абзац делать примерно с равным количеством слов (символов).
+                                    Количество абзацов четное.
+                                    Количество фотографий, добавляемых в следующем шаге должно быть равно количеству абзацев.
+                                    Первый абзац будет соответственно с первой фотографией и т.д., поэтому желательно что бы смысл абзаца соответствовал фотографии.
+                                    Добавлять фотографии только в альбомном формате. 
+                                    "></textarea>
                             </div>
                             <div class="box__status box__status-text">
                                 <svg class="box__checkmark" id="description-area-img" width="25" height="28"

@@ -5,15 +5,16 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/style_mobile.css">
-	<link rel="stylesheet" href="css/null.css">
-	<link rel="stylesheet" href="css/slick.css">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/style_mobile.css">
+	<link rel="stylesheet" href="./css/null.css">
+	<link rel="stylesheet" href="./css/slick.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
 		href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;600;700;900&family=Montserrat:wght@400;500;600;700;900&family=Roboto:wght@400;500&display=swap"
 		rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 	<title>Bike-Caucasus</title>
 </head>
 
@@ -55,8 +56,14 @@
 	<section class="main">
 		<div class="container">
 			<h3 class="title__page">
-				Соревнования на маршруте Джилы-Су
+				Высокогорные соревнования Джилы-Су
 			</h3>
+			<div class="handlebars">
+
+			</div>
+
+
+
 
 		</div>
 	</section>
@@ -111,14 +118,81 @@
 		</div>
 	</footer>
 
+	<script id="tableEventsTemplate" type="text/x-handlebars-template">
+		<table class="table table-dark table-striped" id="table-events">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Дата</th>
+					<th scope="col">Соревнование</th>
+					<th scope="col">Город</th>
+					<th scope="col">Количество участников</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				{{#each list}}
+				<tr id="{{eventId}}">
+ 					<td>{{tableNumber}}</td>
+					<td>{{eventDate}}</td>
+					<td><a class="table-dark" href="#{{eventId}}">{{eventName}}</a></td>
+					<td>{{eventCity}}</td>
+					<td>{{quantity}}</td>
+
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+
+
+	</script>
+	<script id="tableResultTemplate" type="text/x-handlebars-template">
+
+		<table class="table table-dark table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Место</th>
+					<th scope="col">Номер</th>
+					<th scope="col">Участник</th>
+					<th scope="col">Город</th>
+					<th scope="col">Команда</th>
+					<th scope="col">Дистанция</th>
+					<th scope="col">Время</th>
+					<th scope="col">Отс.лид.</th>
+					<th scope="col">Отс.пред.</th>
+					<th scope="col">Возр. гр.</th>
+					<th scope="col">Место гр</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each list}}
+				<tr>
+ 					<td>{{place}}</td>
+					<td>{{number}}</td>
+					<td>{{athlete}}</td>
+					<td>{{athleteCity}}</td>
+					<td>{{athleteTeam}}</td>
+					<td>{{distance}}</td>
+					<td>{{timeTotal}}</td>
+					<td></td>
+					<td></td>
+					<td>{{birthday}}</td>
+					<td></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+
+	</script>
 
 
 
 
 	<script src="./utilities/dataid.js"></script>
+	<script src="./pages/dzhilsu.js" type="module"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script type="text/javascript" src="js/slick.min.js"></script>
-	<script type="text/javascript" src="js/slick-theme.js"></script>
+	<script type="text/javascript" src="./js/slick.min.js"></script>
+	<script type="text/javascript" src="./js/slick-theme.js"></script>
 </body>
 
 </html>

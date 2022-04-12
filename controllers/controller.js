@@ -1,5 +1,7 @@
 import Card from '../Model/Card.js';
 import Photo from '../Model/Photo.js';
+import Result from '../Model/Result.js';
+import Event from '../Model/Event.js';
 import path from 'path';
 
 const __dirname = path.resolve();
@@ -11,6 +13,7 @@ export function mainPage(req, res) {
 
 export function routesPage(req, res) {
   res.status(200);
+  console.log('я в роутерс');
   res.sendFile(path.resolve(__dirname, 'static', 'routes.html'));
 }
 export function eventsPage(req, res) {
@@ -21,11 +24,14 @@ export function galleryPage(req, res) {
   res.status(200);
   res.sendFile(path.resolve(__dirname, 'static', 'gallery.html'));
 }
-export function dzhilsuPage(req, res) {
+
+//страница описания ДжилыСу
+export async function dzhilsuPage(req, res) {
   res.status(200);
   res.sendFile(path.resolve(__dirname, 'static', 'dzhilsu.html'));
 }
-//cтраница описания маршрута
+
+//страница описания маршрута
 export async function descriptionPage(req, res) {
   res.status(200);
   res.sendFile(path.resolve(__dirname, 'static', 'description.html'));
@@ -82,4 +88,13 @@ export async function getDescriptionData(req, res) {
   } catch (error) {
     console.log(error);
   }
+}
+
+export async function getResults(req, res) {
+  // let dataEvent = await Event.find({});
+  let data = await Result.find({});
+  // let dataResult = await Result.find({});
+  // const data = [dataEvent, dataResult];
+
+  res.status(200).json(data);
 }

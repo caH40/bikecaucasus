@@ -1,4 +1,8 @@
 /node_modules
 */temp
 .env
-info.txt
+*.txt
+bootstrap.css
+table.json
+*.json
+appDB.js
