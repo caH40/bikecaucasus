@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import {
   mainPage,
-  routesPage,
+  trailPage,
   eventsPage,
   galleryPage,
   dzhilsuPage,
   descriptionPage,
   getCardData,
-  createRoutePage,
+  createTrailPage,
   sendFormCard,
   getDescriptionData,
   getResults,
@@ -16,14 +16,14 @@ const router = Router();
 
 router.get('/', mainPage);
 router.get('/main', mainPage);
-router.get('/routes', routesPage);
+router.get('/trail', trailPage);
 router.get('/events', eventsPage);
 router.get('/gallery', galleryPage);
 router.get('/dzhilsu', dzhilsuPage);
 router.get('/description', descriptionPage);
-router.get('/create-route', createRoutePage);
+router.get('/create-route', createTrailPage);
 
-router.get('/routes/getcards', getCardData);
+router.get('/trail/getcards', getCardData);
 router.get('/description/getdata', getDescriptionData);
 router.get('/dzhilsu/getresults', getResults);
 router.post('/', sendFormCard);

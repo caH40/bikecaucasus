@@ -11,10 +11,9 @@ export function mainPage(req, res) {
   res.sendFile(path.resolve(__dirname, 'static', 'index.html'));
 }
 
-export function routesPage(req, res) {
+export function trailPage(req, res) {
   res.status(200);
-  console.log('я в роутерс');
-  res.sendFile(path.resolve(__dirname, 'static', 'routes.html'));
+  res.sendFile(path.resolve(__dirname, 'static', 'trail.html'));
 }
 export function eventsPage(req, res) {
   res.status(200);
@@ -37,7 +36,7 @@ export async function descriptionPage(req, res) {
   res.sendFile(path.resolve(__dirname, 'static', 'description.html'));
 }
 //страница создания маршрута
-export function createRoutePage(req, res) {
+export function createTrailPage(req, res) {
   res.status(200);
   res.sendFile(path.resolve(__dirname, 'static', 'create-route.html'));
 }

@@ -17,9 +17,10 @@ try {
 const __dirathlete = path.resolve();
 const app = express();
 
+// app.enable('strict routing');
 app.use(express.json({ limit: '25mb' }));
-app.use(express.urlencoded({ extended: false }));
-// app.use(express.urlencoded({ limit: '25mb' }));
+// app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ limit: '25mb' }));
 app.use(express.static(path.resolve(__dirathlete, 'static')));
 // CORS;
 app.use(function (req, res, next) {
