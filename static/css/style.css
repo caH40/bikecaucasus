@@ -571,6 +571,7 @@ option {
 /* таблица bootstrap ==================================================== */
 table {
   font-size: 16px;
+  font-family: 'Roboto';
   width: 100%; /* Ширина таблицы */
   border-collapse: collapse; /* Убираем двойные линии между ячейками */
 }
@@ -580,8 +581,14 @@ th {
   border: 1px solid rgb(82, 81, 81); /* Параметры рамки */
 }
 th {
-  background: #afd792; /* Цвет фона */
+  background: rgb(175, 215, 146); /* Цвет фона */
   color: #333; /* Цвет текста */
+}
+tr {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 tbody tr:hover {
   cursor: pointer;
