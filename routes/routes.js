@@ -26,8 +26,8 @@ router.get('/create-route', createTrailPage);
 
 router.get('/trail/getcards', getCardData);
 router.get('/description/getdata', getDescriptionData);
-router.get('/dzhilsu/getresults', getResults);
-router.get('/dzhilsu/getresult', getResult);
+router.get('/dzhilsu/results', getResults);
+router.get('/dzhilsu/result', getResult);
 router.post('/', sendFormCard);
 
 export default router;

@@ -217,7 +217,7 @@ body {
   overflow: hidden;
 }
 .card-mtb {
-  background-color: rgba(227, 145, 11, 0.26);
+  background-color: rgba(255, 158, 0, 0.36);
 }
 
 .card:hover {
@@ -227,12 +227,12 @@ body {
 }
 
 .card__title {
-  font-family: 'Montserrat';
+  font-family: 'Montserrat Alternates';
   font-style: normal;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 24px;
   line-height: 25px;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
 }
 
 .card__title-sub {
@@ -241,17 +241,17 @@ body {
 }
 
 .card__names {
-  font-weight: 600;
+  font-weight: 500;
   margin-left: 12px;
 }
 
 .card__text {
-  font-family: 'Montserrat';
+  font-family: 'Montserrat Alternates';
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 14px;
-  letter-spacing: 0.08em;
+  /* letter-spacing: 0.08em; */
   margin-bottom: 20px;
 }
 
@@ -260,8 +260,7 @@ body {
 }
 
 .card__names-data {
-  font-style: italic;
-  color: #f1f1f1;
+  color: rgba(225, 254, 255, 0.45);
   margin-left: 12px;
 }
 
@@ -581,7 +580,7 @@ th {
   border: 1px solid rgb(82, 81, 81); /* Параметры рамки */
 }
 th {
-  background: rgb(175, 215, 146); /* Цвет фона */
+  background: rgb(114, 151, 88); /* Цвет фона */
   color: #333; /* Цвет текста */
 }
 tr {

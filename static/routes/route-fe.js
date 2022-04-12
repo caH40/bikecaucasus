@@ -10,8 +10,8 @@ export default function routerFe() {
       return;
     }
     const id = event.target.id;
-    const data = await fetch(`${host}/dzhilsu/getresult/?id=${id}`).then(
-      (data) => data.json()
+    const data = await fetch(`${host}/dzhilsu/result/?id=${id}`).then((data) =>
+      data.json()
     );
 
     const dataResult = data[1];
