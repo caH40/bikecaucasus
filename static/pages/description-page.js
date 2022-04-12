@@ -3,7 +3,6 @@ async function descriptionPage() {
   const blockHandlebars = document.querySelector('.handlebars');
   const source = document.querySelector('#descriptionTemplate').innerHTML;
   let id = document.location.search;
-  console.log(document.location);
 
   const data = await fetch(
     `http://localhost:5500/description/getdata${id}`

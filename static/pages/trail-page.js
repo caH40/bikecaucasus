@@ -8,8 +8,8 @@ Handlebars.registerHelper('type', function (items, options) {
 
 const blockHandlebars = document.querySelector('.handlebars');
 const source = document.querySelector('#cardRoutesTemplate').innerHTML;
-// const data = await fetch('http://localhost:5500/routes/getcards').then(
-const data = await fetch('http://62.113.105.136:80/routes/getcards').then(
+const data = await fetch('http://localhost:5500/trail/getcards').then(
+  // const data = await fetch('http://62.113.105.136:80/trail/getcards').then(
   (data) => data.json()
 );
 data.sort(() => Math.random() - 0.5);

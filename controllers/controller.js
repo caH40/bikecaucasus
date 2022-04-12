@@ -90,10 +90,10 @@ export async function getDescriptionData(req, res) {
 }
 
 export async function getResults(req, res) {
-  // let dataEvent = await Event.find({});
-  let data = await Result.find({});
-  // let dataResult = await Result.find({});
-  // const data = [dataEvent, dataResult];
+  let dataEvent = await Event.find({});
+
+  let dataResult = await Result.find({});
+  const data = [dataEvent, dataResult];
 
   res.status(200).json(data);
 }
