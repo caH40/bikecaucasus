@@ -9,6 +9,8 @@ export default {
     }
     if (length === 2) {
       return +timeArr[0] * 60 + +timeArr[1];
+    } else {
+      return time;
     }
   },
 
@@ -20,10 +22,13 @@ export default {
       return `${this.addNull(hour)}:${this.addNull(minutes)}:${this.addNull(
         second
       )}`;
-    } else {
+    }
+    if (seconds < 3600) {
       const minutes = Math.trunc(seconds / 60);
       const second = seconds - minutes * 60;
       return `${this.addNull(minutes)}:${this.addNull(second)}`;
+    } else {
+      return seconds;
     }
   },
   addNull(number) {
@@ -32,6 +37,8 @@ export default {
       return '0' + number;
     }
     if (number.length === 2) {
+      return number;
+    } else {
       return number;
     }
   },

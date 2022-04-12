@@ -1,3 +1,4 @@
+import { host } from './host.js';
 import loadImg from './load-img.js';
 import pageUp from './pageup.js';
 import { checkEmpty, checkEmptySelect, checkAllInputs } from './check-empty.js';
@@ -64,26 +65,24 @@ export default async function sendData() {
         checker = false;
       }
     });
-    //попытка исключить из проверки заполнености поля у data.urlVideo
+    //попытка исключить из проверки заполненности поля у data.urlVideo
     data.urlVideo = urlVideo.value;
 
-    // if (checker) {
-    // getFetch('http://localhost:5500/', data);
-    // for prod
-    getFetch('http://62.113.105.136:80/', data);
-    event.target.reset();
-    const spanTrek = document.getElementById('trek-status-text');
-    if (spanTrek) {
-      spanTrek.textContent = '';
+    if (checker) {
+      getFetch(host, data);
+      event.target.reset();
+      const spanTrek = document.getElementById('trek-status-text');
+      if (spanTrek) {
+        spanTrek.textContent = '';
+      }
+      divBoxImageCard.innerHTML = '';
+      divBoxImageDesc.innerHTML = '';
+      svgAll.forEach((element) => {
+        element.classList.remove('notEmpty');
+      });
+    } else {
+      console.log('Не все поля заполнены');
     }
-    divBoxImageCard.innerHTML = '';
-    divBoxImageDesc.innerHTML = '';
-    svgAll.forEach((element) => {
-      element.classList.remove('notEmpty');
-    });
-    // } else {
-    //   console.log('Не все поля заполены');
-    // }
   });
 
   async function getFetch(url, data) {
