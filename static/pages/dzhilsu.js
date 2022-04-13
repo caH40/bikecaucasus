@@ -17,6 +17,6 @@ async function dzhilsuEventsPage() {
   const newElement = template({ list: dataEvent });
   blockHandlebars.innerHTML = newElement;
 
-  routerFe(data);
+  routerFe.router(data);
 }
 dzhilsuEventsPage();

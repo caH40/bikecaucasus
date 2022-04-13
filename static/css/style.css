@@ -582,6 +582,10 @@ th {
 th {
   background: rgb(114, 151, 88); /* Цвет фона */
   color: #333; /* Цвет текста */
+  cursor: pointer;
+}
+th > span {
+  margin-left: 3px;
 }
 tr {
   background-color: rgba(255, 255, 255, 0.3);
@@ -593,5 +597,8 @@ tbody tr:hover {
   cursor: pointer;
   background: #b99036; /* Цвет фона при наведении */
   color: #fff; /* Цвет текста при наведении */
+}
+.active-th {
+  background-color: #72df58;
 }
 /* ============================================================================================ */

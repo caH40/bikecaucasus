@@ -119,7 +119,7 @@
 		<h3 class="title__page">
 			Высокогорные соревнования Джилы-Су
 		</h3>
-		<table class="table" id="table-events">
+		<table class="table tableEvents" id="table-events">
 			<thead>
 				<tr>
 					<th scope="col">#</th>
@@ -148,20 +148,20 @@
 	</script>
 	<script id="tableResultTemplate" type="text/x-handlebars-template">
 		<h3 class="title__page">{{eventName}}, {{eventDate}}, город {{eventCity}}</h3>
-		<table class="table table-dark table-striped">
+		<table class="table tableResult">
 			<thead>
 				<tr>
-					<th scope="col">Место</th>
-					<th scope="col">Номер</th>
-					<th scope="col">Участник</th>
-					<th scope="col">Город</th>
-					<th scope="col">Команда</th>
-					<th scope="col">Дистанция</th>
-					<th scope="col">Время</th>
+					<th scope="col" id="place">Место</th>
+					<th scope="col" id="number">Номер</th>
+					<th scope="col" id="athlete">Участник</th>
+					<th scope="col" id="athleteCity">Город</th>
+					<th scope="col" id="">Команда</th>
+					<th scope="col" id="">Дистанция</th>
+					<th scope="col" id="">Время</th>
 					<th scope="col">Отс.лид.</th>
 					<th scope="col">Отс.пред.</th>
-					<th scope="col">Возр. гр.</th>
-					<th scope="col">Место гр</th>
+					<th scope="col" id="">Возр. гр.</th>
+					<th scope="col" id="">Место гр</th>
 				</tr>
 			</thead>
 			<tbody>
