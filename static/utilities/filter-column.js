@@ -22,19 +22,15 @@ function filterNumber(dataPageTable, column) {
 function filterString(dataPageTable, column) {
   if (localStorage.getItem('direction') === 'up') {
     dataPageTable = dataPageTable.sort((a, b) => {
-      let nameA = a[column];
-      let nameB = b[column];
-      if (nameA < nameB) return -1;
-      if (nameA > nameB) return 1;
+      if (a[column] < b[column]) return -1;
+      if (a[column] > b[column]) return 1;
       return 0;
     });
     localStorage.setItem('direction', 'down');
   } else {
     dataPageTable = dataPageTable.sort((a, b) => {
-      let nameA = a[column];
-      let nameB = b[column];
-      if (nameA < nameB) return 1;
-      if (nameA > nameB) return -1;
+      if (a[column] < b[column]) return 1;
+      if (a[column] > b[column]) return -1;
       return 0;
     });
     localStorage.setItem('direction', 'up');
