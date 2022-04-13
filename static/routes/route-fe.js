@@ -1,5 +1,5 @@
 import { host } from '../utilities/host.js';
-import { getEventsTable, getResultTable } from '../controllers/controller.js';
+import { getEventsTable, getResultTable } from '../pages/dzhilsu-result.js';
 
 localStorage.setItem('direction', 'up');
 export default {

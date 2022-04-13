@@ -1,10 +1,9 @@
 import { host } from '../utilities/host.js';
 import fixUrl from '../utilities/fix-url.js';
-async function descriptionPage() {
-  const blockHandlebars = document.querySelector('.handlebars');
-  const source = document.querySelector('#descriptionTemplate').innerHTML;
-  let id = document.location.search;
+import { render } from '../view/viewer.js';
 
+async function descriptionPage() {
+  let id = document.location.search;
   const data = await fetch(`${host}/description/getdata${id}`).then((data) =>
     data.json()
   );
@@ -19,13 +18,13 @@ async function descriptionPage() {
     i++;
     textPhotoR.push({ paragraph: text[i], paragraphPhoto: data.descPhoto[i] });
   }
-
-  var template = Handlebars.compile(source);
-  const newElement = template({
-    listL: textPhotoL,
-    listR: textPhotoR,
-    card: data.card,
-  });
-  blockHandlebars.innerHTML = newElement;
+  render(
+    {
+      listL: textPhotoL,
+      listR: textPhotoR,
+      card: data.card,
+    },
+    '#descriptionTemplate'
+  );
 }
 descriptionPage();
