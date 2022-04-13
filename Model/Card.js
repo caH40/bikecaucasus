@@ -3,8 +3,8 @@ const { Schema, model } = pkg;
 
 const cardSchema = new Schema({
   id: { type: Number },
-  nameRoute: { type: String },
-  state: { type: String },
+  nameRoute: { type: String, required: true },
+  state: { type: String, required: true },
   bikeType: { type: String },
   start: { type: String },
   turn: { type: String },
