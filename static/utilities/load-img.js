@@ -95,7 +95,6 @@ export default function loadimg(data) {
     }
     const file = event.target.files[0];
     const fileName = file.name;
-    console.log(fileName);
     let dataFileTrek = new FormData();
     dataFileTrek.append('filedata', file);
     data.fileTrek = dataFileTrek;
