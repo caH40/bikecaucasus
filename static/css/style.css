@@ -545,13 +545,19 @@ option {
   height: 500px;
   border-radius: 15px;
 }
+.description__total {
+  display: flex;
+}
+.description__list {
+  margin: 5px 0px 0px 20px;
+}
+
 .description__item {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
-  text-align: justify;
   letter-spacing: 0.08em;
   color: #f1f1f1;
 }
@@ -561,7 +567,7 @@ option {
   font-weight: 300;
   font-style: italic;
 }
-.link__strava {
+.link__gconnect {
   margin-left: 10px;
   color: #ec9c07;
   font-weight: 300;

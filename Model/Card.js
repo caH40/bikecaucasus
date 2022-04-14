@@ -15,7 +15,7 @@ const cardSchema = new Schema({
   cardPhoto: { type: String },
   fileTrek: { type: String },
   urlVideo: { type: String },
-  urlTrekStrava: { type: String },
+  urlTrekGConnect: { type: String },
   author: { type: String },
 });
 

@@ -22,9 +22,8 @@ const finish = document.querySelector('#finish');
 const distance = document.querySelector('#distance');
 const ascent = document.querySelector('#ascent');
 const descriptionArea = document.querySelector('#description-area');
-const urlTrekStrava = document.querySelector('#url-trek-strava');
+const urlTrekGConnect = document.querySelector('#url-trek-gconnect');
 const urlVideo = document.querySelector('#url-video');
-
 var data = {};
 data.descPhoto = [];
 
@@ -43,7 +42,7 @@ checkEmpty(finish, '#finish-img');
 checkEmpty(distance, '#distance-img');
 checkEmpty(ascent, '#ascent-img');
 checkEmpty(descriptionArea, '#description-area-img');
-checkEmpty(urlTrekStrava, '#url-trek-strava-img');
+checkEmpty(urlTrekGConnect, '#url-trek-gconnect-img');
 checkEmpty(urlVideo, '#url-video-img');
 
 async function sendData() {
@@ -59,7 +58,7 @@ async function sendData() {
     data.distance = distance.value;
     data.ascent = ascent.value;
     data.descriptionArea = descriptionArea.value;
-    data.urlTrekStrava = urlTrekStrava.value;
+    data.urlTrekGConnect = urlTrekGConnect.value;
     data.author = 'Бережнев А.';
 
     let checker = true;
@@ -72,24 +71,25 @@ async function sendData() {
     //попытка исключить из проверки заполненности поля у data.urlVideo
     data.urlVideo = urlVideo.value;
 
-    if (checker) {
-      getFetch(host, data);
-      event.target.reset();
-      const spanTrek = document.getElementById('trek-status-text');
-      if (spanTrek) {
-        spanTrek.textContent = '';
-      }
-      divBoxImageCard.innerHTML = '';
-      divBoxImageDesc.innerHTML = '';
-      svgAll.forEach((element) => {
-        element.classList.remove('notEmpty');
-      });
-    } else {
-      console.log('Не все поля заполнены');
+    // if (checker) {
+    getFetch(host, data);
+    event.target.reset();
+    const spanTrek = document.getElementById('trek-status-text');
+    if (spanTrek) {
+      spanTrek.textContent = '';
     }
+    divBoxImageCard.innerHTML = '';
+    divBoxImageDesc.innerHTML = '';
+    svgAll.forEach((element) => {
+      element.classList.remove('notEmpty');
+    });
+    // } else {
+    //   console.log('Не все поля заполнены');
+    // }
   });
 
   async function getFetch(url, data) {
+    console.log(data);
     const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

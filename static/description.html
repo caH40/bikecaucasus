@@ -138,22 +138,23 @@
         </div>
 
         <div class="description__total">
-            <ul class="description__list">
-                <li class="description__item">Общие данные по маршруту</li>
-                <li class="description__item">Старт:<span>{{card.start}}</span></li>
-                <li class="description__item">Разворот:<span>{{card.turn}}</span></li>
-                <li class="description__item">Протяженность:<span>{{card.distance}}км</span></li>
-                <li class="description__item">Набор высоты:<span>{{card.ascent}}м</span></li>
-
-                <li class="description__item">Финиш:<span>{{card.finish}}</span></li>
-                <li class="description__item">Маршрут в Страве:<a class="link__strava" target="blank"
-                        href="{{card.urlTrekStrava}}">
-                        {{card.urlTrekStrava}}</a> </li>
-                <!-- <li class="description__item">Скачать трек для велокомпьютера <a class="link__strava"
-                        href="#">GPX</a> -->
-                </li>
-                <li class="description__item">Создан:<span>{{card.dateCreate}}</span></li>
-            </ul>
+                <iframe src='{{card.urlTrekGConnectEmber}}' width='465' height='548' frameborder='0'></iframe>
+                <ul class="description__list">
+                    <li class="description__item">Общие данные по маршруту</li>
+                    <li class="description__item">Старт:<span>{{card.start}}</span></li>
+                    <li class="description__item">Разворот:<span>{{card.turn}}</span></li>
+                    <li class="description__item">Протяженность:<span>{{card.distance}}км</span></li>
+                    <li class="description__item">Набор высоты:<span>{{card.ascent}}м</span></li>
+    
+                    <li class="description__item">Финиш:<span>{{card.finish}}</span></li>
+                    <li class="description__item">Маршрут в Garmin Connect:<a class="link__gconnect" target="blank"
+                            href="{{card.urlTrekGConnect}}">
+                            {{card.urlTrekGConnect}}</a> </li>
+                    <li class="description__item">Скачать трек для велокомпьютера <a class="link__gconnect"
+                            href="#">GPX/FIT</a>
+                    </li>
+                    <li class="description__item">Создан:<span>{{card.dateCreate}}</span></li>
+                </ul>
         </div>
     </script>
 
