@@ -71,23 +71,23 @@ async function sendData() {
     //попытка исключить из проверки заполненности поля у data.urlVideo
     data.urlVideo = urlVideo.value;
 
-    if (checker) {
-      postAxios(data.fileTrek);
-      delete data.fileTrek;
-      getFetch(host, data);
-      event.target.reset();
-      const spanTrek = document.getElementById('trek-status-text');
-      if (spanTrek) {
-        spanTrek.textContent = '';
-      }
-      divBoxImageCard.innerHTML = '';
-      divBoxImageDesc.innerHTML = '';
-      svgAll.forEach((element) => {
-        element.classList.remove('notEmpty');
-      });
-    } else {
-      console.log('Не все поля заполнены');
+    // if (checker) {
+    postAxios(data.fileTrek);
+    delete data.fileTrek;
+    getFetch(host, data);
+    event.target.reset();
+    const spanTrek = document.getElementById('trek-status-text');
+    if (spanTrek) {
+      spanTrek.textContent = '';
     }
+    divBoxImageCard.innerHTML = '';
+    divBoxImageDesc.innerHTML = '';
+    svgAll.forEach((element) => {
+      element.classList.remove('notEmpty');
+    });
+    // } else {
+    //   console.log('Не все поля заполнены');
+    // }
   });
   async function postAxios(file) {
     await axios.post('/uploadTrek', file, {

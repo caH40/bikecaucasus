@@ -8,38 +8,66 @@ import path from 'path';
 const __dirname = path.resolve();
 
 export function mainPage(req, res) {
-  res.status(200);
-  res.sendFile(path.resolve(__dirname, 'static', 'index.html'));
+  try {
+    res.status(200);
+    res.sendFile(path.resolve(__dirname, 'static', 'index.html'));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export function trailPage(req, res) {
-  res.status(200);
-  res.sendFile(path.resolve(__dirname, 'static', 'trail.html'));
+  try {
+    res.status(200);
+    res.sendFile(path.resolve(__dirname, 'static', 'trail.html'));
+  } catch (error) {
+    console.log(error);
+  }
 }
 export function eventsPage(req, res) {
-  res.status(200);
-  res.sendFile(path.resolve(__dirname, 'static', 'events.html'));
+  try {
+    res.status(200);
+    res.sendFile(path.resolve(__dirname, 'static', 'events.html'));
+  } catch (error) {
+    console.log(error);
+  }
 }
 export function galleryPage(req, res) {
-  res.status(200);
-  res.sendFile(path.resolve(__dirname, 'static', 'gallery.html'));
+  try {
+    res.status(200);
+    res.sendFile(path.resolve(__dirname, 'static', 'gallery.html'));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 //страница описания ДжилыСу
 export async function dzhilsuPage(req, res) {
-  res.status(200);
-  res.sendFile(path.resolve(__dirname, 'static', 'dzhilsu.html'));
+  try {
+    res.status(200);
+    res.sendFile(path.resolve(__dirname, 'static', 'dzhilsu.html'));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 //страница описания маршрута
 export async function descriptionPage(req, res) {
-  res.status(200);
-  res.sendFile(path.resolve(__dirname, 'static', 'description.html'));
+  try {
+    res.status(200);
+    res.sendFile(path.resolve(__dirname, 'static', 'description.html'));
+  } catch (error) {
+    console.log(error);
+  }
 }
 //страница создания маршрута
 export function createTrailPage(req, res) {
-  res.status(200);
-  res.sendFile(path.resolve(__dirname, 'static', 'create-route.html'));
+  try {
+    res.status(200);
+    res.sendFile(path.resolve(__dirname, 'static', 'create-route.html'));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 //сохранение данных маршрута в Монго
@@ -65,9 +93,13 @@ export async function sendFormCard(req, res) {
 }
 // получение всех карточек маршрутов из Монго
 export async function getCardData(req, res) {
-  res.status(200);
-  const card = await Card.find({});
-  res.send(card);
+  try {
+    res.status(200);
+    const card = await Card.find({});
+    res.send(card);
+  } catch (error) {
+    console.log(error);
+  }
 }
 // получение данных конкретного маршрута для формирования страницы description
 export async function getDescriptionData(req, res) {
@@ -91,19 +123,26 @@ export async function getDescriptionData(req, res) {
 }
 
 export async function getResults(req, res) {
-  let dataEvent = await Event.find({});
-  let dataResult = await Result.find({});
-  const data = [dataEvent, dataResult];
-
-  res.status(200).json(data);
+  try {
+    let dataEvent = await Event.find({});
+    let dataResult = await Result.find({});
+    const data = [dataEvent, dataResult];
+    res.status(200).json(data);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function getResult(req, res) {
-  const id = req.query.id;
-  let dataEvent = await Event.find({ eventId: id });
-  let dataResult = await Result.find({ eventId: id });
-  const data = [dataEvent, dataResult];
-  res.status(200).json(data);
+  try {
+    const id = req.query.id;
+    let dataEvent = await Event.find({ eventId: id });
+    let dataResult = await Result.find({ eventId: id });
+    const data = [dataEvent, dataResult];
+    res.status(200).json(data);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function postFileTrek(req, res) {
