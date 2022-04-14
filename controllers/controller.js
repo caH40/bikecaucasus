@@ -2,6 +2,7 @@ import Card from '../Model/Card.js';
 import Photo from '../Model/Photo.js';
 import Result from '../Model/Result.js';
 import Event from '../Model/Event.js';
+
 import path from 'path';
 
 const __dirname = path.resolve();
@@ -103,4 +104,15 @@ export async function getResult(req, res) {
   let dataResult = await Result.find({ eventId: id });
   const data = [dataEvent, dataResult];
   res.status(200).json(data);
+}
+
+export async function postFileTrek(req, res) {
+  try {
+    // console.log(req.body);
+    if (req.file) {
+      res.json(req.file);
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }

@@ -93,20 +93,17 @@ export default function loadimg(data) {
     if (newSpan) {
       newSpan.remove();
     }
+    const file = event.target.files[0];
+    const fileName = file.name;
+    console.log(fileName);
+    let dataFileTrek = new FormData();
+    dataFileTrek.append('filedata', file);
+    data.fileTrek = dataFileTrek;
 
-    const reader = new FileReader();
-
-    reader.onload = (ev) => {
-      const fileName = event.target.files[0].name;
-
-      svg.insertAdjacentHTML(
-        'beforebegin',
-        `<span class="box__status-text" id="trek-status-text">${fileName}</span>`
-      );
-      svg.classList.add('notEmpty');
-      data.fileTrek = ev.target.result;
-    };
-
-    reader.readAsDataURL(event.target.files[0]);
+    svg.insertAdjacentHTML(
+      'beforebegin',
+      `<span class="box__status-text" id="trek-status-text">${fileName}</span>`
+    );
+    svg.classList.add('notEmpty');
   }
 }

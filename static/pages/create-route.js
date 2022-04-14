@@ -72,6 +72,8 @@ async function sendData() {
     data.urlVideo = urlVideo.value;
 
     // if (checker) {
+    postAxios(data.fileTrek);
+    data.fileTrek = '';
     getFetch(host, data);
     event.target.reset();
     const spanTrek = document.getElementById('trek-status-text');
@@ -87,6 +89,11 @@ async function sendData() {
     //   console.log('Не все поля заполнены');
     // }
   });
+  async function postAxios(file) {
+    await axios.post('/uploadTrek', file, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+  }
 
   async function getFetch(url, data) {
     console.log(data);
