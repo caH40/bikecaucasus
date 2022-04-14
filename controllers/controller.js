@@ -108,10 +108,19 @@ export async function getResult(req, res) {
 
 export async function postFileTrek(req, res) {
   try {
-    // console.log(req.body);
     if (req.file) {
       res.json(req.file);
     }
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function getTrek(req, res) {
+  try {
+    const id = req.query.id;
+    // res.attachment();
+    // res.attachment(path.resolve(__dirname, 'treks'), id);
+    res.download(path.resolve(__dirname, 'treks', id));
   } catch (error) {
     console.log(error);
   }
