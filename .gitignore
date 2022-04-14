@@ -7,3 +7,4 @@ table.json
 *.json
 appDB.js
 *.gpx
+*.fit
