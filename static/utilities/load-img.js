@@ -99,6 +99,7 @@ export default function loadimg(data) {
     let dataFileTrek = new FormData();
     dataFileTrek.append('filedata', file);
     data.fileTrek = dataFileTrek;
+    data.fileTrekName = fileName;
 
     svg.insertAdjacentHTML(
       'beforebegin',

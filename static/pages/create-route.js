@@ -73,7 +73,7 @@ async function sendData() {
 
     // if (checker) {
     postAxios(data.fileTrek);
-    data.fileTrek = '';
+    delete data.fileTrek;
     getFetch(host, data);
     event.target.reset();
     const spanTrek = document.getElementById('trek-status-text');
