@@ -547,9 +547,10 @@ option {
 }
 .description__total {
   display: flex;
+  align-items: flex-end;
 }
 .description__list {
-  margin: 5px 0px 0px 20px;
+  margin: 5px 0px 55px 20px;
 }
 
 .description__item {

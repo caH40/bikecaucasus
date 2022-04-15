@@ -8,6 +8,12 @@ Handlebars.registerHelper('type', function (items, options) {
   return result;
 });
 
-const data = await fetch(`${host}/trail/getcards`).then((data) => data.json());
-data.sort(() => Math.random() - 0.5);
-render({ list: data }, '#cardRoutesTemplate');
+try {
+  const data = await fetch(`${host}/trail/getcards`).then((data) =>
+    data.json()
+  );
+  data.sort(() => Math.random() - 0.5);
+  render({ list: data }, '#cardRoutesTemplate');
+} catch (error) {
+  console.log(error);
+}

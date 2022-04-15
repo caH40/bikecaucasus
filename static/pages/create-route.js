@@ -71,51 +71,60 @@ async function sendData() {
     //попытка исключить из проверки заполненности поля у data.urlVideo
     data.urlVideo = urlVideo.value;
 
-    // if (checker) {
-    postAxios(data.fileTrek);
-    delete data.fileTrek;
-    getFetch(host, data);
-    event.target.reset();
-    const spanTrek = document.getElementById('trek-status-text');
-    if (spanTrek) {
-      spanTrek.textContent = '';
+    if (checker) {
+      postAxios(data.fileTrek);
+      delete data.fileTrek;
+      getFetch(host, data);
+      event.target.reset();
+      const spanTrek = document.getElementById('trek-status-text');
+      if (spanTrek) {
+        spanTrek.textContent = '';
+      }
+      divBoxImageCard.innerHTML = '';
+      divBoxImageDesc.innerHTML = '';
+      svgAll.forEach((element) => {
+        element.classList.remove('notEmpty');
+      });
+    } else {
+      console.log('Не все поля заполнены');
     }
-    divBoxImageCard.innerHTML = '';
-    divBoxImageDesc.innerHTML = '';
-    svgAll.forEach((element) => {
-      element.classList.remove('notEmpty');
-    });
-    // } else {
-    //   console.log('Не все поля заполнены');
-    // }
   });
+
   async function postAxios(file) {
-    await axios.post('/uploadTrek', file, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    try {
+      await axios.post('/uploadTrek', file, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function getFetch(url, data) {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    }).catch((error) => console.log(error));
-    if (response.ok) {
-    }
-    const answer = await response.json();
-    //формирование сообщения о выполнении, добавить карточку только что созданного маршрута
-    //что бы сразу оценить её и проверить на ошибки
-    const innerCardEdite = document.querySelector('.inner__card-edit');
-    const answerElement = document.createElement('div');
-    answerElement.classList.add('answer');
-    answerElement.textContent = 'Маршрут сохранён!';
-    if (answer.dispatched) {
-      innerCardEdite.replaceWith(answerElement);
-      pageUp();
-    } else {
-      answerElement.textContent = 'Произошла ОШИБКА!';
-      innerCardEdite.replaceWith(answerElement);
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      }).catch((error) => console.log(error));
+      if (response.ok) {
+      }
+      const answer = await response.json();
+      //формирование сообщения о выполнении, добавить карточку только что созданного маршрута
+      //что бы сразу оценить её и проверить на ошибки
+      const innerCardEdite = document.querySelector('.inner__card-edit');
+      const answerElement = document.createElement('div');
+      answerElement.classList.add('answer');
+      answerElement.textContent = 'Маршрут сохранён!';
+      if (answer.dispatched) {
+        innerCardEdite.replaceWith(answerElement);
+        pageUp();
+      } else {
+        answerElement.textContent = 'Произошла ОШИБКА!';
+        innerCardEdite.replaceWith(answerElement);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 }
