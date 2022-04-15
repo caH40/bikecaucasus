@@ -28,6 +28,7 @@ export function getResultTable(data, column) {
       eventCity: data[0][0].eventCity,
       eventDate: data[0][0].eventDate,
       eventName: data[0][0].eventName,
+      segmentStrava: data[0][0].segmentStrava,
     };
 
     render(dataTemplate, '#tableResultTemplate');

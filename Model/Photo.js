@@ -3,7 +3,7 @@ const { Schema, model } = pkg;
 
 const photoSchema = new Schema({
   id: { type: Number },
-  nameRoute: { type: String, required: true },
+  nameRoute: { type: String },
   state: { type: String },
   descPhoto: { type: Array },
 });

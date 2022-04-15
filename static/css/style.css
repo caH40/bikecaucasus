@@ -574,7 +574,7 @@ option {
   font-weight: 300;
   font-style: italic;
 }
-/* таблица bootstrap ==================================================== */
+/* таблица  ==================================================== */
 table {
   font-size: 16px;
   font-family: 'Roboto';
@@ -603,9 +603,15 @@ tr:nth-child(odd) {
 tbody tr:hover {
   cursor: pointer;
   background: #b99036; /* Цвет фона при наведении */
-  color: #fff; /* Цвет текста при наведении */
+  color: #f1f1f1; /* Цвет текста при наведении */
 }
 .active-th {
   background-color: #72df58;
+}
+.td__link .link__btn {
+  display: inline-block;
+}
+.td__link {
+  text-align: center;
 }
 /* ============================================================================================ */
