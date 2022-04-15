@@ -9,9 +9,9 @@ Handlebars.registerHelper('type', function (items, options) {
 });
 
 try {
-  const data = await fetch(`${host}/trail/getcards`).then((data) =>
-    data.json()
-  );
+  const data = await fetch(`${host}/trail/getcards`, {
+    referrerPolicy: 'unsafe-url',
+  }).then((data) => data.json());
   data.sort(() => Math.random() - 0.5);
   render({ list: data }, '#cardRoutesTemplate');
 } catch (error) {
