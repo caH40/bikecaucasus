@@ -37,23 +37,3 @@ export function getResultTable(data, column) {
     console.log(error);
   }
 }
-
-export function getResultUser(data) {
-  try {
-    for (let i = 0; i < data[1].length; i++) {
-      let event = data[0].find((e) => e.eventId === data[1][i].eventId);
-      data[1][i] = { ...data[1][i], ...event };
-    }
-    const dataResult = data[1];
-    const dataTemplate = {
-      list: dataResult,
-      athleteCity: data[1][0].athleteCity,
-      athlete: data[1][0].athlete,
-      athleteTeam: data[1][0].athleteTeam,
-    };
-
-    render(dataTemplate, '#tableUserTemplate');
-  } catch (error) {
-    console.log(error);
-  }
-}

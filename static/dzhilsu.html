@@ -163,17 +163,43 @@
 			<tbody>
 				{{#each list}}
 				<tr>
- 					<td>{{place}}</td>
-					<td>{{number}}</td>
-					<td>{{athlete}}</td>
-					<td>{{athleteCity}}</td>
-					<td>{{athleteTeam}}</td>
-					<td>{{distance}}</td>
-					<td>{{timeTotal}}</td>
-					<td>{{lagLeader}}</td>
-					<td>{{lagBefore}}</td>
-					<td>{{birthday}}</td>
-					<td></td>
+ 					<td id="{{athlete}}">{{place}}</td>
+					<td id="{{athlete}}">{{number}}</td>
+					<td id="{{athlete}}">{{athlete}}</td>
+					<td id="{{athlete}}">{{athleteCity}}</td>
+					<td id="{{athlete}}">{{athleteTeam}}</td>
+					<td id="{{athlete}}">{{distance}}</td>
+					<td id="{{athlete}}">{{timeTotal}}</td>
+					<td id="{{athlete}}">{{lagLeader}}</td>
+					<td id="{{athlete}}">{{lagBefore}}</td>
+					<td id="{{athlete}}">{{birthday}}</td>
+					<td id="{{athlete}}"></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+
+	</script>
+	<script id="tableUserTemplate" type="text/x-handlebars-template">
+		<h3 class="title__page">{{athlete}}, Команда: {{athleteTeam}}, город {{athleteCity}}</h3>
+		<table class="table tableUser">
+			<thead>
+				<tr>
+					<th scope="col">Дата</th>
+					<th scope="col">Соревнование</th>
+					<th scope="col" id="">Дистанция</th>
+					<th scope="col" id="place">Место</th>
+					<th scope="col" id="">Время</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each list}}
+				<tr>
+					<td id="{{eventId}}">{{eventDate}}</td>
+					<td id="{{eventId}}">{{eventName}}</td>
+					<td id="{{eventId}}">{{distance}}</td>
+					<td id="{{eventId}}">{{place}}</td>
+					<td id="{{eventId}}">{{timeTotal}}</td>
 				</tr>
 				{{/each}}
 			</tbody>

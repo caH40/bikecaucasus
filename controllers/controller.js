@@ -144,6 +144,17 @@ export async function getResult(req, res) {
     console.log(error);
   }
 }
+export async function getUser(req, res) {
+  try {
+    const id = req.query.id;
+    let dataEvent = await Event.find();
+    let dataResult = await Result.find({ athlete: id });
+    const data = [dataEvent, dataResult];
+    res.status(200).json(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export async function postFileTrek(req, res) {
   try {

@@ -14,6 +14,7 @@ import {
   getResult,
   postFileTrek,
   getTrek,
+  getUser,
 } from '../controllers/controller.js';
 import fileMiddleware from '../app_modules/upload.js';
 const router = Router();
@@ -34,5 +35,6 @@ router.get('/dzhilsu/result', getResult);
 router.post('/', sendFormCard);
 router.post('/uploadTrek', fileMiddleware.single('filedata'), postFileTrek);
 router.get('/gettrek', getTrek);
+router.get('/dzhilsu/user', getUser);
 
 export default router;
