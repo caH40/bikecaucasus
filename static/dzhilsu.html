@@ -190,6 +190,7 @@
 					<th scope="col" id="">Дистанция</th>
 					<th scope="col" id="place">Место</th>
 					<th scope="col" id="">Время</th>
+					<th scope="col" id="">Сегмент в Страве</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -200,6 +201,7 @@
 					<td id="{{eventId}}">{{distance}}</td>
 					<td id="{{eventId}}">{{place}}</td>
 					<td id="{{eventId}}">{{timeTotal}}</td>
+					<td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}" target="_blank">Strava</a></td>
 				</tr>
 				{{/each}}
 			</tbody>

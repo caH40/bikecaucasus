@@ -557,7 +557,7 @@ option {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.08em;
   color: #f1f1f1;
@@ -565,8 +565,10 @@ option {
 .description__item > span {
   margin-left: 10px;
   color: #ec9c07;
-  font-weight: 300;
   font-style: italic;
+}
+.description__item > a {
+  text-decoration: underline;
 }
 .link__gconnect {
   margin-left: 10px;
