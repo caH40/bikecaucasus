@@ -2,7 +2,7 @@ import { Router } from 'express';
 import {
   mainPage,
   trailPage,
-  eventsPage,
+  nonPage,
   galleryPage,
   dzhilsuPage,
   descriptionPage,
@@ -22,8 +22,8 @@ const router = Router();
 router.get('/', mainPage);
 router.get('/main', mainPage);
 router.get('/trail', trailPage);
-router.get('/events', eventsPage);
-router.get('/gallery', galleryPage);
+router.get('/login', nonPage);
+router.get('/gallery', nonPage);
 //страница описания маршрута
 router.get('/description', descriptionPage);
 router.get('/description/getdata', getDescriptionData);

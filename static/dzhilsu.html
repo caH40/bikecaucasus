@@ -45,9 +45,6 @@
 							<a class="list__link" data-id-nav="trail" href="trail">Маршруты</a>
 						</li>
 						<li class="list__item">
-							<a class="list__link" data-id-nav="events" href="events">События</a>
-						</li>
-						<li class="list__item">
 							<a class="list__link" data-id-nav="gallery" href="gallery">Галерея</a>
 						</li>
 						<li class="list__item">
@@ -130,8 +127,8 @@
 					<th scope="col">#</th>
 					<th scope="col">Дата</th>
 					<th scope="col">Соревнование</th>
-					<th scope="col">Город</th>
-					<th scope="col">Количество участников</th>
+					<th class="display-non" scope="col">Город</th>
+					<th scope="col">Участники</th>
 					<th scope="col">Сегмент в Страве</th>
 
 				</tr>
@@ -142,7 +139,7 @@
  					<td id="{{eventId}}">{{tableNumber}}</td>
 					<td id="{{eventId}}">{{eventDate}}</td>
 					<td id="{{eventId}}">{{eventName}}</td>
-					<td id="{{eventId}}">{{eventCity}}</td>
+					<td class="display-non" id="{{eventId}}">{{eventCity}}</td>
 					<td id="{{eventId}}">{{quantity}}</td>
 					<td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}" target="_blank">Strava</a></td>
 
@@ -158,33 +155,33 @@
 		<table class="table tableResult">
 			<thead>
 				<tr>
-					<th scope="col" id="place">Место</th>
-					<th scope="col" id="number">Номер</th>
+					<th scope="col" id="place">#</th>
+					<th class="display-non" scope="col" id="number">Номер</th>
 					<th scope="col" id="athlete">Участник</th>
-					<th scope="col" id="athleteCity">Город</th>
-					<th scope="col" id="">Команда</th>
-					<th scope="col" id="">Дистанция</th>
+					<th class="display-non" scope="col" id="athleteCity">Город</th>
+					<th class="display-non" scope="col" id="">Команда</th>
+					<th class="display-non" scope="col" id="">Дистанция</th>
 					<th scope="col" id="">Время</th>
 					<th scope="col">Отс.лид.</th>
-					<th scope="col">Отс.пред.</th>
-					<th scope="col" id="">Возр. гр.</th>
-					<th scope="col" id="">Место гр</th>
+					<th scope="col">Отс.пр.</th>
+					<th class="display-non" scope="col" id="">Возр. гр.</th>
+					<th class="display-non" scope="col" id="">Место гр</th>
 				</tr>
 			</thead>
 			<tbody>
 				{{#each list}}
 				<tr>
  					<td id="{{athlete}}">{{place}}</td>
-					<td id="{{athlete}}">{{number}}</td>
+					<td class="display-non" id="{{athlete}}">{{number}}</td>
 					<td id="{{athlete}}">{{athlete}}</td>
-					<td id="{{athlete}}">{{athleteCity}}</td>
-					<td id="{{athlete}}">{{athleteTeam}}</td>
-					<td id="{{athlete}}">{{distance}}</td>
+					<td class="display-non" id="{{athlete}}">{{athleteCity}}</td>
+					<td class="display-non" id="{{athlete}}">{{athleteTeam}}</td>
+					<td class="display-non" id="{{athlete}}">{{distance}}</td>
 					<td id="{{athlete}}">{{timeTotal}}</td>
 					<td id="{{athlete}}">{{lagLeader}}</td>
 					<td id="{{athlete}}">{{lagBefore}}</td>
-					<td id="{{athlete}}">{{birthday}}</td>
-					<td id="{{athlete}}"></td>
+					<td class="display-non" id="{{athlete}}">{{birthday}}</td>
+					<td class="display-non" id="{{athlete}}"></td>
 				</tr>
 				{{/each}}
 			</tbody>
@@ -198,9 +195,9 @@
 				<tr>
 					<th scope="col">Дата</th>
 					<th scope="col">Соревнование</th>
-					<th scope="col" id="">Дистанция</th>
+					<th class="display-non" scope="col" id="">Дистанция</th>
 					<th scope="col" id="place">Место</th>
-					<th scope="col" id="">Время</th>
+					<th class="display-non" scope="col" id="">Время</th>
 					<th scope="col" id="">Сегмент в Страве</th>
 				</tr>
 			</thead>
@@ -209,9 +206,9 @@
 				<tr>
 					<td id="{{eventId}}">{{eventDate}}</td>
 					<td id="{{eventId}}">{{eventName}}</td>
-					<td id="{{eventId}}">{{distance}}</td>
+					<td class="display-non" id="{{eventId}}">{{distance}}</td>
 					<td id="{{eventId}}">{{place}}</td>
-					<td id="{{eventId}}">{{timeTotal}}</td>
+					<td class="display-non" id="{{eventId}}">{{timeTotal}}</td>
 					<td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}" target="_blank">Strava</a></td>
 				</tr>
 				{{/each}}

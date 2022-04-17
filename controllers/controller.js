@@ -24,10 +24,10 @@ export function trailPage(req, res) {
     console.log(error);
   }
 }
-export function eventsPage(req, res) {
+export function nonPage(req, res) {
   try {
     res.status(200);
-    res.sendFile(path.resolve(__dirname, 'static', 'events.html'));
+    res.sendFile(path.resolve(__dirname, 'static', '404.html'));
   } catch (error) {
     console.log(error);
   }
