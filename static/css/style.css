@@ -27,7 +27,16 @@ body {
   align-items: center;
   height: 120px;
 }
-
+.hamb {
+  display: none;
+}
+.hamb__field {
+}
+.bar {
+}
+.popup {
+  display: none;
+}
 .logo {
   width: 199px;
   height: 51px;
@@ -72,11 +81,6 @@ body {
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.08em;
-}
-
-.login__submenu {
-  display: inline-block;
-  cursor: pointer;
 }
 
 .slider {
