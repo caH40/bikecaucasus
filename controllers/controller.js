@@ -168,8 +168,6 @@ export async function postFileTrek(req, res) {
 export function getTrek(req, res) {
   try {
     const id = req.query.id;
-    // res.attachment();
-    // res.attachment(path.resolve(__dirname, 'treks'), id);
     res.download(path.resolve(__dirname, 'treks', id));
   } catch (error) {
     console.log(error);

@@ -24,17 +24,22 @@ router.get('/main', mainPage);
 router.get('/trail', trailPage);
 router.get('/events', eventsPage);
 router.get('/gallery', galleryPage);
-router.get('/dzhilsu', dzhilsuPage);
+//страница описания маршрута
 router.get('/description', descriptionPage);
-router.get('/create-route', createTrailPage);
-
-router.get('/trail/getcards', getCardData);
 router.get('/description/getdata', getDescriptionData);
+//страница создания маршрута
+router.get('/create-route', createTrailPage);
+//запись данных о маршруте в базу
+router.post('/', sendFormCard);
+//получение карточек маршрутов
+router.get('/trail/getcards', getCardData);
+//страница джил-су
+router.get('/dzhilsu', dzhilsuPage);
 router.get('/dzhilsu/results', getResults);
 router.get('/dzhilsu/result', getResult);
-router.post('/', sendFormCard);
+router.get('/dzhilsu/user', getUser);
+//загрузка файлов, фотографий
 router.post('/uploadTrek', fileMiddleware.single('filedata'), postFileTrek);
 router.get('/gettrek', getTrek);
-router.get('/dzhilsu/user', getUser);
 
 export default router;

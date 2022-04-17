@@ -11,13 +11,10 @@ export function youtube(url) {
   }
 }
 export function garmin(url) {
-  console.log(url);
   let link = url;
   if (link) {
     link = link.split('/');
-    console.log(link);
     link = link[link.length - 1];
-    console.log(link);
     return `https://connect.garmin.com/modern/course/embed/${link}`;
   }
 }
