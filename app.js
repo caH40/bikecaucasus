@@ -14,14 +14,14 @@ try {
   console.log(error);
 }
 
-const __dirathlete = path.resolve();
+const __dirname = path.resolve();
 const app = express();
 
 // app.enable('strict routing');
 app.use(express.json({ limit: '25mb' }));
 // app.use(express.urlencoded({ extended: false }));
 app.use(express.urlencoded({ limit: '25mb' }));
-app.use(express.static(path.resolve(__dirathlete, 'static')));
+app.use(express.static(path.resolve(__dirname, 'static')));
 // app.use(multer({ dest: 'uploads' }).single('filedata'));
 // CORS;
 app.use(function (req, res, next) {

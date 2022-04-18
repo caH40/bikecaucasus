@@ -27,7 +27,7 @@ export function trailPage(req, res) {
 export function nonPage(req, res) {
   try {
     res.status(200);
-    res.sendFile(path.resolve(__dirname, 'static', '404.html'));
+    res.sendFile(path.resolve(__dirname, 'static', 'dev.html'));
   } catch (error) {
     console.log(error);
   }
@@ -73,9 +73,12 @@ export function createTrailPage(req, res) {
 //сохранение данных маршрута в Монго
 export async function sendFormCard(req, res) {
   try {
+    console.log(new Date().toLocaleString(), data.nameRoute, data);
+    if (!data.nameRoute) {
+      return;
+    }
     const data = req.body;
     const id = new Date().getTime();
-    console.log(new Date().toLocaleString(), data.nameRoute, data);
     const photo = await Photo({
       id,
       nameRoute: data.nameRoute,
