@@ -122,6 +122,40 @@ body {
   bottom: 50px;
   left: 80px;
 }
+.main__paragraph__title {
+  font-size: 22px;
+  padding-bottom: 20px;
+}
+.main__text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.08em;
+  color: #f1f1f1;
+  padding-bottom: 30px;
+}
+.main__text a {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.08em;
+  color: #f1f1f1;
+  text-decoration: underline;
+}
+.hr-line {
+  display: block;
+  padding: 10px 0px;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgb(38, 107, 50);
+}
+.date {
+  font-size: 10px;
+}
 
 /* ======================================================================================= */
 
