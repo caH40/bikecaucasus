@@ -23,7 +23,7 @@ router.get('/', mainPage);
 router.get('/main', mainPage);
 router.get('/trail', trailPage);
 router.get('/login', nonPage);
-router.get('/gallery', nonPage);
+router.get('/gallery', galleryPage);
 //страница описания маршрута
 router.get('/description', descriptionPage);
 router.get('/description/getdata', getDescriptionData);
