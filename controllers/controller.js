@@ -73,11 +73,11 @@ export function createTrailPage(req, res) {
 //сохранение данных маршрута в Монго
 export async function sendFormCard(req, res) {
   try {
-    console.log(new Date().toLocaleString(), data.nameRoute, data);
+    const data = req.body;
     if (!data.nameRoute) {
+      console.log(new Date().toLocaleString(), data.nameRoute, data);
       return;
     }
-    const data = req.body;
     const id = new Date().getTime();
     const photo = await Photo({
       id,
