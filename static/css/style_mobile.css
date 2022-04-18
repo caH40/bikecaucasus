@@ -227,14 +227,12 @@
     width: 70px;
   }
 }
-/* @media (max-width: 575.98px) {
-  .container {
-    max-width: 575.98px;
+@media (max-width: 575.98px) {
+  .box,
+  .area {
+    width: 100%;
   }
-  .slider__img {
-    display: none;
+  .box__status-text {
+    font-size: 10px;
   }
-  .list {
-    display: block;
-  }
-} */
+}
