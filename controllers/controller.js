@@ -75,7 +75,7 @@ export async function sendFormCard(req, res) {
   try {
     const data = req.body;
     const id = new Date().getTime();
-    console.log(id.toLocaleString(), data.nameRoute, data);
+    console.log(new Date().toLocaleString(), data.nameRoute, data);
     const photo = await Photo({
       id,
       nameRoute: data.nameRoute,
