@@ -144,7 +144,7 @@
                 {{/each}}
             </div>
         </div>
-        
+        {{#if card.urlVideo}}
         <div class="description__video">
             <p class="description__text description__text-center">Видео заезда по данному маршруту</p>
             <iframe class="description__video-iframe" src="{{card.urlVideo}}"
@@ -152,7 +152,7 @@
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
         </div>
-
+        {{/if}}
         <div class="description__total">
                 <iframe class="iframe__gconnect" src='{{card.urlTrekGConnectEmber}}' frameborder='0'></iframe>
                 <ul class="description__list">
