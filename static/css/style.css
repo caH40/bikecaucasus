@@ -165,6 +165,9 @@ body {
 .social__link {
   margin-right: 10px;
 }
+.social__mobile {
+  display: none;
+}
 
 .copyright {
   font-family: 'Montserrat';
