@@ -22,6 +22,7 @@ const finish = document.querySelector('#finish');
 const distance = document.querySelector('#distance');
 const ascent = document.querySelector('#ascent');
 const descriptionArea = document.querySelector('#description-area');
+const authorPhoto = document.querySelector('#url-photo-author');
 const urlTrekGConnect = document.querySelector('#url-trek-gconnect');
 const urlVideo = document.querySelector('#url-video');
 var data = {};
@@ -60,6 +61,7 @@ async function sendData() {
     data.descriptionArea = descriptionArea.value;
     data.urlTrekGConnect = urlTrekGConnect.value;
     data.author = 'Бережнев А.';
+    data.authorPhoto = authorPhoto.value;
 
     let checker = true;
 
@@ -71,23 +73,23 @@ async function sendData() {
     //попытка исключить из проверки заполненности поля у data.urlVideo
     data.urlVideo = urlVideo.value;
 
-    if (checker) {
-      postAxios(data.fileTrek);
-      delete data.fileTrek;
-      getFetch(host, data);
-      event.target.reset();
-      const spanTrek = document.getElementById('trek-status-text');
-      if (spanTrek) {
-        spanTrek.textContent = '';
-      }
-      divBoxImageCard.innerHTML = '';
-      divBoxImageDesc.innerHTML = '';
-      svgAll.forEach((element) => {
-        element.classList.remove('notEmpty');
-      });
-    } else {
-      console.log('Не все поля заполнены');
+    // if (checker) {
+    postAxios(data.fileTrek);
+    delete data.fileTrek;
+    getFetch(host, data);
+    event.target.reset();
+    const spanTrek = document.getElementById('trek-status-text');
+    if (spanTrek) {
+      spanTrek.textContent = '';
     }
+    divBoxImageCard.innerHTML = '';
+    divBoxImageDesc.innerHTML = '';
+    svgAll.forEach((element) => {
+      element.classList.remove('notEmpty');
+    });
+    // } else {
+    //   console.log('Не все поля заполнены');
+    // }
   });
 
   async function postAxios(file) {

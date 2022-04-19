@@ -130,7 +130,13 @@
                 {{#each listL}}
                 <div class="description__box">
                     <p class="description__text">{{paragraph}}</p>
-                    <img class="description__img" src="{{paragraphPhoto}}" alt="">
+                    <div class="img__box">
+                        <img class="description__img" src="{{paragraphPhoto}}" alt="">
+                        {{#if authorPhoto}}
+                        <a class="img__author" href="{{authorPhoto}}" target="_blank">{{authorPhotoDomain}}</a>
+                        {{/if}}
+                    </div>
+                    
                 </div>
                 {{/each}}
             </div>
@@ -138,7 +144,12 @@
             <div class="description__block">
                 {{#each listR}}
                 <div class="description__box description__box-right">
+                    <div class="img__box">
                     <img class="description__img" src="{{paragraphPhoto}}" alt="">
+                    {{#if authorPhoto}}
+                    <a class="img__author" href="{{authorPhoto}}" target="_blank">{{authorPhotoDomain}}</a>
+                    {{/if}}
+                </div>
                     <p class="description__text">{{paragraph}}</p>
                 </div>
                 {{/each}}

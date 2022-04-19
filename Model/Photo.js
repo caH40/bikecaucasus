@@ -6,6 +6,7 @@ const photoSchema = new Schema({
   nameRoute: { type: String, required: true },
   state: { type: String },
   descPhoto: { type: Array },
+  authorPhoto: { type: String },
 });
 
 export default model('photos', photoSchema);

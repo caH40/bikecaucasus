@@ -84,6 +84,7 @@ export async function sendFormCard(req, res) {
       nameRoute: data.nameRoute,
       state: data.state,
       descPhoto: data.descPhoto,
+      authorPhoto: data.authorPhoto,
     });
     photo.save();
     delete data.descPhoto;
@@ -118,6 +119,7 @@ export async function getDescriptionData(req, res) {
     }
     const data = {
       descPhoto: photo.descPhoto,
+      authorPhoto: photo.authorPhoto,
       card,
     };
     res.send(data);

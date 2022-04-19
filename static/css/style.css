@@ -571,7 +571,22 @@ option {
 .description__img {
   border-radius: 10px;
   max-width: 550px;
+}
+.img__box {
+  position: relative;
   margin-bottom: 30px;
+}
+.img__author {
+  position: absolute;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: justify;
+  letter-spacing: 0.08em;
+  text-indent: 20px;
+  color: hsla(0, 0%, 95%, 0.6);
+  right: 5%;
+  bottom: 5%;
 }
 .description__video {
   text-align: center;
