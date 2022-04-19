@@ -61,7 +61,6 @@ async function sendData() {
     data.descriptionArea = descriptionArea.value;
     data.urlTrekGConnect = urlTrekGConnect.value;
     data.author = 'Бережнев А.';
-    data.authorPhoto = authorPhoto.value;
 
     let checker = true;
 
@@ -72,6 +71,7 @@ async function sendData() {
     });
     //попытка исключить из проверки заполненности поля у data.urlVideo
     data.urlVideo = urlVideo.value;
+    data.authorPhoto = authorPhoto.value;
 
     if (checker) {
       postAxios(data.fileTrek);

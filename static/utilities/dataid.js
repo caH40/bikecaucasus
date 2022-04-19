@@ -5,16 +5,19 @@ const popup = document.querySelector('#popup');
 const menu = document.querySelector('#menu').cloneNode(1);
 hamb.addEventListener('click', (e) => {
   e.preventDefault();
-  console.log('click');
   //toggle при первом нажатии добавляется, при втором убирается
   popup.classList.toggle('open');
   renderPopup();
-  body.style.position = 'fixed';
+  console.log(popup.classList.contains('open'));
+  if (popup.classList.contains('open')) {
+    body.style.position = 'fixed';
+  } else {
+    body.style.position = 'unset';
+  }
 });
 
 function renderPopup() {
   menu.classList.add('menu__popup');
-  console.log(menu);
   popup.appendChild(menu);
 }
 
