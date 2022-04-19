@@ -316,6 +316,9 @@ body {
 .menu__routes {
   margin-bottom: 20px;
 }
+select {
+  line-height: 10px;
+}
 .list__routes {
   display: flex;
   justify-content: end;

@@ -127,10 +127,16 @@
 		<nav class="menu__routes">
 			<ul class="list__routes">
 				<li class="item__routes">
-					<a class="link__routes link__btn" href="#">Сортировка</a>
+					<select class="link__routes link__btn" id="select-sort">
+						<option value="nope">Сортировка: нет</option>
+						<option value="distanceUp">Увеличение расстояния</option>
+						<option value="distanceDown">Уменьшение расстояния</option>
+						<option value="ascentUp">Увеличение набора</option>
+						<option value="ascentDown">Уменьшение набора</option>
+					</select>
 				</li>
 				<li class="item__routes">
-					<a class="link__routes link__btn" href="#">Фильтр</a>
+					<div class="link__routes link__btn" href="#">Фильтр</div>
 				</li>
 				<li class="item__routes">
 					<a class="link__routes link__btn" href="/create-route">Создать маршрут</a>
