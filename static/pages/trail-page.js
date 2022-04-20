@@ -1,6 +1,6 @@
 import { host } from '../utilities/host.js';
 import routerTrails from '../routes/router-trails.js';
-import filterNumber from '../utilities/filter-column.js';
+import filterTrail from '../utilities/filter-trails.js';
 import { render } from '../view/viewer.js';
 
 Handlebars.registerHelper('type', function (items, options) {
@@ -15,13 +15,13 @@ try {
   const cards = await fetch(`${host}/trail/getcards`, {
     referrerPolicy: 'unsafe-url',
   }).then((data) => data.json());
-  console.log(cards);
-  //первоначальные установки фильтров
-  // const filter = { state: [], bikeType: [] };
-  // const sorted = 'distance';
-  // cards.sort(() => Math.random() - 0.5);
 
-  render({ list: cards }, '#cardRoutesTemplate');
+  const filteredCards = filterTrail(cards);
+  render({ list: filteredCards.cards }, '#cardRoutesTemplate');
+
+  const select = document.querySelector('#select-sort');
+  select.options.selectedIndex = filteredCards.selectedIndex;
+
   routerTrails.router(cards);
 } catch (error) {
   console.log(error);

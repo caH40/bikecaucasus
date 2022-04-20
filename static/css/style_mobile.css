@@ -121,8 +121,10 @@
     left: 0;
   }
   .card {
-    margin-right: 0;
+    margin-right: 7px;
+    margin-left: 7px;
   }
+
   .display-non {
     display: none;
   }
