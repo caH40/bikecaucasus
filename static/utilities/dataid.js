@@ -1,14 +1,15 @@
+import authPage from '../pages/auth.js';
 const body = document.querySelector('body');
 const hamb = document.querySelector('#hamb');
 const popup = document.querySelector('#popup');
 //cloneNode глубокое клонирование
-const menu = document.querySelector('#menu').cloneNode(1);
+// const menu = document.querySelector('#menu').cloneNode(1);
 hamb.addEventListener('click', (e) => {
   e.preventDefault();
   //toggle при первом нажатии добавляется, при втором убирается
   popup.classList.toggle('open');
   renderPopup();
-  console.log(popup.classList.contains('open'));
+
   if (popup.classList.contains('open')) {
     body.style.position = 'fixed';
   } else {
@@ -16,7 +17,11 @@ hamb.addEventListener('click', (e) => {
   }
 });
 
+//попап с авторизацией
+authPage();
+
 function renderPopup() {
+  console.log(menu);
   menu.classList.add('menu__popup');
   popup.appendChild(menu);
 }
