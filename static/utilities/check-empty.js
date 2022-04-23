@@ -1,6 +1,5 @@
 export function checkEmpty(nameInputElement, selectorSvg) {
   const svg = document.querySelector(selectorSvg);
-  console.log(selectorSvg);
   nameInputElement.addEventListener('input', () => {
     let lengthInput = nameInputElement.value.length;
     if (lengthInput == 0) {
