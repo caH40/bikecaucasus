@@ -43,6 +43,7 @@ checkEmpty(finish, '#finish-img');
 checkEmpty(distance, '#distance-img');
 checkEmpty(ascent, '#ascent-img');
 checkEmpty(descriptionArea, '#description-area-img');
+checkEmpty(authorPhoto, '#url-desc-photo-author-img');
 checkEmpty(urlTrekGConnect, '#url-trek-gconnect-img');
 checkEmpty(urlVideo, '#url-video-img');
 
