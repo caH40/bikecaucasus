@@ -1,26 +1,71 @@
-import filterTrail from '../utilities/filter-trails.js';
+import sortTrail from '../utilities/sort-trails.js';
+import filterTrails from '../utilities/filter-trails.js';
+import listenBikeType from '../utilities/listen-bike.js';
+import listenState from '../utilities/listen-state.js';
+import checkedCheckbox from '../utilities/checked-checkbox.js';
 import { render } from '../view/viewer.js';
 
 export default {
-  router(cards) {
-    const listRoutes = document.querySelector('.list__routes');
+  routeRender(sortedCards, cards) {
+    render({ list: sortedCards.filteredCards }, '#cardRoutesTemplate');
+    checkedCheckbox();
+    // console.log(new Date().toLocaleTimeString(), 'рендер из route-page');
+    //установка названия выбранной сортировки на кнопке
+    const select = document.querySelector('#select-sort');
+    select.options.selectedIndex = sortedCards.selectedIndex;
+    this.router(cards);
+  },
 
+  router(cards) {
+    //прослушка сортировки
+    const listRoutes = document.querySelector('#select-sort');
     listRoutes.addEventListener('change', (event) => {
       if (!event.target.localName === 'select') {
         return;
       }
+      //значение по которому сортируется
       const valueSort = event.target.value;
+      const filteredCards = filterTrails(cards);
+      const sortedCards = sortTrail(filteredCards, valueSort);
+      this.routeRender(sortedCards, cards);
+    });
+    //прослушка кнопки фильтра
+    const trailFilter = document.querySelector('#trail__filter');
+    const trailFormCheckbox = document.querySelector('.trail__form-checkbox');
 
-      const filter = 'Кабардино-Балкария';
-      const filteredCards = filterTrail(cards, valueSort, filter);
+    trailFilter.addEventListener('click', () => {
+      trailFormCheckbox.classList.remove('displayNone');
+      //прослушка курсора над модальным окном
+      trailFormCheckbox.addEventListener('mouseleave', () => {
+        trailFormCheckbox.classList.add('displayNone');
+      });
+      //прослушка установки галок на чекбоксах
+      trailFormCheckbox.addEventListener('change', (event) => {
+        if (
+          event.target.defaultValue === 'Шоссейный' ||
+          event.target.defaultValue === 'Горный'
+        ) {
+          listenBikeType(event);
+        } else {
+          listenState(event);
+        }
+      });
 
-      render({ list: filteredCards.cards }, '#cardRoutesTemplate');
+      // document.addEventListener('keydown', (event) => {
+      //   if (event.keyCode !== 27) {
+      //     return;
+      //   } else {
+      //     trailFormCheckbox.classList.add('displayNone');
+      //   }
+      // });
 
-      const select = document.querySelector('#select-sort');
-      select.options.selectedIndex = filteredCards.selectedIndex;
-      console.log(localStorage);
-
-      this.router(filteredCards.cards);
+      //прослушка кнопки применить
+      const applyButton = document.querySelector('.checkbox__btn');
+      applyButton.addEventListener('click', () => {
+        const filteredCards = filterTrails(cards);
+        const sortedCards = sortTrail(filteredCards);
+        this.routeRender(sortedCards, cards);
+      });
     });
   },
 };

@@ -1,6 +1,8 @@
 import { host } from '../utilities/host.js';
 import routerTrails from '../routes/router-trails.js';
-import filterTrail from '../utilities/filter-trails.js';
+import sortTrail from '../utilities/sort-trails.js';
+import filterTrails from '../utilities/filter-trails.js';
+import checkedCheckbox from '../utilities/checked-checkbox.js';
 import { render } from '../view/viewer.js';
 
 Handlebars.registerHelper('type', function (items, options) {
@@ -16,11 +18,18 @@ try {
     referrerPolicy: 'unsafe-url',
   }).then((data) => data.json());
 
-  const filteredCards = filterTrail(cards);
-  render({ list: filteredCards.cards }, '#cardRoutesTemplate');
+  const filteredCards = filterTrails(cards);
+  // console.log(filteredCards);
 
+  const sortedCards = sortTrail(filteredCards);
+  render({ list: sortedCards.filteredCards }, '#cardRoutesTemplate');
+
+  checkedCheckbox();
+  // console.log(new Date().toLocaleTimeString(), 'рендер из trail-page');
+
+  //установка названия выбранной сортировки на кнопке
   const select = document.querySelector('#select-sort');
-  select.options.selectedIndex = filteredCards.selectedIndex;
+  select.options.selectedIndex = sortedCards.selectedIndex;
 
   routerTrails.router(cards);
 } catch (error) {

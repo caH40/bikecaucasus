@@ -184,15 +184,37 @@
 					</select>
 				</li>
 				<li class="item__routes">
-					<div class="link__routes link__btn" href="#">Фильтр</div>
+					<div class="link__routes link__btn" id="trail__filter">Фильтр</div>
+					<div class="trail__form-checkbox displayNone" id="trail__form-checkbox" >
+						<p class="trail__form-string">
+							<input type="checkbox" name="checkbox-filter" value="КавМинВоды" ><span>КавМинВоды</span>
+						</p>
+						<p class="trail__form-string">
+							<input type="checkbox" name="checkbox-filter" value="Карачаево-Черкессия" >Карачаево-Черкессия
+						</p>
+						<p class="trail__form-string">
+							<input type="checkbox" name="checkbox-filter" value="Кабардино-Балкария" >Кабардино-Балкария
+						</p>
+						<p class="trail__form-string">
+							<input type="checkbox" name="checkbox-filter" value="Северная Осетия">Северная Осетия
+						</p>
+						<p class="trail__form-string">
+							<input type="checkbox" name="checkbox-filter" value="Шоссейный" >Шоссейный велосипед
+						</p>
+						<p class="trail__form-string">
+							<input type="checkbox" name="checkbox-filter" value="Горный" >Горный велосипед
+						</p>
+					 <div class="link__routes link__btn checkbox__btn">Применить</div>
+					</div>
+					
 				</li>
 				<li class="item__routes">
 					<a class="link__routes link__btn" href="/create-route">Создать маршрут</a>
 				</li>
 			</ul>
 		</nav>
-		<div class="content__routes">
 
+		<div class="content__routes">
 				{{#each list}}
 				
 				<a class="card {{#type bikeType}}{{/type}} " href="description?id={{ id}}">
