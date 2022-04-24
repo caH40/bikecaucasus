@@ -378,7 +378,32 @@ select {
   padding: 2px;
   width: 150px;
 }
-
+.trail__flashlight-on {
+  position: relative;
+}
+.trail__flashlight-on::after {
+  position: absolute;
+  right: 50px;
+  content: '';
+  width: 10px;
+  height: 10px;
+  border: solid 1px #000000;
+  border-radius: 50%;
+  background-color: #0ec717;
+}
+.trail__flashlight-off {
+  position: relative;
+}
+.trail__flashlight-off::after {
+  position: absolute;
+  right: 50px;
+  content: '';
+  width: 10px;
+  height: 10px;
+  border: solid 1px #000000;
+  border-radius: 50%;
+  background-color: #555555;
+}
 .card-edit {
   background: linear-gradient(90.53deg, #0a233a 38.59%, #133810 99.51%);
   min-height: calc(100vh - 120px);

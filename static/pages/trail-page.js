@@ -25,7 +25,6 @@ try {
   render({ list: sortedCards.filteredCards }, '#cardRoutesTemplate');
 
   checkedCheckbox();
-  // console.log(new Date().toLocaleTimeString(), 'рендер из trail-page');
 
   //установка названия выбранной сортировки на кнопке
   const select = document.querySelector('#select-sort');

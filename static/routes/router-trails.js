@@ -9,7 +9,6 @@ export default {
   routeRender(sortedCards, cards) {
     render({ list: sortedCards.filteredCards }, '#cardRoutesTemplate');
     checkedCheckbox();
-    // console.log(new Date().toLocaleTimeString(), 'рендер из route-page');
     //установка названия выбранной сортировки на кнопке
     const select = document.querySelector('#select-sort');
     select.options.selectedIndex = sortedCards.selectedIndex;
@@ -50,14 +49,6 @@ export default {
           listenState(event);
         }
       });
-
-      // document.addEventListener('keydown', (event) => {
-      //   if (event.keyCode !== 27) {
-      //     return;
-      //   } else {
-      //     trailFormCheckbox.classList.add('displayNone');
-      //   }
-      // });
 
       //прослушка кнопки применить
       const applyButton = document.querySelector('.checkbox__btn');

@@ -10,4 +10,12 @@ export default function () {
       checkbox.setAttribute('checked', 'true');
     }
   });
+  //подсвечивание лампочки фильтров
+  const flashlight = document.querySelector('.trail__flashlight');
+  console.log(state.length, bikeType.length);
+  if (state.length === 4 && bikeType.length === 2) {
+    flashlight.classList.add('trail__flashlight-off');
+  } else {
+    flashlight.classList.add('trail__flashlight-on');
+  }
 }
