@@ -265,7 +265,7 @@ body {
   height: 419px;
   background-color: rgb(255, 255, 255, 0.1);
   border-radius: 7px;
-  padding: 22px 19px 24px 19px;
+  padding: 22px 19px;
   margin: 0px 15px 15px 0px;
   transition: all 0.5s;
   display: block;
@@ -274,11 +274,11 @@ body {
   overflow: hidden;
 }
 .card-mtb {
-  background-color: rgba(255, 158, 0, 0.6);
+  background-color: rgba(93, 32, 32, 0.6);
 }
 
 .card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
   box-shadow: 8px 8px 10px rgb(0, 0, 0);
   transition: all 0.5s;
 }
@@ -322,7 +322,7 @@ body {
 }
 
 .card__img {
-  width: 263px;
+  width: 264px;
   height: 154px;
   border-radius: 10px;
 }
