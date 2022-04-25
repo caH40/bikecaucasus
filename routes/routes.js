@@ -15,6 +15,7 @@ import {
   postFileTrek,
   getTrek,
   getUser,
+  robots,
 } from '../controllers/controller.js';
 import fileMiddleware from '../app_modules/upload.js';
 const router = Router();
@@ -41,5 +42,6 @@ router.get('/dzhilsu/user', getUser);
 //загрузка файлов, фотографий
 router.post('/uploadTrek', fileMiddleware.single('filedata'), postFileTrek);
 router.get('/gettrek', getTrek);
+router.get('/robots.txt', robots);
 
 export default router;

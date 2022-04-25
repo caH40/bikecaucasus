@@ -40,6 +40,8 @@ export default {
       });
       //прослушка установки галок на чекбоксах
       trailFormCheckbox.addEventListener('change', (event) => {
+        const applyButton = document.querySelector('.checkbox__btn');
+        applyButton.classList.add('checkbox__btn-changed');
         if (
           event.target.defaultValue === 'Шоссейный' ||
           event.target.defaultValue === 'Горный'
@@ -51,8 +53,10 @@ export default {
       });
 
       //прослушка кнопки применить
+      // const applyButton = document.querySelector('.checkbox__btn');
       const applyButton = document.querySelector('.checkbox__btn');
       applyButton.addEventListener('click', () => {
+        applyButton.classList.remove('checkbox__btn-changed');
         const filteredCards = filterTrails(cards);
         const sortedCards = sortTrail(filteredCards);
         this.routeRender(sortedCards, cards);

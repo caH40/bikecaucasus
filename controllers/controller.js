@@ -179,3 +179,11 @@ export function getTrek(req, res) {
     console.log(error);
   }
 }
+export async function robots(req, res) {
+  try {
+    res.status(200);
+    res.sendFile(path.resolve(__dirname, 'static', 'robots.txt'));
+  } catch (error) {
+    console.log(error);
+  }
+}

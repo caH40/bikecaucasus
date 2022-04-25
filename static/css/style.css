@@ -22,10 +22,29 @@ body {
 }
 
 .section__top {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 120px;
+  /* z-index: 20; */
+}
+
+.main__page {
+  position: fixed;
+  background-image: url('../images/main-slider-2.jpg');
+  opacity: 0.2;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  width: 100%;
+  min-height: 100vh;
+  z-index: 0;
+}
+.title__box {
+  text-decoration: underline;
+  color: #13df09;
+  padding: 40px 0;
 }
 .hamb {
   display: none;
@@ -61,7 +80,7 @@ body {
 }
 
 .list__link:hover {
-  border-bottom: solid #30832b 2px;
+  border-bottom: solid #39a034 2px;
   transition: all 0.4s;
 }
 .active-nav {
@@ -97,12 +116,12 @@ body {
 }
 
 .title {
-  position: absolute;
+  /* position: absolute; */
   font-family: 'Montserrat Alternates', sans-serif;
   font-style: normal;
   font-weight: 900;
-  font-size: 60px;
-  line-height: 63px;
+  font-size: 40px;
+  line-height: 46px;
   letter-spacing: 0.17em;
   bottom: 100px;
   left: 80px;
@@ -361,7 +380,7 @@ select {
   color: #f1f1f1;
   text-align: center;
   cursor: pointer;
-  width: 180px;
+  width: 165px;
   padding: 5px;
   text-transform: uppercase;
 }
@@ -377,13 +396,17 @@ select {
   margin-top: 5px;
   padding: 2px;
   width: 150px;
+  background-color: rgb(255, 255, 255, 0.1);
+}
+.checkbox__btn-changed {
+  background-color: rgba(238, 255, 0, 0.6);
 }
 .trail__flashlight-on {
   position: relative;
 }
 .trail__flashlight-on::after {
   position: absolute;
-  right: 50px;
+  right: 40px;
   content: '';
   width: 10px;
   height: 10px;
@@ -396,7 +419,7 @@ select {
 }
 .trail__flashlight-off::after {
   position: absolute;
-  right: 50px;
+  right: 40px;
   content: '';
   width: 10px;
   height: 10px;
