@@ -171,7 +171,6 @@
         </div>
     </section>
 
-
     <script id="descriptionTemplate" type="text/x-handlebars-template">
         <h3 class="title__page title__page-description">{{card.nameRoute}}<br>({{card.state}})</h3>
         <div class="description__inner">
@@ -234,6 +233,55 @@
         </div>
     </script>
 
+    <script id="descriptionTemplateMobile" type="text/x-handlebars-template">
+        <h3 class="title__page title__page-description">{{card.nameRoute}}<br>({{card.state}})</h3>
+        <div class="description__inner">
+            <div class="description__block">
+                {{#each list}}
+                <div class="description__box">
+                    <p class="description__text">{{paragraph}}</p>
+                    <div class="img__box">
+                        <img class="description__img" src="{{paragraphPhoto}}" alt="">
+                        {{#if authorPhoto}}
+                        <a class="img__author" href="{{authorPhoto}}" target="_blank">{{authorPhotoDomain}}</a>
+                        {{/if}}
+                    </div>
+                    
+                </div>
+                {{/each}}
+            </div>
+            
+            </div>
+        </div>
+        {{#if card.urlVideo}}
+        <div class="description__video">
+            <p class="description__text description__text-center">Видео заезда по данному маршруту</p>
+            <iframe class="description__video-iframe" src="{{card.urlVideo}}"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+        {{/if}}
+        <div class="description__total">
+                <iframe class="iframe__gconnect" src='{{card.urlTrekGConnectEmber}}' frameborder='0'></iframe>
+                <ul class="description__list">
+                    <li class="description__item">Общие данные по маршруту</li>
+                    <li class="description__item">Старт:<span>{{card.start}}</span></li>
+                    <li class="description__item">Разворот:<span>{{card.turn}}</span></li>
+                    <li class="description__item">Протяженность:<span>{{card.distance}}км</span></li>
+                    <li class="description__item">Набор высоты:<span>{{card.ascent}}м</span></li>
+    
+                    <li class="description__item">Финиш:<span>{{card.finish}}</span></li>
+                    <li class="description__item">Маршрут в Garmin Connect:<a class="link__gconnect" target="_blank"
+                            href="{{card.urlTrekGConnect}}">
+                            {{card.urlTrekGConnect}}</a> </li>
+                    <li class="description__item" id="downloadTrek">Трек для велокомпьютера GPX/FIT<a class="link__gconnect" href="/gettrek?id={{card.fileTrekName}}"  target="_blank">Скачать</a>
+                    </li>
+
+                    <li class="description__item">Создан:<span>{{card.dateCreate}}</span></li>
+                </ul>
+        </div>
+    </script>
     <script type="module" src="./utilities/dataid.js"></script>
     <script src="./pages/description-page.js" type="module"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

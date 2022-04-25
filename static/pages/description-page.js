@@ -10,14 +10,24 @@ async function descriptionPage() {
     );
     const textPhoto = prepData.description(data);
 
-    render(
-      {
-        listL: textPhoto[0],
-        listR: textPhoto[1],
-        card: data.card,
-      },
-      '#descriptionTemplate'
-    );
+    if (window.innerWidth >= 992) {
+      render(
+        {
+          listL: textPhoto[0],
+          listR: textPhoto[1],
+          card: data.card,
+        },
+        '#descriptionTemplate'
+      );
+    } else {
+      render(
+        {
+          list: textPhoto[2],
+          card: data.card,
+        },
+        '#descriptionTemplateMobile'
+      );
+    }
   } catch (error) {
     console.log(error);
   }

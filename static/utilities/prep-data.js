@@ -11,6 +11,7 @@ export default {
       const text = data.card.descriptionArea.split('\n');
       let textPhotoL = [];
       let textPhotoR = [];
+      let textPhotoMobile = [];
       data.card.urlVideo = youtube(data.card.urlVideo);
       data.card.urlTrekGConnectEmber = garmin(data.card.urlTrekGConnect);
 
@@ -30,7 +31,15 @@ export default {
           authorPhotoDomain,
         });
       }
-      return [textPhotoL, textPhotoR];
+      for (let i = 0; i < text.length; i++) {
+        textPhotoMobile.push({
+          paragraph: text[i],
+          paragraphPhoto: data.descPhoto[i],
+          authorPhoto,
+          authorPhotoDomain,
+        });
+      }
+      return [textPhotoL, textPhotoR, textPhotoMobile];
     } catch (error) {
       console.log(error);
     }
