@@ -17,27 +17,31 @@ export default {
 
       for (let i = 0; i < text.length; i++) {
         //необходимо сделать проверку на равное количество элементов в массивах текст и фото
-        textPhotoL.push({
-          paragraph: text[i],
-          paragraphPhoto: data.descPhoto[i],
-          authorPhoto,
-          authorPhotoDomain,
-        });
-        i++;
-        textPhotoR.push({
-          paragraph: text[i],
-          paragraphPhoto: data.descPhoto[i],
-          authorPhoto,
-          authorPhotoDomain,
-        });
+        if (text[i]) {
+          textPhotoL.push({
+            paragraph: text[i],
+            paragraphPhoto: data.descPhoto[i],
+            authorPhoto,
+            authorPhotoDomain,
+          });
+          i++;
+          textPhotoR.push({
+            paragraph: text[i],
+            paragraphPhoto: data.descPhoto[i],
+            authorPhoto,
+            authorPhotoDomain,
+          });
+        }
       }
       for (let i = 0; i < text.length; i++) {
-        textPhotoMobile.push({
-          paragraph: text[i],
-          paragraphPhoto: data.descPhoto[i],
-          authorPhoto,
-          authorPhotoDomain,
-        });
+        if (text[i]) {
+          textPhotoMobile.push({
+            paragraph: text[i],
+            paragraphPhoto: data.descPhoto[i],
+            authorPhoto,
+            authorPhotoDomain,
+          });
+        }
       }
       return [textPhotoL, textPhotoR, textPhotoMobile];
     } catch (error) {

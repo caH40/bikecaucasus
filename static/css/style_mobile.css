@@ -205,6 +205,9 @@
     letter-spacing: 0.2px;
     padding-bottom: 10px;
   }
+  .img__box {
+    margin-bottom: 10px;
+  }
   .description__img {
     margin-bottom: 10px;
   }
