@@ -295,6 +295,7 @@ body {
 .card__title-sub {
   font-size: 16px;
   margin-bottom: 15px;
+  color: rgba(225, 254, 255, 0.45);
 }
 
 .card__names {
