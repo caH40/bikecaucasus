@@ -32,7 +32,6 @@ body {
 
 .main__page {
   position: fixed;
-  background-image: url('../images/main-slider-2.jpg');
   opacity: 0.2;
   background-size: cover;
   background-repeat: no-repeat;
