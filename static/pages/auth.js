@@ -19,7 +19,12 @@ export default function authPage() {
 
     login.addEventListener('click', (event) => {
       event.preventDefault();
-      //обнуление объекта юзера
+      //включение модального окна
+      if (event.target.innerHTML === 'Выход') {
+        localStorage.removeItem('tokenBikeCaucasus');
+        login.textContent = 'Вход';
+        return;
+      }
       popupAuth.classList.add('modal-visible');
     });
     svgCross.addEventListener('click', (event) => {
@@ -160,6 +165,8 @@ export default function authPage() {
             //запись токена в localStorage
             localStorage.setItem('tokenBikeCaucasus', `Bearer ${json.token}`);
             localStorage.setItem('userBikeCaucasus', json.userId);
+            //перерисовка иконки входа
+            login.textContent = 'Выход';
 
             validatorState.nickname = false;
             validatorState.password = false;

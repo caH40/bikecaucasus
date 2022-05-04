@@ -1,4 +1,6 @@
 import authPage from '../pages/auth.js';
+import authIcon from '../utilities/auth-icon.js';
+
 try {
   const body = document.querySelector('body');
   const hamb = document.querySelector('#hamb');
@@ -25,6 +27,8 @@ try {
     }
   });
 
+  //иконка состояния с авторизации
+  authIcon();
   //попап с авторизацией
   authPage();
 

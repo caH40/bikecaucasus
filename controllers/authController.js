@@ -95,3 +95,31 @@ export async function login(req, res) {
       .json({ message: 'Ошибка при входе...необходимы уточнения' });
   }
 }
+
+//проверка авторизации
+export async function checkToken(req, res) {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+
+    if (!token) {
+      return res
+        .status(401)
+        .json({ authorized: false, message: 'Вы не авторизовались' });
+    }
+
+    jwt.verify(token, secret, (err, decodedData) => {
+      if (decodedData) {
+        return res
+          .status(200)
+          .json({ authorized: true, message: 'Вы авторизовались' });
+      }
+      if (err) {
+        return res
+          .status(401)
+          .json({ authorized: false, message: 'Вы не авторизовались' });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}

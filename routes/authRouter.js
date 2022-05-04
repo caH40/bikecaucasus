@@ -1,7 +1,11 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
 
-import { registration, login } from '../controllers/authController.js';
+import {
+  registration,
+  login,
+  checkToken,
+} from '../controllers/authController.js';
 
 const router = new Router();
 
@@ -14,5 +18,9 @@ router.post(
   ).isLength({ min: 4, max: 20 }),
   registration
 );
+
 router.post('/login', login);
+
+router.post('/check-token', checkToken);
+
 export default router;
