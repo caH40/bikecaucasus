@@ -87,7 +87,7 @@ export async function login(req, res) {
     const token = generateAccessToken(user._id, user.roles);
     return res
       .status(200)
-      .json({ message: 'Вы успешно авторизовались', token });
+      .json({ message: 'Вы успешно авторизовались', token, userId: user._id });
   } catch (error) {
     console.log(error);
     res

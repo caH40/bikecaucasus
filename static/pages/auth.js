@@ -159,6 +159,7 @@ export default function authPage() {
             }, 2500);
             //запись токена в localStorage
             localStorage.setItem('tokenBikeCaucasus', `Bearer ${json.token}`);
+            localStorage.setItem('userBikeCaucasus', json.userId);
 
             validatorState.nickname = false;
             validatorState.password = false;

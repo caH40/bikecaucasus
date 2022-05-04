@@ -2,6 +2,15 @@ import addLags from '../utilities/add-lags.js';
 import { render, renderTableResultArrow } from '../view/viewer.js';
 import filterColumn from '../utilities/filter-column.js';
 
+Handlebars.registerHelper('authUser', function (items, options) {
+  let result = false;
+  const authUser = localStorage.getItem('userBikeCaucasus');
+  if (items === authUser) {
+    result = true;
+  }
+  return result;
+});
+
 export function getEventsTable(dataFormDb) {
   try {
     //добавление отставаний по времени в таблицу
@@ -27,10 +36,12 @@ export function getResultTable(dataFormDb, column) {
     const dataEvent = dataFormDb.dataEvent;
     const dataUser = dataFormDb.user;
     console.log(dataUser);
+
     const dataResultFiltered = filterColumn(dataResult, column);
+    console.log(dataResultFiltered);
     const dataTemplate = {
       list: dataResultFiltered,
-      userId: dataUser.id,
+      userIdMy: dataUser.id,
       eventCity: dataEvent[0].eventCity,
       eventDate: dataEvent[0].eventDate,
       eventName: dataEvent[0].eventName,

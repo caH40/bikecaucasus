@@ -204,6 +204,7 @@
 
 
 	</script>
+
 	<script id="tableResultTemplate" type="text/x-handlebars-template">
 		<h3 class="title__page">{{eventName}}, {{eventDate}}, город {{eventCity}}</h3>
 		<table class="table tableResult">
@@ -224,7 +225,7 @@
 			</thead>
 			<tbody>
 				{{#each list}}
-				<tr {{#if userId}}class="my-result"{{/if}}>
+				<tr {{#if (authUser userId)}}class="my-result"{{/if}}>
  					<td id="{{athlete}}">{{place}}</td>
 					<td class="display-non" id="{{athlete}}">{{number}}</td>
 					<td id="{{athlete}}">{{athlete}}</td>
