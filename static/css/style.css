@@ -756,6 +756,9 @@ tbody tr:hover {
 .td__link {
   text-align: center;
 }
+.my-result {
+  color: #ffb003;
+}
 /* ============================================================================================ */
 .popup__auth {
   display: none;

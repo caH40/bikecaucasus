@@ -2,16 +2,18 @@ import addLags from '../utilities/add-lags.js';
 import { render, renderTableResultArrow } from '../view/viewer.js';
 import filterColumn from '../utilities/filter-column.js';
 
-export function getEventsTable(data) {
+export function getEventsTable(dataFormDb) {
   try {
     //добавление отставаний по времени в таблицу
-    const dataResult = data[1];
+    dataFormDb;
+    const dataResult = dataFormDb.dataResult;
+    const dataEvent = dataFormDb.dataEvent;
     addLags(dataResult);
     const dataTemplate = {
       list: dataResult,
-      eventCity: data[0][0].eventCity,
-      eventDate: data[0][0].eventDate,
-      eventName: data[0][0].eventName,
+      eventCity: dataEvent[0].eventCity,
+      eventDate: dataEvent[0].eventDate,
+      eventName: dataEvent[0].eventName,
     };
     render(dataTemplate, '#tableResultTemplate');
   } catch (error) {
@@ -19,16 +21,20 @@ export function getEventsTable(data) {
   }
 }
 
-export function getResultTable(data, column) {
+export function getResultTable(dataFormDb, column) {
   try {
-    var dataResult = data[1];
+    const dataResult = dataFormDb.dataResult;
+    const dataEvent = dataFormDb.dataEvent;
+    const dataUser = dataFormDb.user;
+    console.log(dataUser);
     const dataResultFiltered = filterColumn(dataResult, column);
     const dataTemplate = {
       list: dataResultFiltered,
-      eventCity: data[0][0].eventCity,
-      eventDate: data[0][0].eventDate,
-      eventName: data[0][0].eventName,
-      segmentStrava: data[0][0].segmentStrava,
+      userId: dataUser.id,
+      eventCity: dataEvent[0].eventCity,
+      eventDate: dataEvent[0].eventDate,
+      eventName: dataEvent[0].eventName,
+      segmentStrava: dataEvent[0].segmentStrava,
     };
 
     render(dataTemplate, '#tableResultTemplate');
@@ -38,18 +44,20 @@ export function getResultTable(data, column) {
   }
 }
 
-export function getResultUser(data) {
+export function getResultUser(dataFormDb) {
   try {
-    for (let i = 0; i < data[1].length; i++) {
-      let event = data[0].find((e) => e.eventId === data[1][i].eventId);
-      data[1][i] = { ...data[1][i], ...event };
+    const dataResult = dataFormDb.dataResult;
+    const dataEvent = dataFormDb.dataEvent;
+
+    for (let i = 0; i < dataResult.length; i++) {
+      let event = dataEvent.find((e) => e.eventId === dataResult[i].eventId);
+      dataResult[i] = { ...dataResult[i], ...event };
     }
-    const dataResult = data[1];
     const dataTemplate = {
       list: dataResult,
-      athleteCity: data[1][0].athleteCity,
-      athlete: data[1][0].athlete,
-      athleteTeam: data[1][0].athleteTeam,
+      athleteCity: dataResult[0].athleteCity,
+      athlete: dataResult[0].athlete,
+      athleteTeam: dataResult[0].athleteTeam,
     };
 
     render(dataTemplate, '#tableUserTemplate');

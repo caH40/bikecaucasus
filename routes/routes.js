@@ -39,9 +39,9 @@ router.post('/', sendFormCard);
 router.get('/trail/getcards', authMiddleware, getCardData);
 //страница джил-су
 router.get('/dzhilsu', dzhilsuPage);
-router.get('/dzhilsu/results', getResults);
-router.get('/dzhilsu/result', getResult);
-router.get('/dzhilsu/user', getUser);
+router.get('/dzhilsu/results', authMiddleware, getResults);
+router.get('/dzhilsu/result', authMiddleware, getResult);
+router.get('/dzhilsu/user', authMiddleware, getUser);
 //загрузка файлов, фотографий
 router.post('/uploadTrek', fileMiddleware.single('filedata'), postFileTrek);
 router.get('/gettrek', getTrek);

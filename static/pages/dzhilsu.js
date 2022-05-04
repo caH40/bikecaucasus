@@ -5,16 +5,17 @@ import { render } from '../view/viewer.js';
 
 async function dzhilsuEventsPage() {
   try {
-    const data = await fetch(`${host}/dzhilsu/results`).then((data) =>
-      data.json()
-    );
-    let dataEvent = data[0];
-    let dataResult = data[1];
+    const dataFormDb = await fetch(`${host}/dzhilsu/results`, {
+      headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
+    }).then((data) => data.json());
+
+    let dataEvent = dataFormDb.dataEvent;
+    let dataResult = dataFormDb.dataResult;
     counter(dataEvent, dataResult);
     render({ list: dataEvent }, '#tableEventsTemplate');
-    routerFe.router(data);
+    routerFe.router();
   } catch (error) {
-    console.log;
+    console.log(error);
   }
 }
 dzhilsuEventsPage();

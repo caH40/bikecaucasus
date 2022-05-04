@@ -224,7 +224,7 @@
 			</thead>
 			<tbody>
 				{{#each list}}
-				<tr>
+				<tr {{#if userId}}class="my-result"{{/if}}>
  					<td id="{{athlete}}">{{place}}</td>
 					<td class="display-non" id="{{athlete}}">{{number}}</td>
 					<td id="{{athlete}}">{{athlete}}</td>

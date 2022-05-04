@@ -132,7 +132,7 @@ export async function getResults(req, res) {
   try {
     let dataEvent = await Event.find({});
     let dataResult = await Result.find({});
-    const data = [dataEvent, dataResult];
+    const data = { dataEvent, dataResult, user: req.user };
     res.status(200).json(data);
   } catch (error) {
     console.log(error);
@@ -144,7 +144,7 @@ export async function getResult(req, res) {
     const id = req.query.id;
     let dataEvent = await Event.find({ eventId: id });
     let dataResult = await Result.find({ eventId: id });
-    const data = [dataEvent, dataResult];
+    const data = { dataEvent, dataResult, user: req.user };
     res.status(200).json(data);
   } catch (error) {
     console.log(error);
@@ -155,7 +155,7 @@ export async function getUser(req, res) {
     const id = req.query.id;
     let dataEvent = await Event.find();
     let dataResult = await Result.find({ athlete: id });
-    const data = [dataEvent, dataResult];
+    const data = { dataEvent, dataResult, user: req.user };
     res.status(200).json(data);
   } catch (error) {
     console.log(error);

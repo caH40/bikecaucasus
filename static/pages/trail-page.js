@@ -29,7 +29,6 @@ try {
   const cards = dataFormDb.card;
 
   const filteredCards = filterTrails(cards);
-  console.log(dataFormDb.user.roles);
 
   const sortedCards = sortTrail(filteredCards);
   render(
