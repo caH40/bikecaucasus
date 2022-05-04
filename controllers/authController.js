@@ -14,7 +14,7 @@ const generateAccessToken = (id, roles) => {
     roles,
   };
   //время жизни токена expiresIn
-  return jwt.sign(payload, secret, { expiresIn: '30000' });
+  return jwt.sign(payload, secret, { expiresIn: '1h' });
 };
 
 export async function registration(req, res) {
@@ -71,6 +71,7 @@ export async function login(req, res) {
     const { username, password } = req.body;
     //проверка существования пользователя с таким именем
     const user = await User.findOne({ username });
+
     if (!user) {
       return res
         .status(400)

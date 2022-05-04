@@ -18,6 +18,7 @@ export default function (req, res, next) {
       return next();
     }
     jwt.verify(token, secret, (err, decodedData) => {
+      console.log(decodedData);
       req.user = decodedData;
       if (err) {
         req.user = { roles: ['guest'] };

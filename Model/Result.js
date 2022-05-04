@@ -3,6 +3,7 @@ const { Schema, model } = pkg;
 
 const resultSchema = new Schema({
   eventId: { type: String },
+  userId: { type: String },
   place: { type: Number },
   number: { type: Number },
   athlete: { type: String },

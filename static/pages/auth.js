@@ -28,11 +28,15 @@ export default function authPage() {
     //закрытие модального окна при нажатии на esc
     document.addEventListener('keydown', (event) => {
       const keyCode = event.keyCode;
-      if (keyCode !== 27) {
+      if (keyCode !== 27 && keyCode !== 13) {
         return;
       }
-
-      popupAuth.classList.remove('modal-visible');
+      if (keyCode === 27) {
+        popupAuth.classList.remove('modal-visible');
+      } else {
+        //при нажатии на Enter кликается кнопка вход/регистрация
+        authButton.click();
+      }
     });
 
     //работа с входом/регистрацией
@@ -152,7 +156,7 @@ export default function authPage() {
               popupAuth.classList.remove('modal-visible');
               authBlock.classList.remove('displayNone');
               authSuccessfully.classList.remove('modal-visible');
-            }, 3000);
+            }, 2500);
             //запись токена в localStorage
             localStorage.setItem('tokenBikeCaucasus', `Bearer ${json.token}`);
 
@@ -163,7 +167,11 @@ export default function authPage() {
             validationAll.textContent = json.message;
           }
         } else {
-          console.log('Не все поля заполнены');
+          validationAll.style.color = 'red';
+          validationAll.textContent = 'Не все поля заполнены';
+          setTimeout(() => {
+            validationAll.textContent = '';
+          }, 2500);
         }
       } else {
         //блок регистрации

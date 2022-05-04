@@ -16,7 +16,7 @@ export default function loadimg(data) {
     return button;
   }
 
-  //при клике на button тригерится input.clicl()
+  //при клике на button тригерится input.click()
   buttonAddCardPhoto.addEventListener('click', () => {
     inputAddCardPhoto.click();
   });
@@ -37,7 +37,7 @@ export default function loadimg(data) {
     const files = Array.from(event.target.files);
 
     const divImageCard = document.querySelector(`#${this.id}-images`);
-    //там где добовляется одна фотография, при повторном обращении к инпуту очищать innerHTML от старого фото
+    //там где добавляется одна фотография, при повторном обращении к инпуту очищать innerHTML от старого фото
     if (this.id === 'input__card-photo') {
       divImageCard.innerHTML = '';
     }
