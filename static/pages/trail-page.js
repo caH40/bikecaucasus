@@ -12,17 +12,33 @@ Handlebars.registerHelper('type', function (items, options) {
   }
   return result;
 });
+Handlebars.registerHelper('roleUser', function (items, options) {
+  let result = false;
+  if (items.includes('user') || items.includes('admin')) {
+    result = true;
+  }
+  return result;
+});
 
 try {
-  const cards = await fetch(`${host}/trail/getcards`, {
+  const dataFormDb = await fetch(`${host}/trail/getcards`, {
+    headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
     referrerPolicy: 'unsafe-url',
   }).then((data) => data.json());
 
+  const cards = dataFormDb.card;
+
   const filteredCards = filterTrails(cards);
-  // console.log(filteredCards);
+  console.log(dataFormDb.user.roles);
 
   const sortedCards = sortTrail(filteredCards);
-  render({ list: sortedCards.filteredCards }, '#cardRoutesTemplate');
+  render(
+    {
+      list: sortedCards.filteredCards,
+      userRole: dataFormDb.user.roles,
+    },
+    '#cardRoutesTemplate'
+  );
 
   checkedCheckbox();
 

@@ -29,7 +29,6 @@ try {
   authPage();
 
   function renderPopup() {
-    console.log(menu);
     menu.classList.add('menu__popup');
     popup.appendChild(menu);
   }

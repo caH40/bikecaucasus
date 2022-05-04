@@ -208,9 +208,12 @@
 					</div>
 					
 				</li>
+				<!--только зарегистрированные увидят этот пункт меню-->
+				{{#if (roleUser userRole)}}
 				<li class="item__routes">
 					<a class="link__routes link__btn" href="/create-route">Создать маршрут</a>
 				</li>
+				{{/if}}
 			</ul>
 		</nav>
 

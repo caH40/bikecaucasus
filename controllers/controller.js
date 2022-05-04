@@ -101,7 +101,7 @@ export async function getCardData(req, res) {
   try {
     res.status(200);
     const card = await Card.find({});
-    res.send(card);
+    res.send({ card, user: req.user });
   } catch (error) {
     console.log(error);
   }

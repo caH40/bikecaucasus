@@ -4,15 +4,7 @@ import mongoose from 'mongoose';
 import path from 'path';
 
 import serverRoutes from './routes/routes.js';
-
-try {
-  mongoose
-    .connect(process.env.MONGODB)
-    .then(() => console.log('Connected to Mongo..'))
-    .catch((error) => console.log(error));
-} catch (error) {
-  console.log(error);
-}
+import authRouter from './routes/authRouter.js';
 
 const __dirname = path.resolve();
 const app = express();
@@ -34,7 +26,20 @@ app.use(function (req, res, next) {
 });
 
 app.use(serverRoutes);
+app.use('/auth', authRouter);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server run on port ${process.env.PORT}...`);
-});
+const start = async () => {
+  try {
+    await mongoose
+      .connect(process.env.MONGODB)
+      .then(() => console.log('Connected to Mongo..'))
+      .catch((error) => console.log(error));
+
+    app.listen(process.env.PORT, () => {
+      console.log(`Server run on port ${process.env.PORT}...`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+start();
