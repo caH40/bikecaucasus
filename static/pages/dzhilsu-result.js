@@ -35,10 +35,9 @@ export function getResultTable(dataFormDb, column) {
     const dataResult = dataFormDb.dataResult;
     const dataEvent = dataFormDb.dataEvent;
     const dataUser = dataFormDb.user;
-    console.log(dataUser);
 
     const dataResultFiltered = filterColumn(dataResult, column);
-    console.log(dataResultFiltered);
+
     const dataTemplate = {
       list: dataResultFiltered,
       userIdMy: dataUser.id,

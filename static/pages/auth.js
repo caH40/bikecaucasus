@@ -156,7 +156,7 @@ export default function authPage() {
               popupAuth.classList.remove('modal-visible');
               authBlock.classList.remove('displayNone');
               authSuccessfully.classList.remove('modal-visible');
-            }, 2500);
+            }, 2000);
             //запись токена в localStorage
             localStorage.setItem('tokenBikeCaucasus', `Bearer ${json.token}`);
             localStorage.setItem('userBikeCaucasus', json.userId);
@@ -172,7 +172,7 @@ export default function authPage() {
           validationAll.textContent = 'Не все поля заполнены';
           setTimeout(() => {
             validationAll.textContent = '';
-          }, 2500);
+          }, 2000);
         }
       } else {
         //блок регистрации
