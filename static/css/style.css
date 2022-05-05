@@ -954,3 +954,30 @@ tbody tr:hover {
 .profile__table {
   margin-bottom: 60px;
 }
+/* ============================================================================================ */
+/* User Page-Edit */
+/* ============================================================================================ */
+.profile-edit__inner {
+  display: flex;
+  flex-wrap: wrap;
+}
+.profile-edit__title {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  color: #f1f1f1;
+  margin-bottom: 10px;
+}
+.profile-edit__block {
+  margin-right: 40px;
+}
+.profile-edit__input {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.profile-edit__btn {
+  margin-bottom: 20px;
+}

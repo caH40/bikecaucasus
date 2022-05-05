@@ -271,6 +271,9 @@
     font-size: 12px;
     width: auto;
   }
+  .profile-edit__btn {
+    width: 200px;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -282,14 +285,16 @@
     font-size: 10px;
   }
 }
-/* .profile__table {
-  font-size: 12px;
+@media (max-width: 450.98px) {
+  .profile-edit__inner {
+    justify-content: center;
+  }
+  .profile-edit__block {
+    margin-right: 0px;
+  }
+  .profile-edit__button {
+    display: block;
+    margin-bottom: 0;
+    margin: 0px auto;
+  }
 }
-.title__page {
-  text-align: center;
-  margin-bottom: 30px;
-}
-.box__btn {
-  font-size: 12px;
-  width: auto;
-} */
