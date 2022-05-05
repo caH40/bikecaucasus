@@ -86,24 +86,19 @@ body {
   /* border-bottom: solid #f1f1f1 2px; */
   color: #39a034;
 }
+.login__box {
+  width: 50px;
+}
+
 .login__item-inner {
   display: flex;
   align-items: center;
 }
+
 .login__icon {
   margin-left: 15px;
   cursor: pointer;
 }
-/* .login {
-  display: flex;
-  align-items: center;
-  font-family: 'Montserrat Alternates', sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 24px;
-  letter-spacing: 0.08em;
-} */
 
 .profile-link__img {
   width: 30px;
