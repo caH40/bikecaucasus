@@ -111,6 +111,7 @@
   .menu__popup {
     display: block;
     margin: 25px 0px 0px 25px;
+    position: relative;
   }
   .list {
     display: block;
@@ -119,7 +120,7 @@
     margin-left: 0px;
   }
   .list__item {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
   }
   .open {
     left: 0;
@@ -192,6 +193,23 @@
   }
   .profile__contacts {
     margin-bottom: 20px;
+  }
+  .login__item-inner {
+    display: block;
+  }
+  .link__profile {
+    position: absolute;
+    top: 0;
+    right: -150px;
+  }
+
+  .profile-link__img {
+    width: 80px;
+    height: 80px;
+  }
+  .login__icon {
+    width: 35px;
+    margin: 130px 0px 0px 0px;
   }
 }
 

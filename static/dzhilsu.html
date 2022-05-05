@@ -136,6 +136,12 @@
 		</div>
 	</footer>
 
+	<div class="modal__answer invisible" id="modal__answer">
+		<div class="modal__container">
+			<div class="modal__block" id="server__answer"></div>
+		</div>
+	</div>
+
 	<section class="popup__auth">
 		<!-- <section class="popup__auth" style="display: block"> -->
 		<div class="auth__container">
@@ -248,6 +254,7 @@
 		</table>
 
 	</script>
+
 	<script id="tableUserTemplate" type="text/x-handlebars-template">
 		<h3 class="title__page">{{athlete}}, Команда: {{athleteTeam}}, город {{athleteCity}}</h3>
 		<table class="table tableUser">
@@ -276,8 +283,6 @@
 		</table>
 
 	</script>
-
-
 
 
 	<script type="module" src="./utilities/dataid.js"></script>
