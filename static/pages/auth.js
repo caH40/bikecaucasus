@@ -5,7 +5,9 @@ export default function authPage() {
     const validatorState = {};
     let loginPage = true;
 
+    const loginBox = document.querySelector('#login__box');
     const login = document.querySelector('#login');
+    const logout = document.querySelector('#logout');
     const popupAuth = document.querySelector('.popup__auth');
     const authBlock = document.querySelector('#auth__block');
     const authSuccessfully = document.querySelector('#auth__successfully');
@@ -17,15 +19,19 @@ export default function authPage() {
     const authInputPassword = document.querySelector('#auth__input-password');
     const authInputEmail = document.querySelector('#auth__input-email');
 
-    login.addEventListener('click', (event) => {
-      event.preventDefault();
+    loginBox.addEventListener('click', (event) => {
       //включение модального окна
-      if (event.target.innerHTML === 'Выход') {
+      console.log(event.target.id);
+      if (event.target.id === 'logout') {
         localStorage.removeItem('tokenBikeCaucasus');
-        login.textContent = 'Вход';
+        login.classList.add('visible');
+        logout.classList.remove('visible');
         return;
       }
-      popupAuth.classList.add('modal-visible');
+      if (event.target.id === 'login') {
+        popupAuth.classList.add('modal-visible');
+        return;
+      }
     });
     svgCross.addEventListener('click', (event) => {
       popupAuth.classList.remove('modal-visible');
@@ -166,7 +172,8 @@ export default function authPage() {
             localStorage.setItem('tokenBikeCaucasus', `Bearer ${json.token}`);
             localStorage.setItem('userBikeCaucasus', json.userId);
             //перерисовка иконки входа
-            login.textContent = 'Выход';
+            logout.classList.add('visible');
+            login.classList.remove('visible');
 
             validatorState.nickname = false;
             validatorState.password = false;

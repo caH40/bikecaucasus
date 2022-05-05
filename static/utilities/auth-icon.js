@@ -2,6 +2,7 @@ import { host } from '../utilities/host.js';
 
 export default async function () {
   const login = document.querySelector('#login');
+  const logout = document.querySelector('#logout');
 
   //проверяем токен на актуальность
   const response = await fetch(`${host}/auth/check-token`, {
@@ -10,10 +11,12 @@ export default async function () {
   });
 
   const json = await response.json();
-
+  console.log(json);
   if (json.authorized) {
-    login.textContent = 'Выход';
+    login.classList.remove('visible');
+    logout.classList.add('visible');
   } else {
-    login.textContent = 'Вход';
+    logout.classList.remove('visible');
+    login.classList.add('visible');
   }
 }

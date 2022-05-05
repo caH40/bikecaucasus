@@ -86,8 +86,15 @@ body {
   /* border-bottom: solid #f1f1f1 2px; */
   color: #39a034;
 }
-
-.login {
+.login__item-inner {
+  display: flex;
+  align-items: center;
+}
+.login__icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+/* .login {
   display: flex;
   align-items: center;
   font-family: 'Montserrat Alternates', sans-serif;
@@ -96,6 +103,11 @@ body {
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.08em;
+} */
+
+.profile-link__img {
+  width: 30px;
+  height: 30px;
 }
 
 .slider {
@@ -241,7 +253,7 @@ body {
 .title__page {
   font-family: 'Montserrat Alternates';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 30px;
   letter-spacing: 0.05em;
   padding-top: 10px;
@@ -459,6 +471,7 @@ select {
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
+  line-height: 14px;
   letter-spacing: 0.08em;
   color: #ffffff;
   text-align: center;
@@ -722,6 +735,7 @@ table {
   font-family: 'Roboto';
   width: 100%; /* Ширина таблицы */
   border-collapse: collapse; /* Убираем двойные линии между ячейками */
+  margin-bottom: 40px;
 }
 td,
 th {
@@ -748,7 +762,7 @@ tbody tr:hover {
   color: #f1f1f1; /* Цвет текста при наведении */
 }
 .active-th {
-  background-color: #72df58;
+  background-color: #209603;
 }
 .td__link .link__btn {
   display: inline-block;
@@ -757,7 +771,7 @@ tbody tr:hover {
   text-align: center;
 }
 .my-result {
-  color: #ffb003;
+  background-color: #209603;
 }
 /* ============================================================================================ */
 .popup__auth {
@@ -888,4 +902,52 @@ tbody tr:hover {
 }
 .modal-visible {
   display: block;
+}
+.invisible {
+  display: none;
+}
+.visible {
+  display: block;
+}
+/* ============================================================================================ */
+/* User Page */
+/* ============================================================================================ */
+
+.profile__inner {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.05em;
+  color: #f1f1f1;
+}
+.profile__block {
+}
+.profile__img {
+  margin-bottom: 50px;
+}
+.profile__contacts {
+  margin-bottom: 30px;
+}
+.profile__head-data {
+  margin-bottom: 10px;
+}
+
+.profile__head-data .profile__data {
+  padding-left: 10px;
+  font-weight: 400;
+}
+.profile__data {
+  color: rgba(225, 254, 255, 0.45);
+}
+.box__images {
+}
+.profile__block-title {
+  /* width: 350px; */
+  height: 76px;
+  font-size: 26px;
+  line-height: 30px;
 }

@@ -1,11 +1,4 @@
 @media screen and (max-width: 1650px) {
-  .container {
-    max-width: 1420px;
-  }
-
-  .slider__img {
-    max-width: 1400px;
-  }
 }
 @media screen and (max-width: 1450px) {
   .container {

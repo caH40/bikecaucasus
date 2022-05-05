@@ -2,6 +2,7 @@ import Card from '../Model/Card.js';
 import Photo from '../Model/Photo.js';
 import Result from '../Model/Result.js';
 import Event from '../Model/Event.js';
+import User from '../Model/User.js';
 
 import path from 'path';
 
@@ -36,6 +37,30 @@ export function galleryPage(req, res) {
   try {
     res.status(200);
     res.sendFile(path.resolve(__dirname, 'static', 'gallery.html'));
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function profile(req, res) {
+  try {
+    res.status(200);
+    res.sendFile(path.resolve(__dirname, 'static', 'profile.html'));
+  } catch (error) {
+    console.log(error);
+  }
+}
+export async function profileGetInfo(req, res) {
+  try {
+    const userId = req.user.id;
+    if (!userId) {
+      return res.status(401).json({ message: 'Вы не авторизованны!' });
+    }
+    const profile = await User.findOne({ _id: userId });
+    let dataEvent = await Event.find();
+    let dataResult = await Result.find({ userId });
+
+    const dataFormDb = { profile, dataEvent, dataResult };
+    res.status(200).json(dataFormDb);
   } catch (error) {
     console.log(error);
   }

@@ -18,6 +18,8 @@ import {
   getTrek,
   getUser,
   robots,
+  profile,
+  profileGetInfo,
 } from '../controllers/controller.js';
 import fileMiddleware from '../app_modules/upload.js';
 const router = new Router();
@@ -46,5 +48,7 @@ router.get('/dzhilsu/user', authMiddleware, getUser);
 router.post('/uploadTrek', fileMiddleware.single('filedata'), postFileTrek);
 router.get('/gettrek', getTrek);
 router.get('/robots.txt', robots);
+router.get('/profile', profile);
+router.get('/profile/info', authMiddleware, profileGetInfo);
 
 export default router;
