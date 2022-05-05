@@ -1,5 +1,6 @@
 import { host } from '../utilities/host.js';
 import { render } from '../view/viewer.js';
+// import modalAnswer from '../utilities/modal-answer.js';
 
 export default {
   router() {
@@ -10,7 +11,6 @@ export default {
         const response = await fetch(`${host}/profile/edit`, {
           headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
         }).then((data) => data.json());
-        console.log(response);
 
         const dataTemplate = response;
         render(dataTemplate, '#profileEditTemplate');
@@ -55,7 +55,7 @@ export default {
           phone,
         };
 
-        const response = await fetch(`${host}/profile/edit`, {
+        const response = await fetch(`${host}/profile/edited`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -66,7 +66,15 @@ export default {
           .then((data) => data.json())
           .catch((error) => console.log(error));
 
-        console.log(response.message);
+        const modalAnswer = document.querySelector('#modal__answer');
+        const serverAnswer = document.querySelector('#server__answer');
+
+        modalAnswer.classList.add('visible');
+        serverAnswer.innerHTML = response.message;
+        setTimeout(() => {
+          modalAnswer.classList.remove('visible');
+        }, 2000);
+
         this.routerProfile();
       });
     } catch (error) {

@@ -11,7 +11,7 @@ export default async function () {
   });
 
   const json = await response.json();
-  console.log(json);
+
   if (json.authorized) {
     login.classList.remove('visible');
     logout.classList.add('visible');

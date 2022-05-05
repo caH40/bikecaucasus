@@ -772,7 +772,7 @@ tbody tr:hover {
   text-align: center;
 }
 .my-result {
-  background-color: #209603;
+  color: #28cd00;
 }
 /* ============================================================================================ */
 .popup__auth {
@@ -785,7 +785,6 @@ tbody tr:hover {
   background-color: rgba(0, 0, 0, 0.644);
   z-index: 101;
 }
-
 .auth__container {
   display: flex;
   width: 100%;
@@ -903,6 +902,38 @@ tbody tr:hover {
 }
 .modal-visible {
   display: block;
+}
+
+.modal__answer {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.644);
+  z-index: 101;
+}
+.modal__container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.modal__block {
+  width: 340px;
+  margin: auto;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.08em;
+  background-color: #f9a527;
+  border-radius: 10px;
+  text-align: center;
+  padding: 30px 15px 30px 15px;
+  color: #000000;
+  position: relative;
 }
 .invisible {
   display: none;

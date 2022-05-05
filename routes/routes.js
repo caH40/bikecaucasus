@@ -53,6 +53,6 @@ router.get('/robots.txt', robots);
 router.get('/profile', profile);
 router.get('/profile/info', authMiddleware, profileGetInfo);
 router.get('/profile/edit', authMiddleware, profileGetEdit);
-router.post('/profile/edit', authMiddleware, profilePostEdit);
+router.post('/profile/edited', authMiddleware, profilePostEdit);
 
 export default router;

@@ -21,11 +21,19 @@ export default function authPage() {
 
     loginBox.addEventListener('click', (event) => {
       //включение модального окна
-      console.log(event.target.id);
       if (event.target.id === 'logout') {
         localStorage.removeItem('tokenBikeCaucasus');
         login.classList.add('visible');
         logout.classList.remove('visible');
+
+        // const modalAnswer = document.querySelector('#modal__answer');
+        // const serverAnswer = document.querySelector('#server__answer');
+
+        // modalAnswer.classList.add('visible');
+        // serverAnswer.innerHTML = 'Выход...';
+        // setTimeout(() => {
+        //   modalAnswer.classList.remove('visible');
+        // }, 2000);
         return;
       }
       if (event.target.id === 'login') {

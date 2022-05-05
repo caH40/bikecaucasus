@@ -6,6 +6,7 @@ Handlebars.registerHelper('authUser', function (items, options) {
   let result = false;
   const authUser = localStorage.getItem('userBikeCaucasus');
   if (items === authUser) {
+    console.log('working');
     result = true;
   }
   return result;
