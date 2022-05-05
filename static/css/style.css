@@ -91,7 +91,7 @@ body {
   align-items: center;
 }
 .login__icon {
-  margin-left: 10px;
+  margin-left: 15px;
   cursor: pointer;
 }
 /* .login {
@@ -766,6 +766,7 @@ tbody tr:hover {
 }
 .td__link .link__btn {
   display: inline-block;
+  width: 100px;
 }
 .td__link {
   text-align: center;
@@ -920,7 +921,6 @@ tbody tr:hover {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 19px;
   letter-spacing: 0.05em;
   color: #f1f1f1;
 }
@@ -946,8 +946,11 @@ tbody tr:hover {
 .box__images {
 }
 .profile__block-title {
-  /* width: 350px; */
   height: 76px;
   font-size: 26px;
   line-height: 30px;
+  margin-bottom: 30px;
+}
+.profile__table {
+  margin-bottom: 60px;
 }
