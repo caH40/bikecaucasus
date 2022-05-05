@@ -20,6 +20,8 @@ import {
   robots,
   profile,
   profileGetInfo,
+  profileGetEdit,
+  profilePostEdit,
 } from '../controllers/controller.js';
 import fileMiddleware from '../app_modules/upload.js';
 const router = new Router();
@@ -50,5 +52,7 @@ router.get('/gettrek', getTrek);
 router.get('/robots.txt', robots);
 router.get('/profile', profile);
 router.get('/profile/info', authMiddleware, profileGetInfo);
+router.get('/profile/edit', authMiddleware, profileGetEdit);
+router.post('/profile/edit', authMiddleware, profilePostEdit);
 
 export default router;

@@ -1,5 +1,21 @@
 import { host } from '../utilities/host.js';
 import { render } from '../view/viewer.js';
+import routerProfile from '../routes/router-profile.js';
+
+Handlebars.registerHelper('male', function (items, options) {
+  if (items === 'мужской') {
+    return true;
+  } else {
+    return false;
+  }
+});
+Handlebars.registerHelper('female', function (items, options) {
+  if (items === 'женский') {
+    return true;
+  } else {
+    return false;
+  }
+});
 
 async function profile() {
   try {
@@ -25,7 +41,8 @@ async function profile() {
       ...dataProfile,
     };
     render(dataTemplate, '#profileTemplate');
-    // routerFe.router();
+
+    routerProfile.router();
   } catch (error) {
     console.log(error);
   }

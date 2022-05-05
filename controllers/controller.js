@@ -56,11 +56,62 @@ export async function profileGetInfo(req, res) {
       return res.status(401).json({ message: 'Вы не авторизованны!' });
     }
     const profile = await User.findOne({ _id: userId });
-    let dataEvent = await Event.find();
-    let dataResult = await Result.find({ userId });
+    const dataEvent = await Event.find();
+    const dataResult = await Result.find({ userId });
 
     const dataFormDb = { profile, dataEvent, dataResult };
     res.status(200).json(dataFormDb);
+  } catch (error) {
+    console.log(error);
+  }
+}
+export async function profileGetEdit(req, res) {
+  try {
+    const userId = req.user.id;
+    if (!userId) {
+      return res.status(401).json({ message: 'Вы не авторизованны!' });
+    }
+    const dataFormDb = await User.findOne({ _id: userId });
+    res.status(200).json(dataFormDb);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function profilePostEdit(req, res) {
+  try {
+    const userId = req.user.id;
+    if (!userId) {
+      return res.status(401).json({ message: 'Вы не авторизованны!' });
+    }
+    const {
+      lastName,
+      firstName,
+      patronymic,
+      birthday,
+      city,
+      team,
+      gender,
+      email,
+      phone,
+    } = req.body;
+    const dataFormDb = await User.findOneAndUpdate(
+      { _id: userId },
+      {
+        $set: {
+          lastName,
+          firstName,
+          patronymic,
+          birthday,
+          city,
+          team,
+          gender,
+          email,
+          phone,
+        },
+      }
+    );
+    res.status(201).json({ message: 'Изменения сохранились!' });
   } catch (error) {
     console.log(error);
   }

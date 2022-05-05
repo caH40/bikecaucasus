@@ -115,65 +115,6 @@
     </header>
     <main class="main profile">
         <div class="container">
-            <h3 class="title__page">
-                Личные данные
-            </h3>
-            <form class="" method="post" action="">
-                <div class="profile-edit__inner">
-                    <!-- <div class="profile-edit__inner"> -->
-                    <div class="profile-edit__block">
-                        <h4 class="profile-edit__title">Фамилия*</h4>
-                        <input class="input profile-edit__input" name="lastname" id="lastname" type="text"
-                            placeholder="Фамилия" maxlength="12" />
-                        <h4 class="profile-edit__title">Имя*</h4>
-                        <input class="input profile-edit__input" name="firstname" id="firstname" type="text"
-                            placeholder="Имя" maxlength="12" />
-                        <h4 class="profile-edit__title">Отчество</h4>
-                        <input class="input profile-edit__input" name="patronymic" id="patronymic" type="text"
-                            placeholder="Отчество" maxlength="12" />
-                    </div>
-
-                    <div class="profile-edit__block">
-                        <h4 class="profile-edit__title">Год рождения*</h4>
-                        <input class="input profile-edit__input" name="birthday" id="birthday" type="tel"
-                            placeholder="Год рождения" maxlength="4" />
-                        <h4 class="profile-edit__title">Пол*</h4>
-                        <select class="input select profile-edit__input" name="gender" id="gender">
-                            <!-- <option value=""></option> -->
-                            <option value="мужской">мужской</option>
-                            <option value="женский">женский</option>
-                        </select>
-                    </div>
-
-                    <div class="profile-edit__block">
-                        <h4 class="profile-edit__title">Город</h4>
-                        <input class="input profile-edit__input" name="city" id="city" type="text" placeholder="Город"
-                            maxlength="12" />
-                        <h4 class="profile-edit__title">Команда</h4>
-                        <input class="input profile-edit__input" name="team" id="team" type="text" placeholder="Команда"
-                            maxlength="12" />
-                    </div>
-
-                    <div class="profile-edit__block">
-                        <h4 class="profile-edit__title">E-mail</h4>
-                        <input class="input profile-edit__input" name="email" id="email" type="text"
-                            placeholder="e-mail" maxlength="12" />
-                        <h4 class="profile-edit__title">Контактный телефон</h4>
-                        <input class="input profile-edit__input" name="phone" id="phone" type="text"
-                            placeholder="Контактный телефон" maxlength="12" />
-                    </div>
-
-                    <div class="profile-edit__block">
-                        <h4 class="profile-edit__title">Фотография профиля</h4>
-                        <div class="box__btn div__btn profile-edit__btn" id="profile__edit-btn">выбрать файл
-                        </div>
-                    </div>
-                </div>
-                <button class="box__btn profile-edit__btn profile-edit__button" id="btn__send-form"
-                    type="submit">ОТПРАВИТЬ</button>
-
-            </form>
-
             <div class="handlebars"> </div>
         </div>
     </main>
@@ -321,6 +262,67 @@
             </div>
         </div>
 	</script>
+
+    <script id="profileEditTemplate" type="text/x-handlebars-template">
+        <h3 class="title__page">
+            Личные данные
+        </h3>
+        <form class="" method="post" action="">
+            <div class="profile-edit__inner">
+                <!-- <div class="profile-edit__inner"> -->
+                <div class="profile-edit__block">
+                    <h4 class="profile-edit__title">Фамилия*</h4>
+                    <input class="input profile-edit__input" value="{{lastName}}" name="lastname" id="lastname" type="text"
+                        placeholder="Фамилия" maxlength="12" />
+                    <h4 class="profile-edit__title">Имя*</h4>
+                    <input class="input profile-edit__input" value="{{firstName}}" name="firstname" id="firstname" type="text"
+                        placeholder="Имя" maxlength="12" />
+                    <h4 class="profile-edit__title">Отчество</h4>
+                    <input class="input profile-edit__input" value="{{patronymic}}" name="patronymic" id="patronymic" type="text"
+                        placeholder="Отчество" maxlength="12" />
+                </div>
+
+                <div class="profile-edit__block">
+                    <h4 class="profile-edit__title">Год рождения*</h4>
+                    <input class="input profile-edit__input" value="{{birthday}}" name="birthday" id="birthday" type="tel"
+                        placeholder="Год рождения" maxlength="4" />
+                    <h4 class="profile-edit__title">Пол*</h4>
+                    <select class="input select profile-edit__input" name="gender" id="gender">
+                        <option {{#if (male gender)}}selected="selected"{{/if}} value="мужской">мужской</option>
+                        <option {{#if (female gender)}}selected="selected"{{/if}} value="женский">женский</option>
+                    </select>
+                </div>
+
+                <div class="profile-edit__block">
+                    <h4 class="profile-edit__title">Город</h4>
+                    <input class="input profile-edit__input" value="{{city}}" name="city" id="city" type="text" placeholder="Город"
+                        maxlength="12" />
+                    <h4 class="profile-edit__title">Команда</h4>
+                    <input class="input profile-edit__input" value="{{team}}" name="team" id="team" type="text" placeholder="Команда"
+                        maxlength="12" />
+                </div>
+
+                <div class="profile-edit__block">
+                    <h4 class="profile-edit__title">E-mail</h4>
+                    <input class="input profile-edit__input" value="{{email}}" name="email" id="email" type="text"
+                        placeholder="e-mail" maxlength="12" />
+                    <h4 class="profile-edit__title">Контактный телефон</h4>
+                    <input class="input profile-edit__input" value="{{phone}}" name="phone" id="phone" type="text"
+                        placeholder="Контактный телефон" maxlength="12" />
+                </div>
+
+                <div class="profile-edit__block">
+                    <h4 class="profile-edit__title">Фотография профиля</h4>
+                    <div class="box__btn div__btn profile-edit__btn" id="profile__edit-btn-file">выбрать файл
+                    </div>
+                </div>
+            </div>
+            <button class="box__btn profile-edit__btn profile-edit__button" id="profile-edit__send-form"
+                type="submit">ОТПРАВИТЬ</button>
+
+        </form>
+    </script>
+
 
 
     <script type="module" src="./utilities/dataid.js"></script>
