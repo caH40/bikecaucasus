@@ -23,7 +23,7 @@ Handlebars.registerHelper('roleUser', function (items, options) {
 try {
   const dataFormDb = await fetch(`${host}/trail/getcards`, {
     headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
-    referrerPolicy: 'unsafe-url',
+    // referrerPolicy: 'unsafe-url',
   }).then((data) => data.json());
 
   const cards = dataFormDb.card;
