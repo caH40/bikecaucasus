@@ -203,6 +203,15 @@ export default function authPage() {
           let json = await response.json();
 
           if (response.ok) {
+            // authBlock.classList.add('displayNone');
+            // authSuccessfully.classList.add('modal-visible');
+            // authSuccessfully.innerHTML = json.message;
+            // setTimeout(() => {
+            //   popupAuth.classList.remove('modal-visible');
+            //   authBlock.classList.remove('displayNone');
+            //   authSuccessfully.classList.remove('modal-visible');
+            // }, 3000);
+            popupAuth.classList.remove('modal-visible');
             modalAnswer(json.message, 2000);
 
             authRegistration.classList.add('auth__gray');
