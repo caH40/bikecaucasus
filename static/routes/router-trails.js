@@ -1,3 +1,4 @@
+import { host } from '../utilities/host.js';
 import sortTrail from '../utilities/sort-trails.js';
 import filterTrails from '../utilities/filter-trails.js';
 import listenBikeType from '../utilities/listen-bike.js';
@@ -66,4 +67,18 @@ export default {
       });
     });
   },
+  // routerCreateTrail() {
+  //   try {
+  //     const trailCreate = document.querySelector('#trail-create');
+  //     trailCreate.addEventListener('click', async (event) => {
+  //       event.preventDefault();
+  //       const response = await fetch(`${host}/trail/create`, {
+  //         headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
+  //       }).then((data) => data.json());
+  //
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // },
 };

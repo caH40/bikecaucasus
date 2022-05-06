@@ -35,7 +35,7 @@ router.get('/gallery', galleryPage);
 router.get('/description', descriptionPage);
 router.get('/description/getdata', getDescriptionData);
 //страница создания маршрута
-router.get('/create-route', createTrailPage);
+router.get('/create-trail', createTrailPage);
 //запись данных о маршруте в базу
 router.post('/', sendFormCard);
 //получение карточек маршрутов
