@@ -1,5 +1,6 @@
 import { host } from '../utilities/host.js';
 import { render } from '../view/viewer.js';
+import modalAnswer from '../utilities/modal-answer.js';
 import routerProfile from '../routes/router-profile.js';
 
 Handlebars.registerHelper('male', function (items, options) {
@@ -19,18 +20,17 @@ Handlebars.registerHelper('female', function (items, options) {
 
 async function profile() {
   try {
-    const dataFormDb = await fetch(`${host}/profile/info`, {
+    const response = await fetch(`${host}/profile/info`, {
       headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
-    }).then((data) => data.json());
-
-    if (dataFormDb.message) {
-      document.querySelector('.handlebars').textContent = dataFormDb.message;
+    });
+    const dataFromDb = await response.json();
+    if (!response.ok) {
+      modalAnswer(dataFromDb.message);
       return;
     }
-    const dataProfile = dataFormDb.profile;
-    const dataResult = dataFormDb.dataResult;
-    const dataEvent = dataFormDb.dataEvent;
-    // console.log(dataProfile, dataResult, dataEvent);
+    const dataProfile = dataFromDb.profile;
+    const dataResult = dataFromDb.dataResult;
+    const dataEvent = dataFromDb.dataEvent;
 
     for (let i = 0; i < dataResult.length; i++) {
       let event = dataEvent.find((e) => e.eventId === dataResult[i].eventId);

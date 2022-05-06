@@ -53,7 +53,7 @@ export async function profileGetInfo(req, res) {
   try {
     const userId = req.user.id;
     if (!userId) {
-      return res.status(401).json({ message: 'Вы не авторизованны!' });
+      return res.status(401).json({ message: 'Вы не авторизованы!' });
     }
     const profile = await User.findOne({ _id: userId });
     const dataEvent = await Event.find();
@@ -69,7 +69,7 @@ export async function profileGetEdit(req, res) {
   try {
     const userId = req.user.id;
     if (!userId) {
-      return res.status(401).json({ message: 'Вы не авторизованны!' });
+      return res.status(401).json({ message: 'Вы не авторизованы!' });
     }
     const dataFormDb = await User.findOne({ _id: userId });
     res.status(200).json(dataFormDb);
@@ -82,7 +82,7 @@ export async function profilePostEdit(req, res) {
   try {
     const userId = req.user.id;
     if (!userId) {
-      return res.status(401).json({ message: 'Вы не авторизованны!' });
+      return res.status(401).json({ message: 'Вы не авторизованы!' });
     }
     const {
       lastName,
@@ -95,7 +95,8 @@ export async function profilePostEdit(req, res) {
       email,
       phone,
     } = req.body;
-    const dataFormDb = await User.findOneAndUpdate(
+
+    await User.findOneAndUpdate(
       { _id: userId },
       {
         $set: {

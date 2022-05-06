@@ -1,4 +1,5 @@
 import { host } from '../utilities/host.js';
+import modalAnswer from '../utilities/modal-answer.js';
 export default function authPage() {
   try {
     let user = {};
@@ -10,7 +11,6 @@ export default function authPage() {
     const logout = document.querySelector('#logout');
     const popupAuth = document.querySelector('.popup__auth');
     const authBlock = document.querySelector('#auth__block');
-    const authSuccessfully = document.querySelector('#auth__successfully');
     const svgCross = document.querySelector('.svg__cross');
     const authButton = document.querySelector('#auth__btn');
     const validationAll = document.querySelector('#validation__all');
@@ -26,14 +26,7 @@ export default function authPage() {
         login.classList.add('visible');
         logout.classList.remove('visible');
 
-        const modalAnswer = document.querySelector('#modal__answer');
-        const serverAnswer = document.querySelector('#server__answer');
-
-        modalAnswer.classList.add('visible');
-        serverAnswer.innerHTML = 'Выход...Возвращайтесь!';
-        setTimeout(() => {
-          modalAnswer.classList.remove('visible');
-        }, 1500);
+        modalAnswer('Выход...Возвращайтесь!');
         return;
       }
       if (event.target.id === 'login') {
@@ -169,14 +162,8 @@ export default function authPage() {
             authInputPassword.value = '';
             authInputEmail.value = '';
 
-            authBlock.classList.add('displayNone');
-            authSuccessfully.classList.add('modal-visible');
-            authSuccessfully.innerHTML = json.message;
-            setTimeout(() => {
-              popupAuth.classList.remove('modal-visible');
-              authBlock.classList.remove('displayNone');
-              authSuccessfully.classList.remove('modal-visible');
-            }, 2000);
+            popupAuth.classList.remove('modal-visible');
+            modalAnswer(json.message, 2000);
             //запись токена в localStorage
             localStorage.setItem('tokenBikeCaucasus', `Bearer ${json.token}`);
             localStorage.setItem('userBikeCaucasus', json.userId);
@@ -216,14 +203,7 @@ export default function authPage() {
           let json = await response.json();
 
           if (response.ok) {
-            authBlock.classList.add('displayNone');
-            authSuccessfully.classList.add('modal-visible');
-            authSuccessfully.innerHTML = json.message;
-            setTimeout(() => {
-              popupAuth.classList.remove('modal-visible');
-              authBlock.classList.remove('displayNone');
-              authSuccessfully.classList.remove('modal-visible');
-            }, 3000);
+            modalAnswer(json.message, 2000);
 
             authRegistration.classList.add('auth__gray');
             authLogin.classList.remove('auth__gray');
