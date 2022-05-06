@@ -16,14 +16,14 @@ app.use(express.urlencoded({ limit: '25mb' }));
 app.use(express.static(path.resolve(__dirname, 'static')));
 // app.use(multer({ dest: 'uploads' }).single('filedata'));
 // CORS;
-// app.use(function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'Origin, X-Requested-With, Content-Type, Accept'
-//   );
-//   next();
-// });
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
 
 app.use(serverRoutes);
 app.use('/auth', authRouter);
