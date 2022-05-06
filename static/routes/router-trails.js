@@ -6,16 +6,19 @@ import checkedCheckbox from '../utilities/checked-checkbox.js';
 import { render } from '../view/viewer.js';
 
 export default {
-  routeRender(sortedCards, cards) {
-    render({ list: sortedCards.filteredCards }, '#cardRoutesTemplate');
+  routeRender(sortedCards, cards, userRole) {
+    render(
+      { list: sortedCards.filteredCards, userRole },
+      '#cardRoutesTemplate'
+    );
     checkedCheckbox();
     //установка названия выбранной сортировки на кнопке
     const select = document.querySelector('#select-sort');
     select.options.selectedIndex = sortedCards.selectedIndex;
-    this.router(cards);
+    this.router(cards, userRole);
   },
 
-  router(cards) {
+  router(cards, userRole) {
     //прослушка сортировки
     const listRoutes = document.querySelector('#select-sort');
     listRoutes.addEventListener('change', (event) => {
@@ -26,7 +29,7 @@ export default {
       const valueSort = event.target.value;
       const filteredCards = filterTrails(cards);
       const sortedCards = sortTrail(filteredCards, valueSort);
-      this.routeRender(sortedCards, cards);
+      this.routeRender(sortedCards, cards, userRole);
     });
     //прослушка кнопки фильтра
     const trailFilter = document.querySelector('#trail__filter');
@@ -59,7 +62,7 @@ export default {
         applyButton.classList.remove('checkbox__btn-changed');
         const filteredCards = filterTrails(cards);
         const sortedCards = sortTrail(filteredCards);
-        this.routeRender(sortedCards, cards);
+        this.routeRender(sortedCards, cards, userRole);
       });
     });
   },

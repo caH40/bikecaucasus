@@ -13,6 +13,9 @@ Handlebars.registerHelper('type', function (items, options) {
   return result;
 });
 Handlebars.registerHelper('roleUser', function (items, options) {
+  if (!items) {
+    return;
+  }
   let result = false;
   if (items.includes('user') || items.includes('admin')) {
     result = true;
@@ -27,6 +30,7 @@ try {
   }).then((data) => data.json());
 
   const cards = dataFormDb.card;
+  const userRole = dataFormDb.user.roles;
 
   const filteredCards = filterTrails(cards);
 
@@ -34,7 +38,7 @@ try {
   render(
     {
       list: sortedCards.filteredCards,
-      userRole: dataFormDb.user.roles,
+      userRole,
     },
     '#cardRoutesTemplate'
   );
@@ -45,7 +49,7 @@ try {
   const select = document.querySelector('#select-sort');
   select.options.selectedIndex = sortedCards.selectedIndex;
 
-  routerTrails.router(cards);
+  routerTrails.router(cards, userRole);
 } catch (error) {
   console.log(error);
 }
