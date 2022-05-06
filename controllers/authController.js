@@ -3,8 +3,10 @@ import { validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+import mailer from '../app_modules/nodemailer.js';
 import Role from '../Model/Role.js';
 import User from '../Model/User.js';
+import UserConfirm from '../Model/User-confirm.js';
 
 const secret = process.env.SECRET;
 const generateAccessToken = (id, roles) => {
@@ -57,9 +59,21 @@ export async function registration(req, res) {
       email,
       roles: [userRole.value],
     });
-    await user.save();
+    const userId = await user.save().then((data) => data.id);
+    //формирование токена подтверждения email
+    const dateRegistration = new Date().getTime();
+    const mailToken = bcrypt.hashSync(String(dateRegistration), 1);
 
+    const confirm = new UserConfirm({
+      userId,
+      dateRegistration,
+      token: mailToken,
+      email,
+    });
+    await confirm.save();
+    mailer(mailToken, email, username, password);
     res.status(200).json({ message: 'Регистрация прошла успешно!' });
+    //блок отправки email с кодом подтверждения
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: 'Ошибка при регистрации...' });
@@ -117,5 +131,24 @@ export async function checkToken(req, res) {
     });
   } catch (error) {
     console.log(error);
+  }
+}
+
+//активация нового аккаунта
+export async function confirmUser(req, res) {
+  try {
+    const token = req.query.token;
+
+    if (!token) {
+      return res.status(400).send('<h3>Нет токена активации.</h3>');
+    }
+    const { userId } = await UserConfirm.findOneAndDelete({ token });
+    const confirmed = await User.findOneAndUpdate(
+      { _id: userId },
+      { $set: { emailConfirm: true } }
+    );
+    res.status(200).send('<h3>Аккаунт активирован, e-mail подтвержден.<h3>');
+  } catch (error) {
+    res.status(400).send('<h3>Ошибка при активации аккаунта.</h3>');
   }
 }

@@ -5,6 +5,7 @@ import {
   registration,
   login,
   checkToken,
+  confirmUser,
 } from '../controllers/authController.js';
 
 const router = new Router();
@@ -22,5 +23,7 @@ router.post(
 router.post('/login', login);
 
 router.post('/check-token', checkToken);
+//активация нового аккаунта
+router.get('/activation', confirmUser);
 
 export default router;
