@@ -6,6 +6,7 @@ import cors from 'cors';
 
 import serverRoutes from './routes/routes.js';
 import authRouter from './routes/authRouter.js';
+import controlRegistration from './app_modules/control-registration.js';
 
 const __dirname = path.resolve();
 const app = express();
@@ -29,6 +30,8 @@ app.use(function (req, res, next) {
 
 app.use(serverRoutes);
 app.use('/auth', authRouter);
+
+controlRegistration();
 
 const start = async () => {
   try {

@@ -2,7 +2,6 @@ import 'dotenv/config';
 import nodemailer from 'nodemailer';
 
 const { MAIL_USER, MAIL_PASS, MAIL_HOST, MAIL_PORT, MAIL_SECURE } = process.env;
-// console.log(process.env);
 
 export default async function (token, mail, username, password) {
   try {
