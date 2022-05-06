@@ -14,7 +14,7 @@ const generateAccessToken = (id, roles) => {
     roles,
   };
   //время жизни токена expiresIn
-  return jwt.sign(payload, secret, { expiresIn: '1h' });
+  return jwt.sign(payload, secret, { expiresIn: '24h' });
 };
 
 export async function registration(req, res) {
