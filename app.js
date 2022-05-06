@@ -31,7 +31,11 @@ app.use(function (req, res, next) {
 app.use(serverRoutes);
 app.use('/auth', authRouter);
 
-controlRegistration();
+//опрос неактивированных аккаунтов
+const millisecondsInFourHours = 1440000;
+setTimeout(() => {
+  controlRegistration();
+}, millisecondsInFourHours);
 
 const start = async () => {
   try {

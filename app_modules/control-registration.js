@@ -15,6 +15,12 @@ export default async function () {
         let { userId } = usersForConfirm[i];
         let userConfirmDeleted = await UserConfirm.findOneAndDelete({ userId });
         let userDeleted = await User.findOneAndDelete({ _id: userId });
+
+        console.log(
+          `${new Date().toLocaleString()} Аккаунт удалён, так как не был активир ${
+            userDeleted.username
+          } ${userDeleted.email}`
+        );
       }
     }
   } catch (error) {
