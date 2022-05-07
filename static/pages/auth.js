@@ -9,10 +9,10 @@ export default function authPage() {
     let loginPage = true;
 
     const loginBox = document.querySelector('#login__box');
-    const login = document.querySelector('#login');
-    const logout = document.querySelector('#logout');
+    // const login = document.querySelector('#login');
+    // const logout = document.querySelector('#logout');
     const popupAuth = document.querySelector('.popup__auth');
-    const authBlock = document.querySelector('#auth__block');
+    // const authBlock = document.querySelector('#auth__block');
     const svgCross = document.querySelector('.svg__cross');
     const authButton = document.querySelector('#auth__btn');
     const validationAll = document.querySelector('#validation__all');
@@ -25,10 +25,10 @@ export default function authPage() {
       //включение модального окна
       if (event.target.id === 'logout') {
         localStorage.removeItem('tokenBikeCaucasus');
-        login.classList.add('visible');
-        logout.classList.remove('visible');
+        localStorage.removeItem('photoProfileBikeCaucasus');
+
         await authIcon();
-        modalAnswer('Выход...Возвращайтесь!');
+        modalAnswer('Выход...Возвращайтесь!', 1000);
         return;
       }
       if (event.target.id === 'login') {
@@ -164,14 +164,13 @@ export default function authPage() {
             authInputEmail.value = '';
 
             popupAuth.classList.remove('modal-visible');
-            modalAnswer(json.message, 2000);
+            modalAnswer(json.message, 1000);
             //запись токена в localStorage
             localStorage.setItem('tokenBikeCaucasus', `Bearer ${json.token}`);
             localStorage.setItem('userBikeCaucasus', json.userId);
+            localStorage.setItem('photoProfileBikeCaucasus', json.photoProfile);
+
             await authIcon();
-            //перерисовка иконки входа
-            logout.classList.add('visible');
-            login.classList.remove('visible');
 
             validatorState.nickname = false;
             validatorState.password = false;
@@ -206,7 +205,7 @@ export default function authPage() {
 
           if (response.ok) {
             popupAuth.classList.remove('modal-visible');
-            modalAnswer(json.message, 2000);
+            modalAnswer(json.message, 1000);
 
             authRegistration.classList.add('auth__gray');
             authLogin.classList.remove('auth__gray');

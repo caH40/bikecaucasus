@@ -96,16 +96,14 @@ export async function login(req, res) {
     if (!validPassword) {
       return res.status(400).json({ message: 'Неверный пароль' });
     }
-
     //генерирование токена JWT
     const token = generateAccessToken(user._id, user.roles);
-    return res
-      .status(200)
-      .json({
-        message: `С возвращением ${username}!`,
-        token,
-        userId: user._id,
-      });
+    return res.status(200).json({
+      message: `С возвращением ${username}!`,
+      token,
+      userId: user._id,
+      photoProfile: user.photoProfile,
+    });
   } catch (error) {
     console.log(error);
     res

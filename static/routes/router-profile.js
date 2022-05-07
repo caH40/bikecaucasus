@@ -40,9 +40,11 @@ export default {
         const team = document.querySelector('#team').value;
         // const email = document.querySelector('#email').value;
         const phone = document.querySelector('#phone').value;
+
         let profilePhoto = document.querySelector('#profile__img-big');
         if (profilePhoto) {
           profilePhoto = profilePhoto.src;
+          localStorage.setItem('photoProfileBikeCaucasus', profilePhoto);
         }
 
         var gender = document.querySelector('#gender');
@@ -82,9 +84,9 @@ export default {
         serverAnswer.innerHTML = response.message;
         setTimeout(() => {
           modalAnswer.classList.remove('visible');
-        }, 2000);
-
-        const photoProfile = await authIcon();
+        }, 1000);
+        //очистка старой иконки профиля
+        const photoProfile = await authIcon(true);
 
         this.routerProfile();
       });

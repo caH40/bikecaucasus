@@ -91,6 +91,7 @@ body {
   color: #39a034;
 }
 .login__box {
+  text-align: right;
   width: 50px;
 }
 
