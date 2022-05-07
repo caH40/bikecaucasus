@@ -1,6 +1,7 @@
 import { host } from '../utilities/host.js';
 import { render } from '../view/viewer.js';
 import reduceImage from '../utilities/reduce-image.js';
+import authIcon from '../utilities/auth-icon.js';
 // import modalAnswer from '../utilities/modal-answer.js';
 
 export default {
@@ -82,6 +83,8 @@ export default {
         setTimeout(() => {
           modalAnswer.classList.remove('visible');
         }, 2000);
+
+        const photoProfile = await authIcon();
 
         this.routerProfile();
       });

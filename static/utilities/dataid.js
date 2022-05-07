@@ -1,7 +1,5 @@
 import authPage from '../pages/auth.js';
 import authIcon from '../utilities/auth-icon.js';
-import { host } from '../utilities/host.js';
-// import { render } from '../view/viewer.js';
 
 async function header() {
   try {
@@ -9,7 +7,7 @@ async function header() {
     const hamb = document.querySelector('#hamb');
     const popup = document.querySelector('#popup');
     const bar = document.querySelectorAll('.bar');
-    const profileIcon = document.querySelector('#profile-img');
+
     //cloneNode глубокое клонирование
     // const menu = document.querySelector('#menu').cloneNode(1);
     hamb.addEventListener('click', (e) => {
@@ -33,11 +31,6 @@ async function header() {
 
     //иконка профиля
     const photoProfile = await authIcon();
-    if (photoProfile) {
-      profileIcon.innerHTML = `<img class="profile-link__img" src="${photoProfile}" id="profile__img" />`;
-    } else {
-      profileIcon.innerHTML = `<img class="profile-link__img" src="../images/avatar.svg" id="profile__img" />`;
-    }
 
     //попап с авторизацией
     authPage();

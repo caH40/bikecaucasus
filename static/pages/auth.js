@@ -1,5 +1,7 @@
 import { host } from '../utilities/host.js';
 import modalAnswer from '../utilities/modal-answer.js';
+import authIcon from '../utilities/auth-icon.js';
+
 export default function authPage() {
   try {
     let user = {};
@@ -19,13 +21,13 @@ export default function authPage() {
     const authInputPassword = document.querySelector('#auth__input-password');
     const authInputEmail = document.querySelector('#auth__input-email');
 
-    loginBox.addEventListener('click', (event) => {
+    loginBox.addEventListener('click', async (event) => {
       //включение модального окна
       if (event.target.id === 'logout') {
         localStorage.removeItem('tokenBikeCaucasus');
         login.classList.add('visible');
         logout.classList.remove('visible');
-
+        await authIcon();
         modalAnswer('Выход...Возвращайтесь!');
         return;
       }
@@ -164,9 +166,11 @@ export default function authPage() {
 
             popupAuth.classList.remove('modal-visible');
             modalAnswer(json.message, 2000);
+            console.log('запуск прошел');
             //запись токена в localStorage
             localStorage.setItem('tokenBikeCaucasus', `Bearer ${json.token}`);
             localStorage.setItem('userBikeCaucasus', json.userId);
+            await authIcon();
             //перерисовка иконки входа
             logout.classList.add('visible');
             login.classList.remove('visible');
@@ -203,14 +207,6 @@ export default function authPage() {
           let json = await response.json();
 
           if (response.ok) {
-            // authBlock.classList.add('displayNone');
-            // authSuccessfully.classList.add('modal-visible');
-            // authSuccessfully.innerHTML = json.message;
-            // setTimeout(() => {
-            //   popupAuth.classList.remove('modal-visible');
-            //   authBlock.classList.remove('displayNone');
-            //   authSuccessfully.classList.remove('modal-visible');
-            // }, 3000);
             popupAuth.classList.remove('modal-visible');
             modalAnswer(json.message, 2000);
 
