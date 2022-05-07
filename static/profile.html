@@ -149,9 +149,7 @@
     </div>
 
     <section class="popup__auth">
-        <!-- <section class="popup__auth" style="display: block"> -->
         <div class="auth__container">
-
             <div class="auth__block" id="auth__block">
                 <div class="auth__title">
                     <span class="auth__login" id="auth__login">Вход</span>/<span class="auth__login auth__gray"
@@ -197,6 +195,10 @@
             <div class="profile__block">
                 <img class="profile__img" src="images/avatar.svg" alt="">
                 <div class="profile__contacts">
+                    <p class="profile__head-data">Логин:</p>
+                    <span class="profile__data">{{username}}</span>
+                </div>
+                <div class="profile__contacts">
                     <p class="profile__head-data">Телефон:</p>
                     <span class="profile__data">{{phone}}</span>
                 </div>
@@ -210,11 +212,26 @@
 
             <div class="profile__block">
                 <h4 class="profile__block-title">{{lastName}} {{firstName}}<br>{{patronymic}}</h4>
-                <p class="profile__head-data">Год рождения:<span class="profile__data">{{birthday}}</span></p>
-                <p class="profile__head-data">Пол:<span class="profile__data">{{gender}}</span></p>
-                <p class="profile__head-data">Возрастная группа:<span class="profile__data">{{ageGroup}}</span></p>
-                <p class="profile__head-data">Город:<span class="profile__data">{{city}}</span></p>
-                <p class="profile__head-data">Команда:<span class="profile__data">{{team}}</span></p>
+                <div class="profile__contacts">
+                    <p class="profile__head-data">Год рождения:</p>
+                    <span class="profile__data">{{birthday}}</span>
+                </div>
+                <div class="profile__contacts">
+                    <p class="profile__head-data">Пол:</p>
+                    <span class="profile__data">{{gender}}</span>
+                </div>
+                <div class="profile__contacts">
+                    <p class="profile__head-data">Возрастная группа:</p>
+                    <span class="profile__data">{{ageGroup}}</span>
+                </div>
+                <div class="profile__contacts">
+                    <p class="profile__head-data">Город:</p>
+                    <span class="profile__data">{{city}}</span>
+                </div>
+                <div class="profile__contacts">
+                    <p class="profile__head-data">Команда:</p>
+                    <span class="profile__data">{{team}}</span>
+                </div>
             </div>
 
             <div class="profile__block">
@@ -238,15 +255,26 @@
                             <td class="display-non" id="{{eventId}}">{{distance}}</td>
                             <td id="{{eventId}}">{{place}}</td>
                             <td class="display-non" id="{{eventId}}">{{timeTotal}}</td>
-                            <td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}" target="_blank">Strava</a></td>
+                            <td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}"
+                                    target="_blank">Strava</a></td>
                         </tr>
                         {{/each}}
                     </tbody>
                 </table>
                 <h4 class="profile__block-title">Зарегистрирован в соревнованиях:</h4>
+                <p class="profile__head-data">
+                    <span style="color:red">Внимание!</span>    Если вы уже участвовали в высокогорной гонке-тренировке на Джилы-Су, то для привязки вашего аккаунта к результатам заезда необходимо написать в телеграмм, 
+                    <a class="social__link" href="https://t.me/aleksandr_BV">
+                        https://t.me/aleksandr_BV
+                    </a>
+                    <a class="social__link" href="https://t.me/aleksandr_BV">
+                        <img class="social__img" src="images/ico/telegram.svg" alt="telegram" />
+                    </a>
+                    указав ФИО в результатах заезда и ваш логин аккаунта. Также укажите необходимость корректировки данных в таблице результатов (команда, город).
+                </p>
             </div>
         </div>
-	</script>
+    </script>
 
     <script id="profileEditTemplate" type="text/x-handlebars-template">
         <h3 class="title__page">

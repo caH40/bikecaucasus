@@ -205,7 +205,7 @@ body {
   font-size: 14px;
   line-height: 25px;
   letter-spacing: 0.08em;
-  color: #ffffff;
+  color: #f1f1f1;
 }
 
 .footer__link {
@@ -215,10 +215,13 @@ body {
   font-size: 14px;
   line-height: 25px;
   letter-spacing: 0.08em;
-  color: #ffffff;
+  color: #f1f1f1;
 }
 
 .social__link {
+  font-size: inherit;
+  font-style: italic;
+  color: inherit;
   margin-right: 10px;
 }
 .social__mobile {
@@ -232,7 +235,7 @@ body {
   font-size: 14px;
   line-height: 25px;
   letter-spacing: 0.08em;
-  color: #ffffff;
+  color: #f1f1f1;
   padding-bottom: 50px;
 }
 
@@ -468,7 +471,7 @@ select {
   font-size: 13px;
   line-height: 14px;
   letter-spacing: 0.08em;
-  color: #ffffff;
+  color: #f1f1f1;
   text-align: center;
   cursor: pointer;
   text-transform: uppercase;
@@ -498,7 +501,7 @@ select {
   font-size: 16px;
   letter-spacing: 0.05em;
   line-height: 22px;
-  color: #ffffff;
+  color: #f1f1f1;
   margin-bottom: 10px;
 }
 
@@ -572,7 +575,7 @@ option {
   font-weight: normal;
   font-size: 12px;
   line-height: 20px;
-  color: #ffffff;
+  color: #f1f1f1;
   margin-bottom: 10px;
 }
 .empty {
@@ -951,6 +954,8 @@ tbody tr:hover {
   color: #f1f1f1;
 }
 .profile__block {
+  min-width: 280px;
+  padding-right: 15px;
 }
 .profile__img {
   margin-bottom: 50px;
@@ -959,7 +964,7 @@ tbody tr:hover {
   margin-bottom: 30px;
 }
 .profile__head-data {
-  margin-bottom: 10px;
+  line-height: 28px;
 }
 
 .profile__head-data .profile__data {

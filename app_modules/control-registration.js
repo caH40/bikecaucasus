@@ -17,7 +17,7 @@ export default async function () {
         let userDeleted = await User.findOneAndDelete({ _id: userId });
 
         console.log(
-          `${new Date().toLocaleString()} Аккаунт удалён, так как не был активир ${
+          `${new Date().toLocaleString()} Аккаунт удалён, так как не был активирован ${
             userDeleted.username
           } ${userDeleted.email}`
         );
