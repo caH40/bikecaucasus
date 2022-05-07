@@ -155,7 +155,6 @@ export default function authPage() {
           const response = await fetch(`${host}/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            // referrerPolicy: 'unsafe-url',
             body: JSON.stringify(user),
           });
           const json = await response.json();
@@ -166,7 +165,6 @@ export default function authPage() {
 
             popupAuth.classList.remove('modal-visible');
             modalAnswer(json.message, 2000);
-            console.log('запуск прошел');
             //запись токена в localStorage
             localStorage.setItem('tokenBikeCaucasus', `Bearer ${json.token}`);
             localStorage.setItem('userBikeCaucasus', json.userId);

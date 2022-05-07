@@ -101,7 +101,11 @@ export async function login(req, res) {
     const token = generateAccessToken(user._id, user.roles);
     return res
       .status(200)
-      .json({ message: 'Вы успешно авторизовались', token, userId: user._id });
+      .json({
+        message: `С возвращением ${username}!`,
+        token,
+        userId: user._id,
+      });
   } catch (error) {
     console.log(error);
     res
@@ -121,15 +125,15 @@ export async function checkToken(req, res) {
 
     jwt.verify(token, secret, async (err, decodedData) => {
       if (decodedData) {
-        const { photoProfile } = await User.findOne({ _id: decodedData.id });
+        const { photoProfile, username } = await User.findOne({
+          _id: decodedData.id,
+        });
         // console.log(photoProfile);
-        return res
-          .status(200)
-          .json({
-            authorized: true,
-            photoProfile,
-            message: 'Вы авторизовались',
-          });
+        return res.status(200).json({
+          authorized: true,
+          photoProfile,
+          message: `С возвращением ${username}!`,
+        });
       }
       if (err) {
         return res.json({ authorized: false, message: 'Вы не авторизовались' });
