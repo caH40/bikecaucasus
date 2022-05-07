@@ -8,14 +8,6 @@ import path from 'path';
 
 const __dirname = path.resolve();
 
-export async function header(req, res) {
-  try {
-    // const userPhoto = await User()
-    res.status(200).json({ message: 'pk' });
-  } catch (error) {
-    console.log(error);
-  }
-}
 export function mainPage(req, res) {
   try {
     res.status(200);

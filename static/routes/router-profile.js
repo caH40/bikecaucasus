@@ -39,7 +39,7 @@ export default {
         const team = document.querySelector('#team').value;
         // const email = document.querySelector('#email').value;
         const phone = document.querySelector('#phone').value;
-        let profilePhoto = document.querySelector('#profile__img');
+        let profilePhoto = document.querySelector('#profile__img-big');
         if (profilePhoto) {
           profilePhoto = profilePhoto.src;
         }
@@ -107,7 +107,7 @@ export default {
           let src = ev.target.result;
           src = await reduceImage(src, 400);
 
-          profilePhotoBox.innerHTML = `<img class="profile__img" src="${src}" id="profile__img" />`;
+          profilePhotoBox.innerHTML = `<img class="profile__img" src="${src}" id="profile__img-big" />`;
         };
         reader.readAsDataURL(file);
       }
