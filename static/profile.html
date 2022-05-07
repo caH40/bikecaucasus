@@ -192,7 +192,13 @@
         <div class="profile__inner">
 
             <div class="profile__block">
-                <img class="profile__img" src="{{photoProfile}}" alt="">
+                {{#if photoProfile}}
+                <img class="profile__img" src="{{photoProfile}}" 
+                alt="Фотография профиля" />
+                {{else}}
+                <img class="profile__img" src="images/avatar.svg" 
+                alt="Фотография профиля" />
+                {{/if}}
                 <div class="profile__contacts">
                     <p class="profile__head-data">Логин:</p>
                     <span class="profile__data">{{username}}</span>
