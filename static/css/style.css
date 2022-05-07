@@ -40,6 +40,10 @@ body {
   min-height: 100vh;
   z-index: 0;
 }
+.relative {
+  position: relative;
+  z-index: 1;
+}
 .title__box {
   text-decoration: underline;
   color: #13df09;
@@ -158,7 +162,7 @@ body {
   color: #f1f1f1;
   padding-bottom: 30px;
 }
-.main__text a {
+/* .main__text a {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -167,7 +171,7 @@ body {
   letter-spacing: 0.08em;
   color: #f1f1f1;
   text-decoration: underline;
-}
+} */
 .hr-line {
   display: block;
   padding: 10px 0px;
@@ -733,7 +737,7 @@ table {
   font-family: 'Roboto';
   width: 100%; /* Ширина таблицы */
   border-collapse: collapse; /* Убираем двойные линии между ячейками */
-  margin-bottom: 40px;
+  padding-bottom: 40px;
 }
 td,
 th {
@@ -965,6 +969,7 @@ tbody tr:hover {
 }
 .profile__head-data {
   line-height: 28px;
+  text-align: justify;
 }
 
 .profile__head-data .profile__data {
@@ -977,7 +982,7 @@ tbody tr:hover {
 .box__images {
 }
 .profile__block-title {
-  height: 76px;
+  /* height: 76px; */
   font-size: 26px;
   line-height: 30px;
   margin-bottom: 30px;

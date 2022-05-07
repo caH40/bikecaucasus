@@ -1,6 +1,6 @@
 import { host } from '../utilities/host.js';
 import counter from '../utilities/add-count.js';
-import routerFe from '../routes/route-fe.js';
+import routerFe from '../routes/route-dzhilsu.js';
 import { render } from '../view/viewer.js';
 
 async function dzhilsuEventsPage() {

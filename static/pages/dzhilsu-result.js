@@ -6,7 +6,6 @@ Handlebars.registerHelper('authUser', function (items, options) {
   let result = false;
   const authUser = localStorage.getItem('userBikeCaucasus');
   if (items === authUser) {
-    console.log('working');
     result = true;
   }
   return result;
@@ -16,9 +15,9 @@ export function getEventsTable(dataFormDb) {
   try {
     //добавление отставаний по времени в таблицу
     dataFormDb;
-    const dataResult = dataFormDb.dataResult;
+    let dataResult = dataFormDb.dataResult;
     const dataEvent = dataFormDb.dataEvent;
-    addLags(dataResult);
+    dataResult = addLags(dataResult);
     const dataTemplate = {
       list: dataResult,
       eventCity: dataEvent[0].eventCity,
@@ -33,7 +32,8 @@ export function getEventsTable(dataFormDb) {
 
 export function getResultTable(dataFormDb, column) {
   try {
-    const dataResult = dataFormDb.dataResult;
+    let dataResult = dataFormDb.dataResult;
+    dataResult = addLags(dataResult);
     const dataEvent = dataFormDb.dataEvent;
     const dataUser = dataFormDb.user;
 

@@ -261,7 +261,33 @@
                         {{/each}}
                     </tbody>
                 </table>
+
                 <h4 class="profile__block-title">Зарегистрирован в соревнованиях:</h4>
+                <table class="table profile__table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Соревнование</th>
+                            <th class="display-non" scope="col" id="">Дистанция</th>
+                            <th scope="col" id="place">Место</th>
+                            <th class="display-non" scope="col" id="">Время</th>
+                            <th scope="col" id="">Сегмент в Страве</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each list-future}}
+                        <tr>
+                            <td id="{{eventId}}">{{eventDate}}</td>
+                            <td id="{{eventId}}">{{eventName}}</td>
+                            <td class="display-non" id="{{eventId}}">{{distance}}</td>
+                            <td id="{{eventId}}">{{place}}</td>
+                            <td class="display-non" id="{{eventId}}">{{timeTotal}}</td>
+                            <td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}"
+                                    target="_blank">Strava</a></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
                 <p class="profile__head-data">
                     <span style="color:red">Внимание!</span>    Если вы уже участвовали в высокогорной гонке-тренировке на Джилы-Су, то для привязки вашего аккаунта к результатам заезда необходимо написать в телеграмм, 
                     <a class="social__link" href="https://t.me/aleksandr_BV">

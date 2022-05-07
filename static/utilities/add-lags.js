@@ -14,4 +14,5 @@ export default function (dataResult) {
     dataResult[i].lagLeader = '+' + lag;
     dataResult[i].lagBefore = '+' + lagBefore;
   }
+  return dataResult;
 }

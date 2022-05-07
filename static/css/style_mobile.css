@@ -42,6 +42,9 @@
   .slider__img {
     max-width: 950px;
   }
+  .profile__block {
+    min-width: 200px;
+  }
 }
 
 @media screen and (max-width: 991.98px) {
@@ -179,8 +182,8 @@
     justify-content: space-around;
   }
   .profile__block {
-    padding: 0;
-    margin: 0px 5px 40px;
+    padding: 0px 0px 40px 0px;
+    margin: 0px 5px;
   }
   .profile__block-title {
     height: auto;
