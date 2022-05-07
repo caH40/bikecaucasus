@@ -15,6 +15,7 @@ const User = new Schema({
   city: { type: String },
   team: { type: String },
   roles: [{ type: String, Ref: 'Role' }],
+  photoProfile: { type: String },
 });
 
 export default model('User', User);

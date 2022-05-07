@@ -19,4 +19,5 @@ export default async function () {
     logout.classList.remove('visible');
     login.classList.add('visible');
   }
+  return json.photoProfile;
 }

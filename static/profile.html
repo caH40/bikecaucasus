@@ -193,7 +193,7 @@
         <div class="profile__inner">
 
             <div class="profile__block">
-                <img class="profile__img" src="images/avatar.svg" alt="">
+                <img class="profile__img" src="{{photoProfile}}" alt="">
                 <div class="profile__contacts">
                     <p class="profile__head-data">Логин:</p>
                     <span class="profile__data">{{username}}</span>
@@ -269,8 +269,7 @@
                             <th scope="col">Дата</th>
                             <th scope="col">Соревнование</th>
                             <th class="display-non" scope="col" id="">Дистанция</th>
-                            <th scope="col" id="place">Место</th>
-                            <th class="display-non" scope="col" id="">Время</th>
+                            <th scope="col" id="place">Участники</th>
                             <th scope="col" id="">Сегмент в Страве</th>
                         </tr>
                     </thead>
@@ -280,8 +279,7 @@
                             <td id="{{eventId}}">{{eventDate}}</td>
                             <td id="{{eventId}}">{{eventName}}</td>
                             <td class="display-non" id="{{eventId}}">{{distance}}</td>
-                            <td id="{{eventId}}">{{place}}</td>
-                            <td class="display-non" id="{{eventId}}">{{timeTotal}}</td>
+                            <td id="{{eventId}}">{{quantity}}</td>
                             <td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}"
                                     target="_blank">Strava</a></td>
                         </tr>
@@ -342,8 +340,8 @@
                 </div>
 
                 <div class="profile-edit__block">
-                    <h4 class="profile-edit__title">E-mail</h4>
-                    <input class="input profile-edit__input" value="{{email}}" name="email" id="email" type="text"
+                    <h4 class="profile-edit__title">E-mail (не изменяется)</h4>
+                    <input class="input profile-edit__input" value="{{email}}" name="email" id="email" type="text " readonly
                         placeholder="e-mail" maxlength="25" />
                     <h4 class="profile-edit__title">Контактный телефон</h4>
                     <input class="input profile-edit__input" value="{{phone}}" name="phone" id="phone" type="text"
@@ -352,8 +350,14 @@
 
                 <div class="profile-edit__block">
                     <h4 class="profile-edit__title">Фотография профиля</h4>
+                    <div class="profile__img-box" id="profile__img-box" >
+                        <img class="profile__img" src="{{photoProfile}}" alt="Фотография профиля" />
+                    </div>
+                    
+                    <!-- <img class="profile__img" src="{{photoProfile}}" alt="Фотография профиля" /> -->
                     <div class="box__btn div__btn profile-edit__btn" id="profile__edit-btn-file">выбрать файл
                     </div>
+                    <input class="profile__img-input" type="file" accept=".jpg, .jpeg, .png, .webp"  id="profile__img-input">
                 </div>
             </div>
             <button class="box__btn div__btn profile-edit__btn profile-edit__button" id="profile-edit__send-form"

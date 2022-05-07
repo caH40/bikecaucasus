@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import authMiddleware from '../middleware/authMiddleware.js';
 import {
+  header,
   mainPage,
   trailPage,
   nonPage,
@@ -27,6 +28,7 @@ import fileMiddleware from '../app_modules/upload.js';
 const router = new Router();
 
 router.get('/', mainPage);
+router.get('/header', header);
 router.get('/main', mainPage);
 router.get('/trail', trailPage);
 router.get('/login', nonPage);

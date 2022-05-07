@@ -119,11 +119,17 @@ export async function checkToken(req, res) {
       return res.json({ authorized: false, message: 'Вы не авторизовались' });
     }
 
-    jwt.verify(token, secret, (err, decodedData) => {
+    jwt.verify(token, secret, async (err, decodedData) => {
       if (decodedData) {
+        const { photoProfile } = await User.findOne({ _id: decodedData.id });
+        // console.log(photoProfile);
         return res
           .status(200)
-          .json({ authorized: true, message: 'Вы авторизовались' });
+          .json({
+            authorized: true,
+            photoProfile,
+            message: 'Вы авторизовались',
+          });
       }
       if (err) {
         return res.json({ authorized: false, message: 'Вы не авторизовались' });

@@ -1,5 +1,6 @@
 import { host } from '../utilities/host.js';
 import { render } from '../view/viewer.js';
+import reduceImage from '../utilities/reduce-image.js';
 // import modalAnswer from '../utilities/modal-answer.js';
 
 export default {
@@ -23,6 +24,9 @@ export default {
   routerEdit() {
     try {
       const sendForm = document.querySelector('#profile-edit__send-form');
+      const buttonPhoto = document.querySelector('#profile__edit-btn-file');
+      const inputPhoto = document.querySelector('#profile__img-input');
+      const profilePhotoBox = document.querySelector('#profile__img-box');
 
       sendForm.addEventListener('click', async (event) => {
         event.preventDefault();
@@ -33,8 +37,12 @@ export default {
         const birthday = document.querySelector('#birthday').value;
         const city = document.querySelector('#city').value;
         const team = document.querySelector('#team').value;
-        const email = document.querySelector('#email').value;
+        // const email = document.querySelector('#email').value;
         const phone = document.querySelector('#phone').value;
+        let profilePhoto = document.querySelector('#profile__img');
+        if (profilePhoto) {
+          profilePhoto = profilePhoto.src;
+        }
 
         var gender = document.querySelector('#gender');
         if (gender.options.selectedIndex === 0) {
@@ -51,8 +59,8 @@ export default {
           city,
           team,
           gender,
-          email,
           phone,
+          photoProfile: profilePhoto,
         };
 
         const response = await fetch(`${host}/profile/edited`, {
@@ -77,6 +85,32 @@ export default {
 
         this.routerProfile();
       });
+
+      buttonPhoto.addEventListener('click', () => {
+        inputPhoto.click();
+      });
+
+      inputPhoto.addEventListener('change', changeHandler);
+
+      function changeHandler(event) {
+        if (!event.target.files.length) {
+          return;
+        }
+        const file = event.target.files[0];
+
+        if (!file.type.match('image')) {
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = async (ev) => {
+          let src = ev.target.result;
+          src = await reduceImage(src, 400);
+
+          profilePhotoBox.innerHTML = `<img class="profile__img" src="${src}" id="profile__img" />`;
+        };
+        reader.readAsDataURL(file);
+      }
     } catch (error) {
       console.log(error);
     }

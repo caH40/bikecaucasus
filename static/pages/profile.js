@@ -40,6 +40,7 @@ async function profile() {
       list: dataResult,
       ...dataProfile,
     };
+
     render(dataTemplate, '#profileTemplate');
 
     routerProfile.router();

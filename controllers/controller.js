@@ -8,6 +8,14 @@ import path from 'path';
 
 const __dirname = path.resolve();
 
+export async function header(req, res) {
+  try {
+    // const userPhoto = await User()
+    res.status(200).json({ message: 'pk' });
+  } catch (error) {
+    console.log(error);
+  }
+}
 export function mainPage(req, res) {
   try {
     res.status(200);
@@ -92,8 +100,9 @@ export async function profilePostEdit(req, res) {
       city,
       team,
       gender,
-      email,
+      // email,
       phone,
+      photoProfile,
     } = req.body;
 
     await User.findOneAndUpdate(
@@ -107,8 +116,9 @@ export async function profilePostEdit(req, res) {
           city,
           team,
           gender,
-          email,
+          // email,
           phone,
+          photoProfile,
         },
       }
     );
