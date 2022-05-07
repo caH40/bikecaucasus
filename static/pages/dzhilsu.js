@@ -1,6 +1,6 @@
 import { host } from '../utilities/host.js';
 import counter from '../utilities/add-count.js';
-import routerFe from '../routes/route-dzhilsu.js';
+import routerDzhilsu from '../routes/route-dzhilsu.js';
 import { render } from '../view/viewer.js';
 
 async function dzhilsuEventsPage() {
@@ -13,7 +13,7 @@ async function dzhilsuEventsPage() {
     let dataResult = dataFormDb.dataResult;
     counter(dataEvent, dataResult);
     render({ list: dataEvent }, '#tableEventsTemplate');
-    routerFe.router();
+    routerDzhilsu.router();
   } catch (error) {
     console.log(error);
   }

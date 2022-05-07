@@ -78,8 +78,8 @@
                             <a class="list__link" data-id-nav="dzhilsu" href="dzhilsu">Джилы-Су</a>
                         </li>
                         <li class="list__item login__item-inner">
-                            <a class="link__profile" href="/profile" id="profile-img"><img class="profile-link__img"
-                                    src="images/avatar.svg" alt="avatar"></a>
+                            <a class="link__profile" data-id-nav="profile" href="/profile" id="profile-img"><img
+                                    class="profile-link__img" src="images/avatar.svg" alt="avatar"></a>
                             <div class="login__box" id="login__box">
                                 <img class="login__icon" id="login" src="images/ico/logclear.svg" alt="Пустышка">
                             </div>
@@ -375,7 +375,8 @@
 
         </form>
     </script>
-    <!-- <script id="tableResultTemplate" type="text/x-handlebars-template">
+
+    <script id="tableResultTemplate" type="text/x-handlebars-template">
 		<h3 class="title__page">{{eventName}}, {{eventDate}}, город {{eventCity}}</h3>
 		<table class="table tableResult">
 			<thead>
@@ -412,7 +413,70 @@
 			</tbody>
 		</table>
 
-	</script> -->
+	</script>
+
+    <script id="tableUserTemplate" type="text/x-handlebars-template">
+		<h3 class="title__page">{{athlete}}, Команда: {{athleteTeam}}, город {{athleteCity}}</h3>
+		<table class="table tableUser">
+			<thead>
+				<tr>
+					<th scope="col">Дата</th>
+					<th scope="col">Соревнование</th>
+					<th class="display-non" scope="col" id="">Дистанция</th>
+					<th scope="col" id="place">Место</th>
+					<th class="display-non" scope="col" id="">Время</th>
+					<th scope="col" id="">Сегмент в Страве</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each list}}
+				<tr>
+					<td id="{{eventId}}">{{eventDate}}</td>
+					<td id="{{eventId}}">{{eventName}}</td>
+					<td class="display-non" id="{{eventId}}">{{distance}}</td>
+					<td id="{{eventId}}">{{place}}</td>
+					<td class="display-non" id="{{eventId}}">{{timeTotal}}</td>
+					<td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}" target="_blank">Strava</a></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+
+	</script>
+
+    <script id="tableEventsTemplate" type="text/x-handlebars-template">
+		<h3 class="title__page">
+			Высокогорные соревнования Джилы-Су
+		</h3>
+		<table class="table tableEvents" id="table-events">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Дата</th>
+					<th scope="col">Соревнование</th>
+					<th class="display-non" scope="col">Город</th>
+					<th scope="col">Участники</th>
+					<th scope="col">Сегмент в Страве</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				{{#each list}}
+				<tr>
+ 					<td id="{{eventId}}">{{tableNumber}}</td>
+					<td id="{{eventId}}">{{eventDate}}</td>
+					<td id="{{eventId}}">{{eventName}}</td>
+					<td class="display-non" id="{{eventId}}">{{eventCity}}</td>
+					<td id="{{eventId}}">{{quantity}}</td>
+					<td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}" target="_blank">Strava</a></td>
+
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+
+
+	</script>
 
 
     <script type="module" src="./utilities/dataid.js"></script>

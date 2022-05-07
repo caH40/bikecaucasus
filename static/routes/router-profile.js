@@ -2,12 +2,13 @@ import { host } from '../utilities/host.js';
 import { render } from '../view/viewer.js';
 import reduceImage from '../utilities/reduce-image.js';
 import authIcon from '../utilities/auth-icon.js';
-// import modalAnswer from '../utilities/modal-answer.js';
+import routerDzhilisu from '../routes/route-dzhilsu.js';
 
 export default {
   router() {
     try {
       const profileEdit = document.querySelector('#profile__edit-btn');
+      const profileTable = document.querySelector('.profile__table');
 
       profileEdit.addEventListener('click', async (event) => {
         const response = await fetch(`${host}/profile/edit`, {
@@ -17,6 +18,18 @@ export default {
         const dataTemplate = response;
         render(dataTemplate, '#profileEditTemplate');
         this.routerEdit();
+      });
+
+      profileTable.addEventListener('click', async (event) => {
+        const id = event.target.id;
+        if (event.target.localName !== 'td') {
+          return;
+        }
+        const dataFormDb = await fetch(`${host}/dzhilsu/result/?id=${id}`, {
+          headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
+        }).then((data) => data.json());
+
+        routerDzhilisu.routerResult(dataFormDb);
       });
     } catch (error) {
       console.log(error);
@@ -133,7 +146,6 @@ export default {
       const dataProfile = dataFormDb.profile;
       const dataResult = dataFormDb.dataResult;
       const dataEvent = dataFormDb.dataEvent;
-      // console.log(dataProfile, dataResult, dataEvent);
 
       for (let i = 0; i < dataResult.length; i++) {
         let event = dataEvent.find((e) => e.eventId === dataResult[i].eventId);

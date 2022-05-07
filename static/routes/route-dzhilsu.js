@@ -18,8 +18,7 @@ export default {
       const dataFormDb = await fetch(`${host}/dzhilsu/result/?id=${id}`, {
         headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
       }).then((data) => data.json());
-      // console.log('dataFormDb', dataFormDb);
-      // getEventsTable(dataFormDb);
+
       this.routerResult(dataFormDb);
     });
   },

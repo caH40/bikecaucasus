@@ -8,8 +8,6 @@ async function header() {
     const popup = document.querySelector('#popup');
     const bar = document.querySelectorAll('.bar');
 
-    //cloneNode глубокое клонирование
-    // const menu = document.querySelector('#menu').cloneNode(1);
     hamb.addEventListener('click', (e) => {
       e.preventDefault();
       //toggle при первом нажатии добавляется, при втором убирается
@@ -44,6 +42,9 @@ async function header() {
     const navItem = document.querySelector(`[data-id-nav="${dataId}"]`);
     if (navItem) {
       navItem.classList.add('active-nav');
+      if (dataId === 'profile') {
+        navItem.classList.add('active-nav-profile');
+      }
     }
   } catch (error) {
     console.log(error);
