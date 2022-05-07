@@ -14,7 +14,7 @@ Handlebars.registerHelper('authUser', function (items, options) {
 export function getEventsTable(dataFormDb) {
   try {
     //добавление отставаний по времени в таблицу
-    dataFormDb;
+    // dataFormDb;
     let dataResult = dataFormDb.dataResult;
     const dataEvent = dataFormDb.dataEvent;
     dataResult = addLags(dataResult);
