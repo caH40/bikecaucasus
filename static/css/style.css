@@ -728,6 +728,7 @@ option {
   align-items: flex-end;
 }
 .description__list {
+  padding-right: 15px;
   margin: 5px 0px 55px 20px;
 }
 
@@ -757,6 +758,77 @@ option {
 .iframe__gconnect {
   width: 465px;
   height: 548px;
+}
+.comment {
+  text-indent: unset;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ec9c07;
+  border-radius: 10px;
+  margin: 30px 0px;
+  padding: 15px 20px 5px 20px;
+}
+.comment__text {
+  padding-bottom: 10px;
+}
+.comment__signature {
+  text-align: right;
+  font-size: 12px;
+}
+.comment__title {
+  color: #f1f1f1;
+
+  padding-bottom: 5px;
+}
+.comment__area {
+}
+.comment__btn {
+  margin: 10px 0px;
+}
+.block-kudos {
+  min-width: 159px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.08em;
+  color: #f1f1f1;
+  text-align: center;
+  margin-bottom: 55px;
+}
+.block-kudos__title {
+  padding-bottom: 5px;
+}
+.block-kudos__inner {
+  position: relative;
+  padding-top: 15px;
+}
+.block-kudos__img {
+  cursor: pointer;
+}
+.block-kudos__img-green {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+}
+.block-kudos__img-green:hover .kudos__green-fill-1 {
+  fill: #099810;
+}
+.block-kudos__img-green:active .kudos__green-fill-2 {
+  fill: #099810;
+}
+.block-kudos__img-red {
+  position: absolute;
+  right: 0;
+  bottom: -9px;
+}
+.block-kudos__img-red:hover .kudos__red-fill-1 {
+  fill: #ed3737;
+}
+.block-kudos__img-red:active .kudos__red-fill-2 {
+  fill: #ed3737;
+}
+.block-kudos__number {
 }
 /* таблица  ==================================================== */
 .gg-box {

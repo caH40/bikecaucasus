@@ -152,6 +152,7 @@
     max-width: 550px;
   }
   .description__text {
+    margin-bottom: 20px;
   }
   .description__img {
     max-width: 100%;
@@ -221,6 +222,10 @@
     right: -129px;
     top: 176px;
   }
+  .block-kudos {
+    width: 159px;
+    margin: 0px auto;
+  }
 }
 
 @media (max-width: 767.98px) {
@@ -270,6 +275,7 @@
   }
   .description__list {
     margin: 0px 0px 0px 0px;
+    padding-bottom: 20px;
   }
   .link__gconnect {
     margin: 0px 0px 0px 0px;

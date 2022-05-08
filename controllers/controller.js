@@ -148,6 +148,7 @@ export async function getDescriptionData(req, res) {
       { id: id },
       { $inc: { views: 1 } }
     );
+
     const photo = await Photo.findOne({ id: id });
     if (!photo) {
       console.log('В базе данных нет данной коллекции!');
