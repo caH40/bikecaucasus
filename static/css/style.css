@@ -69,6 +69,9 @@ body {
 .list__item + .list__item {
   margin-left: 50px;
 }
+.list__item-profile {
+  display: none;
+}
 
 .list__link {
   font-family: 'Montserrat Alternates', sans-serif;

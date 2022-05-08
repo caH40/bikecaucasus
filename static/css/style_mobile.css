@@ -99,6 +99,9 @@
     transform-origin: 5px -1px;
     transform: rotate(-45deg);
   }
+  .list__item-profile {
+    display: unset;
+  }
   .popup {
     display: block;
     position: fixed;
@@ -212,8 +215,11 @@
     height: 80px;
   }
   .login__icon {
-    width: 35px;
-    margin: 130px 0px 0px 0px;
+    position: absolute;
+    width: 56px;
+    /* margin: 130px 0px 0px 0px; */
+    right: -129px;
+    top: 176px;
   }
 }
 
