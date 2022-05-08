@@ -326,3 +326,16 @@
     margin: 0px auto;
   }
 }
+@media (max-width: 450.98px) {
+  .profile-edit__inner {
+    justify-content: center;
+  }
+  .profile-edit__block {
+    margin-right: 0px;
+  }
+  .profile-edit__button {
+    display: block;
+    margin-bottom: 0;
+    margin: 0px auto;
+  }
+}
