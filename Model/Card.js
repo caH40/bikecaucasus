@@ -12,13 +12,10 @@ const cardSchema = new Schema({
   ascent: { type: String },
   descriptionArea: { type: String },
   cardPhoto: { type: String },
-  // fileTrek: { type: String },
   fileTrekName: { type: String },
   urlVideo: { type: String },
   urlTrekGConnect: { type: String },
   author: { type: String },
-  kudos: { type: Number, default: 0 },
-  views: { type: Number, default: 0 },
 });
 
 export default model('cards', cardSchema);

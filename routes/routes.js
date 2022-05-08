@@ -22,6 +22,7 @@ import {
   profileGetInfo,
   profileGetEdit,
   profilePostEdit,
+  takeKudos,
 } from '../controllers/controller.js';
 import fileMiddleware from '../app_modules/upload.js';
 const router = new Router();
@@ -54,5 +55,6 @@ router.get('/profile', profile);
 router.get('/profile/info', authMiddleware, profileGetInfo);
 router.get('/profile/edit', authMiddleware, profileGetEdit);
 router.post('/profile/edited', authMiddleware, profilePostEdit);
+router.post('/kudos', authMiddleware, takeKudos);
 
 export default router;

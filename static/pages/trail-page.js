@@ -30,6 +30,15 @@ try {
   }).then((data) => data.json());
 
   const cards = dataFormDb.card;
+  //добавление кудосов и просмотров в соответствующие карточки
+  const kudos = dataFormDb.kudos;
+  cards.forEach((card) => {
+    let cardTakedKudos = kudos.find((element) => element.cardId === card._id);
+    card.kudos =
+      cardTakedKudos.usersIdLike.length - cardTakedKudos.usersIdDisLike.length;
+    card.views = kudos.find((element) => element.cardId === card._id).views;
+  });
+
   const userRole = dataFormDb.user.roles;
 
   const filteredCards = filterTrails(cards);

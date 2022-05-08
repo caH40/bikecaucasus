@@ -145,11 +145,15 @@ export async function getDescriptionData(req, res) {
   try {
     res.status(200);
     const id = req.query.id;
-    // const kudos = await Kudos.findOneAndUpdate(
-    //   { id: id },
-    //   { $inc: { views: 1 } }
-    // );
-    // const kudoses = kudos.usersId.length;
+    const kudos = await Kudos.findOneAndUpdate(
+      { cardId: id },
+      { $inc: { views: 1 } },
+      {
+        returnDocument: 'after',
+      }
+    );
+    const kudoses = kudos.usersIdLike.length - kudos.usersIdDisLike.length;
+    const views = kudos.views;
     const card = await Card.findOne({ _id: id });
     const photo = await Photo.findOne({ id: id });
 
@@ -161,7 +165,7 @@ export async function getDescriptionData(req, res) {
       descPhoto: photo.descPhoto,
       authorPhoto: photo.authorPhoto,
       card,
-      // kudos: { kudoses, views: kudos.views },
+      kudos: { kudoses, views },
     };
     res.send(data);
   } catch (error) {
@@ -209,7 +213,8 @@ export async function getCardData(req, res) {
   try {
     res.status(200);
     const card = await Card.find({});
-    res.send({ card, user: req.user });
+    const kudos = await Kudos.find({});
+    res.send({ card, kudos, user: req.user });
   } catch (error) {
     console.log(error);
   }
@@ -270,6 +275,78 @@ export async function robots(req, res) {
   try {
     res.status(200);
     res.sendFile(path.resolve(__dirname, 'static', 'robots.txt'));
+  } catch (error) {
+    console.log(error);
+  }
+}
+// обработка Kudosov
+export async function takeKudos(req, res) {
+  try {
+    //проверка прав использования роутера
+    if (req.user.roles[0] !== 'user') {
+      return res.status(400).json({
+        message: 'Лайк могут ставят только авторизованные пользователи',
+      });
+    }
+    const cardIdKudosed = req.body.cardId;
+    const kudosGood = req.body.kudos;
+    //id юзера, который ставит кудос
+    const id = req.user.id;
+    // console.log(cardIdKudosed, id);
+    const candidateForKudos = await Kudos.findOne({
+      cardId: cardIdKudosed,
+    });
+    //если нет документа Кудос с данным id маршрута, выходим из контроллера
+    if (!candidateForKudos) {
+      return res.status(400).json({
+        message: `Нет документа Кудос для маршрута: ${cardIdKudosed}`,
+      });
+    }
+
+    if (kudosGood) {
+      //проверяем ставил ли данный юзер кудос этому маршруту
+      if (candidateForKudos.usersIdLike.includes(id)) {
+        return res.status(200).json({
+          message: 'Вы уже ставили лайк, можно ставить лайк только один раз!',
+        });
+      } else {
+        const kudosDb = await Kudos.findOneAndUpdate(
+          { cardId: cardIdKudosed },
+          { $push: { usersIdLike: id }, $pull: { usersIdDisLike: id } },
+          {
+            returnDocument: 'after',
+          }
+        ).catch((error) => {
+          console.log(error);
+        });
+        return res.status(200).json({
+          message: 'Кудос получен',
+          kudosGoodQuantity:
+            kudosDb.usersIdLike.length - kudosDb.usersIdDisLike.length,
+        });
+      }
+    } else {
+      //проверяем ставил ли данный юзер дизКудос этому маршруту
+      if (candidateForKudos.usersIdDisLike.includes(id)) {
+        return res.status(200).json({
+          message:
+            'Вы уже ставили дизлайк, можно ставить дизлайк только один раз!',
+        });
+      } else {
+        const kudosDb = await Kudos.findOneAndUpdate(
+          { cardId: cardIdKudosed },
+          { $push: { usersIdDisLike: id }, $pull: { usersIdLike: id } },
+          {
+            returnDocument: 'after',
+          }
+        );
+        return res.status(200).json({
+          message: 'Дизлайк получен',
+          kudosGoodQuantity:
+            kudosDb.usersIdLike.length - kudosDb.usersIdDisLike.length,
+        });
+      }
+    }
   } catch (error) {
     console.log(error);
   }

@@ -43,6 +43,11 @@ export default {
           });
         }
       }
+      if (data.kudos.kudoses >= 0) {
+        data.kudos.kudoses = `+${data.kudos.kudoses}`;
+      } else {
+        data.kudos.kudoses = `-${data.kudos.kudoses}`;
+      }
       return [textPhotoL, textPhotoR, textPhotoMobile];
     } catch (error) {
       console.log(error);
