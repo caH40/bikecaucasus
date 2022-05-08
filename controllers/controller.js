@@ -145,12 +145,12 @@ export async function getDescriptionData(req, res) {
   try {
     res.status(200);
     const id = req.query.id;
-    const kudos = await Kudos.findOneAndUpdate(
-      { id: id },
-      { $inc: { views: 1 } }
-    );
-    const kudoses = kudos.usersId.length;
-    const card = await Card.findOne({ id: id });
+    // const kudos = await Kudos.findOneAndUpdate(
+    //   { id: id },
+    //   { $inc: { views: 1 } }
+    // );
+    // const kudoses = kudos.usersId.length;
+    const card = await Card.findOne({ _id: id });
     const photo = await Photo.findOne({ id: id });
 
     if (!photo) {
@@ -161,7 +161,7 @@ export async function getDescriptionData(req, res) {
       descPhoto: photo.descPhoto,
       authorPhoto: photo.authorPhoto,
       card,
-      kudos: { kudoses, views: kudos.views },
+      // kudos: { kudoses, views: kudos.views },
     };
     res.send(data);
   } catch (error) {
