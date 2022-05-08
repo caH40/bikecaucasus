@@ -18,6 +18,8 @@ const cardSchema = new Schema({
   urlVideo: { type: String },
   urlTrekGConnect: { type: String },
   author: { type: String },
+  kudos: { type: Number, default: 0 },
+  views: { type: Number, default: 0 },
 });
 
 export default model('cards', cardSchema);

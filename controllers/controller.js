@@ -139,6 +139,30 @@ export async function descriptionPage(req, res) {
     console.log(error);
   }
 }
+// получение данных конкретного маршрута для формирования страницы description
+export async function getDescriptionData(req, res) {
+  try {
+    res.status(200);
+    const id = req.query.id;
+    const card = await Card.findOneAndUpdate(
+      { id: id },
+      { $inc: { views: 1 } }
+    );
+    const photo = await Photo.findOne({ id: id });
+    if (!photo) {
+      console.log('В базе данных нет данной коллекции!');
+      return;
+    }
+    const data = {
+      descPhoto: photo.descPhoto,
+      authorPhoto: photo.authorPhoto,
+      card,
+    };
+    res.send(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
 //страница создания маршрута
 export function createTrailPage(req, res) {
   try {
@@ -181,27 +205,6 @@ export async function getCardData(req, res) {
     res.status(200);
     const card = await Card.find({});
     res.send({ card, user: req.user });
-  } catch (error) {
-    console.log(error);
-  }
-}
-// получение данных конкретного маршрута для формирования страницы description
-export async function getDescriptionData(req, res) {
-  try {
-    res.status(200);
-    const id = req.query.id;
-    const card = await Card.findOne({ id: id });
-    const photo = await Photo.findOne({ id: id });
-    if (!photo) {
-      console.log('В базе данных нет данной коллекции!');
-      return;
-    }
-    const data = {
-      descPhoto: photo.descPhoto,
-      authorPhoto: photo.authorPhoto,
-      card,
-    };
-    res.send(data);
   } catch (error) {
     console.log(error);
   }
