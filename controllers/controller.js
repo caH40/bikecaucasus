@@ -3,6 +3,7 @@ import Photo from '../Model/Photo.js';
 import Result from '../Model/Result.js';
 import Event from '../Model/Event.js';
 import User from '../Model/User.js';
+import Kudos from '../Model/Kudos.js';
 
 import path from 'path';
 
@@ -144,12 +145,14 @@ export async function getDescriptionData(req, res) {
   try {
     res.status(200);
     const id = req.query.id;
-    const card = await Card.findOneAndUpdate(
+    const kudos = await Kudos.findOneAndUpdate(
       { id: id },
       { $inc: { views: 1 } }
     );
-
+    const kudoses = kudos.usersId.length;
+    const card = await Card.findOne({ id: id });
     const photo = await Photo.findOne({ id: id });
+
     if (!photo) {
       console.log('В базе данных нет данной коллекции!');
       return;
@@ -158,6 +161,7 @@ export async function getDescriptionData(req, res) {
       descPhoto: photo.descPhoto,
       authorPhoto: photo.authorPhoto,
       card,
+      kudos: { kudoses, views: kudos.views },
     };
     res.send(data);
   } catch (error) {
