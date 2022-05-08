@@ -154,6 +154,9 @@
   .description__text {
     margin-bottom: 20px;
   }
+  .description__list {
+    margin-bottom: 40px;
+  }
   .description__img {
     max-width: 100%;
   }
@@ -166,6 +169,7 @@
   .description__total {
     display: block;
     text-align: center;
+    padding-bottom: 20px;
   }
   .footer__column {
     /* display: block; */
