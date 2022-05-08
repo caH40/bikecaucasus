@@ -10,7 +10,6 @@ function prep(number) {
 
 export default {
   async getKudos(cardId) {
-    console.log('cardId', cardId);
     const green = document.querySelector('#kudos-green');
     const kudosNumber = document.querySelector('#block-kudos__number');
     green.addEventListener('click', async () => {
