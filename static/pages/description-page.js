@@ -30,7 +30,7 @@ async function descriptionPage() {
         },
         '#descriptionTemplateMobile'
       );
-      router.getKudos();
+      router.getKudos(data.card._id);
     }
   } catch (error) {
     console.log(error);

@@ -4,12 +4,13 @@ function prep(number) {
   if (number >= 0) {
     return `+${number}`;
   } else {
-    return `-${number}`;
+    return `${number}`;
   }
 }
 
 export default {
   async getKudos(cardId) {
+    console.log('cardId', cardId);
     const green = document.querySelector('#kudos-green');
     const kudosNumber = document.querySelector('#block-kudos__number');
     green.addEventListener('click', async () => {
@@ -21,6 +22,7 @@ export default {
         },
         body: JSON.stringify({ cardId, kudos: true }),
       }).then((data) => data.json());
+      console.log(dataFromDb.message);
       if (dataFromDb.kudosGoodQuantity) {
         kudosNumber.innerHTML = prep(dataFromDb.kudosGoodQuantity);
       }
@@ -36,6 +38,7 @@ export default {
         },
         body: JSON.stringify({ cardId, kudos: false }),
       }).then((data) => data.json());
+      console.log(dataFromDb.message);
       if (dataFromDb.kudosGoodQuantity) {
         kudosNumber.innerHTML = prep(dataFromDb.kudosGoodQuantity);
       }

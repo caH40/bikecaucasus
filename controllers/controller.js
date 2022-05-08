@@ -283,6 +283,7 @@ export async function robots(req, res) {
 export async function takeKudos(req, res) {
   try {
     //проверка прав использования роутера
+
     if (req.user.roles[0] !== 'user') {
       return res.status(400).json({
         message: 'Лайк могут ставят только авторизованные пользователи',
@@ -296,6 +297,7 @@ export async function takeKudos(req, res) {
     const candidateForKudos = await Kudos.findOne({
       cardId: cardIdKudosed,
     });
+
     //если нет документа Кудос с данным id маршрута, выходим из контроллера
     if (!candidateForKudos) {
       return res.status(400).json({
