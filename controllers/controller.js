@@ -4,6 +4,7 @@ import Result from '../Model/Result.js';
 import Event from '../Model/Event.js';
 import User from '../Model/User.js';
 import Kudos from '../Model/Kudos.js';
+import Comment from '../Model/Comment.js';
 
 import path from 'path';
 
@@ -164,7 +165,7 @@ export async function getDescriptionData(req, res) {
     const kudoses = kudos.usersIdLike.length - kudos.usersIdDisLike.length;
     const views = kudos.views;
     const card = await Card.findOne({ _id: id });
-    const photo = await Photo.findOne({ id: id });
+    const photo = await Photo.findOne({ cardId: id });
 
     if (!photo) {
       return res
@@ -201,17 +202,24 @@ export async function sendFormCard(req, res) {
       return;
     }
 
-    const photo = await Photo({
-      id,
+    const card = Card(data);
+    const cardSaved = await card.save().catch((error) => console.log(error));
+
+    const photo = Photo({
+      cardId: cardSaved.id,
       nameRoute: data.nameRoute,
       state: data.state,
       descPhoto: data.descPhoto,
       authorPhoto: data.authorPhoto,
     });
-    photo.save();
-    delete data.descPhoto;
-    const card = await Card(data);
-    card.save();
+    await photo.save().catch((error) => console.log(error));
+
+    const kudos = Kudos({ cardId: cardSaved._id });
+    await kudos.save().catch((error) => console.log(error));
+
+    const comment = Comment({ cardId: cardSaved._id });
+    await comment.save().catch((error) => console.log(error));
+
     res.status(201).send({ dispatched: true });
   } catch (error) {
     console.log(error);

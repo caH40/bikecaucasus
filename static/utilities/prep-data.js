@@ -2,7 +2,7 @@ import { youtube, garmin } from './fix-url.js';
 export default {
   description(data) {
     try {
-      data.card.dateCreate = new Date(data.card.id).toLocaleDateString();
+      // data.card.dateCreate = new Date(data.card.id).toLocaleDateString();
       const authorPhoto = data.authorPhoto;
       let authorPhotoDomain;
       if (authorPhoto) {
