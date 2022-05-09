@@ -1,37 +1,44 @@
 import myFetch from '../utilities/myfetch.js';
-import { handlerLike, handlerDisLike } from '../utilities/handlerDynamics.js';
+import {
+  handlerLike,
+  handlerDisLike,
+  handlerMessagePopup,
+} from '../dynamics/kudosHandler.js';
 
 export default {
   async getKudos(cardId) {
-    const green = document.querySelector('#kudos-green');
-    const red = document.querySelector('#kudos-red');
+    const blockKudos = document.querySelector('#block-kudos__inner');
 
     //like
-    green.addEventListener('click', async () => {
-      const dataFromDb = await myFetch.fetchPost('/kudos', {
-        cardId,
-        kudos: true,
-      });
+    blockKudos.addEventListener('click', async (event) => {
+      const idSelector = event.target.id;
 
-      if (dataFromDb.noAuthorization) {
+      //если нет нужных селекторов то ретурн
+      if (!['kudos-green', 'kudos-red'].includes(idSelector)) {
         return;
       }
 
+      let dataFromDb;
+      //Like
+      if (idSelector === 'kudos-green') {
+        dataFromDb = await myFetch.fetchPost('/kudos', {
+          cardId,
+          kudos: true,
+        });
+      }
+      //disLike
+      if (idSelector === 'kudos-red') {
+        dataFromDb = await myFetch.fetchPost('/kudos', {
+          cardId,
+          kudos: false,
+        });
+      }
+
+      if (dataFromDb.noAuthorization) {
+        handlerMessagePopup();
+        return;
+      }
       handlerLike(dataFromDb);
-    });
-
-    //disLike
-    red.addEventListener('click', async () => {
-      const dataFromDb = await myFetch.fetchPost('/kudos', {
-        cardId,
-        kudos: false,
-      });
-
-      if (dataFromDb.noAuthorization) {
-        return;
-      }
-
-      handlerDisLike(dataFromDb);
     });
   },
 };

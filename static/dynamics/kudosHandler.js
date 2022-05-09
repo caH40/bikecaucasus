@@ -1,6 +1,6 @@
-import addPlus from './addPlus.js';
+import addPlus from '../utilities/addPlus.js';
 
-console.log(addPlus);
+//динамика лайка
 export function handlerLike(dataFromDb) {
   const kudosNumber = document.querySelector('#block-kudos__number');
   const kudosFillGreen = document.querySelector('#kudos__green-fill-2');
@@ -14,6 +14,7 @@ export function handlerLike(dataFromDb) {
   kudosNumber.innerHTML = addPlus(dataFromDb.kudosGoodQuantity);
 }
 
+//динамика дизлайка
 export function handlerDisLike(dataFromDb) {
   const kudosNumber = document.querySelector('#block-kudos__number');
   const kudosFillGreen = document.querySelector('#kudos__green-fill-2');
@@ -25,4 +26,14 @@ export function handlerDisLike(dataFromDb) {
     kudosFillRed.classList.add('classDisLike');
   }
   kudosNumber.innerHTML = addPlus(dataFromDb.kudosGoodQuantity);
+}
+//динамика попап сообщения
+export function handlerMessagePopup() {
+  const messagePopup = document.querySelector('#message__popup');
+  messagePopup.classList.remove('message__popup-invisible');
+  messagePopup.classList.add('message__popup-visible');
+  setTimeout(() => {
+    messagePopup.classList.add('message__popup-invisible');
+    messagePopup.classList.remove('message__popup-visible');
+  }, 500);
 }

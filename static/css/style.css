@@ -837,6 +837,22 @@ option {
 .block-kudos__number {
   fill: #cf2525;
 }
+.message__popup {
+  font-size: 13px;
+  color: yellow;
+  padding-top: 12px;
+  letter-spacing: normal;
+  opacity: 0;
+}
+.message__popup-visible {
+  opacity: 1;
+  transition: opacity 0.5s, visibility 0s;
+}
+.message__popup-invisible {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0s 0.5s;
+}
 /* таблица  ==================================================== */
 .gg-box {
   margin-bottom: 0;

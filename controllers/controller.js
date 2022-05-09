@@ -295,7 +295,7 @@ export async function takeKudos(req, res) {
     //проверка прав использования роутера
 
     if (req.user.roles[0] !== 'user') {
-      return res.status(400).json({
+      return res.status(401).json({
         message: 'Лайк могут ставят только авторизованные пользователи',
         noAuthorization: true,
       });
