@@ -297,6 +297,7 @@ export async function takeKudos(req, res) {
     if (req.user.roles[0] !== 'user') {
       return res.status(400).json({
         message: 'Лайк могут ставят только авторизованные пользователи',
+        noAuthorization: true,
       });
     }
     const cardIdKudosed = req.body.cardId;

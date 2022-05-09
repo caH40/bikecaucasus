@@ -24,6 +24,10 @@ export default {
         body: JSON.stringify({ cardId, kudos: true }),
       }).then((data) => data.json());
 
+      if (dataFromDb.noAuthorization) {
+        return;
+      }
+
       if (dataFromDb.remove) {
         kudosFillGreen.classList.remove('classLike');
       } else {
@@ -43,6 +47,11 @@ export default {
         },
         body: JSON.stringify({ cardId, kudos: false }),
       }).then((data) => data.json());
+
+      if (dataFromDb.noAuthorization) {
+        return;
+      }
+
       if (dataFromDb.remove) {
         kudosFillRed.classList.remove('classDisLike');
       } else {

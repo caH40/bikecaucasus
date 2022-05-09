@@ -823,19 +823,19 @@ option {
   bottom: -9px;
 }
 .block-kudos__img-red:hover .kudos__red-fill-1 {
-  fill: #ed3737;
+  fill: #cf2525;
 }
 .block-kudos__img-red:active .kudos__red-fill-2 {
-  fill: #ed3737;
+  fill: #cf2525;
 }
 .classLike {
   fill: #099810;
 }
 .classDisLike {
-  fill: #ed3737;
+  fill: #cf2525;
 }
 .block-kudos__number {
-  fill: #ed3737;
+  fill: #cf2525;
 }
 /* таблица  ==================================================== */
 .gg-box {
