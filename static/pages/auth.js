@@ -9,14 +9,10 @@ export default function authPage() {
     let loginPage = true;
 
     const loginBox = document.querySelector('#login__box');
-    // const login = document.querySelector('#login');
-    // const logout = document.querySelector('#logout');
     const popupAuth = document.querySelector('.popup__auth');
-    // const authBlock = document.querySelector('#auth__block');
     const svgCross = document.querySelector('.svg__cross');
     const authButton = document.querySelector('#auth__btn');
     const validationAll = document.querySelector('#validation__all');
-
     const authInputNickname = document.querySelector('#auth__input-nickname');
     const authInputPassword = document.querySelector('#auth__input-password');
     const authInputEmail = document.querySelector('#auth__input-email');
@@ -197,7 +193,6 @@ export default function authPage() {
           const response = await fetch(`${host}/auth/registration`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            // referrerPolicy: 'unsafe-url',
             body: JSON.stringify(user),
           });
 

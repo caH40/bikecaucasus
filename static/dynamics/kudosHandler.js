@@ -44,7 +44,7 @@ export function handlerMessagePopup() {
     setTimeout(() => {
       messagePopup.classList.add('message__popup-invisible');
       messagePopup.classList.remove('message__popup-visible');
-    }, 500);
+    }, 800);
   } catch (error) {
     console.log(error);
   }

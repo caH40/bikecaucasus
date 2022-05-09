@@ -8,17 +8,14 @@ import {
 export default {
   async getKudos(cardId) {
     const blockKudos = document.querySelector('#block-kudos__inner');
-    //like
+
     blockKudos.addEventListener('click', async (event) => {
+      const mainSelectors =
+        event.target.closest('#kudos-green') ||
+        event.target.closest('#kudos-red');
+
       //если нет нужных селекторов то ретурн
-      if (
-        !(
-          event.target.closest('#kudos-green') ||
-          event.target.closest('#kudos-red')
-        )
-      ) {
-        return;
-      }
+      if (!mainSelectors) return;
 
       let dataFromDb;
       //Like

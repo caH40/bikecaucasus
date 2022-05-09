@@ -145,12 +145,12 @@ export async function getDescriptionData(req, res) {
   try {
     const userId = req.user.id;
     const id = req.query.id;
-    const kudos = await Kudos.findOne(
-      { cardId: id }
-      // { $inc: { views: 1 } },
-      // {
-      //   returnDocument: 'after',
-      // }
+    const kudos = await Kudos.findOneAndUpdate(
+      { cardId: id },
+      { $inc: { views: 1 } },
+      {
+        returnDocument: 'after',
+      }
     );
     let like = false;
     let disLike = false;

@@ -1,5 +1,6 @@
 import { host } from '../utilities/host.js';
 
+//отрисовка иконки профили и иконки входа
 export default async function () {
   const profileIcon = document.querySelector('#profile-img');
   const loginBox = document.querySelector('#login__box');

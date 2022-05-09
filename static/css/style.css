@@ -838,11 +838,21 @@ option {
   fill: #cf2525;
 }
 .message__popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -55px;
+  width: 100%;
   font-size: 13px;
-  color: yellow;
-  padding-top: 12px;
+  line-height: 15px;
+  border-radius: 5px;
+  background-color: #f9a527;
+  color: #181818;
   letter-spacing: normal;
   opacity: 0;
+  padding: 2px;
+  margin: 0px 0px 0px 0px;
 }
 .message__popup-visible {
   opacity: 1;
@@ -853,6 +863,7 @@ option {
   visibility: hidden;
   transition: opacity 0.5s, visibility 0s 0.5s;
 }
+
 /* таблица  ==================================================== */
 .gg-box {
   margin-bottom: 0;
