@@ -118,7 +118,9 @@ export async function checkToken(req, res) {
     const token = req.headers.authorization.split(' ')[1];
 
     if (!token) {
-      return res.json({ authorized: false, message: 'Вы не авторизовались' });
+      return res
+        .status(401)
+        .json({ authorized: false, message: 'Вы не авторизовались' });
     }
 
     jwt.verify(token, secret, async (err, decodedData) => {

@@ -18,7 +18,7 @@ export default async function () {
   });
 
   const json = await response.json();
-
+  console.log(json);
   if (json.authorized) {
     loginBox.innerHTML = `<img class="login__icon" id="logout" src="../images/ico/logout.svg" alt="Выход">`;
   } else {
