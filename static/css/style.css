@@ -828,7 +828,14 @@ option {
 .block-kudos__img-red:active .kudos__red-fill-2 {
   fill: #ed3737;
 }
+.classLike {
+  fill: #099810;
+}
+.classDisLike {
+  fill: #ed3737;
+}
 .block-kudos__number {
+  fill: #ed3737;
 }
 /* таблица  ==================================================== */
 .gg-box {

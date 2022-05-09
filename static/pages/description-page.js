@@ -6,9 +6,14 @@ import router from '../routes/router-description.js';
 async function descriptionPage() {
   try {
     let id = document.location.search;
-    const data = await fetch(`${host}/description/getdata${id}`).then((data) =>
-      data.json()
-    );
+    const data = await fetch(`${host}/description/getdata${id}`, {
+      headers: {
+        authorization: localStorage.getItem('tokenBikeCaucasus'),
+      },
+    }).then((data) => data.json());
+
+    console.log(data);
+
     const textPhoto = prepData.description(data);
     if (window.innerWidth >= 992) {
       render(

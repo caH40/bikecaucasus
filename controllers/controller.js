@@ -143,7 +143,7 @@ export async function descriptionPage(req, res) {
 // получение данных конкретного маршрута для формирования страницы description
 export async function getDescriptionData(req, res) {
   try {
-    res.status(200);
+    const userId = req.user.id;
     const id = req.query.id;
     const kudos = await Kudos.findOneAndUpdate(
       { cardId: id },
@@ -152,22 +152,32 @@ export async function getDescriptionData(req, res) {
         returnDocument: 'after',
       }
     );
+    let like = false;
+    let disLike = false;
+    if (kudos.usersIdLike.includes(userId)) {
+      like = true;
+    }
+    if (kudos.usersIdDisLike.includes(userId)) {
+      disLike = true;
+    }
+
     const kudoses = kudos.usersIdLike.length - kudos.usersIdDisLike.length;
     const views = kudos.views;
     const card = await Card.findOne({ _id: id });
     const photo = await Photo.findOne({ id: id });
 
     if (!photo) {
-      console.log('В базе данных нет данной коллекции!');
-      return;
+      return res
+        .status(400)
+        .json({ message: 'В базе данных нет данной коллекции! (photo)' });
     }
     const data = {
       descPhoto: photo.descPhoto,
       authorPhoto: photo.authorPhoto,
       card,
-      kudos: { kudoses, views },
+      kudos: { kudoses, views, status: { like, disLike } },
     };
-    res.send(data);
+    res.status(200).json(data);
   } catch (error) {
     console.log(error);
   }
@@ -308,8 +318,20 @@ export async function takeKudos(req, res) {
     if (kudosGood) {
       //проверяем ставил ли данный юзер кудос этому маршруту
       if (candidateForKudos.usersIdLike.includes(id)) {
+        const kudosDb = await Kudos.findOneAndUpdate(
+          { cardId: cardIdKudosed },
+          { $pull: { usersIdLike: id } },
+          {
+            returnDocument: 'after',
+          }
+        ).catch((error) => {
+          console.log(error);
+        });
         return res.status(200).json({
-          message: 'Вы уже ставили лайк, можно ставить лайк только один раз!',
+          message: 'Кудос снят',
+          kudosGoodQuantity:
+            kudosDb.usersIdLike.length - kudosDb.usersIdDisLike.length,
+          remove: true,
         });
       } else {
         const kudosDb = await Kudos.findOneAndUpdate(
@@ -325,14 +347,24 @@ export async function takeKudos(req, res) {
           message: 'Кудос получен',
           kudosGoodQuantity:
             kudosDb.usersIdLike.length - kudosDb.usersIdDisLike.length,
+          remove: false,
         });
       }
     } else {
       //проверяем ставил ли данный юзер дизКудос этому маршруту
       if (candidateForKudos.usersIdDisLike.includes(id)) {
+        const kudosDb = await Kudos.findOneAndUpdate(
+          { cardId: cardIdKudosed },
+          { $pull: { usersIdDisLike: id } },
+          {
+            returnDocument: 'after',
+          }
+        );
         return res.status(200).json({
-          message:
-            'Вы уже ставили дизлайк, можно ставить дизлайк только один раз!',
+          message: 'Дизлайк снят',
+          kudosGoodQuantity:
+            kudosDb.usersIdLike.length - kudosDb.usersIdDisLike.length,
+          remove: true,
         });
       } else {
         const kudosDb = await Kudos.findOneAndUpdate(
@@ -346,6 +378,7 @@ export async function takeKudos(req, res) {
           message: 'Дизлайк получен',
           kudosGoodQuantity:
             kudosDb.usersIdLike.length - kudosDb.usersIdDisLike.length,
+          remove: false,
         });
       }
     }

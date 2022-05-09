@@ -34,7 +34,7 @@ router.get('/login', nonPage);
 router.get('/gallery', galleryPage);
 //страница описания маршрута
 router.get('/description', descriptionPage);
-router.get('/description/getdata', getDescriptionData);
+router.get('/description/getdata', authMiddleware, getDescriptionData);
 //страница создания маршрута
 router.get('/create-trail', createTrailPage);
 //запись данных о маршруте в базу

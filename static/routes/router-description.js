@@ -12,6 +12,8 @@ export default {
   async getKudos(cardId) {
     const green = document.querySelector('#kudos-green');
     const kudosNumber = document.querySelector('#block-kudos__number');
+    const kudosFillGreen = document.querySelector('#kudos__green-fill-2');
+    const kudosFillRed = document.querySelector('#kudos__red-fill-2');
     green.addEventListener('click', async () => {
       const dataFromDb = await fetch(`${host}/kudos`, {
         method: 'POST',
@@ -21,10 +23,14 @@ export default {
         },
         body: JSON.stringify({ cardId, kudos: true }),
       }).then((data) => data.json());
-      console.log(dataFromDb.message);
-      if (dataFromDb.kudosGoodQuantity) {
-        kudosNumber.innerHTML = prep(dataFromDb.kudosGoodQuantity);
+
+      if (dataFromDb.remove) {
+        kudosFillGreen.classList.remove('classLike');
+      } else {
+        kudosFillGreen.classList.add('classLike');
+        kudosFillRed.classList.remove('classDisLike');
       }
+      kudosNumber.innerHTML = prep(dataFromDb.kudosGoodQuantity);
     });
 
     const red = document.querySelector('#kudos-red');
@@ -37,10 +43,13 @@ export default {
         },
         body: JSON.stringify({ cardId, kudos: false }),
       }).then((data) => data.json());
-      console.log(dataFromDb.message);
-      if (dataFromDb.kudosGoodQuantity) {
-        kudosNumber.innerHTML = prep(dataFromDb.kudosGoodQuantity);
+      if (dataFromDb.remove) {
+        kudosFillRed.classList.remove('classDisLike');
+      } else {
+        kudosFillGreen.classList.remove('classLike');
+        kudosFillRed.classList.add('classDisLike');
       }
+      kudosNumber.innerHTML = prep(dataFromDb.kudosGoodQuantity);
     });
   },
 };
