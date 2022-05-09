@@ -16,6 +16,7 @@ const cardSchema = new Schema({
   urlVideo: { type: String },
   urlTrekGConnect: { type: String },
   author: { type: String },
+  date: { type: String },
 });
 
 export default model('cards', cardSchema);

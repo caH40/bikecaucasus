@@ -62,6 +62,7 @@ async function sendData() {
     data.descriptionArea = descriptionArea.value;
     data.urlTrekGConnect = urlTrekGConnect.value;
     data.author = 'Бережнев А.';
+    data.date = new Date().getTime();
 
     let checker = true;
 

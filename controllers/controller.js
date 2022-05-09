@@ -200,7 +200,7 @@ export async function sendFormCard(req, res) {
       console.log(new Date().toLocaleString(), data.nameRoute, data);
       return;
     }
-    const id = new Date().getTime();
+
     const photo = await Photo({
       id,
       nameRoute: data.nameRoute,
@@ -210,10 +210,9 @@ export async function sendFormCard(req, res) {
     });
     photo.save();
     delete data.descPhoto;
-    data.id = id;
     const card = await Card(data);
     card.save();
-    res.status(201).send({ dispatched: true, id: data.id });
+    res.status(201).send({ dispatched: true });
   } catch (error) {
     console.log(error);
   }
