@@ -12,8 +12,6 @@ async function descriptionPage() {
       },
     }).then((data) => data.json());
 
-    console.log(data);
-
     const textPhoto = prepData.description(data);
     if (window.innerWidth >= 992) {
       render(
