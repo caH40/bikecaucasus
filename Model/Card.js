@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import pkg from 'mongoose';
 const { Schema, model } = pkg;
 
@@ -15,7 +16,8 @@ const cardSchema = new Schema({
   fileTrekName: { type: String },
   urlVideo: { type: String },
   urlTrekGConnect: { type: String },
-  author: { type: String },
+  postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
   date: { type: String },
 });
 
