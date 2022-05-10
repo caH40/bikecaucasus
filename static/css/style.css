@@ -781,8 +781,10 @@ option {
 }
 .comment__area {
 }
+.comment__area-status {
+}
 .comment__btn {
-  margin: 10px 0px;
+  margin: 10px 20px 10px 0px;
 }
 .block-kudos {
   min-width: 159px;

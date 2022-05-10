@@ -129,9 +129,6 @@
                             <a class="social__link" href="https://t.me/velokmv">
                                 <img class="social__img" src="images/ico/telegram.svg" alt="telegram" />
                             </a>
-                            <!-- <a class="social__link" href="https://www.youtube.com/user/caH40yc/">
-                                <img class="social__img" src="images/ico/youtube.svg" alt="youtube" />
-                            </a> -->
                         </div>
                     </li>
                 </ul>
@@ -266,24 +263,27 @@
                 </div>
         </div>
 
+        {{#each listComment }}
         <div class="comment description__text">
             <div class="comment__inner">
                 <div class="comment__text">
                     {{text}}
                 </div>
                 <div class="comment__signature">
-                    <span class="comment__signature-date">userId,</span>
+                    <span class="comment__signature-date">{{userId}},</span>
                     <span class="comment__signature-authtor">{{date}}</span>
                 </div>
             </div>
         </div>
+        {{/each}}
+        
         <div class="comment description__text">
             <div class="comment__inner">
                 <h4 class="comment__title">Оставьте свой комментарий к маршруту. Что понравилось, замечания или пожелания.</h4>
-                <textarea class="area__inner comment__area" name="comment-area" id="comment-area" rows="3" placeholder="">
-                </textarea>
-                <button class="box__btn div__btn comment__btn" id="comment__btn-send"
+                <textarea class="area__inner comment__area" name="comment-area" id="comment-area" rows="3" placeholder=""></textarea>
+                <button class="box__btn div__btn comment__btn" id="comment__btn"
                    type="submit">Опубликовать</button>
+                <span class="comment__area-status" id="comment__area-status"></span>
             </div>
         </div>
 
@@ -374,9 +374,8 @@
         <div class="comment description__text">
             <div class="comment__inner">
                 <h4 class="comment__title">Оставьте свой комментарий к маршруту. Что понравилось, замечания или пожелания.</h4>
-                <textarea class="area__inner comment__area" name="comment-area" id="comment-area" rows="3" placeholder="">
-                </textarea>
-                <button class="box__btn div__btn comment__btn" id="comment__btn-send"
+                <textarea class="area__inner comment__area" name="comment-area" id="comment-area" rows="3" placeholder=""></textarea>
+                <button class="box__btn div__btn comment__btn" id="comment__btn"
                    type="submit">Опубликовать</button>
             </div>
         </div>

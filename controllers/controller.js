@@ -146,13 +146,20 @@ export async function getDescriptionData(req, res) {
   try {
     const userId = req.user.id;
     const id = req.query.id;
-    const kudos = await Kudos.findOne(
-      { cardId: id }
-      // { $inc: { views: 1 } },
-      // {
-      //   returnDocument: 'after',
-      // }
-    );
+    let kudos;
+    console.log(userId);
+    if (userId === '6274b392673579dda1aa2d42') {
+      kudos = await Kudos.findOne({ cardId: id });
+    } else {
+      kudos = await Kudos.findOneAndUpdate(
+        { cardId: id },
+        { $inc: { views: 1 } },
+        {
+          returnDocument: 'after',
+        }
+      );
+    }
+
     let like = false;
     let disLike = false;
     if (kudos.usersIdLike.includes(userId)) {
@@ -172,17 +179,50 @@ export async function getDescriptionData(req, res) {
         .status(400)
         .json({ message: 'В базе данных нет данной коллекции! (photo)' });
     }
+    const comment = await Comment.find({ cardId: id });
+
+    // if (!comment) {
+    //   return res
+    //     .status(200)
+    //     .json({ message: 'В базе данных нет данноогой коллекции! (photo)' });
+    // }
+    console.log(comment);
     const data = {
       descPhoto: photo.descPhoto,
       authorPhoto: photo.authorPhoto,
       card,
       kudos: { kudoses, views, status: { like, disLike } },
+      comment,
     };
     res.status(200).json(data);
   } catch (error) {
     console.log(error);
   }
 }
+
+export async function postDescriptionComment(req, res) {
+  try {
+    //проверка прав использования роутера
+    if (req.user.roles[0] !== 'user') {
+      return res.status(401).json({
+        message: 'Могут писать комментарии только авторизованные пользователи',
+        noAuthorization: true,
+      });
+    }
+    const userId = req.user.id;
+    const text = req.body.text;
+    const date = req.body.date;
+    const cardId = req.body.cardId;
+
+    const commentNew = Comment({ cardId, text, userId, date });
+    await commentNew.save().catch((error) => console.log(error));
+
+    res.status(201).json({ message: 'Ваш комментарий сохранен!' });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 //страница создания маршрута
 export function createTrailPage(req, res) {
   try {
@@ -300,7 +340,6 @@ export async function robots(req, res) {
 export async function takeKudos(req, res) {
   try {
     //проверка прав использования роутера
-
     if (req.user.roles[0] !== 'user') {
       return res.status(401).json({
         message: 'Лайк могут ставят только авторизованные пользователи',
