@@ -7,6 +7,7 @@ import Kudos from '../Model/Kudos.js';
 import Comment from '../Model/Comment.js';
 
 import path from 'path';
+import { log } from 'console';
 
 const __dirname = path.resolve();
 
@@ -147,7 +148,6 @@ export async function getDescriptionData(req, res) {
     const userId = req.user.id;
     const id = req.query.id;
     let kudos;
-    console.log(userId);
     if (userId === '6274b392673579dda1aa2d42') {
       kudos = await Kudos.findOne({ cardId: id });
     } else {
@@ -179,22 +179,34 @@ export async function getDescriptionData(req, res) {
         .status(400)
         .json({ message: 'В базе данных нет данной коллекции! (photo)' });
     }
-    const comment = await Comment.find({ cardId: id });
+    const users = await User.find();
+    const comments = await Comment.find({ cardId: id });
+    // console.log(comments);
 
     // if (!comment) {
     //   return res
     //     .status(200)
     //     .json({ message: 'В базе данных нет данноогой коллекции! (photo)' });
     // }
-    console.log(comment);
+
     const data = {
       descPhoto: photo.descPhoto,
       authorPhoto: photo.authorPhoto,
       card,
       kudos: { kudoses, views, status: { like, disLike } },
-      comment,
+      comments,
     };
     res.status(200).json(data);
+  } catch (error) {
+    res.status(400).json({ message: 'Ошибка в получении данных маршрута' });
+    console.log(error);
+  }
+}
+
+export async function getUsers(req, res) {
+  try {
+    const users = await User.find();
+    res.status(200).json({ users });
   } catch (error) {
     console.log(error);
   }
@@ -205,16 +217,20 @@ export async function postDescriptionComment(req, res) {
     //проверка прав использования роутера
     if (req.user.roles[0] !== 'user') {
       return res.status(401).json({
-        message: 'Могут писать комментарии только авторизованные пользователи',
+        message: 'Комментарии могут писать только авторизованные пользователи',
         noAuthorization: true,
       });
     }
+
     const userId = req.user.id;
+    const username = await User.findOne({ _id: userId }).then(
+      (user) => user.username
+    );
     const text = req.body.text;
     const date = req.body.date;
     const cardId = req.body.cardId;
 
-    const commentNew = Comment({ cardId, text, userId, date });
+    const commentNew = Comment({ cardId, text, userId, username, date });
     await commentNew.save().catch((error) => console.log(error));
 
     res.status(201).json({ message: 'Ваш комментарий сохранен!' });

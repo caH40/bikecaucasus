@@ -12,10 +12,8 @@ async function descriptionPage() {
       },
     }).then((data) => data.json());
 
-    console.log(data.comment);
-
     const textPhoto = prepData.description(data);
-    console.log(textPhoto[0]);
+
     if (window.innerWidth >= 992) {
       render(
         {
@@ -23,7 +21,7 @@ async function descriptionPage() {
           listR: textPhoto[1],
           card: data.card,
           kudos: data.kudos,
-          listComment: data.comment,
+          listComment: data.comments,
         },
         '#descriptionTemplate'
       );
@@ -34,6 +32,7 @@ async function descriptionPage() {
           list: textPhoto[2],
           card: data.card,
           kudos: data.kudos,
+          listComment: data.comments,
         },
         '#descriptionTemplateMobile'
       );

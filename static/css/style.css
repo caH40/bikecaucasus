@@ -762,7 +762,7 @@ option {
 .comment {
   text-indent: unset;
   background: rgba(255, 255, 255, 0.12);
-  color: #ec9c07;
+  color: #f1f1f1;
   border-radius: 10px;
   margin: 30px 0px;
   padding: 15px 20px 5px 20px;
@@ -782,6 +782,13 @@ option {
 .comment__area {
 }
 .comment__area-status {
+  font-size: 12px;
+  line-height: 14px;
+  color: #ec9c07;
+}
+.comment__btn-box {
+  display: flex;
+  align-items: flex-start;
 }
 .comment__btn {
   margin: 10px 20px 10px 0px;

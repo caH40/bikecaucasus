@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import prk from 'mongoose';
 const { Schema, model } = prk;
 
@@ -5,7 +6,8 @@ const commentSchema = new Schema({
   cardId: { type: String, required: true },
   text: { type: String },
   userId: { type: String },
-  date: { type: String },
+  username: { type: String },
+  date: { type: Number },
   usersIdLike: [{ type: String }],
   usersIdDisLike: [{ type: String }],
 });

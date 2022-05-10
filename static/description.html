@@ -270,7 +270,7 @@
                     {{text}}
                 </div>
                 <div class="comment__signature">
-                    <span class="comment__signature-date">{{userId}},</span>
+                    <span class="comment__signature-date">{{username}},</span>
                     <span class="comment__signature-authtor">{{date}}</span>
                 </div>
             </div>
@@ -281,9 +281,11 @@
             <div class="comment__inner">
                 <h4 class="comment__title">Оставьте свой комментарий к маршруту. Что понравилось, замечания или пожелания.</h4>
                 <textarea class="area__inner comment__area" name="comment-area" id="comment-area" rows="3" placeholder=""></textarea>
-                <button class="box__btn div__btn comment__btn" id="comment__btn"
-                   type="submit">Опубликовать</button>
-                <span class="comment__area-status" id="comment__area-status"></span>
+                <div class="comment__btn-box">
+                    <button class="box__btn div__btn comment__btn" id="comment__btn"
+                     type="submit">Опубликовать</button>
+                    <div class="comment__area-status" id="comment__area-status"></div>
+                </div>
             </div>
         </div>
 
@@ -358,25 +360,30 @@
                 </div>
         </div>
 
+        {{#each listComment }}
         <div class="comment description__text">
             <div class="comment__inner">
                 <div class="comment__text">
-                    Это тестовый комментарий!!!
-                    Отличный маршрут, хорошо прокатились и с погодой повезло! Воздух наичистейший, прекрасная природа. Подъем до телескопа без больший градиентов, кассеты на 28Т хватает.
-
+                    {{text}}
                 </div>
                 <div class="comment__signature">
-                    <span class="comment__signature-date">caH40,</span>
-                    <span class="comment__signature-authtor">08.05.2022</span>
+                    <span class="comment__signature-date">{{username}},</span>
+                    <span class="comment__signature-authtor">{{date}}</span>
                 </div>
             </div>
         </div>
+        {{/each}}
+        
         <div class="comment description__text">
             <div class="comment__inner">
                 <h4 class="comment__title">Оставьте свой комментарий к маршруту. Что понравилось, замечания или пожелания.</h4>
                 <textarea class="area__inner comment__area" name="comment-area" id="comment-area" rows="3" placeholder=""></textarea>
-                <button class="box__btn div__btn comment__btn" id="comment__btn"
-                   type="submit">Опубликовать</button>
+                <div class="comment__btn-box">
+                    <button class="box__btn div__btn comment__btn" id="comment__btn"
+                    type="submit">Опубликовать</button>
+                    <div class="comment__area-status" id="comment__area-status"></div>
+                </div>
+                
             </div>
         </div>
     </script>

@@ -1,8 +1,9 @@
+import myFetch from './myfetch.js';
 import { youtube, garmin } from './fix-url.js';
+
 export default {
   description(data) {
     try {
-      // data.card.dateCreate = new Date(data.card.id).toLocaleDateString();
       const authorPhoto = data.authorPhoto;
       let authorPhotoDomain;
       if (authorPhoto) {
@@ -43,6 +44,9 @@ export default {
           });
         }
       }
+
+      this.comments(data.comments);
+
       if (data.kudos.kudoses >= 0) {
         data.kudos.kudoses = `+${data.kudos.kudoses}`;
       } else {
@@ -52,5 +56,11 @@ export default {
     } catch (error) {
       console.log(error);
     }
+  },
+  async comments(comments) {
+    //обработка блока комментариев
+    comments.forEach((comment) => {
+      comment.date = new Date(Number(comment.date)).toLocaleDateString();
+    });
   },
 };

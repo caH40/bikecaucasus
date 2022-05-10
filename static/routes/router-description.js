@@ -72,7 +72,8 @@ export default {
       commentAreaStatus.textContent = response.message;
       setTimeout(() => {
         commentAreaStatus.textContent = '';
-      }, 2000);
+      }, 3000);
+      if (response.noAuthorization) return;
       descriptionPage();
     });
   },

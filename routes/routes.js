@@ -12,6 +12,7 @@ import {
   createTrailPage,
   sendFormCard,
   getDescriptionData,
+  getUsers,
   postDescriptionComment,
   getResults,
   getResult,
@@ -36,6 +37,7 @@ router.get('/gallery', galleryPage);
 //страница описания маршрута
 router.get('/description', descriptionPage);
 router.get('/description/getdata', authMiddleware, getDescriptionData);
+router.get('/users', authMiddleware, getUsers);
 router.post('/description/comment', authMiddleware, postDescriptionComment);
 //страница создания маршрута
 router.get('/create-trail', createTrailPage);

@@ -16,4 +16,17 @@ export default {
       console.log(error);
     }
   },
+  async fetchGet(url) {
+    try {
+      const dataFromDb = await fetch(`${host}${url}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: localStorage.getItem('tokenBikeCaucasus'),
+        },
+      }).then((data) => data.json());
+      return dataFromDb;
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
