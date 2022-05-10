@@ -1,4 +1,3 @@
-import myFetch from './myfetch.js';
 import { youtube, garmin } from './fix-url.js';
 
 export default {
@@ -45,6 +44,7 @@ export default {
         }
       }
 
+      data.card.date = new Date(Number(data.card.date)).toLocaleDateString();
       this.comments(data.card.comments);
 
       if (data.kudos.kudoses >= 0) {
