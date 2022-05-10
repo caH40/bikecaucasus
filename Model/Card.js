@@ -18,7 +18,7 @@ const cardSchema = new Schema({
   urlTrekGConnect: { type: String },
   postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
-  date: { type: String },
+  dateCreate: { type: Number },
 });
 
 export default model('cards', cardSchema);

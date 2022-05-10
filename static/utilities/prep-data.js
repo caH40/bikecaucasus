@@ -45,7 +45,7 @@ export default {
         }
       }
 
-      this.comments(data.comments);
+      this.comments(data.card.comments);
 
       if (data.kudos.kudoses >= 0) {
         data.kudos.kudoses = `+${data.kudos.kudoses}`;

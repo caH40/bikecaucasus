@@ -170,7 +170,13 @@ export async function getDescriptionData(req, res) {
 
     const kudoses = kudos.usersIdLike.length - kudos.usersIdDisLike.length;
     const views = kudos.views;
-    const card = await Card.findOne({ _id: id });
+    const card = await Card.findOne({ _id: id })
+      .populate({ path: 'postedBy', select: 'username' })
+      .populate({
+        path: 'comments',
+        populate: { path: 'postedBy', select: 'username' },
+      });
+
     const photo = await Photo.findOne({ cardId: id });
 
     if (!photo) {
@@ -178,15 +184,14 @@ export async function getDescriptionData(req, res) {
         .status(400)
         .json({ message: 'В базе данных нет данной коллекции! (photo)' });
     }
-    const users = await User.find();
-    const comments = await Comment.find({ cardId: id });
+    // const users = await User.find();
+    // const comments = await Comment.find({ cardId: id });
 
     const data = {
       descPhoto: photo.descPhoto,
       authorPhoto: photo.authorPhoto,
       card,
       kudos: { kudoses, views, status: { like, disLike } },
-      comments,
     };
     res.status(200).json(data);
   } catch (error) {

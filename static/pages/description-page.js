@@ -21,7 +21,7 @@ async function descriptionPage() {
           listR: textPhoto[1],
           card: data.card,
           kudos: data.kudos,
-          listComment: data.comments,
+          listComment: data.card.comments,
         },
         '#descriptionTemplate'
       );
@@ -32,7 +32,7 @@ async function descriptionPage() {
           list: textPhoto[2],
           card: data.card,
           kudos: data.kudos,
-          listComment: data.comments,
+          listComment: data.card.comments,
         },
         '#descriptionTemplateMobile'
       );
