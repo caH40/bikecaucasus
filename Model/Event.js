@@ -9,4 +9,4 @@ const eventSchema = new Schema({
   segmentStrava: { type: String },
 });
 
-export default model('events', eventSchema);
+export default model('Event', eventSchema);

@@ -1,6 +1,4 @@
 export default function filterTrails(cards) {
-  // let cardsForFilter = JSON.parse(JSON.stringify(cards));
-
   let state = JSON.parse(localStorage.getItem('state'));
   let bikeType = JSON.parse(localStorage.getItem('bikeType'));
   // ================================================================
@@ -46,7 +44,6 @@ export default function filterTrails(cards) {
     compare;
   });
 
-  // const countBikeType = 2;
   const filteredCards = filteredState.filter((card) => {
     if (bikeType.includes('Шоссейный') && bikeType.includes('Горный')) {
       return filteredState;

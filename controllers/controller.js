@@ -147,6 +147,7 @@ export async function getDescriptionData(req, res) {
     const userId = req.user.id;
     const id = req.query.id;
     let kudos;
+    // console.log(kudos);
     if (userId === '6274b392673579dda1aa2d42') {
       kudos = await Kudos.findOne({ cardId: id });
     } else {
@@ -184,8 +185,6 @@ export async function getDescriptionData(req, res) {
         .status(400)
         .json({ message: 'В базе данных нет данной коллекции! (photo)' });
     }
-    // const users = await User.find();
-    // const comments = await Comment.find({ cardId: id });
 
     const data = {
       descPhoto: photo.descPhoto,
@@ -264,10 +263,10 @@ export async function sendFormCard(req, res) {
       return;
     }
 
-    const card = Card(data);
+    const card = new Card(data);
     const cardSaved = await card.save().catch((error) => console.log(error));
 
-    const photo = Photo({
+    const photo = new Photo({
       cardId: cardSaved.id,
       nameRoute: data.nameRoute,
       state: data.state,
@@ -276,11 +275,16 @@ export async function sendFormCard(req, res) {
     });
     await photo.save().catch((error) => console.log(error));
 
-    const kudos = Kudos({ cardId: cardSaved._id });
-    await kudos.save().catch((error) => console.log(error));
+    const kudos = new Kudos({ cardId: cardSaved._id });
+    const kudosSaved = await kudos.save().catch((error) => console.log(error));
 
-    const comment = Comment({ cardId: cardSaved._id });
-    await comment.save().catch((error) => console.log(error));
+    await Card.findOneAndUpdate(
+      { _id: cardSaved._id },
+      { $set: { kudoses: kudosSaved._id } }
+    );
+
+    // const comment = new Comment({ cardId: cardSaved._id });
+    // await comment.save().catch((error) => console.log(error));
 
     res.status(201).send({ dispatched: true });
   } catch (error) {
@@ -290,10 +294,8 @@ export async function sendFormCard(req, res) {
 // получение всех карточек маршрутов из Монго
 export async function getCardData(req, res) {
   try {
-    res.status(200);
-    const card = await Card.find({});
-    const kudos = await Kudos.find({});
-    res.send({ card, kudos, user: req.user });
+    const cards = await Card.find().populate('kudoses');
+    res.status(200).json({ cards, user: req.user });
   } catch (error) {
     console.log(error);
   }

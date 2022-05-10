@@ -18,7 +18,8 @@ const cardSchema = new Schema({
   urlTrekGConnect: { type: String },
   postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
+  kudoses: { type: mongoose.Schema.Types.ObjectId, ref: 'Kudos' },
   dateCreate: { type: Number },
 });
 
-export default model('cards', cardSchema);
+export default model('Card', cardSchema);

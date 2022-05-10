@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import prk from 'mongoose';
+
 const { Schema, model } = prk;
 
 const commentSchema = new Schema({
@@ -12,3 +13,4 @@ const commentSchema = new Schema({
 });
 
 export default model('Comment', commentSchema);
+//кудосы для комментариев может и не нужны

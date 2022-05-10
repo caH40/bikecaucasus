@@ -14,4 +14,4 @@ const resultSchema = new Schema({
   birthday: { type: String, default: 'nope' },
 });
 
-export default model('results', resultSchema);
+export default model('Result', resultSchema);

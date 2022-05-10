@@ -26,23 +26,18 @@ Handlebars.registerHelper('roleUser', function (items, options) {
 try {
   const dataFormDb = await fetch(`${host}/trail/getcards`, {
     headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
-    // referrerPolicy: 'unsafe-url',
   }).then((data) => data.json());
 
-  const cards = dataFormDb.card;
+  const cards = dataFormDb.cards;
   //добавление кудосов и просмотров в соответствующие карточки
-  const kudos = dataFormDb.kudos;
   cards.forEach((card) => {
-    let cardTakedKudos = kudos.find((element) => element.cardId === card._id);
-    card.kudos =
-      cardTakedKudos.usersIdLike.length - cardTakedKudos.usersIdDisLike.length;
-    card.views = kudos.find((element) => element.cardId === card._id).views;
+    let likeQuantity = card.kudoses.usersIdLike.length;
+    let disLikeQuantity = card.kudoses.usersIdDisLike.length;
+    card.kudos = likeQuantity - disLikeQuantity;
   });
 
   const userRole = dataFormDb.user.roles;
-
   const filteredCards = filterTrails(cards);
-
   const sortedCards = sortTrail(filteredCards);
   render(
     {
