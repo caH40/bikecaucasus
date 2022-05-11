@@ -53,11 +53,13 @@ export default {
         const team = document.querySelector('#team').value;
         // const email = document.querySelector('#email').value;
         const phone = document.querySelector('#phone').value;
+        const profileBigPhoto = document.querySelector('#profile__img-big');
 
-        let profilePhoto = document.querySelector('#profile__img-big');
-        if (profilePhoto) {
-          profilePhoto = profilePhoto.src;
-          localStorage.setItem('photoProfileBikeCaucasus', profilePhoto);
+        let photoRow;
+        if (profileBigPhoto) {
+          photoRow = profileBigPhoto.src;
+          // console.log(profilePhoto);
+          localStorage.setItem('photoProfileBikeCaucasus', photoRow);
         }
 
         var gender = document.querySelector('#gender');
@@ -76,7 +78,7 @@ export default {
           team,
           gender,
           phone,
-          photoProfile: profilePhoto,
+          photoProfile: photoRow,
         };
 
         const response = await fetch(`${host}/profile/edited`, {

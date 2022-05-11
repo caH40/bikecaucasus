@@ -24,6 +24,7 @@ async function profile() {
       headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
     });
     const dataFromDb = await response.json();
+    // console.log(dataFromDb);
     if (!response.ok) {
       modalAnswer(dataFromDb.message);
       return;
