@@ -8,6 +8,7 @@ const commentSchema = new Schema({
   text: { type: String },
   postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   date: { type: Number },
+  dateChange: { type: Number },
   usersIdLike: [{ type: String }],
   usersIdDisLike: [{ type: String }],
 });

@@ -8,7 +8,7 @@ import {
 } from '../dynamics/kudosHandler.js';
 
 export default {
-  async getKudos(cardId) {
+  async getKudos(cardId, userId) {
     const blockKudos = document.querySelector('#block-kudos__inner');
 
     blockKudos.addEventListener('click', async (event) => {
@@ -48,7 +48,9 @@ export default {
         handlerDisLike(dataFromDb);
       }
     });
-    this.comment(cardId);
+    if (userId) {
+      this.comment(cardId);
+    }
   },
   async comment(cardId) {
     const commentButton = document.querySelector('#comment__btn');

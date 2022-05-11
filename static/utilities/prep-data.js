@@ -61,6 +61,10 @@ export default {
     //обработка блока комментариев
     comments.forEach((comment) => {
       comment.date = new Date(Number(comment.date)).toLocaleDateString();
+      if (!comment.dateChange) return;
+      comment.dateChange = new Date(
+        Number(comment.dateChange)
+      ).toLocaleDateString();
     });
   },
 };

@@ -11,6 +11,13 @@ Handlebars.registerHelper('isAuthor', function (items, options) {
   }
   return result;
 });
+Handlebars.registerHelper('isAuth', function (items, options) {
+  if (items) {
+    return true;
+  } else {
+    return false;
+  }
+});
 
 async function descriptionPage() {
   try {
@@ -20,7 +27,7 @@ async function descriptionPage() {
         authorization: localStorage.getItem('tokenBikeCaucasus'),
       },
     }).then((data) => data.json());
-    console.log(data);
+
     const textPhoto = prepData.description(data);
 
     if (window.innerWidth >= 992) {
@@ -31,11 +38,12 @@ async function descriptionPage() {
           card: data.card,
           kudos: data.kudos,
           listComment: data.card.comments,
-          userId: data.userId,
+          userId: data.user.id,
+          userRole: data.user.roles,
         },
         '#descriptionTemplate'
       );
-      router.getKudos(data.card._id);
+      router.getKudos(data.card._id, data.user.id);
     } else {
       render(
         {
@@ -43,11 +51,12 @@ async function descriptionPage() {
           card: data.card,
           kudos: data.kudos,
           listComment: data.card.comments,
-          userId,
+          userId: data.user.id,
+          userRole: data.user.roles,
         },
         '#descriptionTemplateMobile'
       );
-      router.getKudos(data.card._id);
+      router.getKudos(data.card._id, data.user.id);
     }
   } catch (error) {
     console.log(error);

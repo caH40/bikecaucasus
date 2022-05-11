@@ -24,6 +24,7 @@ export default function authPage() {
         localStorage.removeItem('userBikeCaucasus');
         localStorage.removeItem('photoProfileBikeCaucasus');
 
+        window.location.reload();
         await authIcon();
         modalAnswer('Выход...Возвращайтесь!', 1000);
         return;
@@ -156,6 +157,7 @@ export default function authPage() {
           });
           const json = await response.json();
           if (response.ok) {
+            window.location.reload();
             authInputNickname.value = '';
             authInputPassword.value = '';
             authInputEmail.value = '';

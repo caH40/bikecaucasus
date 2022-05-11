@@ -1,10 +1,13 @@
 body {
   color: #f1f1f1;
 }
-svg {
-  pointer-events: none;
-}
 
+:active,
+:hover,
+:focus {
+  outline: 0;
+  outline-offset: 0;
+}
 .header {
   background: linear-gradient(90.53deg, #0a233a 38.59%, #133810 99.51%);
 }
@@ -803,14 +806,18 @@ option {
   position: absolute;
   right: 20px;
   top: 15px;
-  width: 155px;
+  width: 160px;
 }
 .popap-comment__menu {
   text-align: right;
   height: 18px;
   margin-bottom: 10px;
 }
+/* svg {
+  pointer-events: none;
+} */
 .popap-comment__arrow {
+  pointer-events: none;
   cursor: pointer;
 }
 .popap-comment__arrow:hover > path {
@@ -826,18 +833,17 @@ option {
 .popap-comment__item {
   display: flex;
   justify-content: space-between;
-  width: 155px;
-  height: 18px;
+  width: 160px;
   background: #ffa600;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   align-items: center;
-  margin-bottom: 12px;
-  padding: 0px 10px;
+  margin-bottom: 7px;
+  padding: 4px 10px;
   cursor: pointer;
 }
 .popap-comment__item:hover {
-  background: rgb(6, 185, 21);
+  background: rgb(5, 143, 16);
   transition: all 0.5s;
 }
 
@@ -845,8 +851,8 @@ option {
   font-family: 'Montserrat Alternates';
   font-style: normal;
   font-weight: 600;
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 13px;
+  line-height: 15px;
   letter-spacing: 0px;
   color: #0f0f0f;
 }

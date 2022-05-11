@@ -144,7 +144,9 @@ export async function descriptionPage(req, res) {
 // получение данных конкретного маршрута для формирования страницы description
 export async function getDescriptionData(req, res) {
   try {
+    const user = req.user;
     const userId = req.user.id;
+
     const id = req.query.id;
     let kudos;
     // console.log(kudos);
@@ -187,7 +189,7 @@ export async function getDescriptionData(req, res) {
     }
 
     const data = {
-      userId,
+      user,
       descPhoto: photo.descPhoto,
       authorPhoto: photo.authorPhoto,
       card,
@@ -258,10 +260,11 @@ export async function postDescriptionCommentEdit(req, res) {
 
     const commentId = req.body.commentId;
     const textNew = req.body.textNew;
+    const dateChange = new Date().getTime();
 
     const commentNew = await Comment.findOneAndUpdate(
       { _id: commentId },
-      { $set: { text: textNew } }
+      { $set: { text: textNew, dateChange } }
     );
 
     res.status(201).json({ message: 'Ваш комментарий изменён!' });
@@ -430,7 +433,6 @@ export async function takeKudos(req, res) {
     const kudosGood = req.body.kudos;
     //id юзера, который ставит кудос
     const id = req.user.id;
-    // console.log(cardIdKudosed, id);
     const candidateForKudos = await Kudos.findOne({
       cardId: cardIdKudosed,
     });
