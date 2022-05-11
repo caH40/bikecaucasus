@@ -21,6 +21,7 @@ export default function authPage() {
       //включение модального окна
       if (event.target.id === 'logout') {
         localStorage.removeItem('tokenBikeCaucasus');
+        localStorage.removeItem('userBikeCaucasus');
         localStorage.removeItem('photoProfileBikeCaucasus');
 
         await authIcon();

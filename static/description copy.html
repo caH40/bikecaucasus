@@ -263,8 +263,8 @@
                 </div>
         </div>
 
-        <div class="comment__block" id="comment__block">
         {{#each listComment }}
+        <div class="comment__block" id="comment__block">
             <div class="comment description__text">
                 <div class="comment__inner">
                     <div class="comment__text">
@@ -275,51 +275,27 @@
                         <span class="comment__signature-authtor">{{date}}</span>
                     </div>
                 </div>
-
-                
-                <div class="comment__popap popap-comment" id="popap-comment-{{_id}}">
+                <div class="comment__popap popap-comment">
                     <div class="popap-comment__menu">
-                        {{#if (isAuthor postedBy._id)}}
-                        <span class="popap-comment__arrow-box" data-id="{{_id}}" id="popap-comment__arrow-box">
-                            <svg class="popap-comment__arrow" id="popap-comment__arrow-{{_id}}" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 10L0.339745 0.25L17.6603 0.250002L9 10Z" fill="#F1F1F1"/>
-                            </svg>
-                        </span>
-                        {{else}}
-                        <span class="popap-comment__arrow-box" >
-                            <svg class="popap-comment__arrow" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 10L0.339745 0.25L17.6603 0.250002L9 10Z" fill="#7E7E7E"/>
-                            </svg>
-                        </span>
-                        {{/if}}
+                        <svg class="popap-comment__arrow" id="popap-comment__arrow" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 10L0.339745 0.25L17.6603 0.250002L9 10Z" fill="#F1F1F1"/>
+                        </svg>
+
                     </div>
-                    <div class="popap-comment__list" id="commentId-{{_id}}">
-                        <div class="popap-comment__item" id="edit-{{_id}}">
+                    <div class="popap-comment__list" id="popap-comment__list">
+                        <div class="popap-comment__item" id="popap-comment__item-edit">
                             <span class="popap-comment__item-text">Редактировать</span>
                             <img class="popap-comment__item-img" src="images/ico/wheel-edit.svg" alt="edit">
                         </div>
-                        <div class="popap-comment__item" id="remove-{{_id}}">
+                        <div class="popap-comment__item" id="popap-comment__item-remove">
                             <span class="popap-comment__item-text">Удалить</span>
                             <img class="popap-comment__item-img" src="images/ico/wheel-remove.svg" alt="remove">
                         </div>
                     </div>
                 </div>
-
-
             </div>
-            <div class="comment description__text invisible" id="comment__edit-{{_id}}">
-                <div class="comment__inner">
-                    <h4 class="comment__title">Редактирование комментария</h4>
-                    <textarea class="area__inner comment__area" name="comment-area" id="comment-area-{{_id}}" rows="3" placeholder="">{{text}}</textarea>
-                    <div class="comment__btn-box">
-                        <button class="box__btn div__btn comment__btn" id="comment__btn-edit-{{_id}}"
-                         type="submit">Сохранить</button>
-                        <div class="comment__area-status" id="comment__area-status"></div>
-                    </div>
-                </div>
-            </div>
+        </div>
         {{/each}}
-     </div>
         
         <div class="comment description__text">
             <div class="comment__inner">
@@ -336,6 +312,119 @@
     </script>
 
 
+    <script id="descriptionTemplateMobile" type="text/x-handlebars-template">
+        <h3 class="title__page title__page-description">{{card.nameRoute}}<br>({{card.state}})</h3>
+        <div class="description__inner">
+            <div class="description__block">
+                {{#each list}}
+                <div class="description__box">
+                    <p class="description__text">{{paragraph}}</p>
+                    <div class="img__box">
+                        <img class="description__img" src="{{paragraphPhoto}}" alt="">
+                        {{#if authorPhoto}}
+                        <a class="img__author" href="{{authorPhoto}}" target="_blank">{{authorPhotoDomain}}</a>
+                        {{/if}}
+                    </div>
+                    
+                </div>
+                {{/each}}
+            </div>
+            
+            </div>
+        </div>
+        {{#if card.urlVideo}}
+        <div class="description__video">
+            <p class="description__text description__text-center">Видео заезда по данному маршруту</p>
+            <iframe class="description__video-iframe" src="{{card.urlVideo}}"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+        {{/if}}
+        <div class="description__total">
+                <iframe class="iframe__gconnect" src='{{card.urlTrekGConnectEmber}}' frameborder='0'></iframe>
+                <ul class="description__list">
+                    <li class="description__item">Общие данные по маршруту</li>
+                    <li class="description__item">Старт:<span>{{card.start}}</span></li>
+                    <li class="description__item">Разворот:<span>{{card.turn}}</span></li>
+                    <li class="description__item">Протяженность:<span>{{card.distance}}км</span></li>
+                    <li class="description__item">Набор высоты:<span>{{card.ascent}}м</span></li>
+    
+                    <li class="description__item">Финиш:<span>{{card.finish}}</span></li>
+                    <li class="description__item">Маршрут в Garmin Connect:<a class="link__gconnect" target="_blank"
+                            href="{{card.urlTrekGConnect}}">
+                            {{card.urlTrekGConnect}}</a> </li>
+                    <li class="description__item" id="downloadTrek">Трек для велокомпьютера GPX/FIT<a class="link__gconnect" href="/gettrek?id={{card.fileTrekName}}"  target="_blank">Скачать</a>
+                    </li>
+
+                    <li class="description__item">Создан:<span>{{card.postedBy.username}}, {{card.date}}</span></li>
+                </ul>
+
+                <div class="block-kudos" id="block-kudos">
+                    <p class="block-kudos__title">Оцените маршрут!</p>
+                    <div class="block-kudos__inner" id="block-kudos__inner">
+                        <svg class="block-kudos__img block-kudos__img-green" width="42" height="32" viewBox="0 0 42 32" fill="none" xmlns="http://www.w3.org/2000/svg" id="kudos-green">
+                            <path d="M37.1153 32H12.0477H1.47046C0.658034 32 0 31.4027 0 30.6653V11.0612C0 10.3238 0.658034 9.72655 1.47046 9.72655H12.0477C12.1579 9.72655 12.2646 9.73822 12.3675 9.75908L21.2086 1.41978C22.044 0.516358 23.2636 0 24.564 0H25.2303C27.6483 0 29.6151 1.78515 29.6151 3.97988V9.72738H37.1153C39.809 9.72738 42 11.7161 42 14.161V27.5672C42 30.0105 39.809 32 37.1153 32ZM10.5772 12.3959H2.94092V29.3306H10.5772V12.3959ZM39.0591 14.1602C39.0591 13.1876 38.1869 12.3959 37.1153 12.3959H28.1437C27.3312 12.3959 26.6732 11.7987 26.6732 11.0612V3.97904C26.6732 3.25664 26.0253 2.66854 25.2294 2.66854H24.5631C24.1284 2.66854 23.7204 2.84456 23.4446 3.15153C23.4189 3.1799 23.3923 3.20742 23.3638 3.23412L13.5172 12.5219V29.3298H37.1153C38.1869 29.3298 39.0591 28.5382 39.0591 27.5655V14.1602Z" fill="#0EC717"/>
+                            <path class="kudos__green-fill-1" d="M10.5772 12.3959H2.94092V29.3306H10.5772V12.3959Z" fill="#none"/>
+                            <path class="kudos__green-fill-2 {{#if kudos.status.like}}classLike{{/if}}" id="kudos__green-fill-2" d="M39.0591 14.1602C39.0591 13.1876 38.1869 12.3959 37.1153 12.3959H28.1437C27.3312 12.3959 26.6732 11.7987 26.6732 11.0612V3.97904C26.6732 3.25664 26.0253 2.66854 25.2294 2.66854H24.5631C24.1284 2.66854 23.7204 2.84456 23.4446 3.15153C23.4189 3.1799 23.3923 3.20742 23.3638 3.23412L13.5172 12.5219V29.3298H37.1153C38.1869 29.3298 39.0591 28.5382 39.0591 27.5655V14.1602Z" fill="#none"/>
+                            </svg>
+        
+                        <span class="block-kudos__number" id="block-kudos__number">{{kudos.kudoses}}</span>
+                        <svg class="block-kudos__img block-kudos__img-red" width="42" height="32" viewBox="0 0 42 32" fill="none" xmlns="http://www.w3.org/2000/svg" id="kudos-red">
+                            <path d="M4.88468 0L29.9523 0H40.5295C41.342 0 42 0.597274 42 1.33469L42 20.9388C42 21.6762 41.342 22.2735 40.5295 22.2735L29.9523 22.2735C29.8421 22.2735 29.7354 22.2618 29.6325 22.2409L20.7914 30.5802C19.956 31.4836 18.7364 32 17.436 32H16.7697C14.3517 32 12.3849 30.2149 12.3849 28.0201L12.3849 22.2726H4.88468C2.19098 22.2726 0 20.2839 0 17.839L0 4.43283C0 1.98952 2.19098 0 4.88468 0ZM31.4228 19.6041L39.0591 19.6041L39.0591 2.66938H31.4228L31.4228 19.6041ZM2.94092 17.8398C2.94092 18.8124 3.81309 19.6041 4.88468 19.6041H13.8563C14.6688 19.6041 15.3268 20.2013 15.3268 20.9388L15.3268 28.021C15.3268 28.7434 15.9747 29.3315 16.7706 29.3315H17.4369C17.8716 29.3315 18.2796 29.1554 18.5554 28.8485C18.5811 28.8201 18.6077 28.7926 18.6362 28.7659L28.4828 19.4781L28.4828 2.67021L4.88468 2.67021C3.81309 2.67021 2.94092 3.46185 2.94092 4.4345L2.94092 17.8398Z" fill="#ED3737"/>
+                            <path class="kudos__red-fill-1" d="M31.4228 19.6041L39.0591 19.6041L39.0591 2.66938H31.4228L31.4228 19.6041Z" fill="none"/>
+                            <path class="kudos__red-fill-2 {{#if kudos.status.disLike}}classDisLike{{/if}}" id="kudos__red-fill-2" d="M2.94092 17.8398C2.94092 18.8124 3.81309 19.6041 4.88468 19.6041H13.8563C14.6688 19.6041 15.3268 20.2013 15.3268 20.9388L15.3268 28.021C15.3268 28.7434 15.9747 29.3315 16.7706 29.3315H17.4369C17.8716 29.3315 18.2796 29.1554 18.5554 28.8485C18.5811 28.8201 18.6077 28.7926 18.6362 28.7659L28.4828 19.4781L28.4828 2.67021L4.88468 2.67021C3.81309 2.67021 2.94092 3.46185 2.94092 4.4345L2.94092 17.8398Z" fill="none"/>
+                            </svg>
+                            <div class="message__popup" id="message__popup">необходима авторизация</div>        
+                    </div>
+                </div>
+        </div>
+
+        
+        {{#each listComment }}
+            <div class="comment description__text">
+                <div class="comment__inner">
+                    <div class="comment__text">
+                        {{text}}
+                    </div>
+                    <div class="comment__signature">
+                        <span class="comment__signature-date">{{postedBy.username}},</span>
+                        <span class="comment__signature-authtor">{{date}}</span>
+                    </div>
+                </div>
+                <div class="comment__popap popap-comment">
+                    <div class="popap-comment__menu">
+                                            <svg class="popap-comment__arrow" id="popap-comment__arrow" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 10L0.339745 0.25L17.6603 0.250002L9 10Z" fill="#F1F1F1"/>
+                        </svg>
+                    </div>
+                    <div class="popap-comment__item" id="popap-comment__item-edit">
+                        <span class="popap-comment__item-text">Редактировать</span>
+                        <img class="popap-comment__item-img" src="images/ico/wheel-edit.svg" alt="edit">
+                    </div>
+                    <div class="popap-comment__item" id="popap-comment__item-remove">
+                        <span class="popap-comment__item-text">Удалить</span>
+                        <img class="popap-comment__item-img" src="images/ico/wheel-remove.svg" alt="remove">
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+        
+            
+        
+        <div class="comment description__text">
+            <div class="comment__inner">
+                <h4 class="comment__title">Оставьте комментарий к маршруту.</h4>
+                <textarea class="area__inner comment__area" name="comment-area" id="comment-area" rows="3" placeholder=""></textarea>
+                <div class="comment__btn-box">
+                    <button class="box__btn div__btn comment__btn" id="comment__btn"
+                    type="submit">Опубликовать</button>
+                    <div class="comment__area-status" id="comment__area-status"></div>
+                </div>
+                
+            </div>
+        </div>
+    </script>
 
     <script type="module" src="./utilities/dataid.js"></script>
     <script src="./pages/description-page.js" type="module"></script>

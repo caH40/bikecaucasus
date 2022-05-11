@@ -14,6 +14,8 @@ import {
   getDescriptionData,
   getUsers,
   postDescriptionComment,
+  postDescriptionCommentEdit,
+  postDescriptionCommentRemove,
   getResults,
   getResult,
   postFileTrek,
@@ -39,6 +41,16 @@ router.get('/description', descriptionPage);
 router.get('/description/getdata', authMiddleware, getDescriptionData);
 router.get('/users', authMiddleware, getUsers);
 router.post('/description/comment', authMiddleware, postDescriptionComment);
+router.post(
+  '/description/comment-edit',
+  authMiddleware,
+  postDescriptionCommentEdit
+);
+router.post(
+  '/description/comment-remove',
+  authMiddleware,
+  postDescriptionCommentRemove
+);
 //страница создания маршрута
 router.get('/create-trail', createTrailPage);
 //запись данных о маршруте в базу

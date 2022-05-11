@@ -187,6 +187,7 @@ export async function getDescriptionData(req, res) {
     }
 
     const data = {
+      userId,
       descPhoto: photo.descPhoto,
       authorPhoto: photo.authorPhoto,
       card,
@@ -243,6 +244,64 @@ export async function postDescriptionComment(req, res) {
     console.log(error);
   }
 }
+//редактирование комментария
+export async function postDescriptionCommentEdit(req, res) {
+  try {
+    //проверка прав использования роутера
+    if (req.user.roles[0] !== 'user') {
+      return res.status(401).json({
+        message:
+          'Комментарии могут добавлять только авторизованные пользователи',
+        noAuthorization: true,
+      });
+    }
+
+    const commentId = req.body.commentId;
+    const textNew = req.body.textNew;
+
+    const commentNew = await Comment.findOneAndUpdate(
+      { _id: commentId },
+      { $set: { text: textNew } }
+    );
+
+    res.status(201).json({ message: 'Ваш комментарий изменён!' });
+  } catch (error) {
+    console.log(error);
+  }
+}
+//удаление комментария
+export async function postDescriptionCommentRemove(req, res) {
+  try {
+    //проверка прав использования роутера
+    if (req.user.roles[0] !== 'user') {
+      return res.status(401).json({
+        message: 'Комментарии могут удалять только авторы комментария',
+        noAuthor: true,
+      });
+    }
+    const cardId = req.body.cardId;
+    const commentId = req.body.commentId;
+
+    const commentNew = await Comment.findOneAndDelete(
+      { _id: commentId },
+      {
+        returnDocument: 'after',
+      }
+    );
+
+    const card = await Card.findOneAndUpdate(
+      { _id: cardId },
+      { $pull: { comments: commentId } },
+      {
+        returnDocument: 'after',
+      }
+    );
+
+    res.status(201).json({ message: 'Ваш комментарий изменён!' });
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 //страница создания маршрута
 export function createTrailPage(req, res) {
@@ -264,7 +323,7 @@ export async function sendFormCard(req, res) {
     }
 
     const card = new Card(data);
-    const cardSaved = await card.save().catch((error) => console.log(error));
+    const cardSaved = await card.save();
 
     const photo = new Photo({
       cardId: cardSaved.id,
@@ -273,18 +332,15 @@ export async function sendFormCard(req, res) {
       descPhoto: data.descPhoto,
       authorPhoto: data.authorPhoto,
     });
-    await photo.save().catch((error) => console.log(error));
+    await photo.save();
 
     const kudos = new Kudos({ cardId: cardSaved._id });
-    const kudosSaved = await kudos.save().catch((error) => console.log(error));
+    const kudosSaved = await kudos.save();
 
     await Card.findOneAndUpdate(
       { _id: cardSaved._id },
       { $set: { kudoses: kudosSaved._id } }
     );
-
-    // const comment = new Comment({ cardId: cardSaved._id });
-    // await comment.save().catch((error) => console.log(error));
 
     res.status(201).send({ dispatched: true });
   } catch (error) {

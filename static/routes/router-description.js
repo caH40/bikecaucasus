@@ -54,7 +54,7 @@ export default {
     const commentButton = document.querySelector('#comment__btn');
     const commentArea = document.querySelector('#comment-area');
     const commentAreaStatus = document.querySelector('#comment__area-status');
-
+    this.commentMenu(cardId);
     commentButton.addEventListener('click', async () => {
       const text = commentArea.value;
       if (text.length < 30) {
@@ -75,6 +75,81 @@ export default {
       }, 3000);
       if (response.noAuthorization) return;
       descriptionPage();
+    });
+  },
+  async commentMenu(cardId) {
+    const commentBlock = document.querySelector('#comment__block');
+
+    const commentMenuFill = document.querySelector(
+      '#popap-comment__arrow > path'
+    );
+    const commentMenuItem = document.querySelectorAll('.popap-comment__list');
+
+    commentBlock.addEventListener('click', (event) => {
+      //выборка только по стрелке меню
+      if (!event.target.matches('#popap-comment__arrow-box')) return;
+      const commentId = event.target.attributes[1].value;
+      let popapComment;
+      let menuItem;
+      let svgItem;
+      let commentEdit;
+      let commentRemove;
+      commentMenuItem.forEach((item) => {
+        if (item.id === `commentId-${commentId}`) {
+          menuItem = document.querySelector(`#commentId-${commentId}`);
+          menuItem.classList.toggle('visible');
+
+          svgItem = document.querySelector(
+            `#popap-comment__arrow-${commentId}  > path`
+          );
+          popapComment = document.querySelector(`#popap-comment-${commentId}`);
+          svgItem.classList.toggle('fill-arrow');
+          commentEdit = document.querySelector(`#edit-${commentId}`);
+          commentRemove = document.querySelector(`#remove-${commentId}`);
+        }
+      });
+
+      const commentEditBlock = document.querySelector(
+        `#comment__edit-${commentId}`
+      );
+      //отслеживание блока попапа
+      popapComment.addEventListener('mouseleave', () => {
+        menuItem.classList.remove('visible');
+        svgItem.classList.remove('fill-arrow');
+        return;
+      });
+      //отслеживание кнопки меню "Редактировать"
+      commentEdit.addEventListener('click', async () => {
+        commentEditBlock.classList.add('visible');
+        menuItem.classList.remove('visible');
+        svgItem.classList.remove('fill-arrow');
+        return;
+      });
+
+      const commentEditButton = document.querySelector(
+        `#comment__btn-edit-${commentId}`
+      );
+
+      commentEditButton.addEventListener('click', async () => {
+        const commentAreaText = document.querySelector(
+          `#comment-area-${commentId}`
+        ).value;
+        const dataFromDb = await myFetch.fetchPost(
+          `/description/comment-edit`,
+          { commentId, textNew: commentAreaText }
+        );
+        descriptionPage();
+      });
+      // ==============================
+      //отслеживание кнопки меню "Удалить"
+      commentRemove.addEventListener('click', async () => {
+        const dataFromDb = await myFetch.fetchPost(
+          `/description/comment-remove`,
+          { commentId, cardId }
+        );
+        descriptionPage();
+        return;
+      });
     });
   },
 };

@@ -1,6 +1,9 @@
 body {
   color: #f1f1f1;
 }
+svg {
+  pointer-events: none;
+}
 
 .header {
   background: linear-gradient(90.53deg, #0a233a 38.59%, #133810 99.51%);
@@ -760,12 +763,13 @@ option {
   height: 548px;
 }
 .comment {
+  position: relative;
   text-indent: unset;
   background: rgba(255, 255, 255, 0.12);
   color: #f1f1f1;
   border-radius: 10px;
   margin: 30px 0px;
-  padding: 15px 20px 5px 20px;
+  padding: 15px 55px 5px 20px;
 }
 .comment__text {
   padding-bottom: 10px;
@@ -793,6 +797,62 @@ option {
 .comment__btn {
   margin: 10px 20px 10px 0px;
 }
+.comment__popap {
+}
+.popap-comment {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  width: 155px;
+}
+.popap-comment__menu {
+  text-align: right;
+  height: 18px;
+  margin-bottom: 10px;
+}
+.popap-comment__arrow {
+  cursor: pointer;
+}
+.popap-comment__arrow:hover > path {
+  fill: #ffa600;
+  transition: all 0.6s;
+}
+.fill-arrow {
+  fill: #ffa600;
+}
+.popap-comment__list {
+  display: none;
+}
+.popap-comment__item {
+  display: flex;
+  justify-content: space-between;
+  width: 155px;
+  height: 18px;
+  background: #ffa600;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 0px 10px;
+  cursor: pointer;
+}
+.popap-comment__item:hover {
+  background: rgb(6, 185, 21);
+  transition: all 0.5s;
+}
+
+.popap-comment__item-text {
+  font-family: 'Montserrat Alternates';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0px;
+  color: #0f0f0f;
+}
+.popap-comment__item-img {
+}
+
 .block-kudos {
   min-width: 159px;
   font-family: 'Roboto';
