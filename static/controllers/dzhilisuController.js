@@ -16,76 +16,85 @@ Handlebars.registerHelper('authUser', function (items, options) {
 
 export default {
   async main() {
-    const dataFormDb = await myFetch.fetchGet('/dzhilsu/main');
-
-    let dataEvent = dataFormDb.dataEvent;
-    let dataResult = dataFormDb.dataResult;
-
-    counter(dataEvent, dataResult);
-    render({ list: dataEvent }, '#tableEventsTemplate');
+    try {
+      const dataFormDb = await myFetch.fetchGet('/dzhilsu/main');
+      let dataEvent = dataFormDb.dataEvent;
+      let dataResult = dataFormDb.dataResult;
+      counter(dataEvent, dataResult);
+      render({ list: dataEvent }, '#tableEventsTemplate');
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   async eventResult(idEvent) {
-    localStorage.setItem('direction', 'up');
-    const dataFormDb = await myFetch.fetchGet(
-      `/dzhilsu/event-result/?id=${idEvent}`
-    );
-    let dataResult = dataFormDb.dataResult;
-    const dataEvent = dataFormDb.dataEvent;
-    dataResult = addLags(dataResult);
-    const dataTemplate = {
-      list: dataResult,
-      eventCity: dataEvent[0].eventCity,
-      eventDate: dataEvent[0].eventDate,
-      eventName: dataEvent[0].eventName,
-    };
-    render(dataTemplate, '#tableResultTemplate');
-    renderTableResultArrow('place');
+    try {
+      localStorage.setItem('direction', 'up');
+      const dataFormDb = await myFetch.fetchGet(
+        `/dzhilsu/event-result/?id=${idEvent}`
+      );
+      let dataResult = dataFormDb.dataResult;
+      const dataEvent = dataFormDb.dataEvent;
+      dataResult = addLags(dataResult);
+      const dataTemplate = {
+        list: dataResult,
+        eventCity: dataEvent[0].eventCity,
+        eventDate: dataEvent[0].eventDate,
+        eventName: dataEvent[0].eventName,
+      };
+      render(dataTemplate, '#tableResultTemplate');
+      renderTableResultArrow('place');
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   async sortResults(idEvent, nameColumn) {
-    const dataFormDb = await myFetch.fetchGet(
-      `/dzhilsu/event-result/?id=${idEvent}`
-    );
-
-    let dataResult = dataFormDb.dataResult;
-    dataResult = addLags(dataResult);
-
-    const dataEvent = dataFormDb.dataEvent;
-    const dataUser = dataFormDb.user;
-
-    const dataResultFiltered = filterColumn(dataResult, nameColumn);
-
-    const dataTemplate = {
-      list: dataResultFiltered,
-      userIdMy: dataUser.id,
-      eventCity: dataEvent[0].eventCity,
-      eventDate: dataEvent[0].eventDate,
-      eventName: dataEvent[0].eventName,
-      segmentStrava: dataEvent[0].segmentStrava,
-    };
-
-    render(dataTemplate, '#tableResultTemplate');
-    renderTableResultArrow(nameColumn);
-    router.routerEventResult(idEvent);
-  },
-  async userResults(userId) {
-    const dataFormDb = await myFetch.fetchGet(`/dzhilsu/user/?id=${userId}`);
-
-    const dataResult = dataFormDb.dataResult;
-    const dataEvent = dataFormDb.dataEvent;
-
-    for (let i = 0; i < dataResult.length; i++) {
-      let event = dataEvent.find((e) => e.eventId === dataResult[i].eventId);
-      dataResult[i] = { ...dataResult[i], ...event };
+    try {
+      const dataFormDb = await myFetch.fetchGet(
+        `/dzhilsu/event-result/?id=${idEvent}`
+      );
+      let dataResult = dataFormDb.dataResult;
+      dataResult = addLags(dataResult);
+      const dataEvent = dataFormDb.dataEvent;
+      const dataUser = dataFormDb.user;
+      const dataResultFiltered = filterColumn(dataResult, nameColumn);
+      const dataTemplate = {
+        list: dataResultFiltered,
+        userIdMy: dataUser.id,
+        eventCity: dataEvent[0].eventCity,
+        eventDate: dataEvent[0].eventDate,
+        eventName: dataEvent[0].eventName,
+        segmentStrava: dataEvent[0].segmentStrava,
+      };
+      render(dataTemplate, '#tableResultTemplate');
+      renderTableResultArrow(nameColumn);
+      router.routerEventResult(idEvent);
+    } catch (error) {
+      console.log(error);
     }
-    const dataTemplate = {
-      list: dataResult,
-      athleteCity: dataResult[0].athleteCity,
-      athlete: dataResult[0].athlete,
-      athleteTeam: dataResult[0].athleteTeam,
-    };
+  },
 
-    render(dataTemplate, '#tableUserTemplate');
+  async userResults(userId) {
+    try {
+      const dataFormDb = await myFetch.fetchGet(`/dzhilsu/user/?id=${userId}`);
+
+      const dataResult = dataFormDb.dataResult;
+      const dataEvent = dataFormDb.dataEvent;
+
+      for (let i = 0; i < dataResult.length; i++) {
+        let event = dataEvent.find((e) => e.eventId === dataResult[i].eventId);
+        dataResult[i] = { ...dataResult[i], ...event };
+      }
+      const dataTemplate = {
+        list: dataResult,
+        athleteCity: dataResult[0].athleteCity,
+        athlete: dataResult[0].athlete,
+        athleteTeam: dataResult[0].athleteTeam,
+      };
+      render(dataTemplate, '#tableUserTemplate');
+    } catch (error) {
+      console.log(error);
+    }
   },
 };
