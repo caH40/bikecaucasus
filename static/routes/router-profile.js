@@ -2,7 +2,8 @@ import { host } from '../utilities/host.js';
 import { render } from '../view/viewer.js';
 import reduceImage from '../utilities/reduce-image.js';
 import authIcon from '../utilities/auth-icon.js';
-import routerDzhilisu from '../routes/route-dzhilsu.js';
+import router from '../routes/route-dzhilsu.js';
+import controller from '../controllers/dzhilisuController.js';
 
 export default {
   router() {
@@ -21,15 +22,16 @@ export default {
       });
 
       profileTable.addEventListener('click', async (event) => {
-        const id = event.target.id;
+        const idEvent = event.target.id;
         if (event.target.localName !== 'td') {
           return;
         }
-        const dataFormDb = await fetch(`${host}/dzhilsu/result/?id=${id}`, {
-          headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
-        }).then((data) => data.json());
-
-        routerDzhilisu.routerResult(dataFormDb);
+        // const dataFormDb = await fetch(`${host}/dzhilsu/result/?id=${id}`, {
+        //   headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
+        // }).then((data) => data.json());
+        await controller.eventResult(idEvent);
+        router.routerEventResult(idEvent);
+        // router.routerUser();
       });
     } catch (error) {
       console.log(error);

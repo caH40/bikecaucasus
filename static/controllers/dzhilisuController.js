@@ -43,6 +43,7 @@ export default {
         eventName: dataEvent[0].eventName,
       };
       render(dataTemplate, '#tableResultTemplate');
+      console.log('renderTableResultArrow');
       renderTableResultArrow('place');
     } catch (error) {
       console.log(error);
