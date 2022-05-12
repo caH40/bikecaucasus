@@ -7,14 +7,13 @@ export function render(dataTemplate, selectorTarget) {
 }
 export function renderTableResultArrow(column) {
   if (column) {
-    const thActive = document.getElementById(column);
-    thActive.classList.add('active-th');
+    const thActive = document.getElementById(`${column}-img`);
     const direction = localStorage.getItem('direction');
     if (direction === 'up') {
-      thActive.insertAdjacentHTML('beforeend', '<span>&uarr;</span>');
+      thActive.setAttribute('src', './images/ico/arrow-2way-up.svg');
     }
     if (direction === 'down') {
-      thActive.insertAdjacentHTML('beforeend', '<span>&darr;</span>');
+      thActive.setAttribute('src', './images/ico/arrow-2way-down.svg');
     }
   }
 }

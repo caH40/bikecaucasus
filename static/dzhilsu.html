@@ -216,43 +216,62 @@
 	</script>
 
 	<script id="tableResultTemplate" type="text/x-handlebars-template">
-		<h3 class="title__page">{{eventName}}, {{eventDate}}, город {{eventCity}}</h3>
-		<table class="table tableResult">
-			<thead>
-				<tr>
-					<th scope="col" id="place">#</th>
-					<th class="display-non" scope="col" id="number">Номер</th>
-					<th scope="col" id="athlete">Участник</th>
-					<th class="display-non" scope="col" id="athleteCity">Город</th>
-					<th class="display-non" scope="col" id="">Команда</th>
-					<th class="display-non" scope="col" id="">Дистанция</th>
-					<th scope="col" id="">Время</th>
-					<th scope="col">Отс.лид.</th>
-					<th scope="col">Отс.пр.</th>
-					<th class="display-non" scope="col" id="">Возр. гр.</th>
-					<th class="display-non" scope="col" id="">Место гр</th>
-				</tr>
-			</thead>
-			<tbody>
-				{{#each list}}
-				<tr {{#if (authUser userId)}}class="my-result"{{/if}}>
- 					<td id="{{athlete}}">{{place}}</td>
-					<td class="display-non" id="{{athlete}}">{{number}}</td>
-					<td id="{{athlete}}">{{athlete}}</td>
-					<td class="display-non" id="{{athlete}}">{{athleteCity}}</td>
-					<td class="display-non" id="{{athlete}}">{{athleteTeam}}</td>
-					<td class="display-non" id="{{athlete}}">{{distance}}</td>
-					<td id="{{athlete}}">{{timeTotal}}</td>
-					<td id="{{athlete}}">{{lagLeader}}</td>
-					<td id="{{athlete}}">{{lagBefore}}</td>
-					<td class="display-non" id="{{athlete}}">{{birthday}}</td>
-					<td class="display-non" id="{{athlete}}"></td>
-				</tr>
-				{{/each}}
-			</tbody>
-		</table>
-
-	</script>
+			<h3 class="title__page">{{eventName}}, {{eventDate}}, город {{eventCity}}</h3>
+			<table class="table tableResult">
+				<thead>
+					<tr>
+						<th scope="col" id="place">
+							<div class="th-flex">
+								<div class="table__title-th">#</div>
+								<img class="" src="images/ico/arrow-2way.svg" id="place-img">
+							</div>
+						</th>
+						<th class="display-non" scope="col" id="number">
+							<div class="th-flex">
+								<div class="table__title-th">Номер</div>
+								<img class="" src="images/ico/arrow-2way.svg" id="number-img">
+							</div>
+						</th>
+						<th scope="col" id="athlete">
+							<div class="th-flex">
+								<div class="table__title-th">Участник</div>
+								<img class="" src="images/ico/arrow-2way.svg" id="athlete-img">
+							</div>
+						</th>
+						<th class="display-non" scope="col" id="athleteCity">
+							<div class="th-flex">
+								<div class="table__title-th">Город</div>
+								<img class="" src="images/ico/arrow-2way.svg" id="athleteCity-img">
+							</div>
+						</th>
+						<th class="display-non" scope="col" id="">Команда</th>
+						<th class="display-non" scope="col" id="">Дистанция</th>
+						<th scope="col" id="">Время</th>
+						<th scope="col">Отс.лид.</th>
+						<th scope="col">Отс.пр.</th>
+						<th class="display-non" scope="col" id="">Возр. гр.</th>
+						<th class="display-non" scope="col" id="">Место гр</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each list}}
+					<tr {{#if (authUser userId)}}class="my-result"{{/if}}>
+						<td id="{{athlete}}">{{place}}</td>
+						<td class="display-non" id="{{athlete}}">{{number}}</td>
+						<td id="{{athlete}}">{{athlete}}</td>
+						<td class="display-non" id="{{athlete}}">{{athleteCity}}</td>
+						<td class="display-non" id="{{athlete}}">{{athleteTeam}}</td>
+						<td class="display-non" id="{{athlete}}">{{distance}}</td>
+						<td id="{{athlete}}">{{timeTotal}}</td>
+						<td id="{{athlete}}">{{lagLeader}}</td>
+						<td id="{{athlete}}">{{lagBefore}}</td>
+						<td class="display-non" id="{{athlete}}">{{birthday}}</td>
+						<td class="display-non" id="{{athlete}}"></td>
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</script>
 
 	<script id="tableUserTemplate" type="text/x-handlebars-template">
 		<h3 class="title__page">{{athlete}}, Команда: {{athleteTeam}}, город {{athleteCity}}</h3>

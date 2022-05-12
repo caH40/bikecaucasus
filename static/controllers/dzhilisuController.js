@@ -1,5 +1,9 @@
-import addLags from '../utilities/add-lags.js';
+import counter from '../utilities/add-count.js';
 import { render, renderTableResultArrow } from '../view/viewer.js';
+import addLags from '../utilities/add-lags.js';
+import filterColumn from '../utilities/filter-column.js';
+import router from '../routes/route-dzhilsu.js';
+import myFetch from '../utilities/myfetch.js';
 
 Handlebars.registerHelper('authUser', function (items, options) {
   let result = false;
@@ -10,13 +14,25 @@ Handlebars.registerHelper('authUser', function (items, options) {
   return result;
 });
 
-export function getEventsTable(dataFormDb) {
-  try {
-    //добавление отставаний по времени в таблицу
-    // dataFormDb;
+export default {
+  async main() {
+    const dataFormDb = await myFetch.fetchGet('/dzhilsu/main');
+
+    let dataEvent = dataFormDb.dataEvent;
+    let dataResult = dataFormDb.dataResult;
+
+    counter(dataEvent, dataResult);
+    render({ list: dataEvent }, '#tableEventsTemplate');
+  },
+
+  async eventResult(idEvent) {
+    localStorage.setItem('direction', 'up');
+    const dataFormDb = await myFetch.fetchGet(
+      `/dzhilsu/event-result/?id=${idEvent}`
+    );
     let dataResult = dataFormDb.dataResult;
     const dataEvent = dataFormDb.dataEvent;
-    // dataResult = addLags(dataResult);
+    dataResult = addLags(dataResult);
     const dataTemplate = {
       list: dataResult,
       eventCity: dataEvent[0].eventCity,
@@ -24,20 +40,21 @@ export function getEventsTable(dataFormDb) {
       eventName: dataEvent[0].eventName,
     };
     render(dataTemplate, '#tableResultTemplate');
-  } catch (error) {
-    console.log(error);
-  }
-}
+    renderTableResultArrow('place');
+  },
 
-export function getResultTable(dataFormDb, column) {
-  try {
+  async sortResults(idEvent, nameColumn) {
+    const dataFormDb = await myFetch.fetchGet(
+      `/dzhilsu/event-result/?id=${idEvent}`
+    );
+
     let dataResult = dataFormDb.dataResult;
-    dataResult = addLags(dataResult, column);
+    dataResult = addLags(dataResult);
 
     const dataEvent = dataFormDb.dataEvent;
     const dataUser = dataFormDb.user;
 
-    const dataResultFiltered = filterColumn(dataResult, column);
+    const dataResultFiltered = filterColumn(dataResult, nameColumn);
 
     const dataTemplate = {
       list: dataResultFiltered,
@@ -49,14 +66,12 @@ export function getResultTable(dataFormDb, column) {
     };
 
     render(dataTemplate, '#tableResultTemplate');
-    renderTableResultArrow(column);
-  } catch (error) {
-    console.log(error);
-  }
-}
+    renderTableResultArrow(nameColumn);
+    router.routerEventResult(idEvent);
+  },
+  async userResults(userId) {
+    const dataFormDb = await myFetch.fetchGet(`/dzhilsu/user/?id=${userId}`);
 
-export function getResultUser(dataFormDb) {
-  try {
     const dataResult = dataFormDb.dataResult;
     const dataEvent = dataFormDb.dataEvent;
 
@@ -72,7 +87,5 @@ export function getResultUser(dataFormDb) {
     };
 
     render(dataTemplate, '#tableUserTemplate');
-  } catch (error) {
-    console.log(error);
-  }
-}
+  },
+};

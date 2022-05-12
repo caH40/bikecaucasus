@@ -1,21 +1,11 @@
-import { host } from '../utilities/host.js';
-import counter from '../utilities/add-count.js';
-import routerDzhilsu from '../routes/route-dzhilsu.js';
-import { render } from '../view/viewer.js';
+import router from '../routes/route-dzhilsu.js';
 
-async function dzhilsuEventsPage() {
+async function dzhilsuMainPage() {
   try {
-    const dataFormDb = await fetch(`${host}/dzhilsu/results`, {
-      headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
-    }).then((data) => data.json());
-
-    let dataEvent = dataFormDb.dataEvent;
-    let dataResult = dataFormDb.dataResult;
-    counter(dataEvent, dataResult);
-    render({ list: dataEvent }, '#tableEventsTemplate');
-    routerDzhilsu.router();
+    router.routerMain();
+    router.routerMain();
   } catch (error) {
     console.log(error);
   }
 }
-dzhilsuEventsPage();
+dzhilsuMainPage();

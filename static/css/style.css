@@ -949,9 +949,7 @@ th {
   color: #333; /* Цвет текста */
   cursor: pointer;
 }
-th > span {
-  margin-left: 3px;
-}
+
 tr {
   background-color: rgba(255, 255, 255, 0.3);
 }
@@ -963,8 +961,13 @@ tbody tr:hover {
   background: #b99036; /* Цвет фона при наведении */
   color: #f1f1f1; /* Цвет текста при наведении */
 }
-.active-th {
-  background-color: #209603;
+.table__title-th {
+  margin-right: 6px;
+}
+.th-flex {
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
 }
 .td__link .link__btn {
   display: inline-block;

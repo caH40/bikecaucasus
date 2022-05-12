@@ -1,66 +1,42 @@
-import { host } from '../utilities/host.js';
-import {
-  getEventsTable,
-  getResultTable,
-  getResultUser,
-} from '../pages/dzhilsu-result.js';
+import controller from '../controllers/dzhilisuController.js';
 
 localStorage.setItem('direction', 'up');
 export default {
-  router() {
+  async routerMain() {
+    await controller.main();
     const tableEvents = document.querySelector('.table');
-
     tableEvents.addEventListener('click', async (event) => {
-      if (event.target.localName !== 'td') {
-        return;
-      }
-      const id = event.target.id;
-      const dataFormDb = await fetch(`${host}/dzhilsu/result/?id=${id}`, {
-        headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
-      }).then((data) => data.json());
-
-      this.routerResult(dataFormDb);
+      if (event.target.localName !== 'td') return;
+      const idEvent = event.target.id;
+      await controller.eventResult(idEvent);
+      this.routerEventResult(idEvent);
     });
   },
-  routerResult(dataFormDb, column = 'place') {
-    getResultTable(dataFormDb, column);
 
+  routerEventResult(idRow, column = 'place') {
     const tableResult = document.querySelector('.tableResult');
 
     tableResult.addEventListener('click', async (event) => {
       if (event.target.localName === 'th') {
-        const id = event.target.id;
-        this.routerResult(dataFormDb, id);
+        const nameColumn = event.target.id;
+        await controller.sortResults(idRow, nameColumn);
       }
       //поиск всех соревнований, где участвовал атлет
       if (event.target.localName === 'td') {
-        const id = event.target.id;
-
-        const dataFormDb = await fetch(`${host}/dzhilsu/user/?id=${id}`, {
-          headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
-        }).then((data) => data.json());
-
-        getResultUser(dataFormDb);
-        localStorage.setItem('direction', 'up');
+        const userId = event.target.id;
+        await controller.userResults(userId);
         this.routerUser();
       }
     });
   },
 
   routerUser() {
-    localStorage.setItem('direction', 'up');
     const tableUser = document.querySelector('.tableUser');
     tableUser.addEventListener('click', async (event) => {
-      if (event.target.localName !== 'td') {
-        return;
-      }
-      const id = event.target.id;
-      const dataFormDb = await fetch(`${host}/dzhilsu/result/?id=${id}`, {
-        headers: { authorization: localStorage.getItem('tokenBikeCaucasus') },
-      }).then((data) => data.json());
-      // console.log('routerUser', dataFormDb);
-      getEventsTable(dataFormDb);
-      this.routerResult(dataFormDb);
+      if (event.target.localName !== 'td') return;
+      const idEvent = event.target.id;
+      await controller.eventResult(idEvent);
+      this.routerEventResult(idEvent);
     });
   },
 };
