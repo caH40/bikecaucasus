@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/style_mobile.css">
+	<link rel="stylesheet" href="./css/null.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;600;700;900&family=Montserrat:wght@400;500;600;700;900&family=Roboto:wght@400;500&display=swap"
+		rel="stylesheet">
+	<script src="./utilities/handlebars.min-v4.7.7.js"></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/images/favicon/site.webmanifest">
+	<link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#ffc40d">
+	<meta name="theme-color" content="#ffffff">
+	<script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+	<title>Bike-Caucasus</title>
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function (m, e, t, r, i, k, a) {
+			m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+			m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+		})
+			(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+		ym(88492388, "init", {
+			clickmap: true,
+			trackLinks: true,
+			accurateTrackBounce: true
+		});
+	</script>
+	<noscript>
+		<div><img src="https://mc.yandex.ru/watch/88492388" style="position:absolute; left:-9999px;" alt="" /></div>
+	</noscript>
+	<!-- /Yandex.Metrika counter -->
+</head>
+
+<body data-id-page="dzhilsu">
+	<header class="header">
+		<div class="container">
+			<div class="header__top section__top">
+				<div class="hamb">
+					<div class="hamb__field" id="hamb">
+						<span class="bar"></span>
+						<span class="bar"></span>
+						<span class="bar"></span>
+					</div>
+				</div>
+				<img class="logo" src="images/ico/logo.svg" alt="" />
+				<nav class="menu" id="menu">
+					<ul class="list">
+						<li class="list__item">
+							<a class="list__link" data-id-nav="main" href="/">Главная</a>
+						</li>
+						<li class="list__item">
+							<a class="list__link" data-id-nav="trail" href="trail">Маршруты</a>
+						</li>
+						<li class="list__item">
+							<a class="list__link" data-id-nav="gallery" href="gallery">Галерея</a>
+						</li>
+						<li class="list__item">
+							<a class="list__link" data-id-nav="dzhilsu" href="dzhilsu">Джилы-Су</a>
+						</li>
+						<li class="list__item list__item-profile">
+							<a class="list__link" data-id-nav="profile" href="profile">Профиль</a>
+						</li>
+						<li class="list__item login__item-inner">
+							<a class="link__profile" href="/profile" id="profile-img"><img class="profile-link__img"
+									src="images/avatar.svg" alt="avatar"></a>
+							<div class="login__box" id="login__box">
+								<img class="login__icon" id="login" src="images/ico/logclear.svg" alt="Пустышка">
+							</div>
+						</li>
+					</ul>
+				</nav>
+				<div class="popup" id="popup">
+				</div>
+			</div>
+		</div>
+	</header>
+	<section class="main">
+		<div class="container">
+			<div class="handlebars">
+			</div>
+		</div>
+	</section>
+
+	<footer class="footer">
+		<div class="container">
+			<div class="footer__column">
+				<img class="logo" src="images/ico/logo.svg" alt="Logo" />
+				<div class="social__mobile">
+					<a class="social__link" href="https://t.me/velokmv">
+						<img class="social__img" src="images/ico/telegram.svg" alt="telegram" />
+					</a>
+				</div>
+				<ul class="footer__list">
+					<li class="footer__item">
+						<a class="footer__link" href="/">Главная</a>
+					</li>
+					<li class="footer__item">
+						<a me class="footer__link" href="trail">Маршруты</a>
+					</li>
+				</ul>
+				<ul class="footer__list">
+					<li class="footer__item">
+						<a class="footer__link" href="dzhilsu">Джилы-Су</a>
+					</li>
+					<li class="footer__item">
+						<a class="footer__link" href="gallery">Галерея</a>
+					</li>
+				</ul>
+				<ul class="footer__list">
+					<li class="footer__item">
+						Социальные сети:
+					</li>
+					<li class="footer__item">
+						<div class="social">
+							<a class="social__link" href="https://t.me/velokmv">
+								<img class="social__img" src="images/ico/telegram.svg" alt="telegram" />
+							</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="copyright">Copyright © 2022 Bike-Caucasus</div>
+		</div>
+	</footer>
+
+	<div class="modal__answer invisible" id="modal__answer">
+		<div class="modal__container">
+			<div class="modal__block" id="server__answer"></div>
+		</div>
+	</div>
+
+	<section class="popup__auth">
+
+		<div class="auth__container">
+
+			<div class="auth__block" id="auth__block">
+				<div class="auth__title">
+					<span class="auth__login" id="auth__login">Вход</span>/<span class="auth__login auth__gray"
+						id="auth__registration">Регистрация</span>
+				</div>
+				<form class="auth__from" action="">
+					<div class="auth__box">
+						<label for="">Nickname</label>
+						<input class="auth__input" type="text" id="auth__input-nickname">
+						<span class="validation" id="validation__nickname"></span>
+					</div>
+					<div class="auth__box">
+						<label for="">Password</label>
+						<input class="auth__input" type="password" id="auth__input-password">
+						<span class="validation" id="validation__password"></span>
+					</div>
+					<div class="auth__box displayNone" id="auth__email">
+						<label for="">e-mail</label>
+						<input class="auth__input" type="email" id="auth__input-email">
+						<span class="validation" id="validation__email"></span>
+					</div>
+					<div class="auth__box">
+						<div class="auth__btn" id="auth__btn">Вход</div>
+						<span class="validation validation-all" id="validation__all"></span>
+					</div>
+
+					<svg class="svg__cross" width="20" height="19" viewBox="0 0 20 19" fill="none"
+						xmlns="http://www.w3.org/2000/svg">
+						<line x1="1.21195" y1="18.2127" x2="18.1825" y2="1.24212" stroke="black" stroke-width="2" />
+						<line x1="1.70711" y1="1.29291" x2="18.6777" y2="18.2635" stroke="black" stroke-width="2" />
+					</svg>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<script id="tableEventsTemplate" type="text/x-handlebars-template">
+		<h3 class="title__page">
+			Высокогорные соревнования Джилы-Су
+		</h3>
+		<table class="table tableEvents" id="table-events">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Дата</th>
+					<th scope="col">Соревнование</th>
+					<th class="display-non" scope="col">Город</th>
+					<th scope="col">Участники</th>
+					<th scope="col">Сегмент в Страве</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				{{#each list}}
+				<tr>
+ 					<td id="{{eventId}}">{{tableNumber}}</td>
+					<td id="{{eventId}}">{{eventDate}}</td>
+					<td id="{{eventId}}">{{eventName}}</td>
+					<td class="display-non" id="{{eventId}}">{{eventCity}}</td>
+					<td id="{{eventId}}">{{quantity}}</td>
+					<td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}" target="_blank">Strava</a></td>
+
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</script>
+
+	<script id="tableResultTemplate" type="text/x-handlebars-template">
+			<h3 class="title__page">{{eventName}}, {{eventDate}}, город {{eventCity}}</h3>
+			<table class="table tableResult">
+				<thead>
+					<tr>
+						<th scope="col" id="place">
+							<div class="th-flex">
+								<div class="table__title-th">#</div>
+								<img class="" src="images/ico/arrow-2way.svg" id="place-img">
+							</div>
+						</th>
+						<th class="display-non" scope="col" id="number">
+							<div class="th-flex">
+								<div class="table__title-th">Номер</div>
+								<img class="" src="images/ico/arrow-2way.svg" id="number-img">
+							</div>
+						</th>
+						<th scope="col" id="athlete">
+							<div class="th-flex">
+								<div class="table__title-th">Участник</div>
+								<img class="" src="images/ico/arrow-2way.svg" id="athlete-img">
+							</div>
+						</th>
+						<th class="display-non" scope="col" id="athleteCity">
+							<div class="th-flex">
+								<div class="table__title-th">Город</div>
+								<img class="" src="images/ico/arrow-2way.svg" id="athleteCity-img">
+							</div>
+						</th>
+						<th class="display-non" scope="col" id="">Команда</th>
+						<th class="display-non" scope="col" id="">Дистанция</th>
+						<th scope="col" id="">Время</th>
+						<th scope="col">Отс.лид.</th>
+						<th scope="col">Отс.пр.</th>
+						<th class="display-non" scope="col" id="">Возр. гр.</th>
+						<th class="display-non" scope="col" id="">Место гр</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each list}}
+					<tr {{#if (authUser userId)}}class="my-result"{{/if}}>
+						<td id="{{athlete}}">{{place}}</td>
+						<td class="display-non" id="{{athlete}}">{{number}}</td>
+						<td id="{{athlete}}">{{athlete}}</td>
+						<td class="display-non" id="{{athlete}}">{{athleteCity}}</td>
+						<td class="display-non" id="{{athlete}}">{{athleteTeam}}</td>
+						<td class="display-non" id="{{athlete}}">{{distance}}</td>
+						<td id="{{athlete}}">{{timeTotal}}</td>
+						<td id="{{athlete}}">{{lagLeader}}</td>
+						<td id="{{athlete}}">{{lagBefore}}</td>
+						<td class="display-non" id="{{athlete}}">{{birthday}}</td>
+						<td class="display-non" id="{{athlete}}"></td>
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</script>
+
+	<script id="tableUserTemplate" type="text/x-handlebars-template">
+		<h3 class="title__page">{{athlete}}, Команда: {{athleteTeam}}, город {{athleteCity}}</h3>
+		<table class="table tableUser">
+			<thead>
+				<tr>
+					<th scope="col">Дата</th>
+					<th scope="col">Соревнование</th>
+					<th class="display-non" scope="col" id="">Дистанция</th>
+					<th scope="col" id="place">Место</th>
+					<th class="display-non" scope="col" id="">Время</th>
+					<th scope="col" id="">Сегмент в Страве</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each list}}
+				<tr>
+					<td id="{{eventId}}">{{eventDate}}</td>
+					<td id="{{eventId}}">{{eventName}}</td>
+					<td class="display-non" id="{{eventId}}">{{distance}}</td>
+					<td id="{{eventId}}">{{place}}</td>
+					<td class="display-non" id="{{eventId}}">{{timeTotal}}</td>
+					<td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}" target="_blank">Strava</a></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+
+	</script>
+
+
+	<script type="module" src="./utilities/dataid.js"></script>
+	<script src="./pages/dzhilsu-result.js" type="module"></script>
+</body>
+
+</html>

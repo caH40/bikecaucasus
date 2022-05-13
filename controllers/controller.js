@@ -370,14 +370,30 @@ export async function getResults(req, res) {
     console.log(error);
   }
 }
+export async function getResultUrl(req, res) {
+  try {
+    res.status(200);
+    res.sendFile(path.resolve(__dirname, 'static', 'dzhilsu-result.html'));
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-export async function getResult(req, res) {
+export async function getResultEvent(req, res) {
   try {
     const id = req.query.id;
-    let dataEvent = await Event.find({ eventId: id });
-    let dataResult = await Result.find({ eventId: id });
-    const data = { dataEvent, dataResult, user: req.user };
-    res.status(200).json(data);
+    const target = req.query.target;
+    if (target) {
+      res.status(200);
+      res.sendFile(path.resolve(__dirname, 'static', 'dzhilsu-result.html'));
+      return;
+    } else {
+      let dataEvent = await Event.find({ eventId: id });
+      let dataResult = await Result.find({ eventId: id });
+      const data = { dataEvent, dataResult, user: req.user };
+      res.status(200).json(data);
+      return;
+    }
   } catch (error) {
     console.log(error);
   }

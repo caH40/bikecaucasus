@@ -43,12 +43,19 @@ export default {
         eventName: dataEvent[0].eventName,
       };
       render(dataTemplate, '#tableResultTemplate');
-      console.log('renderTableResultArrow');
       renderTableResultArrow('place');
+      //===========================================
+      // history.pushState(
+      //   '',
+      //   '',
+      //   `/dzhilsu/event-result?id=${idEvent}&target=new`
+      // );
     } catch (error) {
       console.log(error);
     }
   },
+
+  async eventResultFromUrl() {},
 
   async sortResults(idEvent, nameColumn) {
     try {

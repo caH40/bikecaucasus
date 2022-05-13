@@ -17,7 +17,7 @@ import {
   postDescriptionCommentEdit,
   postDescriptionCommentRemove,
   getResults,
-  getResult,
+  getResultEvent,
   postFileTrek,
   getTrek,
   getUser,
@@ -61,7 +61,7 @@ router.get('/trail/getcards', authMiddleware, getCardData);
 //страница джил-су
 router.get('/dzhilsu', dzhilsuPage);
 router.get('/dzhilsu/main', authMiddleware, getResults);
-router.get('/dzhilsu/event-result', authMiddleware, getResult);
+router.get('/dzhilsu/event-result', authMiddleware, getResultEvent);
 router.get('/dzhilsu/user', authMiddleware, getUser);
 //загрузка файлов, фотографий
 router.post('/uploadTrek', fileMiddleware.single('filedata'), postFileTrek);
