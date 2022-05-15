@@ -27,60 +27,140 @@ export default function loadimg(data) {
     inputAddTrek.click();
   });
 
-  function changeHandler(event) {
-    if (!event.target.files.length) {
-      return;
-    }
-
-    const svg = document.getElementById(this.id + '-img');
-    //переводим FileList в массив, что бы удобнее с ним работать
-    const files = Array.from(event.target.files);
-
-    const divImageCard = document.querySelector(`#${this.id}-images`);
-    //там где добавляется одна фотография, при повторном обращении к инпуту очищать innerHTML от старого фото
-    if (this.id === 'input__card-photo') {
-      divImageCard.innerHTML = '';
-    }
-    let arrPhoto = data.descPhoto ?? [];
-    files.forEach((file) => {
-      //проверка на картинку
-      if (!file.type.match('image')) {
-        return;
-      }
-      //обработчик события, так как reader.readAsDataURL асинхронная функция
-      const reader = new FileReader();
-      reader.onload = async (ev) => {
-        const src = ev.target.result;
-        //проверка в какой блок добавляется фотография
-        //далее соответствующее уменьшение размеров фотографии
-        //запись файлов в объект data
-        if (this.id === 'input__card-photo') {
-          data.cardPhoto = await reduceImage(src, 250);
-        } else {
-          const srcSmall = await reduceImage(src, 700);
-          arrPhoto.push(srcSmall);
-        }
-
-        divImageCard.insertAdjacentHTML(
-          'beforeend',
-          `<img class="box__img" src="${src}" />`
-        );
-        svg.classList.add('notEmpty');
-      };
-      reader.readAsDataURL(file);
-    });
-    data.descPhoto = arrPhoto;
-  }
-
   inputAddCardPhoto.setAttribute('accept', '.jpg, .jpeg, .png, .webp');
   inputAddCardPhoto.addEventListener('change', changeHandler);
 
   inputAddDescPhoto.setAttribute('accept', '.jpg, .jpeg, .png, .webp');
   inputAddDescPhoto.setAttribute('multiple', true);
-  inputAddDescPhoto.addEventListener('change', changeHandler);
+  inputAddDescPhoto.addEventListener('change', changeHandlerImages);
 
   inputAddTrek.setAttribute('accept', '.fit, .gpx, .tcx');
   inputAddTrek.addEventListener('change', changeHandlerTrek);
+  const boxCardPhoto = document.querySelector('#input__card-photo-images');
+  const boxCardPhotoDesc = document.querySelector('#input__desc-photo-images');
+  const svgCard = document.querySelector('#input__card-photo-img');
+  const svgDesc = document.querySelector('#input__desc-photo-img');
+
+  let cardPhoto;
+  function changeHandler(event) {
+    if (!event.target.files.length) {
+      return;
+    }
+
+    let file = event.target.files[0];
+    boxCardPhoto.innerHTML = '';
+
+    //проверка на картинку
+    if (!file.type.match('image')) {
+      return;
+    }
+    //обработчик события, так как reader.readAsDataURL асинхронная функция
+    const reader = new FileReader();
+    reader.onload = async (ev) => {
+      const src = ev.target.result;
+      //проверка в какой блок добавляется фотография
+      //далее соответствующее уменьшение размеров фотографии
+      //запись файлов в объект data
+      cardPhoto = await reduceImage(src, 250);
+
+      let sizeFile = Math.trunc(file.size / 8000);
+      boxCardPhoto.insertAdjacentHTML(
+        'beforeend',
+
+        `<div class="box__preview">
+          <div class="box__preview-remove" data-name="${file.name}">&times</div>
+            <img src="${src}" />
+            <div class="box__preview-name">
+              <span>${file.name}</span>
+              <span>${sizeFile}kB</span>
+            </div>
+          </div>`
+      );
+
+      svgCard.classList.add('notEmpty');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  boxCardPhoto.addEventListener('click', (event) => {
+    if (!event.target.dataset.name) return;
+    const name = event.target.dataset.name;
+    svgCard.classList.remove('notEmpty');
+    const block = boxCardPhoto
+      .querySelector(`[data-name="${name}"]`)
+      .closest('.box__preview');
+
+    block.classList.add('removing');
+    setInterval(() => {
+      block.remove();
+    }, 300);
+  });
+  data.cardPhoto = cardPhoto;
+
+  let files = [];
+  let arrPhoto = [];
+  function changeHandlerImages(event) {
+    if (!event.target.files.length) {
+      return;
+    }
+    files = Array.from(event.target.files);
+
+    files.forEach((file) => {
+      if (!file.type.match('image')) {
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = async (ev) => {
+        const src = ev.target.result;
+
+        const srcSmall = await reduceImage(src, 700);
+        arrPhoto.push({ filename: file.name, srcSmall });
+
+        let sizeFile = Math.trunc(file.size / 8000);
+        boxCardPhotoDesc.insertAdjacentHTML(
+          'beforeend',
+          `
+          <div class="box__preview">
+          <div class="box__preview-remove" data-name="${file.name}">&times</div>
+            <img src="${src}" />
+            <div class="box__preview-name">
+              <span>${file.name}</span>
+              <span>${sizeFile}kB</span>
+            </div>
+          </div>
+          `
+        );
+
+        svgDesc.classList.add('notEmpty');
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  boxCardPhotoDesc.addEventListener('click', (event) => {
+    if (!event.target.dataset.name) return;
+    const name = event.target.dataset.name;
+    arrPhoto = arrPhoto.filter((file) => file.filename !== name);
+
+    const block = boxCardPhotoDesc
+      .querySelector(`[data-name="${name}"]`)
+      .closest('.box__preview');
+    block.classList.add('removing');
+    setInterval(() => {
+      block.remove();
+    }, 300);
+
+    // console.log(arrPhoto.name);
+    let arrPhotoForDb = [];
+    arrPhoto.forEach((photo) => {
+      arrPhotoForDb.push(photo.srcSmall);
+    });
+    if (arrPhoto.length === 0) {
+      svgDesc.classList.remove('notEmpty');
+    }
+    data.descPhoto = arrPhotoForDb;
+  });
 
   function changeHandlerTrek(event) {
     if (!event.target.files.length) {
