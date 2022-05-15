@@ -119,16 +119,16 @@ async function sendData() {
       const answer = await response.json();
       //формирование сообщения о выполнении, добавить карточку только что созданного маршрута
       //что бы сразу оценить её и проверить на ошибки
-      const innerCardEdite = document.querySelector('.inner__card-edit');
+      const innerCardEdit = document.querySelector('.inner__card-edit');
       const answerElement = document.createElement('div');
       answerElement.classList.add('answer');
       answerElement.textContent = 'Маршрут сохранён!';
       if (answer.dispatched) {
-        innerCardEdite.replaceWith(answerElement);
+        innerCardEdit.replaceWith(answerElement);
         pageUp();
       } else {
         answerElement.textContent = 'Произошла ОШИБКА!';
-        innerCardEdite.replaceWith(answerElement);
+        innerCardEdit.replaceWith(answerElement);
       }
     } catch (error) {
       console.log(error);

@@ -195,6 +195,7 @@ export default {
         const dataFromDb = await myFetch.fetchPost(`/description/card-edit`, {
           cardId,
         });
+
         descriptionPage();
         return;
       });
@@ -205,13 +206,21 @@ export default {
         svgItem.classList.remove('fill-arrow');
 
         const result = confirm('Вы уверены?');
+        let dataFromDb;
         if (result) {
-          const dataFromDb = await myFetch.fetchPost(
-            `/description/card-remove`,
-            {
-              cardId,
-            }
-          );
+          dataFromDb = await myFetch.fetchPost(`/description/card-remove`, {
+            cardId,
+          });
+        }
+        const innerCardDescription = document.querySelector('.handlebars');
+        const answerElement = document.createElement('div');
+        answerElement.classList.add('answer');
+        answerElement.textContent = 'Маршрут удалён!';
+        if (dataFromDb.deleted) {
+          innerCardDescription.replaceWith(answerElement);
+        } else {
+          answerElement.textContent = 'что то пошло не так';
+          innerCardDescription.replaceWith(answerElement);
         }
 
         return;

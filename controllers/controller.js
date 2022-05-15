@@ -358,12 +358,20 @@ export async function postDescriptionCardRemove(req, res) {
   try {
     const cardId = req.body.cardId;
 
-    const card = await Card.findOneAndDelete({ _id: cardId });
-    const photo = await Photo.findOneAndDelete({ cardId });
-    const kudos = await Kudos.findOneAndDelete({ cardId });
-    const comments = await Comment.deleteMany({ cardId });
+    const card = await Card.findOneAndDelete({ _id: cardId }).catch((error) =>
+      console.log(error)
+    );
+    const photo = await Photo.findOneAndDelete({ cardId }).catch((error) =>
+      console.log(error)
+    );
+    const kudos = await Kudos.findOneAndDelete({ cardId }).catch((error) =>
+      console.log(error)
+    );
+    const comments = await Comment.deleteMany({ cardId }).catch((error) =>
+      console.log(error)
+    );
 
-    res.status(201).json({ message: 'удаление карточки' });
+    res.status(201).json({ deleted: true, message: 'удаление карточки' });
   } catch (error) {
     res.status(400).json({ message: 'Ошибка - удаление карточки' });
     console.log;
