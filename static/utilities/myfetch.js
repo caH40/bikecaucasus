@@ -29,4 +29,19 @@ export default {
       console.log(error);
     }
   },
+  async fetchPostFile(url, file) {
+    try {
+      const dataFromDb = await fetch(`${host}${url}`, {
+        method: 'POST',
+        headers: {
+          // 'Content-Type': 'multipart/form-data',
+          authorization: localStorage.getItem('tokenBikeCaucasus'),
+        },
+        body: file,
+      }).then((data) => data.json());
+      return dataFromDb;
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

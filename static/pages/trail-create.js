@@ -1,6 +1,5 @@
-import { host } from '../utilities/host.js';
+import myFetch from '../utilities/myfetch.js';
 import loadImg from '../utilities/load-img.js';
-import pageUp from '../utilities/pageup.js';
 import {
   checkEmpty,
   checkEmptySelect,
@@ -48,7 +47,7 @@ checkEmpty(urlTrekGConnect, '#url-trek-gconnect-img');
 checkEmpty(urlVideo, '#url-video-img');
 
 async function sendData() {
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     data.nameRoute = nameRoute.value;
@@ -76,9 +75,26 @@ async function sendData() {
     data.authorPhoto = authorPhoto.value;
 
     // if (checker) {
-    postAxios(data.fileTrek);
+    //отправка файла с треком
+    await myFetch.fetchPostFile('/uploadTrek', data.fileTrek);
     delete data.fileTrek;
-    getFetch(host, data);
+
+    const dataFromDb = await myFetch.fetchPost('/newcard', data);
+    //формирование сообщения о выполнении, добавить карточку только что созданного маршрута
+    //что бы сразу оценить её и проверить на ошибки
+    const innerCardEdit = document.querySelector('.inner__card-edit');
+    const answerElement = document.createElement('div');
+    answerElement.classList.add('answer');
+    answerElement.textContent = 'Маршрут сохранён!';
+
+    //модальное окно о сохранении маршрута
+    if (dataFromDb.dispatched) {
+      innerCardEdit.replaceWith(answerElement);
+    } else {
+      answerElement.textContent = dataFromDb.message;
+      innerCardEdit.replaceWith(answerElement);
+    }
+
     event.target.reset();
     const spanTrek = document.getElementById('trek-status-text');
     if (spanTrek) {
@@ -93,46 +109,5 @@ async function sendData() {
     //   console.log('Не все поля заполнены');
     // }
   });
-
-  async function postAxios(file) {
-    try {
-      await axios.post('/uploadTrek', file, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function getFetch(url, data) {
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: localStorage.getItem('tokenBikeCaucasus'),
-        },
-        body: JSON.stringify(data),
-      }).catch((error) => console.log(error));
-      if (response.ok) {
-      }
-      const answer = await response.json();
-      //формирование сообщения о выполнении, добавить карточку только что созданного маршрута
-      //что бы сразу оценить её и проверить на ошибки
-      const innerCardEdit = document.querySelector('.inner__card-edit');
-      const answerElement = document.createElement('div');
-      answerElement.classList.add('answer');
-      answerElement.textContent = 'Маршрут сохранён!';
-      if (answer.dispatched) {
-        innerCardEdit.replaceWith(answerElement);
-        pageUp();
-      } else {
-        answerElement.textContent = 'Произошла ОШИБКА!';
-        innerCardEdit.replaceWith(answerElement);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
 }
 sendData();

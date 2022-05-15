@@ -16,9 +16,9 @@ import {
   postDescriptionComment,
   postDescriptionCommentEdit,
   postDescriptionCommentRemove,
-  getDescriptionCardEdit,
-  postDescriptionCardEdit,
-  postDescriptionCardRemove,
+  getDescriptionTrailEdit,
+  postDescriptionTrailEdit,
+  postDescriptionTrailRemove,
   getResults,
   getResultEvent,
   postFileTrek,
@@ -55,17 +55,21 @@ router.post(
   postDescriptionCommentRemove
 );
 
-router.get('/description/card-edit', authMiddleware, getDescriptionCardEdit);
-router.post('/description/card-edit', authMiddleware, postDescriptionCardEdit);
+router.get('/description/trail-edit', authMiddleware, getDescriptionTrailEdit);
 router.post(
-  '/description/card-remove',
+  '/description/trail-edit',
   authMiddleware,
-  postDescriptionCardRemove
+  postDescriptionTrailEdit
+);
+router.post(
+  '/description/trail-remove',
+  authMiddleware,
+  postDescriptionTrailRemove
 );
 //страница создания маршрута
 router.get('/create-trail', createTrailPage);
 //запись данных о маршруте в базу
-router.post('/', authMiddleware, sendFormCard);
+router.post('/newcard', authMiddleware, sendFormCard);
 //получение карточек маршрутов
 // router.get('/trail/getcards', getCardData);
 router.get('/trail/getcards', authMiddleware, getCardData);

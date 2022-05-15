@@ -193,7 +193,7 @@ export default {
         cardMenuItem.classList.remove('visible');
         svgItem.classList.remove('fill-arrow');
         const dataFromDb = await myFetch.fetchGet(
-          `/description/card-edit?cardid=${cardId}`
+          `/description/trail-edit?cardid=${cardId}`
         );
         console.log(dataFromDb);
         render({ data: 'x' }, '#descriptionEditCard');
@@ -208,9 +208,12 @@ export default {
         const result = confirm('Вы уверены?');
         if (!result) return;
 
-        const dataFromDb = await myFetch.fetchPost(`/description/card-remove`, {
-          cardId,
-        });
+        const dataFromDb = await myFetch.fetchPost(
+          `/description/trail-remove`,
+          {
+            cardId,
+          }
+        );
 
         const innerCardDescription = document.querySelector('.handlebars');
         const answerElement = document.createElement('div');
