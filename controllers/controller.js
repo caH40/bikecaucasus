@@ -311,39 +311,37 @@ export function createTrailPage(req, res) {
 //сохранение данных маршрута в Монго
 export async function sendFormCard(req, res) {
   try {
-    // const data = req.body;
-    // const userId = req.user.id;
-    // data.postedBy = userId;
-    // data.date = new Date().getTime();
-    // if (!data.nameRoute) {
-    //   console.log(new Date().toLocaleString(), data.nameRoute, data);
-    //   res
-    //     .status(400)
-    //     .json({
-    //       dispatched: false.valueOf,
-    //       message: 'Нет наименования маршрута',
-    //     });
-    //   return;
-    // }
-    // const card = new Card(data);
-    // const cardSaved = await card.save();
+    const data = req.body;
+    const userId = req.user.id;
+    data.postedBy = userId;
+    data.date = new Date().getTime();
+    if (!data.nameRoute) {
+      console.log(new Date().toLocaleString(), data.nameRoute, data);
+      res.status(400).json({
+        dispatched: false.valueOf,
+        message: 'Нет наименования маршрута',
+      });
+      return;
+    }
+    const card = new Card(data);
+    const cardSaved = await card.save();
 
-    // const photo = new Photo({
-    //   cardId: cardSaved.id,
-    //   nameRoute: data.nameRoute,
-    //   state: data.state,
-    //   descPhoto: data.descPhoto,
-    //   authorPhoto: data.authorPhoto,
-    // });
-    // await photo.save();
+    const photo = new Photo({
+      cardId: cardSaved.id,
+      nameRoute: data.nameRoute,
+      state: data.state,
+      descPhoto: data.descPhoto,
+      authorPhoto: data.authorPhoto,
+    });
+    await photo.save();
 
-    // const kudos = new Kudos({ cardId: cardSaved._id });
-    // const kudosSaved = await kudos.save();
+    const kudos = new Kudos({ cardId: cardSaved._id });
+    const kudosSaved = await kudos.save();
 
-    // await Card.findOneAndUpdate(
-    //   { _id: cardSaved._id },
-    //   { $set: { kudoses: kudosSaved._id } }
-    // );
+    await Card.findOneAndUpdate(
+      { _id: cardSaved._id },
+      { $set: { kudoses: kudosSaved._id } }
+    );
 
     res.status(201).send({ dispatched: true });
   } catch (error) {
@@ -456,7 +454,6 @@ export async function getUser(req, res) {
 
 export async function postFileTrek(req, res) {
   try {
-    console.log('file sended');
     if (req.file) {
       res.json(req.file);
     }

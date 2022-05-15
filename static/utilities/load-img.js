@@ -69,7 +69,7 @@ export default function loadimg(data) {
       };
       reader.readAsDataURL(file);
     });
-    photo.descPhoto = arrPhoto;
+    data.descPhoto = arrPhoto;
   }
 
   inputAddCardPhoto.setAttribute('accept', '.jpg, .jpeg, .png, .webp');

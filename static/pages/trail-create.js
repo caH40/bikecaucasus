@@ -76,7 +76,7 @@ async function sendData() {
 
     // if (checker) {
     //отправка файла с треком
-    await myFetch.fetchPostFile('/uploadTrek', data.fileTrek);
+    myFetch.fetchPostFile('/uploadTrek', data.fileTrek);
     delete data.fileTrek;
 
     const dataFromDb = await myFetch.fetchPost('/newcard', data);
