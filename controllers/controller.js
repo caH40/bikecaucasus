@@ -345,6 +345,16 @@ export async function sendFormCard(req, res) {
   }
 }
 
+export async function getDescriptionCardEdit(req, res) {
+  try {
+    const cardId = req.query.cardid;
+    const card = await Card.findOne({ _id: cardId });
+    res.status(200).json({ card, message: 'ok' });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export function postDescriptionCardEdit(req, res) {
   try {
     console.log(req.body);

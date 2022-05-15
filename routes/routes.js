@@ -16,6 +16,7 @@ import {
   postDescriptionComment,
   postDescriptionCommentEdit,
   postDescriptionCommentRemove,
+  getDescriptionCardEdit,
   postDescriptionCardEdit,
   postDescriptionCardRemove,
   getResults,
@@ -53,6 +54,8 @@ router.post(
   authMiddleware,
   postDescriptionCommentRemove
 );
+
+router.get('/description/card-edit', authMiddleware, getDescriptionCardEdit);
 router.post('/description/card-edit', authMiddleware, postDescriptionCardEdit);
 router.post(
   '/description/card-remove',

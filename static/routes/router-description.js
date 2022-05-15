@@ -1,5 +1,6 @@
 import myFetch from '../utilities/myfetch.js';
 import descriptionPage from '../pages/description-page.js';
+import { render } from '../view/viewer.js';
 
 import {
   handlerLike,
@@ -191,12 +192,11 @@ export default {
       cardEdit.addEventListener('click', async () => {
         cardMenuItem.classList.remove('visible');
         svgItem.classList.remove('fill-arrow');
-
-        const dataFromDb = await myFetch.fetchPost(`/description/card-edit`, {
-          cardId,
-        });
-
-        descriptionPage();
+        const dataFromDb = await myFetch.fetchGet(
+          `/description/card-edit?cardid=${cardId}`
+        );
+        console.log(dataFromDb);
+        render({ data: 'x' }, '#descriptionEditCard');
         return;
       });
 
@@ -206,12 +206,12 @@ export default {
         svgItem.classList.remove('fill-arrow');
 
         const result = confirm('Вы уверены?');
-        let dataFromDb;
-        if (result) {
-          dataFromDb = await myFetch.fetchPost(`/description/card-remove`, {
-            cardId,
-          });
-        }
+        if (!result) return;
+
+        const dataFromDb = await myFetch.fetchPost(`/description/card-remove`, {
+          cardId,
+        });
+
         const innerCardDescription = document.querySelector('.handlebars');
         const answerElement = document.createElement('div');
         answerElement.classList.add('answer');
@@ -219,10 +219,9 @@ export default {
         if (dataFromDb.deleted) {
           innerCardDescription.replaceWith(answerElement);
         } else {
-          answerElement.textContent = 'что то пошло не так';
+          answerElement.textContent = 'Что то пошло не так';
           innerCardDescription.replaceWith(answerElement);
         }
-
         return;
       });
     });
