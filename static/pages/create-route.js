@@ -108,7 +108,10 @@ async function sendData() {
     try {
       const response = await fetch(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: localStorage.getItem('tokenBikeCaucasus'),
+        },
         body: JSON.stringify(data),
       }).catch((error) => console.log(error));
       if (response.ok) {

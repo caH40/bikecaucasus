@@ -666,9 +666,13 @@ option {
   min-height: calc(100vh - 120px);
   padding-bottom: 20px;
 }
+.title__page-inner {
+  position: relative;
+}
 .title__page-description {
   text-align: center;
 }
+
 .description__inner {
   display: flex;
   justify-content: center;
@@ -818,6 +822,9 @@ option {
   fill: #ffa600;
 }
 .popap-comment__list {
+  display: none;
+}
+.popap-card__list {
   display: none;
 }
 .popap-comment__item {

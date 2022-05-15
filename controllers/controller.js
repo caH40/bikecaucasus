@@ -285,19 +285,11 @@ export async function postDescriptionCommentRemove(req, res) {
     const cardId = req.body.cardId;
     const commentId = req.body.commentId;
 
-    const commentNew = await Comment.findOneAndDelete(
-      { _id: commentId },
-      {
-        returnDocument: 'after',
-      }
-    );
+    const commentNew = await Comment.findOneAndDelete({ _id: commentId });
 
     const card = await Card.findOneAndUpdate(
       { _id: cardId },
-      { $pull: { comments: commentId } },
-      {
-        returnDocument: 'after',
-      }
+      { $pull: { comments: commentId } }
     );
 
     res.status(201).json({ message: 'Ваш комментарий изменён!' });
@@ -320,11 +312,13 @@ export function createTrailPage(req, res) {
 export async function sendFormCard(req, res) {
   try {
     const data = req.body;
+    const userId = req.user.id;
+    data.postedBy = userId;
+    data.date = new Date().getTime();
     if (!data.nameRoute) {
       console.log(new Date().toLocaleString(), data.nameRoute, data);
       return;
     }
-
     const card = new Card(data);
     const cardSaved = await card.save();
 
@@ -350,6 +344,32 @@ export async function sendFormCard(req, res) {
     console.log(error);
   }
 }
+
+export function postDescriptionCardEdit(req, res) {
+  try {
+    console.log(req.body);
+    res.status(201).json({ message: 'редактирование карточки' });
+  } catch (error) {
+    res.status(400).json({ message: 'Ошибка - редактирование карточки' });
+    console.log;
+  }
+}
+export async function postDescriptionCardRemove(req, res) {
+  try {
+    const cardId = req.body.cardId;
+
+    const card = await Card.findOneAndDelete({ _id: cardId });
+    const photo = await Photo.findOneAndDelete({ cardId });
+    const kudos = await Kudos.findOneAndDelete({ cardId });
+    const comments = await Comment.deleteMany({ cardId });
+
+    res.status(201).json({ message: 'удаление карточки' });
+  } catch (error) {
+    res.status(400).json({ message: 'Ошибка - удаление карточки' });
+    console.log;
+  }
+}
+
 // получение всех карточек маршрутов из Монго
 export async function getCardData(req, res) {
   try {

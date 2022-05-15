@@ -16,6 +16,8 @@ import {
   postDescriptionComment,
   postDescriptionCommentEdit,
   postDescriptionCommentRemove,
+  postDescriptionCardEdit,
+  postDescriptionCardRemove,
   getResults,
   getResultEvent,
   postFileTrek,
@@ -51,10 +53,16 @@ router.post(
   authMiddleware,
   postDescriptionCommentRemove
 );
+router.post('/description/card-edit', authMiddleware, postDescriptionCardEdit);
+router.post(
+  '/description/card-remove',
+  authMiddleware,
+  postDescriptionCardRemove
+);
 //страница создания маршрута
 router.get('/create-trail', createTrailPage);
 //запись данных о маршруте в базу
-router.post('/', sendFormCard);
+router.post('/', authMiddleware, sendFormCard);
 //получение карточек маршрутов
 // router.get('/trail/getcards', getCardData);
 router.get('/trail/getcards', authMiddleware, getCardData);

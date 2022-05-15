@@ -57,6 +57,7 @@ export default {
     const commentArea = document.querySelector('#comment-area');
     const commentAreaStatus = document.querySelector('#comment__area-status');
     this.commentMenu(cardId);
+    this.cardMenu(cardId);
     commentButton.addEventListener('click', async () => {
       const text = commentArea.value;
       if (text.length < 30) {
@@ -150,6 +151,69 @@ export default {
           { commentId, cardId }
         );
         descriptionPage();
+        return;
+      });
+    });
+  },
+
+  async cardMenu(cardId) {
+    const cardArrowMenu = document.querySelector('#popap-card__arrow-box');
+
+    const commentMenuFill = document.querySelector(
+      '#popap-comment__arrow > path'
+    );
+    const cardMenuItem = document.querySelector('.popap-card__list');
+
+    let popapCard;
+    let svgItem;
+    let cardEdit;
+    let cardRemove;
+
+    cardArrowMenu.addEventListener('click', (event) => {
+      cardMenuItem.classList.add('visible');
+
+      popapCard = document.querySelector(`#popap-card-${cardId}`);
+
+      svgItem = document.querySelector(`#popap-card__arrow-${cardId}  > path`);
+      svgItem.classList.toggle('fill-arrow');
+      cardEdit = document.querySelector(`#card__edit-${cardId}`);
+      cardRemove = document.querySelector(`#card__remove-${cardId}`);
+
+      console.log(popapCard);
+      //отслеживание блока попапа
+      popapCard.addEventListener('mouseleave', () => {
+        cardMenuItem.classList.remove('visible');
+        svgItem.classList.remove('fill-arrow');
+        return;
+      });
+
+      //отслеживание кнопки меню "Редактировать"
+      cardEdit.addEventListener('click', async () => {
+        cardMenuItem.classList.remove('visible');
+        svgItem.classList.remove('fill-arrow');
+
+        const dataFromDb = await myFetch.fetchPost(`/description/card-edit`, {
+          cardId,
+        });
+        descriptionPage();
+        return;
+      });
+
+      //отслеживание кнопки меню "Удалить"
+      cardRemove.addEventListener('click', async () => {
+        cardMenuItem.classList.remove('visible');
+        svgItem.classList.remove('fill-arrow');
+
+        const result = confirm('Вы уверены?');
+        if (result) {
+          const dataFromDb = await myFetch.fetchPost(
+            `/description/card-remove`,
+            {
+              cardId,
+            }
+          );
+        }
+
         return;
       });
     });
