@@ -886,6 +886,10 @@ option {
 .popap-card__list {
   display: none;
 }
+.popap-card__menu {
+  text-align: right;
+  margin-bottom: 10px;
+}
 .popap-comment__item {
   display: flex;
   justify-content: space-between;
