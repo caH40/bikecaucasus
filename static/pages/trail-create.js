@@ -60,8 +60,15 @@ async function sendData() {
     data.ascent = ascent.value;
     data.descriptionArea = descriptionArea.value;
     data.urlTrekGConnect = urlTrekGConnect.value;
-    data.author = 'Бережнев А.';
     data.date = new Date().getTime();
+    //сохранение фотографий из элементов img
+    data.cardPhoto =
+      divBoxImageCard.querySelector('#photo-desc-img').currentSrc;
+
+    let arrDescPhoto = divBoxImageDesc.querySelectorAll('#photo-desc-img');
+    arrDescPhoto.forEach((element) => {
+      data.descPhoto.push(element.currentSrc);
+    });
 
     let checker = true;
 

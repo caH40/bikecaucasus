@@ -41,7 +41,6 @@ export default function loadimg(data) {
   const svgCard = document.querySelector('#input__card-photo-img');
   const svgDesc = document.querySelector('#input__desc-photo-img');
 
-  let cardPhoto;
   function changeHandler(event) {
     if (!event.target.files.length) {
       return;
@@ -61,7 +60,7 @@ export default function loadimg(data) {
       //проверка в какой блок добавляется фотография
       //далее соответствующее уменьшение размеров фотографии
       //запись файлов в объект data
-      cardPhoto = await reduceImage(src, 250);
+      const cardPhoto = await reduceImage(src, 250);
 
       let sizeFile = Math.trunc(file.size / 8000);
       boxCardPhoto.insertAdjacentHTML(
@@ -69,7 +68,7 @@ export default function loadimg(data) {
 
         `<div class="box__preview">
           <div class="box__preview-remove" data-name="${file.name}">&times</div>
-            <img src="${src}" />
+            <img src="${cardPhoto}" id="photo-desc-img"/>
             <div class="box__preview-name">
               <span>${file.name}</span>
               <span>${sizeFile}kB</span>
@@ -89,21 +88,18 @@ export default function loadimg(data) {
     const block = boxCardPhoto
       .querySelector(`[data-name="${name}"]`)
       .closest('.box__preview');
-
     block.classList.add('removing');
     setInterval(() => {
       block.remove();
     }, 300);
   });
-  data.cardPhoto = cardPhoto;
 
-  let files = [];
   let arrPhoto = [];
   function changeHandlerImages(event) {
     if (!event.target.files.length) {
       return;
     }
-    files = Array.from(event.target.files);
+    const files = Array.from(event.target.files);
 
     files.forEach((file) => {
       if (!file.type.match('image')) {
@@ -116,14 +112,13 @@ export default function loadimg(data) {
 
         const srcSmall = await reduceImage(src, 700);
         arrPhoto.push({ filename: file.name, srcSmall });
-
         let sizeFile = Math.trunc(file.size / 8000);
         boxCardPhotoDesc.insertAdjacentHTML(
           'beforeend',
           `
           <div class="box__preview">
           <div class="box__preview-remove" data-name="${file.name}">&times</div>
-            <img src="${src}" />
+            <img src="${srcSmall}" id="photo-desc-img" />
             <div class="box__preview-name">
               <span>${file.name}</span>
               <span>${sizeFile}kB</span>
@@ -151,15 +146,9 @@ export default function loadimg(data) {
       block.remove();
     }, 300);
 
-    // console.log(arrPhoto.name);
-    let arrPhotoForDb = [];
-    arrPhoto.forEach((photo) => {
-      arrPhotoForDb.push(photo.srcSmall);
-    });
     if (arrPhoto.length === 0) {
       svgDesc.classList.remove('notEmpty');
     }
-    data.descPhoto = arrPhotoForDb;
   });
 
   function changeHandlerTrek(event) {
