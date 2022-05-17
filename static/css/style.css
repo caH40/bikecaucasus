@@ -836,6 +836,7 @@ option {
   padding: 15px 55px 5px 20px;
 }
 .comment__text {
+  font-style: italic;
   padding-bottom: 10px;
 }
 .comment__signature {

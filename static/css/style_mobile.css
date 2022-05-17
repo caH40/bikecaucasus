@@ -322,6 +322,15 @@
   .box__status-text {
     font-size: 10px;
   }
+  .popap__edit-trail {
+    right: 0px;
+  }
+  .comment__popap {
+    right: 12px;
+  }
+  .comment {
+    padding-right: 40px;
+  }
 }
 @media (max-width: 450.98px) {
   .profile-edit__inner {
