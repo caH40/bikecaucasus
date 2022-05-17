@@ -1,5 +1,7 @@
 import myFetch from '../utilities/myfetch.js';
 import descriptionPage from '../pages/description-page.js';
+import trailEditPage from '../pages/trail-edit.js';
+import helpersHandlebars from '../view/helpersDiscription.js';
 import { render } from '../view/viewer.js';
 
 import {
@@ -7,6 +9,8 @@ import {
   handlerDisLike,
   handlerMessagePopup,
 } from '../dynamics/kudosHandler.js';
+
+helpersHandlebars();
 
 export default {
   async getKudos(cardId, userId) {
@@ -180,7 +184,6 @@ export default {
       cardEdit = document.querySelector(`#card__edit-${cardId}`);
       cardRemove = document.querySelector(`#card__remove-${cardId}`);
 
-      console.log(popapCard);
       //отслеживание блока попапа
       popapCard.addEventListener('mouseleave', () => {
         cardMenuItem.classList.remove('visible');
@@ -196,7 +199,10 @@ export default {
           `/description/trail-edit?cardid=${cardId}`
         );
         console.log(dataFromDb);
-        render({ data: 'x' }, '#descriptionEditCard');
+        dataFromDb.card.authorPhoto = dataFromDb.photo.authorPhoto;
+        const dataTemplate = dataFromDb.card;
+        render(dataTemplate, '#descriptionEditCard');
+        trailEditPage(dataFromDb.card.cardPhoto, dataFromDb.photo.descPhoto);
         return;
       });
 

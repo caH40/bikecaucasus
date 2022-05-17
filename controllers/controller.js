@@ -353,7 +353,13 @@ export async function getDescriptionTrailEdit(req, res) {
   try {
     const cardId = req.query.cardid;
     const card = await Card.findOne({ _id: cardId });
-    res.status(200).json({ card, message: 'ok' });
+    const photo = await Photo.findOne({ cardId });
+    console.log(photo);
+    res.status(200).json({
+      card,
+      photo: photo,
+      message: 'данные о маршруте из БД',
+    });
   } catch (error) {
     console.log(error);
   }
@@ -361,7 +367,6 @@ export async function getDescriptionTrailEdit(req, res) {
 
 export function postDescriptionTrailEdit(req, res) {
   try {
-    console.log(req.body);
     res.status(201).json({ message: 'редактирование карточки' });
   } catch (error) {
     res.status(400).json({ message: 'Ошибка - редактирование карточки' });

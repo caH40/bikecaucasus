@@ -378,8 +378,8 @@
 
     <script id="descriptionEditCard" type="text/x-handlebars-template">
                 <div class="inner__card-edit">
-                     <h3 class="title__page">Добавление/редактирование маршрутов</h3>
-                    <h4 class="title__page title__page-sub">Создание карточки</h4>
+                     <h3 class="title__page">Редактирование маршрута</h3>
+                    <h4 class="title__page title__page-sub">Редактирование карточки</h4>
                     <form class="card-edit__form" id="card-edit__form" method="post" enctype="multipart/form-data">
                         <div class="card-edit__block">
     
@@ -387,7 +387,7 @@
                                 <div class="box__data">
                                     <h4 class="box__title">Название маршрута:</h4>
                                     <input class="input" name="name-route" id="name-route" type="text"
-                                        placeholder="введите данные" maxlength="16" />
+                                        placeholder="введите данные" maxlength="16" value="{{nameRoute}}" />
                                 </div>
                                 <div class="box__status box__status-text">
                                     <svg class="box__checkmark" id="name-route-img" width="25" height="28"
@@ -403,12 +403,12 @@
                                 <div class="box__data">
                                     <h4 class="box__title">Республика по которой проходит маршрут:</h4>
                                     <select class="input select" name="state" id="state">
-                                        <option value=""></option>
-                                        <option value="КавМинВоды">КавМинВоды</option>
-                                        <option value="Карачаево-Черкессия">Карачаево-Черкессия</option>
-                                        <option value="Кабардино-Балкария">Кабардино-Балкария</option>
-                                        <option value="Северная Осетия">Северная Осетия</option>
-                                        <option value="Адыгея">Адыгея</option>
+                                        <option  value=""></option>
+                                        <option {{#if (stateKMV state)}}selected="selected"{{/if}} value="КавМинВоды">КавМинВоды</option>
+                                        <option {{#if (stateKCHR state)}}selected="selected"{{/if}}  value="Карачаево-Черкессия">Карачаево-Черкессия</option>
+                                        <option {{#if (stateKBR state)}}selected="selected"{{/if}} value="Кабардино-Балкария">Кабардино-Балкария</option>
+                                        <option {{#if (stateRSO state)}}selected="selected"{{/if}} value="Северная Осетия">Северная Осетия</option>
+                                        <option {{#if (stateRA state)}}selected="selected"{{/if}} value="Адыгея">Адыгея</option>
                                     </select>
                                 </div>
                                 <div class="box__status box__status-text">
@@ -426,8 +426,8 @@
                                     <h4 class="box__title">Тип активности:</h4>
                                     <select class="input select" name="bike-type" id="bike-type">
                                         <option value=""></option>
-                                        <option value="Шоссейный">Шоссейный велосипед</option>
-                                        <option value="Горный">Горный байк</option>
+                                        <option {{#if (typeRoad bikeType)}}selected="selected"{{/if}} value="Шоссейный">Шоссейный велосипед</option>
+                                        <option {{#if (typeMTB bikeType)}}selected="selected"{{/if}} value="Горный">Горный байк</option>
                                     </select>
                                 </div>
                                 <div class="box__status box__status-text">
@@ -444,7 +444,7 @@
                                 <div class="box__data">
                                     <h4 class="box__title">Место старта маршрута:</h4>
                                     <input class="input" name="start" id="start" type="text" placeholder="введите данные"
-                                        maxlength="13" />
+                                        maxlength="13" value="{{start}}" />
                                 </div>
                                 <div class="box__status box__status-text">
                                     <svg class="box__checkmark" id="start-img" width="25" height="28" viewBox="0 0 25 28"
@@ -460,7 +460,7 @@
                                 <div class="box__data">
                                     <h4 class="box__title">Место разворота:</h4>
                                     <input class="input" name="turn" id="turn" type="text" placeholder="введите данные"
-                                        maxlength="14" />
+                                        maxlength="14" value="{{turn}}" />
                                 </div>
                                 <div class="box__status box__status-text">
                                     <svg class="box__checkmark" id="turn-img" width="25" height="28" viewBox="0 0 25 28"
@@ -476,7 +476,7 @@
                                 <div class="box__data">
                                     <h4 class="box__title">Место финиша маршрута:</h4>
                                     <input class="input" name="finish" id="finish" type="text" placeholder="введите данные"
-                                        maxlength="13" />
+                                        maxlength="13" value="{{finish}}" />
                                 </div>
                                 <div class="box__status box__status-text">
                                     <svg class="box__checkmark" id="finish-img" width="25" height="28" viewBox="0 0 25 28"
@@ -492,7 +492,7 @@
                                 <div class="box__data">
                                     <h4 class="box__title">Длина маршрута в километрах:</h4>
                                     <input class="input" name="distance" id="distance" type="number"
-                                        placeholder="введите данные" maxlength="4" />
+                                        placeholder="введите данные" maxlength="4" value="{{distance}}" />
                                 </div>
                                 <div class="box__status box__status-text">
                                     <svg class="box__checkmark" id="distance-img" width="25" height="28" viewBox="0 0 25 28"
@@ -508,7 +508,7 @@
                                 <div class="box__data">
                                     <h4 class="box__title">Общий набор в метрах на маршруте:</h4>
                                     <input class="input" name="ascent" id="ascent" type="number"
-                                        placeholder="введите данные" maxlength="5" />
+                                        placeholder="введите данные" maxlength="5" value="{{ascent}}" />
                                 </div>
                                 <div class="box__status box__status-text">
                                     <svg class="box__checkmark" id="ascent-img" width="25" height="28" viewBox="0 0 25 28"
@@ -534,13 +534,14 @@
                                             d="M0.853027 13.7011C4.33691 18.2245 7.71484 22.2968 10.9619 27.4472C14.4922 19.0214 18.1055 10.5663 24.0674 1.40986L22.4609 0.526855C17.4268 6.9335 13.5156 12.9979 10.1172 20.205C7.75391 17.6503 3.93457 14.0351 1.60254 12.1776L0.853027 13.7011Z"
                                             fill="#690000" />
                                     </svg>
+                                    
                                 </div>
                             </div>
     
                             <div class="box__images" id="input__card-photo-images">
                             </div>
                         </div>
-                        <h4 class="title__page title__page-sub">Создание страницы описания маршрута</h4>
+                        <h4 class="title__page title__page-sub">Редактирование страницы описания маршрута</h4>
                         <div class="card-edit__block">
                             <div class="area">
                                 <div class="box__data">
@@ -554,7 +555,7 @@
                                         Количество фотографий, добавляемых в следующем шаге должно быть равно количеству абзацев.
                                         Первый абзац будет соответственно с первой фотографией и т.д., поэтому желательно что бы смысл абзаца соответствовал фотографии.
                                         Добавлять фотографии только в альбомном формате. 
-                                        "></textarea>
+                                        ">{{descriptionArea}}</textarea>
                                 </div>
                                 <div class="box__status box__status-text">
                                     <svg class="box__checkmark" id="description-area-img" width="25" height="28"
@@ -589,7 +590,7 @@
                                 <div class="box__data">
                                     <h4 class="box__title">Ссылка на сайт автора фотографий</h4>
                                     <input class="input" name="video" id="url-photo-author" type="text"
-                                        placeholder="введите данные" />
+                                        placeholder="введите данные" value="{{authorPhoto}}" />
                                 </div>
                                 <div class="box__status box__status-text">
                                     <span class="box__status-text">Опционально</span>
@@ -608,7 +609,7 @@
                                 <div class="box__data">
                                     <h4 class="box__title">Ссылка на маршрут в GConnect</h4>
                                     <input class="input" name="video" id="url-trek-gconnect" type="text"
-                                        placeholder="введите данные" />
+                                        placeholder="введите данные" value="{{urlTrekGConnect}}" />
                                 </div>
                                 <div class="box__status box__status-text">
                                     <span class="box__status-text"></span>
@@ -625,7 +626,7 @@
                                 <div class="box__data">
                                     <h4 class="box__title">Ссылка на видео с маршрута (если есть) </h4>
                                     <input class="input" name="video" id="url-video" type="text"
-                                        placeholder="введите данные" />
+                                        placeholder="введите данные" value="{{urlVideo}}" />
                                 </div>
                                 <div class="box__status box__status-text">
                                     <span class="box__status-text">Опционально</span>
@@ -644,6 +645,7 @@
                                     <input class="btn__input" id="input__trek" type="file">
                                 </div>
                                 <div class="box__status box__status-text">
+                                    <span class="box__status-text" id="trek-status-text">{{fileTrekName}}</span>
                                     <svg class="box__checkmark" id="input__trek-img" width="25" height="28"
                                         viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
