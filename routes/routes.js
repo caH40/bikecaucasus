@@ -11,13 +11,13 @@ import {
   getCardData,
   createTrailPage,
   sendFormCard,
+  postTrailEdited,
   getDescriptionData,
   getUsers,
   postDescriptionComment,
   postDescriptionCommentEdit,
   postDescriptionCommentRemove,
   getDescriptionTrailEdit,
-  postDescriptionTrailEdit,
   postDescriptionTrailRemove,
   getResults,
   getResultEvent,
@@ -56,11 +56,7 @@ router.post(
 );
 
 router.get('/description/trail-edit', authMiddleware, getDescriptionTrailEdit);
-router.post(
-  '/description/trail-edit',
-  authMiddleware,
-  postDescriptionTrailEdit
-);
+router.post('/trail-edited', authMiddleware, postTrailEdited);
 router.post(
   '/description/trail-remove',
   authMiddleware,
@@ -70,6 +66,7 @@ router.post(
 router.get('/create-trail', createTrailPage);
 //запись данных о маршруте в базу
 router.post('/newcard', authMiddleware, sendFormCard);
+
 //получение карточек маршрутов
 // router.get('/trail/getcards', getCardData);
 router.get('/trail/getcards', authMiddleware, getCardData);

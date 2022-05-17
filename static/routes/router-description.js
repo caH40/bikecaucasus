@@ -198,11 +198,15 @@ export default {
         const dataFromDb = await myFetch.fetchGet(
           `/description/trail-edit?cardid=${cardId}`
         );
-        console.log(dataFromDb);
+
         dataFromDb.card.authorPhoto = dataFromDb.photo.authorPhoto;
         const dataTemplate = dataFromDb.card;
         render(dataTemplate, '#descriptionEditCard');
-        trailEditPage(dataFromDb.card.cardPhoto, dataFromDb.photo.descPhoto);
+        trailEditPage(
+          dataFromDb.card.cardPhoto,
+          dataFromDb.photo.descPhoto,
+          dataFromDb.card
+        );
         return;
       });
 

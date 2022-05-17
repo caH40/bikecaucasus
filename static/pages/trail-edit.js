@@ -6,7 +6,7 @@ import {
   checkAllInputs,
 } from '../utilities/check-empty.js';
 
-export default function (cardPhotoDb, descPhotoDb) {
+export default function (cardPhotoDb, descPhotoDb, card) {
   const svgAll = document.querySelectorAll('.box__checkmark');
 
   const form = document.querySelector('#card-edit__form');
@@ -49,7 +49,7 @@ export default function (cardPhotoDb, descPhotoDb) {
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-
+    data.cardIdOld = card._id;
     data.nameRoute = nameRoute.value;
     data.state = state.value;
     data.bikeType = bikeType.value;
@@ -65,6 +65,7 @@ export default function (cardPhotoDb, descPhotoDb) {
     data.cardPhoto =
       divBoxImageCard.querySelector('#photo-desc-img').currentSrc;
 
+    data.descPhoto ??= [];
     let arrDescPhoto = divBoxImageDesc.querySelectorAll('#photo-desc-img');
     arrDescPhoto.forEach((element) => {
       data.descPhoto.push(element.currentSrc);
@@ -81,39 +82,45 @@ export default function (cardPhotoDb, descPhotoDb) {
     data.urlVideo = urlVideo.value;
     data.authorPhoto = authorPhoto.value;
 
-    // if (checker) {
-    //отправка файла с треком
-    myFetch.fetchPostFile('/uploadTrek', data.fileTrek);
-    delete data.fileTrek;
+    if (checker) {
+      //отправка файла с треком
 
-    const dataFromDb = await myFetch.fetchPost('/newcard', data);
-    //формирование сообщения о выполнении, добавить карточку только что созданного маршрута
-    //что бы сразу оценить её и проверить на ошибки
-    const innerCardEdit = document.querySelector('.inner__card-edit');
-    const answerElement = document.createElement('div');
-    answerElement.classList.add('answer');
-    answerElement.textContent = 'Маршрут сохранён!';
+      if (data.fileTrek) {
+        myFetch.fetchPostFile(
+          `/uploadTrek?trekname=${card.fileTrekName}`,
+          data.fileTrek
+        );
+        delete data.fileTrek;
+      }
 
-    //модальное окно о сохранении маршрута
-    if (dataFromDb.dispatched) {
-      innerCardEdit.replaceWith(answerElement);
+      const dataFromDb = await myFetch.fetchPost('/trail-edited', data);
+      //формирование сообщения о выполнении, добавить карточку только что созданного маршрута
+      //что бы сразу оценить её и проверить на ошибки
+      const innerCardEdit = document.querySelector('.inner__card-edit');
+      const answerElement = document.createElement('div');
+      answerElement.classList.add('answer');
+      answerElement.textContent = 'Маршрут сохранён!';
+
+      //модальное окно о сохранении маршрута
+      if (dataFromDb.dispatched) {
+        innerCardEdit.replaceWith(answerElement);
+      } else {
+        answerElement.textContent = dataFromDb.message;
+        innerCardEdit.replaceWith(answerElement);
+      }
+
+      event.target.reset();
+      const spanTrek = document.getElementById('trek-status-text');
+      if (spanTrek) {
+        spanTrek.textContent = '';
+      }
+      divBoxImageCard.innerHTML = '';
+      divBoxImageDesc.innerHTML = '';
+      svgAll.forEach((element) => {
+        element.classList.remove('notEmpty');
+      });
     } else {
-      answerElement.textContent = dataFromDb.message;
-      innerCardEdit.replaceWith(answerElement);
+      console.log('Не все поля заполнены');
     }
-
-    event.target.reset();
-    const spanTrek = document.getElementById('trek-status-text');
-    if (spanTrek) {
-      spanTrek.textContent = '';
-    }
-    divBoxImageCard.innerHTML = '';
-    divBoxImageDesc.innerHTML = '';
-    svgAll.forEach((element) => {
-      element.classList.remove('notEmpty');
-    });
-    // } else {
-    //   console.log('Не все поля заполнены');
-    // }
   });
 }

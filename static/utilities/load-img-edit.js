@@ -197,6 +197,7 @@ export default function (cardPhotoDb, descPhotoDb, data) {
       newSpan.remove();
     }
     const file = event.target.files[0];
+    console.log(file);
     const fileName = file.name;
     let dataFileTrek = new FormData();
     dataFileTrek.append('filedata', file);

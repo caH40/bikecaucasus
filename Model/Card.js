@@ -20,6 +20,7 @@ const cardSchema = new Schema({
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
   kudoses: { type: mongoose.Schema.Types.ObjectId, ref: 'Kudos' },
   dateCreate: { type: Number },
+  dateEdit: { type: Number },
 });
 
 export default model('Card', cardSchema);

@@ -81,40 +81,40 @@ async function sendData() {
     data.urlVideo = urlVideo.value;
     data.authorPhoto = authorPhoto.value;
 
-    // if (checker) {
-    //отправка файла с треком
-    myFetch.fetchPostFile('/uploadTrek', data.fileTrek);
-    delete data.fileTrek;
+    if (checker) {
+      //отправка файла с треком
+      myFetch.fetchPostFile('/uploadTrek', data.fileTrek);
+      delete data.fileTrek;
 
-    const dataFromDb = await myFetch.fetchPost('/newcard', data);
-    //формирование сообщения о выполнении, добавить карточку только что созданного маршрута
-    //что бы сразу оценить её и проверить на ошибки
-    const innerCardEdit = document.querySelector('.inner__card-edit');
-    const answerElement = document.createElement('div');
-    answerElement.classList.add('answer');
-    answerElement.textContent = 'Маршрут сохранён!';
+      const dataFromDb = await myFetch.fetchPost('/newcard', data);
+      //формирование сообщения о выполнении, добавить карточку только что созданного маршрута
+      //что бы сразу оценить её и проверить на ошибки
+      const innerCardEdit = document.querySelector('.inner__card-edit');
+      const answerElement = document.createElement('div');
+      answerElement.classList.add('answer');
+      answerElement.textContent = 'Маршрут сохранён!';
 
-    //модальное окно о сохранении маршрута
-    if (dataFromDb.dispatched) {
-      innerCardEdit.replaceWith(answerElement);
+      //модальное окно о сохранении маршрута
+      if (dataFromDb.dispatched) {
+        innerCardEdit.replaceWith(answerElement);
+      } else {
+        answerElement.textContent = dataFromDb.message;
+        innerCardEdit.replaceWith(answerElement);
+      }
+
+      event.target.reset();
+      const spanTrek = document.getElementById('trek-status-text');
+      if (spanTrek) {
+        spanTrek.textContent = '';
+      }
+      divBoxImageCard.innerHTML = '';
+      divBoxImageDesc.innerHTML = '';
+      svgAll.forEach((element) => {
+        element.classList.remove('notEmpty');
+      });
     } else {
-      answerElement.textContent = dataFromDb.message;
-      innerCardEdit.replaceWith(answerElement);
+      console.log('Не все поля заполнены');
     }
-
-    event.target.reset();
-    const spanTrek = document.getElementById('trek-status-text');
-    if (spanTrek) {
-      spanTrek.textContent = '';
-    }
-    divBoxImageCard.innerHTML = '';
-    divBoxImageDesc.innerHTML = '';
-    svgAll.forEach((element) => {
-      element.classList.remove('notEmpty');
-    });
-    // } else {
-    //   console.log('Не все поля заполнены');
-    // }
   });
 }
 sendData();

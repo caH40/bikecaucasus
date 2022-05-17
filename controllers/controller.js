@@ -316,13 +316,14 @@ export async function sendFormCard(req, res) {
     data.postedBy = userId;
     data.date = new Date().getTime();
     if (!data.nameRoute) {
-      console.log(new Date().toLocaleString(), data.nameRoute, data);
+      console.log(new Date().toLocaleString());
       res.status(400).json({
-        dispatched: false.valueOf,
+        dispatched: false,
         message: 'Нет наименования маршрута',
       });
       return;
     }
+    console.log(data);
     const card = new Card(data);
     const cardSaved = await card.save();
 
@@ -348,13 +349,72 @@ export async function sendFormCard(req, res) {
     console.log(error);
   }
 }
+//сохранение изменённых данных маршрута в Монго
+export async function postTrailEdited(req, res) {
+  try {
+    const data = req.body;
+    const userId = req.user.id;
+
+    data.postedBy = userId;
+    data.date = new Date().getTime();
+
+    if (!data.nameRoute) {
+      console.log(new Date().toLocaleString());
+      res.status(400).json({
+        dispatched: false,
+        message: 'Нет наименования маршрута',
+      });
+      return;
+    }
+
+    const card = await Card.findOneAndUpdate(
+      { _id: data.cardIdOld },
+      {
+        $set: {
+          nameRoute: data.nameRoute,
+          state: data.state,
+          bikeType: data.bikeType,
+          start: data.start,
+          turn: data.turn,
+          finish: data.finish,
+          distance: data.distance,
+          ascent: data.ascent,
+          descriptionArea: data.descriptionArea,
+          urlTrekGConnect: data.urlTrekGConnect,
+          dateEdit: data.date,
+          cardPhoto: data.cardPhoto,
+          urlVideo: data.urlVideo,
+          fileTrekName: data.fileTrekName,
+        },
+      }
+    );
+
+    const photo = await Photo.findOneAndUpdate(
+      { cardId: data.cardIdOld },
+      {
+        $set: {
+          nameRoute: data.nameRoute,
+          state: data.state,
+          descPhoto: data.descPhoto,
+          authorPhoto: data.authorPhoto,
+        },
+      }
+    );
+
+    res.status(201).send({ dispatched: true });
+  } catch (error) {
+    res
+      .status(400)
+      .json({ message: 'Ошибка при сохранении изменений в маршруте' });
+    console.log(error);
+  }
+}
 
 export async function getDescriptionTrailEdit(req, res) {
   try {
     const cardId = req.query.cardid;
     const card = await Card.findOne({ _id: cardId });
     const photo = await Photo.findOne({ cardId });
-    console.log(photo);
     res.status(200).json({
       card,
       photo: photo,
@@ -365,14 +425,6 @@ export async function getDescriptionTrailEdit(req, res) {
   }
 }
 
-export function postDescriptionTrailEdit(req, res) {
-  try {
-    res.status(201).json({ message: 'редактирование карточки' });
-  } catch (error) {
-    res.status(400).json({ message: 'Ошибка - редактирование карточки' });
-    console.log;
-  }
-}
 export async function postDescriptionTrailRemove(req, res) {
   try {
     const cardId = req.body.cardId;
@@ -459,6 +511,12 @@ export async function getUser(req, res) {
 
 export async function postFileTrek(req, res) {
   try {
+    //получение старого названия трека
+    if (req.query.trekname !== 'undefined') {
+      const oldNameTrek = req.query.trekname;
+      res.status(200).json({ message: 'Получил название нового файла' });
+      return;
+    }
     if (req.file) {
       res.json(req.file);
     }
