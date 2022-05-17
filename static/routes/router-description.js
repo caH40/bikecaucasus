@@ -58,6 +58,12 @@ export default {
     }
   },
   async comment(cardId) {
+    const titleComment = document.querySelector('#comment__title');
+    const commentInvisible = document.querySelector('#comment__invisible');
+    titleComment.addEventListener('click', () => {
+      commentInvisible.classList.toggle('visible');
+    });
+
     const commentButton = document.querySelector('#comment__btn');
     const commentArea = document.querySelector('#comment-area');
     const commentAreaStatus = document.querySelector('#comment__area-status');

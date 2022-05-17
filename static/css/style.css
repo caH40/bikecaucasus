@@ -845,7 +845,10 @@ option {
 }
 .comment__title {
   color: #f1f1f1;
-  padding-bottom: 5px;
+  padding-bottom: 8px;
+}
+.comment__title-pointer {
+  cursor: pointer;
 }
 .comment__area-status {
   font-size: 12px;

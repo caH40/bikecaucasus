@@ -364,13 +364,15 @@
         {{#if (isAuth userId)}}
         <div class="comment description__text">
             <div class="comment__inner">
-                <h4 class="comment__title">Оставьте комментарий к маршруту</h4>
-                <textarea class="area__inner comment__area" name="comment-area" id="comment-area" rows="3" placeholder=""></textarea>
-                <div class="comment__btn-box">
+                <h4 class="comment__title comment__title-pointer " id="comment__title">Оставьте комментарий к маршруту</h4>
+                <div class="invisible" id="comment__invisible">
+                    <textarea class="area__inner comment__area" name="comment-area" id="comment-area" rows="3" placeholder=""></textarea>
+                    <div class="comment__btn-box">
                     <button class="box__btn div__btn comment__btn" id="comment__btn"
                      type="submit">Опубликовать</button>
                     <div class="comment__area-status" id="comment__area-status"></div>
                 </div>
+            </div>
             </div>
         </div>
         {{/if}}
@@ -847,13 +849,15 @@
             {{#if (isAuth userId)}}
             <div class="comment description__text">
                 <div class="comment__inner">
-                    <h4 class="comment__title">Оставьте комментарий к маршруту</h4>
-                    <textarea class="area__inner comment__area" name="comment-area" id="comment-area" rows="3" placeholder=""></textarea>
-                    <div class="comment__btn-box">
+                    <h4 class="comment__title comment__title-pointer " id="comment__title">Оставьте комментарий к маршруту</h4>
+                    <div class="invisible" id="comment__invisible">
+                        <textarea class="area__inner comment__area" name="comment-area" id="comment-area" rows="3" placeholder=""></textarea>
+                        <div class="comment__btn-box">
                         <button class="box__btn div__btn comment__btn" id="comment__btn"
                          type="submit">Опубликовать</button>
                         <div class="comment__area-status" id="comment__area-status"></div>
                     </div>
+                </div>
                 </div>
             </div>
             {{/if}}
