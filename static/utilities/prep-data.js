@@ -57,7 +57,7 @@ export default {
       console.log(error);
     }
   },
-  async comments(comments) {
+  comments(comments) {
     //обработка блока комментариев
     comments.forEach((comment) => {
       comment.date = new Date(Number(comment.date)).toLocaleDateString();

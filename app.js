@@ -6,6 +6,7 @@ import cors from 'cors';
 
 import serverRoutes from './routes/routes.js';
 import authRouter from './routes/authRouter.js';
+import mainRouter from './routes/mainRouter.js';
 import controlRegistration from './app_modules/control-registration.js';
 
 const __dirname = path.resolve();
@@ -30,6 +31,7 @@ app.use(function (req, res, next) {
 
 app.use(serverRoutes);
 app.use('/auth', authRouter);
+app.use('/main', mainRouter);
 
 //опрос неактивированных аккаунтов
 const millisecondsInFourHours = 1440000;
