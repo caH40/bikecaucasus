@@ -207,7 +207,7 @@
                     <div class="news__box box-news">
                         <div class="box-news__block-text">
                             <h3 class="box-news__title" id="box-news__title-{{_id}}">{{newsTitle}}</h3>
-                            <p class="box-news__text" id="box-news__text-{{_id}}">{{newsText}}</p>
+                            <p class="box-news__text" id="box-news__text-{{_id}}">{{{newsText}}}</p>
 
                             {{#if (checkRoleUser userRole)}}
                             <div class="comment__popap popap-comment" id="popap-news-{{_id}}">
@@ -284,7 +284,7 @@
 
                                     </span>
                                 </div>
-                                <div class="interactive-news__icon-box">
+                                <div class="interactive-news__icon-box " id="icon-box__dislike">
                                     <span class="interactive-news__icon-img" id="icon-span__dislike">
                                         <svg width="28" height="25" viewBox="0 0 28 25" fill="none"
                                             xmlns="http://www.w3.org/2000/svg" id="icon-img__dislike">

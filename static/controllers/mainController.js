@@ -104,7 +104,7 @@ export default {
   async postNewsForm(news, blockNewsCreate, url, newsId) {
     news.newsText = news.newsText.split('\n').join('<br>');
 
-    const newsImage = await reduceImage(news.newsImage, 400);
+    const newsImage = await reduceImage(news.newsImage, 800);
     news.newsImage = newsImage;
     news.newsId = newsId;
 
