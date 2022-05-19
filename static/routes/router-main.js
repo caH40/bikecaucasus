@@ -92,7 +92,8 @@ export default {
     function handlerLoadFile(event) {
       const file = event.target.files[0];
 
-      controller.inputImage(file, loadImageBlock);
+      const newImageId = 'news-create__img';
+      controller.inputImage(file, loadImageBlock, newImageId);
     }
 
     this.sendForm(sendFormBtn, blockNewsCreate);
@@ -154,7 +155,8 @@ export default {
     function handlerLoadFile(event) {
       const file = event.target.files[0];
 
-      controller.inputImage(file, loadImageBlock);
+      const newImageId = `news-edit__img-${newsId}`;
+      controller.inputImage(file, loadImageBlock, newImageId);
     }
     this.sendEditedForm(newsId, sendFormBtn, blockNewsEdit);
   },
@@ -164,7 +166,7 @@ export default {
       (event) => {
         event.preventDefault();
         //блок HTML вставки изображения общий для create и edit
-        const newsImage = document.querySelector(`#news-create__img`);
+        const newsImage = document.querySelector(`#news-edit__img-${newsId}`);
         const newsTitle = document.querySelector(`#news-edit__input-${newsId}`);
         const newsText = document.querySelector(`#news-edit__area-${newsId}`);
 

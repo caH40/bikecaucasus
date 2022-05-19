@@ -77,7 +77,7 @@ export default {
     //прослушка окна публикации новости
     router.createNewsBlock();
   },
-  inputImage(file, loadImageBlock) {
+  inputImage(file, loadImageBlock, newImageId) {
     loadImageBlock.innerHTML = '';
 
     const reader = new FileReader();
@@ -89,7 +89,7 @@ export default {
         'afterbegin',
         `<div class="news-create__preview">
         <div class="news-create__cross" id="news-create__cross">&times</div>
-          <img class="news__img" src="${src}" id="news-create__img"/>
+          <img class="news__img" src="${src}" id="${newImageId}"/>
           <div class="news-create__preview-name">
             <span>${file.name}</span>
             <span>${sizeFile}kB</span>
@@ -102,7 +102,7 @@ export default {
     reader.readAsDataURL(file);
   },
   async postNewsForm(news, blockNewsCreate, url, newsId) {
-    // news.newsText = news.newsText.split('\n').join('<br>');
+    news.newsText = news.newsText.split('\n').join('<br>');
 
     const newsImage = await reduceImage(news.newsImage, 400);
     news.newsImage = newsImage;
@@ -133,7 +133,7 @@ export default {
         <div class="news-create__block">
             <div class="news-create__remove-cross" id="news-edit__remove-cross">&times</div>
             <div class="news-create__image" id="news-edit__image">
-                <img class="news__img" src="${newsImage}" alt="картинка новости" id="news__img-{{_id}}">
+                <img class="news__img" src="${newsImage}" alt="картинка новости" id="news-edit__img-${newsId}">
             </div>
             <form class="news-create__form">
                 <input class="news-create__input" type="text" placeholder="Заголовок новости" value="${newsTitle}"

@@ -39,6 +39,9 @@ export async function getNews(req, res) {
 // сохранение новой новости
 export async function postNews(req, res) {
   try {
+    if (!req.user.roles.includes('admin')) {
+      return res.status(403).json({ message: 'У вас нет прав для этой операции' });
+    }
     const userId = req.user.id;
     const { newsImage, newsTitle, newsText } = req.body;
 
