@@ -42,6 +42,7 @@ export default {
   },
   createNews(idNews) {
     let blockNews;
+    //для первой новости на сайте else
     if (idNews) {
       blockNews = document.querySelector(`#block-news-${idNews}`);
     } else {
@@ -107,11 +108,44 @@ export default {
     const response = await myFetch.fetchPost('/main/news-post', news);
     console.log(response);
     blockNewsCreate.innerHTML = '';
-    this.main();
+    router.main();
   },
   async deleteNewsForm(newsId) {
     const response = await myFetch.fetchPost('/main/news-delete', { newsId });
     console.log(response);
-    this.main();
+    router.main();
+  },
+  async editNewsForm(newsId) {
+    const newsImage = document.querySelector(`#news__img-${newsId}`).src;
+    const newsTitle = document.querySelector(`#box-news__title-${newsId}`).innerHTML;
+    const newsText = document.querySelector(`#box-news__text-${newsId}`).innerHTML;
+
+    const blockNews = document.querySelector(`#block-news-${newsId}`);
+
+    blockNews.insertAdjacentHTML(
+      'afterend',
+      `
+      <div class="news-create" id="news-create">
+        <h4 class="news-create__title">Редактирование</h4>
+        <div class="news-create__block">
+            <div class="news-create__remove-cross" id="news-create__remove-cross">&times</div>
+            <div class="news-create__image" id="news-create__image">
+                <img class="news__img" src="${newsImage}" alt="картинка новости" id="news__img-{{_id}}">
+            </div>
+            <form class="news-create__form">
+                <input class="news-create__input" type="text" placeholder="Заголовок новости" value="${newsTitle}"
+                    id="news-create__input">
+                <textarea class="news-create__area" name="create-news" rows="6"
+                    id="news-create__area" placeholder="Текст новости">${newsText}</textarea>
+                <button class="news-create__btn" id="news-create__image-btn"
+                    type="submit">Загрузить</button>
+                <input class="profile__img-input" type="file" accept=".jpg, .jpeg, .png, .webp" id="news-create__image-input">
+                <button class="news-create__btn" type="submit"
+                    id="news-create__btn-send">Опубликовать</button>
+            </form>
+        </div>
+      </div>
+      `
+    );
   },
 };

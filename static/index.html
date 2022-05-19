@@ -202,12 +202,12 @@
                 {{#each list}}
                 <div class="main__block-news block-news" id="block-news-{{_id}}">
                     <div class="news__image">
-                        <img class="news__img" src="{{newsImage}}" alt="картинка новости">
+                        <img class="news__img" src="{{newsImage}}" alt="картинка новости" id="news__img-{{_id}}">
                     </div>
                     <div class="news__box box-news">
                         <div class="box-news__block-text">
-                            <h3 class="box-news__title">{{newsTitle}}</h3>
-                            <p class="box-news__text">{{newsText}}</p>
+                            <h3 class="box-news__title" id="box-news__title-{{_id}}">{{newsTitle}}</h3>
+                            <p class="box-news__text" id="box-news__text-{{_id}}">{{newsText}}</p>
 
                             {{#if (checkRoleUser userRole)}}
                             <div class="comment__popap popap-comment" id="popap-news-{{_id}}">

@@ -25,29 +25,41 @@ export default {
     arrowMenuNewsCurrentPath.classList.add('fill-arrow');
 
     const newsCreateBtn = document.querySelector(`#create-${idNews}`);
+    const newsDeleteBtn = document.querySelector(`#remove-${idNews}`);
     const newsEditBtn = document.querySelector(`#edit-${idNews}`);
 
+    //кнопка создания маршрута
     newsCreateBtn.addEventListener('click', handlerCreate, { once: true });
     function handlerCreate() {
       popapMenuNewsCurrent.classList.remove('visible');
       arrowMenuNewsCurrentPath.classList.remove('fill-arrow');
       controller.createNews(idNews);
     }
+    //кнопка удаления маршрута
+    newsDeleteBtn.addEventListener('click', handlerRemove, { once: true });
+    function handlerRemove() {
+      popapMenuNewsCurrent.classList.remove('visible');
+      arrowMenuNewsCurrentPath.classList.remove('fill-arrow');
 
-    newsEditBtn.addEventListener('click', handlerEdit);
+      controller.deleteNewsForm(idNews);
+    }
+    //кнопка редактирования маршрута
+    newsEditBtn.addEventListener('click', handlerEdit, { once: true });
     function handlerEdit() {
       popapMenuNewsCurrent.classList.remove('visible');
       arrowMenuNewsCurrentPath.classList.remove('fill-arrow');
+
+      controller.editNewsForm(idNews);
     }
-
-    this.deleteNewsBlock(idNews, popapMenuNewsCurrent, arrowMenuNewsCurrentPath);
-
+    //очистка прослушек с кнопок Создание, Редактирование, Удаление
     menuNewsCurrent.addEventListener('mouseleave', handlerFocusOut, {
       once: true,
     });
     function handlerFocusOut() {
       popapMenuNewsCurrent.classList.remove('visible');
       arrowMenuNewsCurrentPath.classList.remove('fill-arrow');
+      newsCreateBtn.removeEventListener('click', handlerCreate);
+      newsDeleteBtn.removeEventListener('click', handlerRemove);
       newsEditBtn.removeEventListener('click', handlerEdit);
     }
   },
@@ -110,16 +122,5 @@ export default {
 
       controller.postNewsForm(news, blockNewsCreate);
     });
-  },
-  deleteNewsBlock(idNews, popapMenuNewsCurrent, arrowMenuNewsCurrentPath) {
-    const newsDeleteBtn = document.querySelector(`#remove-${idNews}`);
-    newsDeleteBtn.addEventListener('click', handlerRemove, { once: true });
-
-    function handlerRemove() {
-      popapMenuNewsCurrent.classList.remove('visible');
-      arrowMenuNewsCurrentPath.classList.remove('fill-arrow');
-
-      controller.deleteNewsForm(idNews);
-    }
   },
 };

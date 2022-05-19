@@ -55,6 +55,7 @@ body {
   font-family: 'Montserrat Alternates';
   font-size: 26px;
   font-weight: 700;
+  color: rgba(231, 75, 75, 0.45);
   padding-bottom: 10px;
 }
 .news-create__block {
@@ -63,7 +64,7 @@ body {
   position: relative;
   width: 1111px;
   min-height: 278px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(231, 75, 75, 0.45);
   border-radius: 15px;
   padding: 20px;
   margin: 0px 10px 20px 0px;
