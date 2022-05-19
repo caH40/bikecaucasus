@@ -107,11 +107,11 @@ export default {
     const response = await myFetch.fetchPost('/main/news-post', news);
     console.log(response);
     blockNewsCreate.innerHTML = '';
-    window.location.reload();
+    this.main();
   },
   async deleteNewsForm(newsId) {
     const response = await myFetch.fetchPost('/main/news-delete', { newsId });
     console.log(response);
-    // window.location.reload();
+    this.main();
   },
 };
