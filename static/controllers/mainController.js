@@ -60,13 +60,15 @@ export default {
             <form class="news-create__form">
                 <input class="news-create__input" type="text" placeholder="Заголовок новости"
                     id="news-create__input">
-                <textarea class="news-create__area" name="create-news" rows="5"
+                <textarea class="news-create__area" name="create-news" rows="7"
                     id="news-create__area" placeholder="Текст новости"></textarea>
-                <button class="news-create__btn" id="news-create__image-btn"
-                    type="submit">Загрузить</button>
-                <input class="profile__img-input" type="file" accept=".jpg, .jpeg, .png, .webp"         id="news-create__image-input">
-                <button class="news-create__btn" type="submit"
-                    id="news-create__btn-send">Опубликовать</button>
+                <div class="news-create__buttons">
+                    <button class="news-create__btn" id="news-create__image-btn"
+                        type="submit">Загрузить</button>
+                    <input class="profile__img-input" type="file" accept=".jpg, .jpeg, .png, .webp"         id="news-create__image-input">
+                    <button class="news-create__btn" type="submit"
+                        id="news-create__btn-send">Опубликовать</button>
+                </div>
             </form>
         </div>
       </div>
@@ -87,7 +89,7 @@ export default {
         'afterbegin',
         `<div class="news-create__preview">
         <div class="news-create__cross" id="news-create__cross">&times</div>
-          <img src="${src}" id="news-create__img"/>
+          <img class="news__img" src="${src}" id="news-create__img"/>
           <div class="news-create__preview-name">
             <span>${file.name}</span>
             <span>${sizeFile}kB</span>
@@ -99,13 +101,14 @@ export default {
     };
     reader.readAsDataURL(file);
   },
-  async postNewsForm(news, blockNewsCreate) {
+  async postNewsForm(news, blockNewsCreate, url, newsId) {
     // news.newsText = news.newsText.split('\n').join('<br>');
 
     const newsImage = await reduceImage(news.newsImage, 400);
     news.newsImage = newsImage;
+    news.newsId = newsId;
 
-    const response = await myFetch.fetchPost('/main/news-post', news);
+    const response = await myFetch.fetchPost(url, news);
     console.log(response);
     blockNewsCreate.innerHTML = '';
     router.main();
@@ -125,27 +128,31 @@ export default {
     blockNews.insertAdjacentHTML(
       'afterend',
       `
-      <div class="news-create" id="news-create">
+      <div class="news-create" id="news-edit-${newsId}">
         <h4 class="news-create__title">Редактирование</h4>
         <div class="news-create__block">
-            <div class="news-create__remove-cross" id="news-create__remove-cross">&times</div>
-            <div class="news-create__image" id="news-create__image">
+            <div class="news-create__remove-cross" id="news-edit__remove-cross">&times</div>
+            <div class="news-create__image" id="news-edit__image">
                 <img class="news__img" src="${newsImage}" alt="картинка новости" id="news__img-{{_id}}">
             </div>
             <form class="news-create__form">
                 <input class="news-create__input" type="text" placeholder="Заголовок новости" value="${newsTitle}"
-                    id="news-create__input">
-                <textarea class="news-create__area" name="create-news" rows="6"
-                    id="news-create__area" placeholder="Текст новости">${newsText}</textarea>
-                <button class="news-create__btn" id="news-create__image-btn"
-                    type="submit">Загрузить</button>
-                <input class="profile__img-input" type="file" accept=".jpg, .jpeg, .png, .webp" id="news-create__image-input">
-                <button class="news-create__btn" type="submit"
-                    id="news-create__btn-send">Опубликовать</button>
+                    id="news-edit__input-${newsId}">
+                <textarea class="news-create__area" name="create-news" rows="7"
+                    id="news-edit__area-${newsId}" placeholder="Текст новости">${newsText}</textarea>
+                <div class="news-create__buttons">
+                    <button class="news-create__btn" id="news-edit__image-btn"
+                        type="submit">Загрузить</button>
+                    <input class="profile__img-input" type="file" accept=".jpg, .jpeg, .png, .webp" id="news-edit__image-input">
+                    <button class="news-create__btn" type="submit"
+                        id="news-edit__btn-send">Опубликовать</button>
+                </div>
             </form>
         </div>
       </div>
       `
     );
+
+    router.editNewsForm(newsId);
   },
 };

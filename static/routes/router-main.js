@@ -120,7 +120,63 @@ export default {
       news.newsTitle = newsTitle.value;
       news.newsText = newsText.value;
 
-      controller.postNewsForm(news, blockNewsCreate);
+      const url = '/main/news-post';
+
+      controller.postNewsForm(news, blockNewsCreate, url);
     });
+  },
+  editNewsForm(newsId) {
+    const blockNewsEdit = document.querySelector(`#news-edit-${newsId}`);
+    const loadImageBlock = document.querySelector('#news-edit__image');
+    const loadImageBtn = document.querySelector('#news-edit__image-btn');
+    const loadImageInput = document.querySelector('#news-edit__image-input');
+    const closeCross = document.querySelector('#news-edit__remove-cross');
+    const sendFormBtn = document.querySelector('#news-edit__btn-send');
+
+    //закрытие блока публикации новостей
+    closeCross.addEventListener(
+      'click',
+      () => {
+        blockNewsEdit.remove();
+      },
+      { once: true }
+    );
+
+    // кнопка загрузки картинки
+    loadImageBtn.addEventListener('click', handlerLoadBtn);
+    function handlerLoadBtn(event) {
+      event.preventDefault();
+      loadImageInput.click();
+    }
+
+    //интуп выбора файла картинки
+    loadImageInput.addEventListener('change', handlerLoadFile);
+    function handlerLoadFile(event) {
+      const file = event.target.files[0];
+
+      controller.inputImage(file, loadImageBlock);
+    }
+    this.sendEditedForm(newsId, sendFormBtn, blockNewsEdit);
+  },
+  sendEditedForm(newsId, sendFormBtn, blockNewsEdit) {
+    sendFormBtn.addEventListener(
+      'click',
+      (event) => {
+        event.preventDefault();
+        //блок HTML вставки изображения общий для create и edit
+        const newsImage = document.querySelector(`#news-create__img`);
+        const newsTitle = document.querySelector(`#news-edit__input-${newsId}`);
+        const newsText = document.querySelector(`#news-edit__area-${newsId}`);
+
+        const news = {};
+        news.newsImage = newsImage.src;
+        news.newsTitle = newsTitle.value;
+        news.newsText = newsText.value;
+
+        const url = '/main/news-edit';
+        controller.postNewsForm(news, blockNewsEdit, url, newsId);
+      },
+      { once: true }
+    );
   },
 };

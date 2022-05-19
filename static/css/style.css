@@ -66,15 +66,15 @@ body {
   min-height: 278px;
   background: rgba(231, 75, 75, 0.45);
   border-radius: 15px;
-  padding: 20px;
+  padding: 10px;
   margin: 0px 10px 20px 0px;
 }
 .news-create__remove-cross {
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 35px;
-  top: 35px;
+  right: 25px;
+  top: 25px;
   font-weight: bold;
   color: #000000;
   background: rgba(255, 255, 255, 0.356);
@@ -86,18 +86,14 @@ body {
 }
 .news-create__image {
   position: relative;
-  width: 349px;
-  height: 238px;
+  width: 381px;
+  height: 254px;
   border: 1px solid #f1f1f1;
   border-radius: 15px;
   overflow: hidden;
-  margin-right: 20px;
+  margin-right: 10px;
 }
-/* .news-create__image img {
-  object-fit: cover;
-  width: 600px;
-  object-position: right bottom;
-} */
+
 .news-create__btn {
   width: 210px;
   background: #1e541b;
@@ -122,12 +118,13 @@ body {
   background: #ec9c07;
 }
 .news-create__form {
-  display: block;
-  width: 702px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 710px;
   min-height: 238px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
-  padding: 20px;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -136,10 +133,11 @@ body {
   letter-spacing: 0.05em;
   color: #ffffff;
   text-align: right;
+  padding: 10px;
 }
 .news-create__input {
   display: block;
-  min-width: 300px;
+  width: 300px;
   height: 25px;
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid #f1f1f1;
@@ -175,7 +173,11 @@ body {
   line-height: 19px;
   color: #f1f1f1;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+.news-create__buttons {
+  display: flex;
+  justify-content: space-between;
 }
 .news-create__area::placeholder {
   font-size: 16px;
@@ -189,10 +191,7 @@ body {
 .news-create__preview {
   position: relative;
 }
-.news-create__preview img {
-  width: 349px;
-  height: 238px;
-}
+
 .news-create__preview.removing {
   transform: scale(0);
   transition: all 0.3s;
@@ -270,11 +269,11 @@ body {
   overflow: hidden;
   margin-right: 10px;
 }
-.news__image img {
+.news__img {
   width: 381px;
   height: 254px;
   object-fit: cover;
-  object-position: right bottom;
+  object-position: center center;
 }
 .news__box {
   position: relative;
