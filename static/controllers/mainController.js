@@ -109,4 +109,9 @@ export default {
     blockNewsCreate.innerHTML = '';
     window.location.reload();
   },
+  async deleteNewsForm(newsId) {
+    const response = await myFetch.fetchPost('/main/news-delete', { newsId });
+    console.log(response);
+    // window.location.reload();
+  },
 };

@@ -26,25 +26,21 @@ export default {
 
     const newsCreateBtn = document.querySelector(`#create-${idNews}`);
     const newsEditBtn = document.querySelector(`#edit-${idNews}`);
-    const newsDeleteBtn = document.querySelector(`#remove-${idNews}`);
 
-    newsCreateBtn.addEventListener('click', handlerCreate);
+    newsCreateBtn.addEventListener('click', handlerCreate, { once: true });
     function handlerCreate() {
       popapMenuNewsCurrent.classList.remove('visible');
       arrowMenuNewsCurrentPath.classList.remove('fill-arrow');
       controller.createNews(idNews);
     }
+
     newsEditBtn.addEventListener('click', handlerEdit);
     function handlerEdit() {
       popapMenuNewsCurrent.classList.remove('visible');
       arrowMenuNewsCurrentPath.classList.remove('fill-arrow');
     }
 
-    newsDeleteBtn.addEventListener('click', handlerRemove);
-    function handlerRemove() {
-      popapMenuNewsCurrent.classList.remove('visible');
-      arrowMenuNewsCurrentPath.classList.remove('fill-arrow');
-    }
+    this.deleteNewsBlock(idNews, popapMenuNewsCurrent, arrowMenuNewsCurrentPath);
 
     menuNewsCurrent.addEventListener('mouseleave', handlerFocusOut, {
       once: true,
@@ -52,9 +48,7 @@ export default {
     function handlerFocusOut() {
       popapMenuNewsCurrent.classList.remove('visible');
       arrowMenuNewsCurrentPath.classList.remove('fill-arrow');
-      newsCreateBtn.removeEventListener('click', handlerCreate);
       newsEditBtn.removeEventListener('click', handlerEdit);
-      newsDeleteBtn.removeEventListener('click', handlerRemove);
     }
   },
   createNewsBlock() {
@@ -116,5 +110,16 @@ export default {
 
       controller.postNewsForm(news, blockNewsCreate);
     });
+  },
+  deleteNewsBlock(idNews, popapMenuNewsCurrent, arrowMenuNewsCurrentPath) {
+    const newsDeleteBtn = document.querySelector(`#remove-${idNews}`);
+    newsDeleteBtn.addEventListener('click', handlerRemove, { once: true });
+
+    function handlerRemove() {
+      popapMenuNewsCurrent.classList.remove('visible');
+      arrowMenuNewsCurrentPath.classList.remove('fill-arrow');
+
+      controller.deleteNewsForm(idNews);
+    }
   },
 };

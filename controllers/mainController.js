@@ -1,5 +1,6 @@
 import News from '../Model/News.js';
 import KudosNews from '../Model/KudosNews.js';
+import CommentNews from '../Model/CommentNews.js';
 
 export async function getNews(req, res) {
   try {
@@ -9,7 +10,8 @@ export async function getNews(req, res) {
     const newsDb = await News.find({}).populate('kudoses').populate('comments');
     const lengthNews = newsDb.length;
     let news = [];
-    for (let i = lengthNews - 1; i > 0; i--) {
+
+    for (let i = lengthNews - 1; i >= 0; i--) {
       news.push(newsDb[i]);
     }
     // console.log(sortedNews);
@@ -34,7 +36,7 @@ export async function getNews(req, res) {
   }
 }
 
-export async function deleteNews(req, res) {
+export async function postNews(req, res) {
   try {
     const userId = req.user.id;
     const { newsImage, newsTitle, newsText } = req.body;
@@ -48,18 +50,23 @@ export async function deleteNews(req, res) {
     const kudosSaved = await kudos.save();
 
     await News.findOneAndUpdate({ _id: newsSaved._id }, { $set: { kudoses: kudosSaved._id } });
-    res.status(201).json({ message: 'новость сохраненна в БД' });
+    res.status(201).json({ message: 'новость сохранена в БД' });
   } catch (error) {
     res.status(400).json({ message: 'Ошибка при сохранении новости в БД' });
     console.log(error);
   }
 }
-export async function postNews(req, res) {
+export async function deleteNews(req, res) {
   try {
-    await News.findOneAndUpdate({ _id: newsSaved._id }, { $set: { kudoses: kudosSaved._id } });
-    res.status(201).json({ message: 'новость сохраненна в БД' });
+    const { newsId } = req.body;
+
+    await News.findOneAndDelete({ _id: newsId });
+    await KudosNews.findOneAndDelete({ newsId: newsId });
+    await CommentNews.deleteMany({ newsId });
+
+    res.status(201).json({ message: 'новость удалена в БД' });
   } catch (error) {
-    res.status(400).json({ message: 'Ошибка при сохранении новости в БД' });
+    res.status(400).json({ message: 'Ошибка при удалении новости в БД' });
     console.log(error);
   }
 }
