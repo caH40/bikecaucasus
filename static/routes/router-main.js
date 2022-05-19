@@ -63,7 +63,7 @@ export default {
     const loadImageBtn = document.querySelector('#news-create__image-btn');
     const loadImageInput = document.querySelector('#news-create__image-input');
     const closeCross = document.querySelector('#news-create__remove-cross');
-    const sendForm = document.querySelector('#news-create__btn-send');
+    const sendFormBtn = document.querySelector('#news-create__btn-send');
 
     //закрытие блока публикации новостей
     closeCross.addEventListener(
@@ -85,35 +85,36 @@ export default {
     loadImageInput.addEventListener('change', handlerLoadFile);
     function handlerLoadFile(event) {
       const file = event.target.files[0];
-      loadImageBlock.innerHTML = '';
 
-      const reader = new FileReader();
-      reader.onload = async (e) => {
-        const src = e.target.result;
-
-        let sizeFile = Math.trunc(file.size / 8000);
-        loadImageBlock.insertAdjacentHTML(
-          'afterbegin',
-          `<div class="news-create__preview">
-          <div class="news-create__cross" id="news-create__cross">&times</div>
-            <img src="${src}" id="photo-desc-img"/>
-            <div class="news-create__preview-name">
-              <span>${file.name}</span>
-              <span>${sizeFile}kB</span>
-            </div>
-          </div>`
-        );
-
-        const cross = document.querySelector('#news-create__cross');
-        cross.addEventListener(
-          'click',
-          () => {
-            loadImageBlock.innerHTML = '';
-          },
-          { once: true }
-        );
-      };
-      reader.readAsDataURL(file);
+      controller.inputImage(file, loadImageBlock);
     }
+
+    this.sendForm(sendFormBtn, blockNewsCreate);
+  },
+  crossImageRemove(loadImageBlock) {
+    const cross = document.querySelector('#news-create__cross');
+    cross.addEventListener(
+      'click',
+      () => {
+        loadImageBlock.innerHTML = '';
+      },
+      { once: true }
+    );
+  },
+  sendForm(sendFormBtn, blockNewsCreate) {
+    sendFormBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      const newsImage = document.querySelector('#news-create__img');
+      const newsTitle = document.querySelector('#news-create__input');
+      const newsText = document.querySelector('#news-create__area');
+
+      const news = {};
+      news.newsImage = newsImage.src;
+      news.newsTitle = newsTitle.value;
+      news.newsText = newsText.value;
+
+      controller.postNewsForm(news, blockNewsCreate);
+    });
   },
 };

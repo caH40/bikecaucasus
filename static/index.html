@@ -202,13 +202,14 @@
                 {{#each list}}
                 <div class="main__block-news block-news" id="block-news-{{_id}}">
                     <div class="news__image">
-                        <img class="news__img" src="{{newsPhoto}}" alt="картинка новости">
+                        <img class="news__img" src="{{newsImage}}" alt="картинка новости">
                     </div>
                     <div class="news__box box-news">
                         <div class="box-news__block-text">
-                            <h3 class="box-news__title">{{title}}</h3>
-                            <p class="box-news__text">{{descriptionArea}}</p>
+                            <h3 class="box-news__title">{{newsTitle}}</h3>
+                            <p class="box-news__text">{{newsText}}</p>
 
+                            {{#if (checkRoleUser userRole)}}
                             <div class="comment__popap popap-comment" id="popap-news-{{_id}}">
                                 <div class="popap-comment__menu">
                                     
@@ -235,6 +236,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {{/if}}
 
                         </div>
                         <div class="box-news__interactive interactive-news">

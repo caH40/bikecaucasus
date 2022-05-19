@@ -3,9 +3,9 @@ import pkg from 'mongoose';
 const { Schema, model } = pkg;
 
 const newsSchema = new Schema({
-  title: { type: String, required: true },
-  descriptionArea: { type: String },
-  newsPhoto: { type: String },
+  newsTitle: { type: String, required: true },
+  newsText: { type: String },
+  newsImage: { type: String },
   postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
   kudoses: { type: mongoose.Schema.Types.ObjectId, ref: 'KudosNews' },
