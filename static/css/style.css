@@ -257,21 +257,22 @@ body {
   min-height: 278px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
-  padding: 20px;
+  padding: 10px;
   margin: 0px 10px 20px 0px;
 }
 
 .news__image {
-  width: 349px;
-  height: 238px;
+  width: 381px;
+  height: 254px;
   border: 1px solid #f1f1f1;
   border-radius: 15px;
   overflow: hidden;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 .news__image img {
+  width: 381px;
+  height: 254px;
   object-fit: cover;
-  width: 349px;
   object-position: right bottom;
 }
 .news__box {
@@ -279,8 +280,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 702px;
-  min-height: 238px;
+  width: 730px;
+  min-height: 254px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   padding: 20px;
@@ -356,10 +357,10 @@ body {
   width: 465px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
-  padding: 20px 20px 0px 20px;
+  padding: 10px 10px 0px 10px;
 }
 .column-main__box {
-  width: 425px;
+  /* width: 425px; */
   height: 238px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
@@ -433,6 +434,8 @@ body {
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .slider {
@@ -1533,6 +1536,8 @@ tbody tr:hover {
   border-radius: 50%;
   width: 200px;
   height: 200px;
+  object-fit: cover;
+  object-position: center center;
 }
 .profile__contacts {
   margin-bottom: 30px;

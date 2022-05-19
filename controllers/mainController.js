@@ -34,7 +34,7 @@ export async function getNews(req, res) {
   }
 }
 
-export async function postNews(req, res) {
+export async function deleteNews(req, res) {
   try {
     const userId = req.user.id;
     const { newsImage, newsTitle, newsText } = req.body;
@@ -47,6 +47,15 @@ export async function postNews(req, res) {
     const kudos = new KudosNews({ newsId: newsSaved._id });
     const kudosSaved = await kudos.save();
 
+    await News.findOneAndUpdate({ _id: newsSaved._id }, { $set: { kudoses: kudosSaved._id } });
+    res.status(201).json({ message: 'новость сохраненна в БД' });
+  } catch (error) {
+    res.status(400).json({ message: 'Ошибка при сохранении новости в БД' });
+    console.log(error);
+  }
+}
+export async function postNews(req, res) {
+  try {
     await News.findOneAndUpdate({ _id: newsSaved._id }, { $set: { kudoses: kudosSaved._id } });
     res.status(201).json({ message: 'новость сохраненна в БД' });
   } catch (error) {
