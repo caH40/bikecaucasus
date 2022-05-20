@@ -535,6 +535,7 @@ body {
 .social__link {
   font-size: inherit;
   font-style: italic;
+  text-decoration: underline;
   color: inherit;
   margin-right: 10px;
 }
