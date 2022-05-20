@@ -168,4 +168,29 @@ export default {
 
     router.editNewsForm(newsId);
   },
+  async webCamera() {
+    const webCameraBox = document.querySelector('#column-main__webcamera');
+    let imgBlob;
+    let imageCamera;
+
+    createWebcamImage();
+
+    setInterval(async () => {
+      createWebcamImage();
+    }, 60000);
+
+    async function createWebcamImage() {
+      let response = await fetch('http://localhost:5500/main/screenshot', {
+        headers: {
+          // 'Content-Type': 'multipart/form-data',
+          authorization: localStorage.getItem('tokenBikeCaucasus'),
+        },
+      });
+
+      imgBlob = await response.blob();
+      imageCamera = URL.createObjectURL(imgBlob);
+      webCameraBox.innerHTML = '';
+      webCameraBox.insertAdjacentHTML('afterbegin', `<img class="" src="${imageCamera}" />`);
+    }
+  },
 };

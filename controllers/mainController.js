@@ -1,6 +1,11 @@
+import path from 'path';
+
 import News from '../Model/News.js';
 import KudosNews from '../Model/KudosNews.js';
 import CommentNews from '../Model/CommentNews.js';
+import downloadImage from '../app_modules/screen-dl.js';
+
+const __dirname = path.resolve();
 
 // получение всех новостей
 export async function getNews(req, res) {
@@ -89,6 +94,17 @@ export async function editNews(req, res) {
     res.status(201).json({ message: 'Отредактированная новость сохранена в БД' });
   } catch (error) {
     res.status(400).json({ message: 'Ошибка сохранения отредактированной новости в БД' });
+    console.log(error);
+  }
+}
+// получение фотографии с вебкамеры
+export async function screenshot(req, res) {
+  try {
+    res.status(200).download(path.resolve(__dirname, 'images/webcamera', '1.jpg'));
+    downloadImage();
+    // res.status(200).json({ message: 'отправка фотографии вебки' });
+  } catch (error) {
+    res.status(400).json({ message: 'ошибка в отправке отправке фотографии вебки' });
     console.log(error);
   }
 }
