@@ -173,10 +173,10 @@ export default {
 
     setInterval(async () => {
       createWebcamImage();
-    }, 60000);
+    }, 10000);
 
     async function createWebcamImage() {
-      let response = await fetch('http://localhost:5500/main/screenshot', {
+      let response = await myFetch.fetchGetFile('/main/screenshot', {
         headers: {
           // 'Content-Type': 'multipart/form-data',
           authorization: localStorage.getItem('tokenBikeCaucasus'),

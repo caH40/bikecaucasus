@@ -44,4 +44,17 @@ export default {
       console.log(error);
     }
   },
+  async fetchGetFile(url) {
+    try {
+      const dataFromDb = await fetch(`${host}${url}`, {
+        headers: {
+          // 'Content-Type': 'multipart/form-data',
+          authorization: localStorage.getItem('tokenBikeCaucasus'),
+        },
+      });
+      return dataFromDb;
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
