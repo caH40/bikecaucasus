@@ -308,6 +308,9 @@
     font-size: 22px;
     margin-bottom: 10px;
   }
+  .title__box {
+    text-align: left;
+  }
   .content__routes {
     padding-bottom: 0;
   }
@@ -386,6 +389,9 @@
   .main__inner {
     display: block;
   }
+  .news-create__btn {
+    width: 150px;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -420,6 +426,18 @@
 }
 
 @media (max-width: 450.98px) {
+  .title__box {
+    text-align: center;
+    padding-top: 20px;
+  }
+  .title {
+    font-size: 36px;
+    line-height: 40px;
+  }
+  .title__page-sub {
+    font-size: 23px;
+    line-height: 25px;
+  }
   .profile-edit__inner {
     justify-content: center;
   }

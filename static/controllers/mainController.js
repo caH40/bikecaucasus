@@ -69,7 +69,7 @@ export default {
                     id="news-create__area" placeholder="Текст новости"></textarea>
                 <div class="news-create__buttons">
                     <button class="news-create__btn" id="news-create__image-btn"
-                        type="submit">Загрузить</button>
+                        type="submit">Картника</button>
                     <input class="profile__img-input" type="file" accept=".jpg, .jpeg, .png, .webp"         id="news-create__image-input">
                     <button class="news-create__btn" type="submit"
                         id="news-create__btn-send">Опубликовать</button>
@@ -155,7 +155,7 @@ export default {
                     id="news-edit__area-${newsId}" placeholder="Текст новости">${newsText}</textarea>
                 <div class="news-create__buttons">
                     <button class="news-create__btn" id="news-edit__image-btn"
-                        type="submit">Загрузить</button>
+                        type="submit">Картника</button>
                     <input class="profile__img-input" type="file" accept=".jpg, .jpeg, .png, .webp" id="news-edit__image-input">
                     <button class="news-create__btn" type="submit"
                         id="news-edit__btn-send">Опубликовать</button>
