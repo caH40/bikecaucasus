@@ -1,14 +1,10 @@
 import myFetch from '../utilities/myfetch.js';
 import descriptionPage from '../pages/description-page.js';
 import trailEditPage from '../pages/trail-edit.js';
-import helpersHandlebars from '../view/helpersDiscription.js';
+import helpersHandlebars from '../view/helpersDescription.js';
 import { render } from '../view/viewer.js';
 
-import {
-  handlerLike,
-  handlerDisLike,
-  handlerMessagePopup,
-} from '../dynamics/kudosHandler.js';
+import { handlerLike, handlerDisLike, handlerMessagePopup } from '../dynamics/kudosHandler.js';
 
 helpersHandlebars();
 
@@ -18,8 +14,7 @@ export default {
 
     blockKudos.addEventListener('click', async (event) => {
       const mainSelectors =
-        event.target.closest('#kudos-green') ||
-        event.target.closest('#kudos-red');
+        event.target.closest('#kudos-green') || event.target.closest('#kudos-red');
 
       //если нет нужных селекторов то ретурн
       if (!mainSelectors) return;
@@ -94,9 +89,7 @@ export default {
   async commentMenu(cardId) {
     const commentBlock = document.querySelector('#comment__block');
 
-    const commentMenuFill = document.querySelector(
-      '#popap-comment__arrow > path'
-    );
+    const commentMenuFill = document.querySelector('#popap-comment__arrow > path');
     const commentMenuItem = document.querySelectorAll('.popap-comment__list');
 
     commentBlock.addEventListener('click', (event) => {
@@ -113,9 +106,7 @@ export default {
           menuItem = document.querySelector(`#commentId-${commentId}`);
           menuItem.classList.toggle('visible');
 
-          svgItem = document.querySelector(
-            `#popap-comment__arrow-${commentId}  > path`
-          );
+          svgItem = document.querySelector(`#popap-comment__arrow-${commentId}  > path`);
           popapComment = document.querySelector(`#popap-comment-${commentId}`);
           svgItem.classList.toggle('fill-arrow');
           commentEdit = document.querySelector(`#edit-${commentId}`);
@@ -123,9 +114,7 @@ export default {
         }
       });
 
-      const commentEditBlock = document.querySelector(
-        `#comment__edit-${commentId}`
-      );
+      const commentEditBlock = document.querySelector(`#comment__edit-${commentId}`);
       //отслеживание блока попапа
       popapComment.addEventListener('mouseleave', () => {
         menuItem.classList.remove('visible');
@@ -140,27 +129,23 @@ export default {
         return;
       });
 
-      const commentEditButton = document.querySelector(
-        `#comment__btn-edit-${commentId}`
-      );
+      const commentEditButton = document.querySelector(`#comment__btn-edit-${commentId}`);
 
       commentEditButton.addEventListener('click', async () => {
-        const commentAreaText = document.querySelector(
-          `#comment-area-${commentId}`
-        ).value;
-        const dataFromDb = await myFetch.fetchPost(
-          `/description/comment-edit`,
-          { commentId, textNew: commentAreaText }
-        );
+        const commentAreaText = document.querySelector(`#comment-area-${commentId}`).value;
+        const dataFromDb = await myFetch.fetchPost(`/description/comment-edit`, {
+          commentId,
+          textNew: commentAreaText,
+        });
         descriptionPage();
       });
       // ==============================
       //отслеживание кнопки меню "Удалить"
       commentRemove.addEventListener('click', async () => {
-        const dataFromDb = await myFetch.fetchPost(
-          `/description/comment-remove`,
-          { commentId, cardId }
-        );
+        const dataFromDb = await myFetch.fetchPost(`/description/comment-remove`, {
+          commentId,
+          cardId,
+        });
         descriptionPage();
         return;
       });
@@ -170,9 +155,7 @@ export default {
   async cardMenu(cardId) {
     const cardArrowMenu = document.querySelector('#popap-card__arrow-box');
 
-    const commentMenuFill = document.querySelector(
-      '#popap-comment__arrow > path'
-    );
+    const commentMenuFill = document.querySelector('#popap-comment__arrow > path');
     const cardMenuItem = document.querySelector('.popap-card__list');
 
     let popapCard;
@@ -201,18 +184,12 @@ export default {
       cardEdit.addEventListener('click', async () => {
         cardMenuItem.classList.remove('visible');
         svgItem.classList.remove('fill-arrow');
-        const dataFromDb = await myFetch.fetchGet(
-          `/description/trail-edit?cardid=${cardId}`
-        );
+        const dataFromDb = await myFetch.fetchGet(`/description/trail-edit?cardid=${cardId}`);
 
         dataFromDb.card.authorPhoto = dataFromDb.photo.authorPhoto;
         const dataTemplate = dataFromDb.card;
         render(dataTemplate, '#descriptionEditCard');
-        trailEditPage(
-          dataFromDb.card.cardPhoto,
-          dataFromDb.photo.descPhoto,
-          dataFromDb.card
-        );
+        trailEditPage(dataFromDb.card.cardPhoto, dataFromDb.photo.descPhoto, dataFromDb.card);
         return;
       });
 
@@ -224,12 +201,9 @@ export default {
         const result = confirm('Вы уверены?');
         if (!result) return;
 
-        const dataFromDb = await myFetch.fetchPost(
-          `/description/trail-remove`,
-          {
-            cardId,
-          }
-        );
+        const dataFromDb = await myFetch.fetchPost(`/description/trail-remove`, {
+          cardId,
+        });
 
         const innerCardDescription = document.querySelector('.handlebars');
         const answerElement = document.createElement('div');

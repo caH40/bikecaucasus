@@ -38,6 +38,9 @@
   .main__block-news {
     width: 1060px;
   }
+  .news-create__block {
+    width: 1060px;
+  }
 }
 
 @media screen and (max-width: 1199.98px) {
@@ -56,9 +59,21 @@
   .news__img {
     width: 312px;
   }
+  .news-create__block {
+    width: 950px;
+  }
+  .news-create__image {
+    width: 370px;
+  }
 }
 
 @media screen and (max-width: 991.98px) {
+  .mobile {
+    display: block;
+  }
+  .desktop {
+    display: none;
+  }
   .main {
     min-height: calc(100vh - 80px);
   }
@@ -242,8 +257,7 @@
     margin: 0px auto;
   }
   .news__box {
-    width: 710px;
-    color: #050505;
+    min-width: 300px;
   }
   .main__block-news {
     margin-right: 0px;
@@ -259,10 +273,33 @@
     width: auto;
   }
   .news__image {
-    display: none;
+    width: auto;
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+  .news__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
   }
   .box-news__text {
     text-align: left;
+    padding-bottom: 15px;
+  }
+  .news-create__block {
+    margin: 0px 0px 20px 0px;
+  }
+  .news-create__image {
+    width: auto;
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+  .news-create__form {
+    width: 100%;
+  }
+  .news-create__block {
+    width: auto;
   }
 }
 
@@ -377,9 +414,11 @@
   .interactive-news__icon-box {
     width: auto;
   }
+  .news-create__input {
+    width: 280px;
+  }
 }
-@media (max-width: 500.98px) {
-}
+
 @media (max-width: 450.98px) {
   .profile-edit__inner {
     justify-content: center;
@@ -392,17 +431,22 @@
     margin-bottom: 0;
     margin: 0px auto;
   }
+  .main__block-news {
+    padding: 15px 10px;
+  }
+  .news__box {
+    padding: 10px 10px;
+  }
+  .news__image {
+    height: 200px;
+  }
+  .news-create__image {
+    height: 200px;
+  }
 }
-@media (max-width: 450.98px) {
-  .profile-edit__inner {
-    justify-content: center;
-  }
-  .profile-edit__block {
-    margin-right: 0px;
-  }
-  .profile-edit__button {
-    display: block;
-    margin-bottom: 0;
-    margin: 0px auto;
+
+@media (max-width: 389.98px) {
+  .news__image {
+    height: 180px;
   }
 }

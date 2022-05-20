@@ -201,14 +201,20 @@
             <div class="main__inner-news" id="main__inner-news">
                 {{#each list}}
                 <div class="main__block-news block-news" id="block-news-{{_id}}">
-                    <div class="news__image">
+                    <!-- отображается в десктопной версии -->
+                    <div class="news__image desktop">
                         <img class="news__img" src="{{newsImage}}" alt="картинка новости" id="news__img-{{_id}}">
                     </div>
-                    <div class="news__box box-news">
+                    <!-- ===================================== -->
+                    <div class="news__box box-news" >
                         <div class="box-news__block-text">
                             <h3 class="box-news__title" id="box-news__title-{{_id}}">{{newsTitle}}</h3>
+                            <!-- отображается в мобильной версии -->
+                            <div class="news__image mobile" >
+                                <img class="news__img" src="{{newsImage}}" alt="картинка новости" id="news__img-{{_id}}">
+                            </div>
+                            <!-- ===================================== -->
                             <p class="box-news__text" id="box-news__text-{{_id}}">{{{newsText}}}</p>
-
                             {{#if (checkRoleUser userRole)}}
                             <div class="comment__popap popap-comment" id="popap-news-{{_id}}">
                                 <div class="popap-comment__menu">
@@ -239,6 +245,10 @@
                             {{/if}}
 
                         </div>
+
+
+
+                        
                         <div class="box-news__interactive interactive-news">
                             <div class="interactive-news__inner">
                                 <div class="interactive-news__icon-box">
