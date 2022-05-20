@@ -198,7 +198,6 @@
         </div>
        
         <h3 class="title__page">Новости, события и анонсы мероприятий. </h3>
-       
         
         <div class="main__inner">
             <div class="main__inner-news" id="main__inner-news">
@@ -212,11 +211,13 @@
                     <div class="news__box box-news" >
                         <div class="box-news__block-text">
                             <h3 class="box-news__title" id="box-news__title-{{_id}}">{{newsTitle}}</h3>
+                            
                             <!-- отображается в мобильной версии -->
                             <div class="news__image mobile" >
                                 <img class="news__img" src="{{newsImage}}" alt="картинка новости" id="news__img-{{_id}}">
                             </div>
                             <!-- ===================================== -->
+                            
                             <p class="box-news__text" id="box-news__text-{{_id}}">{{{newsText}}}</p>
                             {{#if (checkRoleUser userRole)}}
                             <div class="comment__popap popap-comment" id="popap-news-{{_id}}">
@@ -320,12 +321,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="block-news__inter-container mobile-wcam" data-id="block-news__inter-container-{{positionNumber}}"></div>
                 {{/each}}
             </div>
-            <div class="main__block-column column-main desktop">
-                <h4 class="camera__title">Вебкамера на горе Шаджатмаз</h4>
-                <a  class="column-main__box" href="https://gw.cmo.sai.msu.ru/webcam5.jpg" target="_blank" id="column-main__webcamera">
-                </a>
+            <div class="desktop-wcam" id="column-main__webcamera">
             </div>
         </div>
         

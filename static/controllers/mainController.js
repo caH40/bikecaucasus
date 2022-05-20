@@ -24,13 +24,13 @@ export default {
     try {
       const dataFormDb = await myFetch.fetchGet('/main/news');
 
-      dataFormDb.news.forEach((news) => {
+      dataFormDb.news.forEach((news, index) => {
         news.date = new Date(Number(news.date)).toLocaleDateString();
         news.userRole = dataFormDb.userRole;
+        news.positionNumber = index;
       });
 
       const dataTemplate = { list: dataFormDb.news };
-
       render(dataTemplate, '#mainTemplate');
       //если не было ни одной опубликованной новости
       if (!dataFormDb.news[0]) {
@@ -169,10 +169,6 @@ export default {
     router.editNewsForm(newsId);
   },
   async webCamera() {
-    const webCameraBox = document.querySelector('#column-main__webcamera');
-    let imgBlob;
-    let imageCamera;
-
     createWebcamImage();
 
     setInterval(async () => {
@@ -186,11 +182,40 @@ export default {
           authorization: localStorage.getItem('tokenBikeCaucasus'),
         },
       });
+      let imgBlob;
+      let imageCamera;
 
       imgBlob = await response.blob();
       imageCamera = URL.createObjectURL(imgBlob);
+
+      let webCameraBox = document.querySelector('#column-main__webcamera');
       webCameraBox.innerHTML = '';
-      webCameraBox.insertAdjacentHTML('afterbegin', `<img class="" src="${imageCamera}" />`);
+      webCameraBox.insertAdjacentHTML(
+        'afterbegin',
+        `
+      <h4 class="camera__title">Вебкамера на горе Шаджатмаз</h4>
+      <div class="main__block-column column-main">
+            <a  class="column-main__box" href="https://gw.cmo.sai.msu.ru/webcam5.jpg" target="_blank" ">
+      <img class="camera__img" src="${imageCamera}" />
+      </a>
+      </div>
+      `
+      );
+
+      webCameraBox = document.querySelector('[data-id="block-news__inter-container-0"]');
+      webCameraBox.innerHTML = '';
+      webCameraBox.insertAdjacentHTML(
+        'afterbegin',
+        `
+        
+      <div class="main__block-column column-main">
+      <h4 class="camera__title">Вебкамера на горе Шаджатмаз</h4>
+      <a  class="column-main__box" href="https://gw.cmo.sai.msu.ru/webcam5.jpg" target="_blank" ">
+      <img class="camera__img" src="${imageCamera}" />
+      </a>
+      </div>
+      `
+      );
     }
   },
 };

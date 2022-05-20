@@ -269,6 +269,9 @@ body {
 .mobile {
   display: none;
 }
+.mobile-wcam {
+  display: none;
+}
 .desktop {
   display: block;
 }
@@ -296,8 +299,7 @@ body {
   color: #ffffff;
   padding: 10px 20px;
 }
-.box-news {
-}
+
 .box-news__title {
   font-family: 'Roboto';
   font-size: 22px;
@@ -308,6 +310,7 @@ body {
 .box-news__text {
   text-align: justify;
   padding-bottom: 20px;
+  letter-spacing: 0.8px;
 }
 .box-news__interactive {
   display: flex;
@@ -361,7 +364,7 @@ body {
   width: 445px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
-  padding: 10px 10px 0px 10px;
+  padding: 10px;
 }
 .column-main__box {
   display: block;
@@ -369,14 +372,16 @@ body {
   height: 238px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
-  margin-bottom: 20px;
   overflow: hidden;
 }
-.column-main__box img {
+.camera__img {
   width: 425px;
   height: 238px;
   object-fit: cover;
   object-position: center center;
+}
+.block-news__inter-container {
+  margin-bottom: 20px;
 }
 .popap-news__list {
   display: none;

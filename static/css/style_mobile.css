@@ -1,4 +1,10 @@
-@media screen and (max-width: 1650px) {
+@media screen and (max-width: 1599px) {
+  .desktop-wcam {
+    display: none;
+  }
+  .mobile-wcam {
+    display: block;
+  }
 }
 @media screen and (max-width: 1450px) {
   .container {
@@ -6,9 +12,6 @@
   }
   .slider__img {
     max-width: 1200px;
-  }
-  .main__block-column {
-    display: none;
   }
 }
 @media screen and (max-width: 1300px) {
@@ -257,7 +260,7 @@
     margin: 0px auto;
   }
   .news__box {
-    min-width: 300px;
+    width: 100%;
   }
   .main__block-news {
     padding: 10px 0px;
@@ -426,6 +429,15 @@
   .news-create__input {
     width: 280px;
   }
+  .main__block-column {
+    width: 100%;
+  }
+  .column-main__box {
+    width: 100%;
+  }
+  .camera__img {
+    width: 100%;
+  }
 }
 
 @media (max-width: 450.98px) {
@@ -437,9 +449,24 @@
     font-size: 36px;
     line-height: 40px;
   }
+  .title__page {
+    margin-bottom: 20px;
+  }
   .title__page-sub {
     font-size: 23px;
     line-height: 25px;
+  }
+  .box-news__title {
+    font-size: 19px;
+    line-height: 21px;
+  }
+  .box-news__text {
+    font-size: 15px;
+    line-height: 18px;
+  }
+  .camera__title {
+    font-size: 19px;
+    line-height: 21px;
   }
   .profile-edit__inner {
     justify-content: center;
@@ -463,6 +490,12 @@
   }
   .news-create__image {
     height: 200px;
+  }
+  .column-main__box {
+    height: 100%;
+  }
+  .camera__img {
+    height: 100%;
   }
 }
 
