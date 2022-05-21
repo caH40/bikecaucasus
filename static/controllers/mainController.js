@@ -2,6 +2,7 @@ import { render } from '../view/viewer.js';
 import router from '../routes/router-main.js';
 import myFetch from '../utilities/myfetch.js';
 import reduceImage from '../utilities/reduce-image.js';
+import createWebcamImage from '../utilities/webcam-image.js';
 
 Handlebars.registerHelper('authUser', function (items, options) {
   let result = false;
@@ -65,7 +66,7 @@ export default {
                 <input class="news-create__input" type="text" placeholder="Заголовок новости"
                     id="news-create__input">
                 <div class="news-create__image mobile" id="news-create__image"></div>
-                <textarea class="news-create__area" name="create-news" rows="7"
+                <textarea class="news-create__area" name="create-news" rows="9"
                     id="news-create__area" placeholder="Текст новости"></textarea>
                 <div class="news-create__buttons">
                     <button class="news-create__btn" id="news-create__image-btn"
@@ -151,7 +152,7 @@ export default {
                     <div class="news-create__image mobile" id="news-edit__image">
                        <img class="news__img" src="${newsImage}" alt="картинка новости" id="news-edit__img-${newsId}">
                     </div>
-                <textarea class="news-create__area" name="create-news" rows="7"
+                <textarea class="news-create__area" name="create-news" rows="9"
                     id="news-edit__area-${newsId}" placeholder="Текст новости">${newsText}</textarea>
                 <div class="news-create__buttons">
                     <button class="news-create__btn" id="news-edit__image-btn"
@@ -169,52 +170,10 @@ export default {
     router.editNewsForm(newsId);
   },
   async webCamera() {
+    //первоначальная загрузка картинки при открытии страницы
     createWebcamImage();
     setInterval(async () => {
       createWebcamImage();
     }, 60000);
-
-    async function createWebcamImage() {
-      let response = await myFetch.fetchGetFile('/main/screenshot', {
-        headers: {
-          // 'Content-Type': 'multipart/form-data',
-          authorization: localStorage.getItem('tokenBikeCaucasus'),
-        },
-      });
-      let imgBlob;
-      let imageCamera;
-
-      imgBlob = await response.blob();
-      imageCamera = URL.createObjectURL(imgBlob);
-
-      let webCameraBox = document.querySelector('#column-main__webcamera');
-      webCameraBox.innerHTML = '';
-      webCameraBox.insertAdjacentHTML(
-        'afterbegin',
-        `
-      <div class="main__block-column column-main">
-      <h4 class="camera__title">Вебкамера на горе Шаджатмаз</h4>
-            <a  class="column-main__box" href="https://gw.cmo.sai.msu.ru/webcam5.jpg" target="_blank" ">
-      <img class="camera__img" src="${imageCamera}" />
-      </a>
-      </div>
-      `
-      );
-
-      webCameraBox = document.querySelector('[data-id="block-news__inter-container-0"]');
-      webCameraBox.innerHTML = '';
-      webCameraBox.insertAdjacentHTML(
-        'afterbegin',
-        `
-        
-      <div class="main__block-column column-main">
-      <h4 class="camera__title">Вебкамера на горе Шаджатмаз</h4>
-      <a  class="column-main__box" href="https://gw.cmo.sai.msu.ru/webcam5.jpg" target="_blank" ">
-      <img class="camera__img" src="${imageCamera}" />
-      </a>
-      </div>
-      `
-      );
-    }
   },
 };
