@@ -3,6 +3,7 @@ import router from '../routes/router-main.js';
 import myFetch from '../utilities/myfetch.js';
 import reduceImage from '../utilities/reduce-image.js';
 import createWebcamImage from '../utilities/webcam-image.js';
+import addPlus from '../utilities/addPlus.js';
 
 Handlebars.registerHelper('authUser', function (items, options) {
   let result = false;
@@ -24,11 +25,13 @@ export default {
   async main() {
     try {
       const dataFormDb = await myFetch.fetchGet('/main/news');
-
       dataFormDb.news.forEach((news, index) => {
         news.date = new Date(Number(news.date)).toLocaleDateString();
         news.userRole = dataFormDb.userRole;
         news.positionNumber = index;
+        if (news.kudosQuantity > 0) {
+          news.kudosQuantity = `+${news.kudosQuantity}`;
+        }
       });
 
       const dataTemplate = { list: dataFormDb.news };
@@ -41,6 +44,7 @@ export default {
       console.log(error);
     }
   },
+
   createNews(idNews) {
     let blockNews;
     //для первой новости на сайте else
@@ -107,6 +111,7 @@ export default {
     };
     reader.readAsDataURL(file);
   },
+
   async postNewsForm(news, blockNewsCreate, url, newsId) {
     news.newsText = news.newsText.split('\n').join('<br>');
 
@@ -119,11 +124,13 @@ export default {
     blockNewsCreate.innerHTML = '';
     router.main();
   },
+
   async deleteNewsForm(newsId) {
     const response = await myFetch.fetchPost('/main/news-delete', { newsId });
     console.log(response);
     router.main();
   },
+
   async editNewsForm(newsId) {
     const newsImage = document.querySelector(`#news__img-${newsId}`).src;
     const newsTitle = document.querySelector(`#box-news__title-${newsId}`).innerHTML;
@@ -169,6 +176,7 @@ export default {
 
     router.editNewsForm(newsId);
   },
+
   async webCamera() {
     //первоначальная загрузка картинки при открытии страницы
     createWebcamImage();
@@ -176,6 +184,7 @@ export default {
       createWebcamImage();
     }, 60000);
   },
+
   async like(newsId) {
     if (!newsId) return;
     const response = await myFetch.fetchPost('/main/like', { newsId });
@@ -185,7 +194,7 @@ export default {
     const isUserPostDislike = response.isUserPostDislike;
 
     const likeNumber = document.querySelector(`#likesQuantity-${newsId}`);
-    likeNumber.innerHTML = likesQuantity;
+    likeNumber.innerHTML = addPlus(likesQuantity);
 
     const iconLiked = document.querySelector(`#icon-path__liked-${newsId}`);
     const iconDisliked = document.querySelector(`#icon-path__disliked-${newsId}`);
@@ -197,6 +206,7 @@ export default {
       iconLiked.classList.remove('icon-fill');
     }
   },
+
   async dislike(newsId) {
     if (!newsId) return;
     const response = await myFetch.fetchPost('/main/dislike', { newsId });
@@ -205,7 +215,7 @@ export default {
     const isUserPostDislike = response.isUserPostDislike;
 
     const likeNumber = document.querySelector(`#likesQuantity-${newsId}`);
-    likeNumber.innerHTML = likesQuantity;
+    likeNumber.innerHTML = addPlus(likesQuantity);
 
     const iconLiked = document.querySelector(`#icon-path__liked-${newsId}`);
     const iconDisliked = document.querySelector(`#icon-path__disliked-${newsId}`);
