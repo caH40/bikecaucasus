@@ -8,10 +8,10 @@ export default {
     this.iconsNews();
   },
   async iconsNews() {
-    //прослушка иконок в каждом новостном блоке
-    const interactiveBlock = document.querySelector('#interactive-news__inner');
+    //прослушка иконок во всём новостном блоке
+    const newsBlock = document.querySelector('#main__inner-news');
 
-    interactiveBlock.addEventListener('click', (event) => {
+    newsBlock.addEventListener('click', (event) => {
       if (!event.target.matches('.interactive-news__icon-img')) return;
       const newsId = event.target.dataset.id;
       const iconId = event.target.id;
