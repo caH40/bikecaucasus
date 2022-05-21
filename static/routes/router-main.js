@@ -5,9 +5,33 @@ export default {
     await controller.main();
     controller.webCamera();
     this.menuNews();
+    this.iconsNews();
   },
-  async iconsNews() {},
+  async iconsNews() {
+    //прослушка иконок в каждом новостном блоке
+    const interactiveBlock = document.querySelector('#interactive-news__inner');
+
+    interactiveBlock.addEventListener('click', (event) => {
+      if (!event.target.matches('.interactive-news__icon-img')) return;
+      const newsId = event.target.dataset.id;
+      const iconId = event.target.id;
+
+      if (iconId === 'icon-span__like') {
+        controller.like(newsId);
+      }
+      // if (iconId === 'icon-span__comment') {
+      //   controller.like(newsId);
+      // }
+      // if (iconId === 'icon-span__share') {
+      //   controller.like(newsId);
+      // }
+      if (iconId === 'icon-span__dislike') {
+        controller.dislike(newsId);
+      }
+    });
+  },
   async menuNews() {
+    //прослушка стрелки открытия меню в каждой новости
     const mainInnerNews = document.querySelector('#main__inner-news');
 
     mainInnerNews.addEventListener('click', (event) => {

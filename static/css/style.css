@@ -339,8 +339,13 @@ body {
   margin-right: 10px;
 }
 .interactive-news__icon-img {
+  display: inline-block;
+  padding: 1px;
   cursor: pointer;
   margin-right: 7px;
+}
+.interactive-news__icon-img > svg {
+  pointer-events: none;
 }
 .interactive-news__icon-number {
 }

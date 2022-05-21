@@ -176,4 +176,45 @@ export default {
       createWebcamImage();
     }, 60000);
   },
+  async like(newsId) {
+    if (!newsId) return;
+    const response = await myFetch.fetchPost('/main/like', { newsId });
+
+    const likesQuantity = response.likesQuantity;
+    const isUserPostLike = response.isUserPostLike;
+    const isUserPostDislike = response.isUserPostDislike;
+
+    const likeNumber = document.querySelector(`#likesQuantity-${newsId}`);
+    likeNumber.innerHTML = likesQuantity;
+
+    const iconLiked = document.querySelector(`#icon-path__liked-${newsId}`);
+    const iconDisliked = document.querySelector(`#icon-path__disliked-${newsId}`);
+
+    if (isUserPostLike) {
+      iconLiked.classList.add('icon-fill');
+      iconDisliked.classList.remove('icon-fill');
+    } else {
+      iconLiked.classList.remove('icon-fill');
+    }
+  },
+  async dislike(newsId) {
+    if (!newsId) return;
+    const response = await myFetch.fetchPost('/main/dislike', { newsId });
+
+    const likesQuantity = response.likesQuantity;
+    const isUserPostDislike = response.isUserPostDislike;
+
+    const likeNumber = document.querySelector(`#likesQuantity-${newsId}`);
+    likeNumber.innerHTML = likesQuantity;
+
+    const iconLiked = document.querySelector(`#icon-path__liked-${newsId}`);
+    const iconDisliked = document.querySelector(`#icon-path__disliked-${newsId}`);
+
+    if (isUserPostDislike) {
+      iconDisliked.classList.add('icon-fill');
+      iconLiked.classList.remove('icon-fill');
+    } else {
+      iconDisliked.classList.remove('icon-fill');
+    }
+  },
 };

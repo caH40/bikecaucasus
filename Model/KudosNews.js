@@ -11,7 +11,7 @@ const kudosNewsSchema = new Schema({
     required: true,
   },
   usersIdLike: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-  usersIdDisLike: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  usersIdDislike: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   views: { type: Number, default: 0 },
 });
 

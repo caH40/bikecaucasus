@@ -24,14 +24,14 @@ export async function getNews(req, res) {
     news.forEach((oneNews) => {
       if (oneNews.kudoses.usersIdLike.includes(userId)) {
         oneNews.likeUser = true;
-        oneNews.dislikeUser = false;
+        oneNews.DislikeUser = false;
       }
-      if (oneNews.kudoses.usersIdDisLike.includes(userId)) {
+      if (oneNews.kudoses.usersIdDislike.includes(userId)) {
         oneNews.likeUser = false;
-        oneNews.dislikeUser = true;
+        oneNews.DislikeUser = true;
       }
       oneNews.kudosQuantity =
-        oneNews.kudoses.usersIdLike.length - oneNews.kudoses.usersIdDisLike.length;
+        oneNews.kudoses.usersIdLike.length - oneNews.kudoses.usersIdDislike.length;
       oneNews.commentsQuantity = oneNews.comments.length;
     });
 
@@ -105,6 +105,87 @@ export async function screenshot(req, res) {
     // res.status(200).json({ message: 'отправка фотографии вебки' });
   } catch (error) {
     res.status(400).json({ message: 'ошибка в отправке отправке фотографии вебки' });
+    console.log(error);
+  }
+}
+
+//обработка нажатия на иконку лайка
+export async function postLike(req, res) {
+  try {
+    const userId = req.user.id;
+    const newsId = req.body.newsId;
+
+    const kudos = await KudosNews.findOne({ newsId });
+    let isUserPostLike = kudos.usersIdLike.includes(userId);
+    let isUserPostDislike = kudos.usersIdDislike.includes(userId);
+    //проверка на ошибку, юзер "поставил" одновременно лайк и дизлайк
+    if (isUserPostLike && isUserPostDislike) {
+      await KudosNews.findOneAndUpdate({ newsId }, { $pull: { usersIdDislike: userId } });
+    }
+
+    let kudosSaved;
+    if (isUserPostLike) {
+      kudosSaved = await KudosNews.findOneAndUpdate(
+        { newsId },
+        { $pull: { usersIdLike: userId } },
+        { returnDocument: 'after' }
+      );
+    } else {
+      await KudosNews.findOneAndUpdate({ newsId }, { $pull: { usersIdDislike: userId } });
+      kudosSaved = await KudosNews.findOneAndUpdate(
+        { newsId },
+        { $push: { usersIdLike: userId } },
+        { returnDocument: 'after' }
+      );
+    }
+
+    const likesQuantity = kudosSaved.usersIdLike.length - kudosSaved.usersIdDislike.length;
+    isUserPostLike = kudosSaved.usersIdLike.includes(userId);
+    isUserPostDislike = kudosSaved.usersIdDislike.includes(userId);
+
+    res
+      .status(200)
+      .json({ likesQuantity, isUserPostLike, message: 'Нажатие кнопки лайка обработано' });
+  } catch (error) {
+    console.log(error);
+  }
+}
+export async function postDislike(req, res) {
+  try {
+    const userId = req.user.id;
+    const newsId = req.body.newsId;
+
+    const kudos = await KudosNews.findOne({ newsId });
+    let isUserPostLike = kudos.usersIdLike.includes(userId);
+    let isUserPostDislike = kudos.usersIdDislike.includes(userId);
+    //проверка на ошибку, юзер "поставил" одновременно лайк и дизлайк
+    if (isUserPostLike && isUserPostDislike) {
+      await KudosNews.findOneAndUpdate({ newsId }, { $pull: { usersIdLike: userId } });
+    }
+
+    let kudosSaved;
+    if (isUserPostDislike) {
+      kudosSaved = await KudosNews.findOneAndUpdate(
+        { newsId },
+        { $pull: { usersIdDislike: userId } },
+        { returnDocument: 'after' }
+      );
+    } else {
+      await KudosNews.findOneAndUpdate({ newsId }, { $pull: { usersIdLike: userId } });
+      kudosSaved = await KudosNews.findOneAndUpdate(
+        { newsId },
+        { $push: { usersIdDislike: userId } },
+        { returnDocument: 'after' }
+      );
+    }
+
+    const likesQuantity = kudosSaved.usersIdLike.length - kudosSaved.usersIdDislike.length;
+    isUserPostDislike = kudosSaved.usersIdDislike.includes(userId);
+
+    res
+      .status(200)
+      .json({ likesQuantity, isUserPostDislike, message: 'Нажатие кнопки дизлайка обработано' });
+  } catch (error) {
     console.log(error);
   }
 }
