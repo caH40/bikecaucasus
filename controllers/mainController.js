@@ -100,7 +100,7 @@ export async function editNews(req, res) {
 // получение фотографии с вебкамеры
 export async function screenshot(req, res) {
   try {
-    res.status(200).download(path.resolve(__dirname, 'images/webcamera', '1.jpg'));
+    res.status(200).download(path.resolve(__dirname, 'images/webcamera', 'webcam5.jpg'));
     downloadImage();
     // res.status(200).json({ message: 'отправка фотографии вебки' });
   } catch (error) {

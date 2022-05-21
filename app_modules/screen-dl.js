@@ -7,7 +7,7 @@ export default async function () {
   try {
     let options = {
       url: `https://gw.cmo.sai.msu.ru/webcam5.jpg`,
-      dest: path.resolve(__dirname, 'images/webcamera', '1.jpg'),
+      dest: path.resolve(__dirname, 'images/webcamera', 'webcam5.jpg'),
     };
     await download.image(options);
   } catch (error) {

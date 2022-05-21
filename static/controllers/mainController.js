@@ -172,7 +172,7 @@ export default {
     createWebcamImage();
     setInterval(async () => {
       createWebcamImage();
-    }, 10000);
+    }, 60000);
 
     async function createWebcamImage() {
       let response = await myFetch.fetchGetFile('/main/screenshot', {
