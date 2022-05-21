@@ -170,10 +170,9 @@ export default {
   },
   async webCamera() {
     createWebcamImage();
-
     setInterval(async () => {
       createWebcamImage();
-    }, 60000);
+    }, 10000);
 
     async function createWebcamImage() {
       let response = await myFetch.fetchGetFile('/main/screenshot', {
@@ -193,8 +192,8 @@ export default {
       webCameraBox.insertAdjacentHTML(
         'afterbegin',
         `
-      <h4 class="camera__title">Вебкамера на горе Шаджатмаз</h4>
       <div class="main__block-column column-main">
+      <h4 class="camera__title">Вебкамера на горе Шаджатмаз</h4>
             <a  class="column-main__box" href="https://gw.cmo.sai.msu.ru/webcam5.jpg" target="_blank" ">
       <img class="camera__img" src="${imageCamera}" />
       </a>
