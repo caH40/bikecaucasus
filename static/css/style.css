@@ -465,6 +465,7 @@ body {
 .comments-news__text {
   font-style: italic;
   width: 655px;
+  padding-right: 10px;
 }
 .comments-news__cross-remove {
   position: absolute;

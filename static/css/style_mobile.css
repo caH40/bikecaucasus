@@ -442,7 +442,7 @@
   }
   .comments-news__comment {
     margin: 0px;
-    width: 320px;
+    width: 310px;
   }
   .comments-news__cross-remove {
     top: 0;
@@ -457,6 +457,9 @@
   .comments-news__area {
     height: 60px;
     margin-bottom: 15px;
+  }
+  .comments-news__text {
+    padding-right: 15px;
   }
 }
 
@@ -522,5 +525,10 @@
 @media (max-width: 389.98px) {
   .news__image {
     height: 180px;
+  }
+}
+@media (max-width: 365.98px) {
+  .comments-news__comment {
+    width: 295px;
   }
 }

@@ -268,14 +268,15 @@ export default {
         'afterbegin',
         `
     <div class="comments-news__comment">
-      <div class="comments-news__icon-user"><img class="comments-news__user-img" src="${
-        comment.postedBy.photoProfile
-      }" alt="">
+      <div class="comments-news__comment-inner">
+        <img class="comments-news__user-img" src="${comment.postedBy.photoProfile}" alt="">
+        <span class="comments-news__name-user">${comment.postedBy.username}</span>
+        <div class="comments-news__date">${new Date(comment.date).toLocaleString()}</div>
       </div>
-      <div class="comments-news__name-user">${comment.postedBy.username}</div>
-      <div class="comments-news__date">${new Date(comment.date).toLocaleString()}</div>
-      <div class="comments-news__text">${comment.text}</div>
-      ${crossRemove}
+      <div class="comments-news__comment-inner">
+        <div class="comments-news__text">${comment.text}</div>
+        ${crossRemove}
+      </div>
     </div>
     
     `
@@ -305,14 +306,16 @@ export default {
         'afterbegin',
         `
     <div class="comments-news__comment">
-      <div class="comments-news__icon-user"><img class="comments-news__user-img" src="${
-        comment.postedBy.photoProfile
-      }" alt="">
+      <div class="comments-news__comment-inner">
+        <img class="comments-news__user-img" src="${comment.postedBy.photoProfile}" alt="">
+        <span class="comments-news__name-user">${comment.postedBy.username}</span>
+        <div class="comments-news__date">${new Date(comment.date).toLocaleString()}</div>
       </div>
-      <div class="comments-news__name-user">${comment.postedBy.username}</div>
-      <div class="comments-news__date">${new Date(comment.date).toLocaleString()}</div>
-      <div class="comments-news__text">${comment.text}</div>
-      ${crossRemove}
+
+      <div class="comments-news__comment-inner">
+        <div class="comments-news__text">${comment.text}</div>
+        ${crossRemove}
+      </div>
     </div>
 
     `
