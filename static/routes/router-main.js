@@ -217,7 +217,9 @@ export default {
       controller.sendComment(newsId);
     }
     boxComments.onclick = handleBox;
+
     function handleBox(event) {
+      event.preventDefault();
       if (event.target.className !== 'comments-news__cross-remove') return;
       const commentId = event.target.id.split('-')[3];
       // comments-news__cross-remove

@@ -250,9 +250,9 @@ export async function removeComment(req, res) {
 
     const comments = newsSaved.comments;
 
-    res.status(201).json({ comments, userId, message: 'Комментарий сохранён' });
+    res.status(201).json({ comments, userId, message: 'Комментарий удален' });
   } catch (error) {
-    res.status(400).json({ message: 'Ошибка при сохранении комментария' });
+    res.status(400).json({ message: 'Ошибка при удалении комментария' });
     console.log(error);
   }
 }

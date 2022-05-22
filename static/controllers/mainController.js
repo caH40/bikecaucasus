@@ -314,7 +314,7 @@ export default {
       <div class="comments-news__text">${comment.text}</div>
       ${crossRemove}
     </div>
-    
+
     `
       );
     });
