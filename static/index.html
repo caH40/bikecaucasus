@@ -316,18 +316,24 @@
                         </div>
                     </div>
                     <div class="comments-news invisible" id="comments-news-{{_id}}">
+                        
                         <div class="box-news__comments">
+                            <h4 class="box-news__title">Комментарии
                             <div class="comments-news__box-comment" id="comments-news__box-comment-{{_id}}">
                                 {{#each commentsRevers}}
                                 <div class="comments-news__comment">
-                                    <div class="comments-news__icon-user"><img class="comments-news__user-img" src="{{postedBy.photoProfile}}" alt="">
+                                    <div class="comments-news__comment-inner">
+                                        <img class="comments-news__user-img" src="{{postedBy.photoProfile}}" alt="">
+                                        <span class="comments-news__name-user">{{postedBy.username}},</span>
+                                        <div class="comments-news__date">{{date}}</div>
                                     </div>
-                                    <div class="comments-news__name-user">{{postedBy.username}}</div>
-                                    <div class="comments-news__date">{{date}}</div>
-                                    <div class="comments-news__text"><span>{{text}}</span></div>
-                                    {{#if (authUser postedBy._id)}}
-                                    <div class="comments-news__cross-remove" id="comments-news__cross-remove-{{_id}}">&times</div>
-                                    {{/if}}
+
+                                    <div class="comments-news__comment-inner">
+                                         <div class="comments-news__text">{{text}}</div>
+                                        {{#if (authUser postedBy._id)}}
+                                        <div class="comments-news__cross-remove" id="comments-news__cross-remove-{{_id}}">&times</div>
+                                        {{/if}}
+                                    </div>                                    
                                 </div>
                                 {{/each}}
                             </div>
@@ -336,7 +342,9 @@
                                 <button class="comments-news__btn comments-news__btn-cancel" type="submit">Отмена</button>
                                 <textarea class="comments-news__area" name="comments-news__new-comment" rows="1" placeholder="Текст комментария" id="comments-news__area-{{_id}}"></textarea>
                             </div>
+                        </h4>
                         </div>
+                        
                     </div>
                 </div>
 

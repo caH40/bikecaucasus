@@ -44,7 +44,7 @@ export default {
           }
         }
       });
-      console.log(dataFormDb);
+
       const dataTemplate = { list: dataFormDb.news };
       render(dataTemplate, '#mainTemplate');
       //если не было ни одной опубликованной новости
