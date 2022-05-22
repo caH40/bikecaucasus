@@ -13,7 +13,13 @@ export async function getNews(req, res) {
     const userId = req.user.id;
     const userRole = req.user.roles;
 
-    const newsDb = await News.find({}).populate('kudoses').populate('comments');
+    const newsDb = await News.find({})
+      .populate('kudoses')
+      .populate('comments')
+      .populate({
+        path: 'comments',
+        populate: { path: 'postedBy', select: ['username', 'photoProfile'] },
+      });
     const lengthNews = newsDb.length;
     let news = [];
 
@@ -186,6 +192,37 @@ export async function postDislike(req, res) {
       .status(200)
       .json({ likesQuantity, isUserPostDislike, message: 'Нажатие кнопки дизлайка обработано' });
   } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function postComment(req, res) {
+  try {
+    const userId = req.user.id;
+    const { newComment, newsId } = req.body;
+
+    const date = new Date().getTime();
+
+    const comment = new CommentNews({ newsId, text: newComment, postedBy: userId, date });
+    const commentSaved = await comment.save();
+    const newCommentId = commentSaved._id;
+
+    const news = await News.findOneAndUpdate(
+      { _id: newsId },
+      { $push: { comments: newCommentId } },
+      { returnDocument: 'after' }
+    )
+      .populate('comments')
+      .populate({
+        path: 'comments',
+        populate: { path: 'postedBy', select: ['username', 'photoProfile'] },
+      });
+    // console.log(news.comments);
+    const comments = news.comments;
+
+    res.status(201).json({ comments, message: 'Комментарий сохранён' });
+  } catch (error) {
+    res.status(400).json({ message: 'Ошибка при сохранении комментария' });
     console.log(error);
   }
 }

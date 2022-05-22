@@ -25,15 +25,26 @@ export default {
   async main() {
     try {
       const dataFormDb = await myFetch.fetchGet('/main/news');
+
       dataFormDb.news.forEach((news, index) => {
         news.date = new Date(Number(news.date)).toLocaleDateString();
         news.userRole = dataFormDb.userRole;
         news.positionNumber = index;
+        news.commentsRevers = [];
+
         if (news.kudosQuantity > 0) {
           news.kudosQuantity = `+${news.kudosQuantity}`;
         }
+        //реверс элементов массива комментариев
+        let commentsQuantity = news.comments.length;
+        if (commentsQuantity !== 0) {
+          for (let i = commentsQuantity - 1; i >= 0; i--) {
+            news.comments[i].date = new Date(news.comments[i].date).toLocaleString();
+            news.commentsRevers.push(news.comments[i]);
+          }
+        }
       });
-
+      console.log(dataFormDb);
       const dataTemplate = { list: dataFormDb.news };
       render(dataTemplate, '#mainTemplate');
       //если не было ни одной опубликованной новости
@@ -191,7 +202,6 @@ export default {
 
     const likesQuantity = response.likesQuantity;
     const isUserPostLike = response.isUserPostLike;
-    const isUserPostDislike = response.isUserPostDislike;
 
     const likeNumber = document.querySelector(`#likesQuantity-${newsId}`);
     likeNumber.innerHTML = addPlus(likesQuantity);
@@ -226,5 +236,44 @@ export default {
     } else {
       iconDisliked.classList.remove('icon-fill');
     }
+  },
+  comments(newsId) {
+    const comments = document.querySelector(`#comments-news-${newsId}`);
+
+    comments.classList.toggle('visible');
+    router.commentsForm(newsId);
+  },
+
+  async sendComment(newsId) {
+    const areaComment = document.querySelector(`#comments-news__area-${newsId}`);
+    const boxComments = document.querySelector(`#comments-news__box-comment-${newsId}`);
+    const commentsQuantity = document.querySelector(`#commentsQuantity-${newsId}`);
+
+    const newComment = areaComment.value;
+    const commentsFromDb = await myFetch.fetchPost('/main/post-comment', { newComment, newsId });
+
+    const lengthComments = commentsFromDb.comments.length;
+    commentsQuantity.innerHTML = lengthComments;
+
+    boxComments.innerHTML = '';
+    commentsFromDb.comments.forEach((comment) => {
+      boxComments.insertAdjacentHTML(
+        'afterbegin',
+        `
+    <div class="comments-news__comment">
+    <div class="comments-news__icon-user"><img class="comments-news__user-img" src="${
+      comment.postedBy.photoProfile
+    }" alt="">
+    </div>
+    <div class="comments-news__name-user">${comment.postedBy.username}</div>
+    <div class="comments-news__date">${new Date(comment.date).toLocaleString()}</div>
+    <div class="comments-news__text">${comment.text}</div>
+    </div>
+    
+    `
+      );
+    });
+
+    areaComment.value = '';
   },
 };

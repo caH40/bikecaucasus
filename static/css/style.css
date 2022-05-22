@@ -261,7 +261,7 @@ body {
 .block-news__inner {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .news__image {
@@ -417,16 +417,12 @@ body {
   width: 100%;
   min-height: 115px;
   background: rgba(255, 255, 255, 0.1);
-
   padding: 10px 20px;
+  margin-top: 10px;
 }
 .comments-news {
 }
 .comments-news__box-comment {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  border-radius: 15px;
   font-family: 'Roboto';
   font-style: italic;
   font-weight: 400;
@@ -434,7 +430,12 @@ body {
   line-height: 16px;
   letter-spacing: 0.05em;
   color: #ffffff;
-  padding: 10px 20px;
+}
+.comments-news__comment {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0px 20px 10px 20px;
 }
 .comments-news__icon-user {
   width: 40px;
@@ -443,17 +444,24 @@ body {
 .comments-news__user-img {
   width: 25px;
   height: 25px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 .comments-news__name-user {
-  width: 120px;
+  width: 80px;
   margin-right: 15px;
 }
 .comments-news__date {
-  width: 150px;
+  width: 180px;
   margin-right: 15px;
 }
 .comments-news__text {
+  /* width: 600px; */
 }
+/* .comments-news__cross-remove:hover {
+  cursor: pointer;
+  color: red;
+} */
 .comments-news__box-add-comment {
   display: flex;
   justify-content: space-between;

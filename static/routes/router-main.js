@@ -19,9 +19,9 @@ export default {
       if (iconId === 'icon-span__like') {
         controller.like(newsId);
       }
-      // if (iconId === 'icon-span__comment') {
-      //   controller.like(newsId);
-      // }
+      if (iconId === 'icon-span__comment') {
+        controller.comments(newsId);
+      }
       // if (iconId === 'icon-span__share') {
       //   controller.like(newsId);
       // }
@@ -205,5 +205,20 @@ export default {
       },
       { once: true }
     );
+  },
+  commentsForm(newsId) {
+    const buttonSend = document.querySelector(`#comments-news__btn-${newsId}`);
+    // const areaForSend = document.querySelector(`#comments-news__area-${newsId}`);
+
+    buttonSend.onclick = handleButton;
+    function handleButton(event) {
+      event.preventDefault();
+      controller.sendComment(newsId);
+    }
+
+    // areaForSend.addEventListener('keydown', (event) => {
+    //   if (event.keyCode !== 13) return;
+    //   controller.sendComment(newsId);
+    // });
   },
 };

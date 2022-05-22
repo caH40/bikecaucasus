@@ -315,18 +315,25 @@
                             
                         </div>
                     </div>
-                    <div class="box-news__comments comments-news">
-                        <div class="comments-news__box-comment">
-                            <div class="comments-news__icon-user"><img class="comments-news__user-img" src="images/avatar.svg" alt="">
+                    <div class="comments-news invisible" id="comments-news-{{_id}}">
+                        <div class="box-news__comments">
+                            <div class="comments-news__box-comment" id="comments-news__box-comment-{{_id}}">
+                                {{#each commentsRevers}}
+                                <div class="comments-news__comment">
+                                    <div class="comments-news__icon-user"><img class="comments-news__user-img" src="{{postedBy.photoProfile}}" alt="">
+                                    </div>
+                                    <div class="comments-news__name-user">{{postedBy.username}}</div>
+                                    <div class="comments-news__date">{{date}}</div>
+                                    <div class="comments-news__text">{{text}}</div>
+                                    <!-- <div class="comments-news__cross-remove" id="comments-news__cross-remove-{{_id}}">&times</div> -->
+                                </div>
+                                {{/each}}
                             </div>
-                            <div class="comments-news__name-user">caH40</div>
-                            <div class="comments-news__date">22.05.2022, 11:23</div>
-                            <div class="comments-news__text">Всё будет хорошо, сдаваться не стоит!</div>
-                        </div>
-                        <div class="comments-news__box-add-comment">
-                            <button class="comments-news__btn" type="submit">Комментировать</button>
-                            <button class="comments-news__btn comments-news__btn-cancel" type="submit">Отмена</button>
-                            <textarea class="comments-news__area" name="comments-news__new-comment" rows="1" placeholder="Текст комментария"></textarea>
+                            <div class="comments-news__box-add-comment">
+                                <button class="comments-news__btn" type="submit" id="comments-news__btn-{{_id}}">Отправить</button>
+                                <button class="comments-news__btn comments-news__btn-cancel" type="submit">Отмена</button>
+                                <textarea class="comments-news__area" name="comments-news__new-comment" rows="1" placeholder="Текст комментария" id="comments-news__area-{{_id}}"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>

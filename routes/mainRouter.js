@@ -11,6 +11,7 @@ import {
   screenshot,
   postLike,
   postDislike,
+  postComment,
 } from '../controllers/mainController.js';
 
 router.get('/news', authMiddleware, getNews);
@@ -20,5 +21,6 @@ router.post('/news-edit', authMiddleware, editNews);
 router.get('/screenshot', authMiddleware, screenshot);
 router.post('/like', authMiddleware, postLike);
 router.post('/dislike', authMiddleware, postDislike);
+router.post('/post-comment', authMiddleware, postComment);
 
 export default router;
