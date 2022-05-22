@@ -220,7 +220,37 @@ export async function postComment(req, res) {
     // console.log(news.comments);
     const comments = news.comments;
 
-    res.status(201).json({ comments, message: 'Комментарий сохранён' });
+    res.status(201).json({ comments, userId, message: 'Комментарий сохранён' });
+  } catch (error) {
+    res.status(400).json({ message: 'Ошибка при сохранении комментария' });
+    console.log(error);
+  }
+}
+export async function removeComment(req, res) {
+  try {
+    const userId = req.user.id;
+    const { newsId, commentId } = req.body;
+
+    const comment = await CommentNews.findByIdAndDelete({
+      _id: commentId,
+      newsId,
+      postedBy: userId,
+    });
+
+    const newsSaved = await News.findOneAndUpdate(
+      { _id: newsId },
+      { $pull: { comments: comment._id } },
+      { returnDocument: 'after' }
+    )
+      .populate('comments')
+      .populate({
+        path: 'comments',
+        populate: { path: 'postedBy', select: ['username', 'photoProfile'] },
+      });
+
+    const comments = newsSaved.comments;
+
+    res.status(201).json({ comments, userId, message: 'Комментарий сохранён' });
   } catch (error) {
     res.status(400).json({ message: 'Ошибка при сохранении комментария' });
     console.log(error);

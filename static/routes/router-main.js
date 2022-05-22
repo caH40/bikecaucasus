@@ -208,12 +208,20 @@ export default {
   },
   commentsForm(newsId) {
     const buttonSend = document.querySelector(`#comments-news__btn-${newsId}`);
+    const boxComments = document.querySelector(`#comments-news__box-comment-${newsId}`);
     // const areaForSend = document.querySelector(`#comments-news__area-${newsId}`);
 
     buttonSend.onclick = handleButton;
     function handleButton(event) {
       event.preventDefault();
       controller.sendComment(newsId);
+    }
+    boxComments.onclick = handleBox;
+    function handleBox(event) {
+      if (event.target.className !== 'comments-news__cross-remove') return;
+      const commentId = event.target.id.split('-')[3];
+      // comments-news__cross-remove
+      controller.removeComment(newsId, commentId);
     }
 
     // areaForSend.addEventListener('keydown', (event) => {

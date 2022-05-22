@@ -257,17 +257,25 @@ export default {
 
     boxComments.innerHTML = '';
     commentsFromDb.comments.forEach((comment) => {
+      let crossRemove = '';
+      if (commentsFromDb.userId === comment.postedBy._id) {
+        crossRemove = `<div class="comments-news__cross-remove" id="comments-news__cross-remove-${comment._id}">&times</div>`;
+      } else {
+        crossRemove = '';
+      }
+
       boxComments.insertAdjacentHTML(
         'afterbegin',
         `
     <div class="comments-news__comment">
-    <div class="comments-news__icon-user"><img class="comments-news__user-img" src="${
-      comment.postedBy.photoProfile
-    }" alt="">
-    </div>
-    <div class="comments-news__name-user">${comment.postedBy.username}</div>
-    <div class="comments-news__date">${new Date(comment.date).toLocaleString()}</div>
-    <div class="comments-news__text">${comment.text}</div>
+      <div class="comments-news__icon-user"><img class="comments-news__user-img" src="${
+        comment.postedBy.photoProfile
+      }" alt="">
+      </div>
+      <div class="comments-news__name-user">${comment.postedBy.username}</div>
+      <div class="comments-news__date">${new Date(comment.date).toLocaleString()}</div>
+      <div class="comments-news__text">${comment.text}</div>
+      ${crossRemove}
     </div>
     
     `
@@ -275,5 +283,40 @@ export default {
     });
 
     areaComment.value = '';
+  },
+  async removeComment(newsId, commentId) {
+    const boxComments = document.querySelector(`#comments-news__box-comment-${newsId}`);
+    const commentsQuantity = document.querySelector(`#commentsQuantity-${newsId}`);
+
+    const commentsFromDb = await myFetch.fetchPost('/main/remove-comment', { newsId, commentId });
+
+    const lengthComments = commentsFromDb.comments.length;
+    commentsQuantity.innerHTML = lengthComments;
+
+    boxComments.innerHTML = '';
+    commentsFromDb.comments.forEach((comment) => {
+      let crossRemove = '';
+      if (commentsFromDb.userId === comment.postedBy._id) {
+        crossRemove = `<div class="comments-news__cross-remove" id="comments-news__cross-remove-${comment._id}">&times</div>`;
+      } else {
+        crossRemove = '';
+      }
+      boxComments.insertAdjacentHTML(
+        'afterbegin',
+        `
+    <div class="comments-news__comment">
+      <div class="comments-news__icon-user"><img class="comments-news__user-img" src="${
+        comment.postedBy.photoProfile
+      }" alt="">
+      </div>
+      <div class="comments-news__name-user">${comment.postedBy.username}</div>
+      <div class="comments-news__date">${new Date(comment.date).toLocaleString()}</div>
+      <div class="comments-news__text">${comment.text}</div>
+      ${crossRemove}
+    </div>
+    
+    `
+      );
+    });
   },
 };

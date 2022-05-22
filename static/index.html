@@ -324,8 +324,10 @@
                                     </div>
                                     <div class="comments-news__name-user">{{postedBy.username}}</div>
                                     <div class="comments-news__date">{{date}}</div>
-                                    <div class="comments-news__text">{{text}}</div>
-                                    <!-- <div class="comments-news__cross-remove" id="comments-news__cross-remove-{{_id}}">&times</div> -->
+                                    <div class="comments-news__text"><span>{{text}}</span></div>
+                                    {{#if (authUser postedBy._id)}}
+                                    <div class="comments-news__cross-remove" id="comments-news__cross-remove-{{_id}}">&times</div>
+                                    {{/if}}
                                 </div>
                                 {{/each}}
                             </div>
