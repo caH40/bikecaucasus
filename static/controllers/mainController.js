@@ -71,21 +71,22 @@ export default {
   },
 
   createNews(idNews) {
-    let blockNews;
-    //для первой новости на сайте else
-    if (idNews) {
-      blockNews = document.querySelector(`#block-news-${idNews}`);
-    } else {
-      blockNews = document.querySelector(`#main__inner-news`);
-    }
-    let desktopView = '';
-    if (window.innerWidth > 993) {
-      desktopView = `<div class="news-create__image desktop" id="news-create__image"></div>`;
-    }
+    try {
+      let blockNews;
+      //для первой новости на сайте else
+      if (idNews) {
+        blockNews = document.querySelector(`#block-news-${idNews}`);
+      } else {
+        blockNews = document.querySelector(`#main__inner-news`);
+      }
+      let desktopView = '';
+      if (window.innerWidth > 993) {
+        desktopView = `<div class="news-create__image desktop" id="news-create__image"></div>`;
+      }
 
-    blockNews.insertAdjacentHTML(
-      'afterend',
-      `
+      blockNews.insertAdjacentHTML(
+        'afterend',
+        `
       <div class="news-create" id="news-create">
         <h4 class="news-create__title">Блок публикации новостей</h4>
         <div class="news-create__block">
@@ -108,21 +109,26 @@ export default {
         </div>
       </div>
     `
-    );
-    //прослушка окна публикации новости
-    router.createNewsBlock();
+      );
+      //прослушка окна публикации новости
+      router.createNewsBlock();
+    } catch (error) {
+      console.log(error);
+    }
   },
+
   inputImage(file, loadImageBlock, newImageId) {
-    loadImageBlock.innerHTML = '';
+    try {
+      loadImageBlock.innerHTML = '';
 
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      const src = e.target.result;
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const src = e.target.result;
 
-      let sizeFile = Math.trunc(file.size / 8000);
-      loadImageBlock.insertAdjacentHTML(
-        'afterbegin',
-        `<div class="news-create__preview">
+        let sizeFile = Math.trunc(file.size / 8000);
+        loadImageBlock.insertAdjacentHTML(
+          'afterbegin',
+          `<div class="news-create__preview">
         <div class="news-create__cross" id="news-create__cross">&times</div>
           <img class="news__img" src="${src}" id="${newImageId}"/>
           <div class="news-create__preview-name">
@@ -130,49 +136,60 @@ export default {
             <span>${sizeFile}kB</span>
           </div>
         </div>`
-      );
+        );
 
-      router.crossImageRemove(loadImageBlock);
-    };
-    reader.readAsDataURL(file);
+        router.crossImageRemove(loadImageBlock);
+      };
+      reader.readAsDataURL(file);
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   async postNewsForm(news, blockNewsCreate, url, newsId) {
-    news.newsText = news.newsText.split('\n').join('<br>');
+    try {
+      news.newsText = news.newsText.split('\n').join('<br>');
 
-    const newsImage = await reduceImage(news.newsImage, 600);
-    news.newsImage = newsImage;
-    news.newsId = newsId;
+      const newsImage = await reduceImage(news.newsImage, 600);
+      news.newsImage = newsImage;
+      news.newsId = newsId;
 
-    const response = await myFetch.fetchPost(url, news);
-    console.log(response);
-    blockNewsCreate.innerHTML = '';
-    router.main();
+      const response = await myFetch.fetchPost(url, news);
+
+      blockNewsCreate.innerHTML = '';
+      router.main();
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   async deleteNewsForm(newsId) {
-    const response = await myFetch.fetchPost('/main/news-delete', { newsId });
-    console.log(response);
-    router.main();
+    try {
+      const response = await myFetch.fetchPost('/main/news-delete', { newsId });
+      router.main();
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   async editNewsForm(newsId) {
-    const newsImage = document.querySelector(`#news__img-${newsId}`).src;
-    const newsTitle = document.querySelector(`#box-news__title-${newsId}`).innerHTML;
-    const newsText = document.querySelector(`#box-news__text-${newsId}`).innerHTML;
+    try {
+      const newsImage = document.querySelector(`#news__img-${newsId}`).src;
+      const newsTitle = document.querySelector(`#box-news__title-${newsId}`).innerHTML;
+      const newsText = document.querySelector(`#box-news__text-${newsId}`).innerHTML;
 
-    const blockNews = document.querySelector(`#block-news-${newsId}`);
+      const blockNews = document.querySelector(`#block-news-${newsId}`);
 
-    let desktopView = '';
-    if (window.innerWidth > 993) {
-      desktopView = `<div class="news-create__image desktop" id="news-edit__image">
+      let desktopView = '';
+      if (window.innerWidth > 993) {
+        desktopView = `<div class="news-create__image desktop" id="news-edit__image">
       <img class="news__img" src="${newsImage}" alt="картинка новости" id="news-edit__img-${newsId}">
-  </div>`;
-    }
+      </div>`;
+      }
 
-    blockNews.insertAdjacentHTML(
-      'afterend',
-      `
+      blockNews.insertAdjacentHTML(
+        'afterend',
+        `
       <div class="news-create" id="news-edit-${newsId}">
         <h4 class="news-create__title">Редактирование</h4>
         <div class="news-create__block">
@@ -197,130 +214,150 @@ export default {
         </div>
       </div>
       `
-    );
+      );
 
-    router.editNewsForm(newsId);
+      router.editNewsForm(newsId);
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   async webCamera() {
-    //первоначальная загрузка картинки при открытии страницы
-    createWebcamImage();
-    setInterval(async () => {
+    try {
+      //первоначальная загрузка картинки при открытии страницы
       createWebcamImage();
-    }, 60000);
+      setInterval(async () => {
+        createWebcamImage();
+      }, 60000);
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   async like(newsId) {
-    if (!newsId) return;
-    const response = await myFetch.fetchPost('/main/like', { newsId });
+    try {
+      if (!newsId) return;
+      const response = await myFetch.fetchPost('/main/like', { newsId });
 
-    const likesQuantity = response.likesQuantity;
-    const isUserPostLike = response.isUserPostLike;
+      const likesQuantity = response.likesQuantity;
+      const isUserPostLike = response.isUserPostLike;
 
-    const likeNumber = document.querySelector(`#likesQuantity-${newsId}`);
-    likeNumber.innerHTML = addPlus(likesQuantity);
+      const likeNumber = document.querySelector(`#likesQuantity-${newsId}`);
+      likeNumber.innerHTML = addPlus(likesQuantity);
 
-    const iconLiked_path_2 = document.querySelector(
-      `#icon-img__like-${newsId} > path:nth-child(2)`
-    );
-    const iconLiked_path_3 = document.querySelector(
-      `#icon-img__like-${newsId} > path:nth-child(3)`
-    );
-    const iconDisliked_path_2 = document.querySelector(
-      `#icon-img__dislike-${newsId} > path:nth-child(2)`
-    );
-    const iconDisliked_path_3 = document.querySelector(
-      `#icon-img__dislike-${newsId} > path:nth-child(3)`
-    );
+      const iconLiked_path_2 = document.querySelector(
+        `#icon-img__like-${newsId} > path:nth-child(2)`
+      );
+      const iconLiked_path_3 = document.querySelector(
+        `#icon-img__like-${newsId} > path:nth-child(3)`
+      );
+      const iconDisliked_path_2 = document.querySelector(
+        `#icon-img__dislike-${newsId} > path:nth-child(2)`
+      );
+      const iconDisliked_path_3 = document.querySelector(
+        `#icon-img__dislike-${newsId} > path:nth-child(3)`
+      );
 
-    if (isUserPostLike) {
-      iconLiked_path_2.classList.add('icon-fill');
-      iconLiked_path_3.classList.add('icon-fill');
-      iconDisliked_path_2.classList.remove('icon-fill');
-      iconDisliked_path_3.classList.remove('icon-fill');
-    } else {
-      iconLiked_path_2.classList.remove('icon-fill');
-      iconLiked_path_3.classList.remove('icon-fill');
+      if (isUserPostLike) {
+        iconLiked_path_2.classList.add('icon-fill');
+        iconLiked_path_3.classList.add('icon-fill');
+        iconDisliked_path_2.classList.remove('icon-fill');
+        iconDisliked_path_3.classList.remove('icon-fill');
+      } else {
+        iconLiked_path_2.classList.remove('icon-fill');
+        iconLiked_path_3.classList.remove('icon-fill');
+      }
+    } catch (error) {
+      console.log(error);
     }
   },
 
   async dislike(newsId) {
-    if (!newsId) return;
-    const response = await myFetch.fetchPost('/main/dislike', { newsId });
+    try {
+      if (!newsId) return;
+      const response = await myFetch.fetchPost('/main/dislike', { newsId });
 
-    const likesQuantity = response.likesQuantity;
-    const isUserPostDislike = response.isUserPostDislike;
-    console.log(isUserPostDislike);
+      const likesQuantity = response.likesQuantity;
+      const isUserPostDislike = response.isUserPostDislike;
 
-    const likeNumber = document.querySelector(`#likesQuantity-${newsId}`);
-    likeNumber.innerHTML = addPlus(likesQuantity);
+      const likeNumber = document.querySelector(`#likesQuantity-${newsId}`);
+      likeNumber.innerHTML = addPlus(likesQuantity);
 
-    const iconLiked_path_2 = document.querySelector(
-      `#icon-img__like-${newsId} > path:nth-child(2)`
-    );
-    const iconLiked_path_3 = document.querySelector(
-      `#icon-img__like-${newsId} > path:nth-child(3)`
-    );
-    const iconDisliked_path_2 = document.querySelector(
-      `#icon-img__dislike-${newsId} > path:nth-child(2)`
-    );
-    const iconDisliked_path_3 = document.querySelector(
-      `#icon-img__dislike-${newsId} > path:nth-child(3)`
-    );
+      const iconLiked_path_2 = document.querySelector(
+        `#icon-img__like-${newsId} > path:nth-child(2)`
+      );
+      const iconLiked_path_3 = document.querySelector(
+        `#icon-img__like-${newsId} > path:nth-child(3)`
+      );
+      const iconDisliked_path_2 = document.querySelector(
+        `#icon-img__dislike-${newsId} > path:nth-child(2)`
+      );
+      const iconDisliked_path_3 = document.querySelector(
+        `#icon-img__dislike-${newsId} > path:nth-child(3)`
+      );
 
-    if (isUserPostDislike) {
-      iconLiked_path_2.classList.remove('icon-fill');
-      iconLiked_path_3.classList.remove('icon-fill');
-      iconDisliked_path_2.classList.add('icon-fill');
-      iconDisliked_path_3.classList.add('icon-fill');
-    } else {
-      iconDisliked_path_2.classList.remove('icon-fill');
-      iconDisliked_path_3.classList.remove('icon-fill');
+      if (isUserPostDislike) {
+        iconLiked_path_2.classList.remove('icon-fill');
+        iconLiked_path_3.classList.remove('icon-fill');
+        iconDisliked_path_2.classList.add('icon-fill');
+        iconDisliked_path_3.classList.add('icon-fill');
+      } else {
+        iconDisliked_path_2.classList.remove('icon-fill');
+        iconDisliked_path_3.classList.remove('icon-fill');
+      }
+    } catch (error) {
+      console.log(error);
     }
   },
-  comments(newsId) {
-    const comments = document.querySelector(`#comments-news-${newsId}`);
 
-    comments.classList.toggle('visible');
-    router.commentsForm(newsId);
+  comments(newsId) {
+    try {
+      const comments = document.querySelector(`#comments-news-${newsId}`);
+
+      comments.classList.toggle('visible');
+      router.commentsForm(newsId);
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   async sendComment(newsId) {
-    const areaComment = document.querySelector(`#comments-news__area-${newsId}`);
-    const boxComments = document.querySelector(`#comments-news__box-comment-${newsId}`);
-    const commentsQuantity = document.querySelector(`#commentsQuantity-${newsId}`);
-    const commentsIconPath = document.querySelector(`#icon-span__comment-path-${newsId}`);
+    try {
+      const areaComment = document.querySelector(`#comments-news__area-${newsId}`);
+      const boxComments = document.querySelector(`#comments-news__box-comment-${newsId}`);
+      const commentsQuantity = document.querySelector(`#commentsQuantity-${newsId}`);
+      const commentsIconPath = document.querySelector(`#icon-span__comment-path-${newsId}`);
 
-    const newComment = areaComment.value;
-    const commentsFromDb = await myFetch.fetchPost('/main/post-comment', { newComment, newsId });
+      const newComment = areaComment.value;
+      const commentsFromDb = await myFetch.fetchPost('/main/post-comment', { newComment, newsId });
 
-    if (!commentsFromDb.isAuthorization) {
-      console.log(commentsFromDb.message);
-      return;
-    }
-
-    const lengthComments = commentsFromDb.comments.length;
-    commentsQuantity.innerHTML = lengthComments;
-
-    //закраска иконки комментариев
-    if (lengthComments !== 0) {
-      commentsIconPath.classList.add('icon-fill');
-    } else {
-      commentsIconPath.classList.remove('icon-fill');
-    }
-
-    boxComments.innerHTML = '';
-    commentsFromDb.comments.forEach((comment) => {
-      let crossRemove = '';
-      if (commentsFromDb.userId === comment.postedBy._id) {
-        crossRemove = `<div class="comments-news__cross-remove" id="comments-news__cross-remove-${comment._id}">&times</div>`;
-      } else {
-        crossRemove = '';
+      if (!commentsFromDb.isAuthorization) {
+        console.log(commentsFromDb.message);
+        return;
       }
 
-      boxComments.insertAdjacentHTML(
-        'afterbegin',
-        `
+      const lengthComments = commentsFromDb.comments.length;
+      commentsQuantity.innerHTML = lengthComments;
+
+      //закраска иконки комментариев
+      if (lengthComments !== 0) {
+        commentsIconPath.classList.add('icon-fill');
+      } else {
+        commentsIconPath.classList.remove('icon-fill');
+      }
+
+      boxComments.innerHTML = '';
+      commentsFromDb.comments.forEach((comment) => {
+        let crossRemove = '';
+        if (commentsFromDb.userId === comment.postedBy._id) {
+          crossRemove = `<div class="comments-news__cross-remove" id="comments-news__cross-remove-${comment._id}">&times</div>`;
+        } else {
+          crossRemove = '';
+        }
+
+        boxComments.insertAdjacentHTML(
+          'afterbegin',
+          `
     <div class="comments-news__comment">
       <div class="comments-news__comment-inner">
         <img class="comments-news__user-img" src="${comment.postedBy.photoProfile}" alt="">
@@ -334,39 +371,44 @@ export default {
     </div>
     
     `
-      );
-    });
+        );
+      });
 
-    areaComment.value = '';
-  },
-  async removeComment(newsId, commentId) {
-    const boxComments = document.querySelector(`#comments-news__box-comment-${newsId}`);
-    const commentsQuantity = document.querySelector(`#commentsQuantity-${newsId}`);
-    const commentsIconPath = document.querySelector(`#icon-span__comment-path-${newsId}`);
-
-    const commentsFromDb = await myFetch.fetchPost('/main/remove-comment', { newsId, commentId });
-
-    const lengthComments = commentsFromDb.comments.length;
-    commentsQuantity.innerHTML = lengthComments;
-
-    //закраска иконки комментариев
-    if (lengthComments !== 0) {
-      commentsIconPath.classList.add('icon-fill');
-    } else {
-      commentsIconPath.classList.remove('icon-fill');
+      areaComment.value = '';
+    } catch (error) {
+      console.log(error);
     }
+  },
 
-    boxComments.innerHTML = '';
-    commentsFromDb.comments.forEach((comment) => {
-      let crossRemove = '';
-      if (commentsFromDb.userId === comment.postedBy._id) {
-        crossRemove = `<div class="comments-news__cross-remove" id="comments-news__cross-remove-${comment._id}">&times</div>`;
+  async removeComment(newsId, commentId) {
+    try {
+      const boxComments = document.querySelector(`#comments-news__box-comment-${newsId}`);
+      const commentsQuantity = document.querySelector(`#commentsQuantity-${newsId}`);
+      const commentsIconPath = document.querySelector(`#icon-span__comment-path-${newsId}`);
+
+      const commentsFromDb = await myFetch.fetchPost('/main/remove-comment', { newsId, commentId });
+
+      const lengthComments = commentsFromDb.comments.length;
+      commentsQuantity.innerHTML = lengthComments;
+
+      //закраска иконки комментариев
+      if (lengthComments !== 0) {
+        commentsIconPath.classList.add('icon-fill');
       } else {
-        crossRemove = '';
+        commentsIconPath.classList.remove('icon-fill');
       }
-      boxComments.insertAdjacentHTML(
-        'afterbegin',
-        `
+
+      boxComments.innerHTML = '';
+      commentsFromDb.comments.forEach((comment) => {
+        let crossRemove = '';
+        if (commentsFromDb.userId === comment.postedBy._id) {
+          crossRemove = `<div class="comments-news__cross-remove" id="comments-news__cross-remove-${comment._id}">&times</div>`;
+        } else {
+          crossRemove = '';
+        }
+        boxComments.insertAdjacentHTML(
+          'afterbegin',
+          `
     <div class="comments-news__comment">
       <div class="comments-news__comment-inner">
         <img class="comments-news__user-img" src="${comment.postedBy.photoProfile}" alt="">
@@ -381,7 +423,10 @@ export default {
     </div>
 
     `
-      );
-    });
+        );
+      });
+    } catch (error) {
+      console.log(error);
+    }
   },
 };
