@@ -68,7 +68,7 @@ export async function registration(req, res) {
     });
     await confirm.save();
     mailer(mailToken, email, username, password);
-    res.status(200).json({ message: 'Регистрация прошла успешно!' });
+    res.status(200).json({ isRegistrationCorrect: true, message: 'Регистрация прошла успешно!' });
     //блок отправки email с кодом подтверждения
   } catch (error) {
     console.log(error);

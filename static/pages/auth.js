@@ -190,17 +190,12 @@ export default function authPage() {
         //проверка валидности всех полей
         if (validatorState.nickname && validatorState.password && validatorState.email) {
           validationAll.textContent = '';
-          const response = await fetch(`${host}/auth/registration`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(user),
-          });
 
-          let json = await response.json();
+          const dataFromDb = await myFetch.fetchPost('/auth/registration', user);
 
-          if (response.ok) {
+          if (dataFromDb.isRegistrationCorrect) {
             popupAuth.classList.remove('modal-visible');
-            modalAnswer(json.message, 1000);
+            modalAnswer(dataFromDb.message, 1000);
 
             authRegistration.classList.add('auth__gray');
             authLogin.classList.remove('auth__gray');
@@ -219,7 +214,7 @@ export default function authPage() {
             validatorState.email = false;
           } else {
             validationAll.style.color = 'red';
-            validationAll.textContent = json.message;
+            validationAll.textContent = dataFromDb.message;
           }
         } else {
           validationAll.style.color = 'red';
