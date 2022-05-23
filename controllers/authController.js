@@ -24,27 +24,21 @@ export async function registration(req, res) {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res
-        .status(400)
-        .json({ message: 'Ошибка при регистрации', errors });
+      return res.status(400).json({ message: 'Ошибка при регистрации', errors });
     }
 
-    const { username, password, email } = req.body;
+    const { username, password, email, photoProfile } = req.body;
 
     // проверка наличия пользователя в базе с таким именем
     const candidate = await User.findOne({ username });
     if (candidate) {
-      return res
-        .status(403)
-        .json({ message: 'Пользователь с таким именем уже существует' });
+      return res.status(403).json({ message: 'Пользователь с таким именем уже существует' });
     }
 
     // проверка наличия пользователя в базе с email
     const candidateWithEmail = await User.findOne({ email });
     if (candidateWithEmail) {
-      return res
-        .status(403)
-        .json({ message: 'Пользователь с таким e-mail уже существует' });
+      return res.status(403).json({ message: 'Пользователь с таким e-mail уже существует' });
     }
 
     //кодируем пароль для хранения в базе данных
@@ -53,11 +47,13 @@ export async function registration(req, res) {
 
     //по умолчанию регистрируются все правами user-ов
     const userRole = await Role.findOne({ value: 'user' });
+
     const user = new User({
       username,
       password: hashPassword,
       email,
       roles: [userRole.value],
+      photoProfile,
     });
     const userId = await user.save().then((data) => data.id);
     //формирование токена подтверждения email
@@ -87,9 +83,7 @@ export async function login(req, res) {
     const user = await User.findOne({ username });
 
     if (!user) {
-      return res
-        .status(400)
-        .json({ message: 'Пользователь с таким именем не найден' });
+      return res.status(400).json({ message: 'Пользователь с таким именем не найден' });
     }
 
     const validPassword = bcrypt.compareSync(password, user.password);
@@ -106,9 +100,7 @@ export async function login(req, res) {
     });
   } catch (error) {
     console.log(error);
-    res
-      .status(400)
-      .json({ message: 'Ошибка при входе...необходимы уточнения' });
+    res.status(400).json({ message: 'Ошибка при входе...необходимы уточнения' });
   }
 }
 
@@ -118,9 +110,7 @@ export async function checkToken(req, res) {
     const token = req.headers.authorization.split(' ')[1];
 
     if (!token) {
-      return res
-        .status(401)
-        .json({ authorized: false, message: 'Вы не авторизовались' });
+      return res.status(401).json({ authorized: false, message: 'Вы не авторизовались' });
     }
 
     jwt.verify(token, secret, async (err, decodedData) => {
