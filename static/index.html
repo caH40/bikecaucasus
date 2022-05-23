@@ -219,7 +219,7 @@
                                 <!-- ===================================== -->
                                 
                                 <p class="box-news__text" id="box-news__text-{{_id}}">{{{newsText}}}</p>
-                                {{#if (checkRoleUser userRole)}}
+                                {{#if (isRoleAdmin userRole)}}
                                 <div class="comment__popap popap-comment" id="popap-news-{{_id}}">
                                     <div class="popap-comment__menu">
                                         <span class="popap-news__arrow-box" data-id="{{_id}}" id="popap-news__arrow-box">
@@ -330,14 +330,14 @@
 
                                     <div class="comments-news__comment-inner">
                                          <div class="comments-news__text">{{text}}</div>
-                                        {{#if (authUser postedBy._id)}}
+                                        {{#if (isAuthor postedBy._id)}}
                                         <div class="comments-news__cross-remove" id="comments-news__cross-remove-{{_id}}">&times</div>
                                         {{/if}}
                                     </div>                                    
                                 </div>
                                 {{/each}}
                             </div>
-                            {{#if (isAuth userRole)}}
+                            {{#if (isAuthorized userRole)}}
                             <div class="comments-news__box-add-comment">
                                 <button class="comments-news__btn" type="submit" id="comments-news__btn-{{_id}}">Отправить</button>
                                 <textarea class="comments-news__area" name="comments-news__new-comment" rows="1" placeholder="Текст комментария" id="comments-news__area-{{_id}}"></textarea>

@@ -250,8 +250,7 @@
   }
   .login__icon {
     position: absolute;
-    width: 56px;
-    /* margin: 130px 0px 0px 0px; */
+    width: 50px;
     right: -129px;
     top: 176px;
   }

@@ -4,36 +4,11 @@ import myFetch from '../utilities/myfetch.js';
 import reduceImage from '../utilities/reduce-image.js';
 import createWebcamImage from '../utilities/webcam-image.js';
 import addPlus from '../utilities/addPlus.js';
+import helpersMain from '../view/helpersMain.js';
+import helpersUser from '../view/helpersUser.js';
 
-Handlebars.registerHelper('authUser', function (items, options) {
-  let result = false;
-  const authUser = localStorage.getItem('userBikeCaucasus');
-  if (items === authUser) {
-    result = true;
-  }
-  return result;
-});
-Handlebars.registerHelper('checkRoleUser', function (items, options) {
-  let result = false;
-  if (items.includes('admin')) {
-    result = true;
-  }
-  return result;
-});
-Handlebars.registerHelper('isAuth', function (items, options) {
-  if (items.includes('user') || items.includes('moderator') || items.includes('admin')) {
-    return true;
-  } else {
-    return false;
-  }
-});
-Handlebars.registerHelper('isComment', function (items, options) {
-  if (items !== 0) {
-    return true;
-  } else {
-    return false;
-  }
-});
+helpersMain();
+helpersUser();
 
 export default {
   async main() {
