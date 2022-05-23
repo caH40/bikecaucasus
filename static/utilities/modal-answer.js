@@ -6,5 +6,6 @@ export default function modalAnswer(answer, timer = 1500) {
   serverAnswer.innerHTML = answer;
   setTimeout(() => {
     modalAnswer.classList.remove('visible');
+    window.location.reload();
   }, timer);
 }

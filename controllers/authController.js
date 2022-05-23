@@ -83,16 +83,19 @@ export async function login(req, res) {
     const user = await User.findOne({ username });
 
     if (!user) {
-      return res.status(400).json({ message: 'Пользователь с таким именем не найден' });
+      return res
+        .status(400)
+        .json({ isLoginCorrect: false, message: 'Пользователь с таким именем не найден' });
     }
 
     const validPassword = bcrypt.compareSync(password, user.password);
     if (!validPassword) {
-      return res.status(400).json({ message: 'Неверный пароль' });
+      return res.status(400).json({ isLoginCorrect: false, message: 'Неверный пароль' });
     }
     //генерирование токена JWT
     const token = generateAccessToken(user._id, user.roles);
     return res.status(200).json({
+      isLoginCorrect: true,
       message: `С возвращением ${username}!`,
       token,
       userId: user._id,

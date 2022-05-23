@@ -16,6 +16,7 @@ export default {
       console.log(error);
     }
   },
+
   async fetchGet(url, bodyObj) {
     try {
       const dataFromDb = await fetch(`${host}${url}`, {
@@ -30,6 +31,7 @@ export default {
       console.log(error);
     }
   },
+
   async fetchPostFile(url, file) {
     try {
       const dataFromDb = await fetch(`${host}${url}`, {
@@ -45,6 +47,7 @@ export default {
       console.log(error);
     }
   },
+
   async fetchGetFile(url) {
     try {
       const dataFromDb = await fetch(`${host}${url}`, {

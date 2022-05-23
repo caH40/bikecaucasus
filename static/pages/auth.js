@@ -1,6 +1,7 @@
 import { host } from '../utilities/host.js';
 import modalAnswer from '../utilities/modal-answer.js';
 import authIcon from '../utilities/auth-icon.js';
+import myFetch from '../utilities/myfetch.js';
 
 export default function authPage() {
   try {
@@ -24,7 +25,6 @@ export default function authPage() {
         localStorage.removeItem('userBikeCaucasus');
         localStorage.removeItem('photoProfileBikeCaucasus');
 
-        window.location.reload();
         await authIcon();
         modalAnswer('Выход...Возвращайтесь!', 1000);
         return;
@@ -154,24 +154,21 @@ export default function authPage() {
         //блок авторизации
         //проверка валидности всех полей
         if (validatorState.nickname && validatorState.password) {
-          const response = await fetch(`${host}/auth/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(user),
-          });
-          const json = await response.json();
-          if (response.ok) {
-            window.location.reload();
+          const dataFromDb = await myFetch.fetchPost(`/auth/login`, user);
+
+          if (dataFromDb.isLoginCorrect) {
             authInputNickname.value = '';
             authInputPassword.value = '';
             authInputEmail.value = '';
 
             popupAuth.classList.remove('modal-visible');
-            modalAnswer(json.message, 1000);
+            console.log(dataFromDb.message);
+            modalAnswer(dataFromDb.message, 1000);
+
             //запись токена в localStorage
-            localStorage.setItem('tokenBikeCaucasus', `Bearer ${json.token}`);
-            localStorage.setItem('userBikeCaucasus', json.userId);
-            localStorage.setItem('photoProfileBikeCaucasus', json.photoProfile);
+            localStorage.setItem('tokenBikeCaucasus', `Bearer ${dataFromDb.token}`);
+            localStorage.setItem('userBikeCaucasus', dataFromDb.userId);
+            localStorage.setItem('photoProfileBikeCaucasus', dataFromDb.photoProfile);
 
             await authIcon();
 
@@ -179,7 +176,7 @@ export default function authPage() {
             validatorState.password = false;
           } else {
             validationAll.style.color = 'red';
-            validationAll.textContent = json.message;
+            validationAll.textContent = dataFromDb.message;
           }
         } else {
           validationAll.style.color = 'red';
