@@ -192,7 +192,7 @@
     </section>
 
     <script id="mainTemplate" type="text/x-handlebars-template">
-        <div class="title__box">
+        <div class="title__box invisible">
             <h1 class="title">Байк Кавказ!</h1>
             <h2 class="title__page-sub">Велосипедные маршруты на Кавказе.</h2>
         </div>
@@ -337,11 +337,14 @@
                                 </div>
                                 {{/each}}
                             </div>
+                            {{#if (isAuth userRole)}}
                             <div class="comments-news__box-add-comment">
                                 <button class="comments-news__btn" type="submit" id="comments-news__btn-{{_id}}">Отправить</button>
-                                <button class="comments-news__btn comments-news__btn-cancel" type="submit">Отмена</button>
                                 <textarea class="comments-news__area" name="comments-news__new-comment" rows="1" placeholder="Текст комментария" id="comments-news__area-{{_id}}"></textarea>
                             </div>
+                            {{else}}
+                            <div class="post__authorization"> Комментировать могут только авторизованные пользователи</div>
+                            {{/if}}
                         </h4>
                         </div>
                         

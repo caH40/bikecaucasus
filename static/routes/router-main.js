@@ -207,28 +207,35 @@ export default {
     );
   },
   commentsForm(newsId) {
-    const buttonSend = document.querySelector(`#comments-news__btn-${newsId}`);
-    const boxComments = document.querySelector(`#comments-news__box-comment-${newsId}`);
-    // const areaForSend = document.querySelector(`#comments-news__area-${newsId}`);
+    try {
+      const buttonSend = document.querySelector(`#comments-news__btn-${newsId}`);
+      const boxComments = document.querySelector(`#comments-news__box-comment-${newsId}`);
+      // const areaForSend = document.querySelector(`#comments-news__area-${newsId}`);
 
-    buttonSend.onclick = handleButton;
-    function handleButton(event) {
-      event.preventDefault();
-      controller.sendComment(newsId);
+      //если не авторизован, то нет кнопки и текстареа
+      if (buttonSend && boxComments) {
+        buttonSend.onclick = handleButton;
+        function handleButton(event) {
+          event.preventDefault();
+          controller.sendComment(newsId);
+        }
+
+        boxComments.onclick = handleBox;
+        function handleBox(event) {
+          event.preventDefault();
+          if (event.target.className !== 'comments-news__cross-remove') return;
+          const commentId = event.target.id.split('-')[3];
+          // comments-news__cross-remove
+          controller.removeComment(newsId, commentId);
+        }
+      }
+
+      // areaForSend.addEventListener('keydown', (event) => {
+      //   if (event.keyCode !== 13) return;
+      //   controller.sendComment(newsId);
+      // });
+    } catch (error) {
+      console.log(error);
     }
-    boxComments.onclick = handleBox;
-
-    function handleBox(event) {
-      event.preventDefault();
-      if (event.target.className !== 'comments-news__cross-remove') return;
-      const commentId = event.target.id.split('-')[3];
-      // comments-news__cross-remove
-      controller.removeComment(newsId, commentId);
-    }
-
-    // areaForSend.addEventListener('keydown', (event) => {
-    //   if (event.keyCode !== 13) return;
-    //   controller.sendComment(newsId);
-    // });
   },
 };

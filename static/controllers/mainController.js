@@ -20,6 +20,13 @@ Handlebars.registerHelper('checkRoleUser', function (items, options) {
   }
   return result;
 });
+Handlebars.registerHelper('isAuth', function (items, options) {
+  if (items.includes('user') || items.includes('moderator') || items.includes('admin')) {
+    return true;
+  } else {
+    return false;
+  }
+});
 
 export default {
   async main() {
@@ -45,7 +52,7 @@ export default {
         }
       });
 
-      const dataTemplate = { list: dataFormDb.news };
+      const dataTemplate = { list: dataFormDb.news, userRole: dataFormDb.userRole };
       render(dataTemplate, '#mainTemplate');
       //если не было ни одной опубликованной новости
       if (!dataFormDb.news[0]) {
@@ -252,6 +259,10 @@ export default {
     const newComment = areaComment.value;
     const commentsFromDb = await myFetch.fetchPost('/main/post-comment', { newComment, newsId });
 
+    if (!commentsFromDb.isAuthorization) {
+      console.log(commentsFromDb.message);
+      return;
+    }
     const lengthComments = commentsFromDb.comments.length;
     commentsQuantity.innerHTML = lengthComments;
 

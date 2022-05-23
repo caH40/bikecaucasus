@@ -198,6 +198,10 @@ export async function postDislike(req, res) {
 
 export async function postComment(req, res) {
   try {
+    const userRole = req.user.roles;
+    if (userRole.includes('guest')) {
+      return res.status(401).json({ isAuthorization: false, message: 'Необходимо авторизоваться' });
+    }
     const userId = req.user.id;
     const { newComment, newsId } = req.body;
 
@@ -220,7 +224,9 @@ export async function postComment(req, res) {
     // console.log(news.comments);
     const comments = news.comments;
 
-    res.status(201).json({ comments, userId, message: 'Комментарий сохранён' });
+    res
+      .status(201)
+      .json({ comments, userId, isAuthorization: true, message: 'Комментарий сохранён' });
   } catch (error) {
     res.status(400).json({ message: 'Ошибка при сохранении комментария' });
     console.log(error);
@@ -228,6 +234,10 @@ export async function postComment(req, res) {
 }
 export async function removeComment(req, res) {
   try {
+    const userRole = req.user.roles;
+    if (userRole.includes('guest')) {
+      return res.status(401).json({ isAuthorization: false, message: 'Необходимо авторизоваться' });
+    }
     const userId = req.user.id;
     const { newsId, commentId } = req.body;
 
