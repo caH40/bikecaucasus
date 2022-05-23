@@ -437,6 +437,9 @@
   .column-main__box {
     width: 100%;
   }
+  .news__img {
+    height: 100%;
+  }
   .camera__img {
     width: 100%;
   }
