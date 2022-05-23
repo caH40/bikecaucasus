@@ -9,7 +9,7 @@ import { handlerLike, handlerDisLike, handlerMessagePopup } from '../dynamics/ku
 helpersHandlebars();
 
 export default {
-  async getKudos(cardId, userId) {
+  async getKudos(cardId, userRole) {
     const blockKudos = document.querySelector('#block-kudos__inner');
 
     blockKudos.addEventListener('click', async (event) => {
@@ -48,7 +48,7 @@ export default {
         handlerDisLike(dataFromDb);
       }
     });
-    if (userId) {
+    if (!userRole.includes('guest')) {
       this.comment(cardId);
     }
   },

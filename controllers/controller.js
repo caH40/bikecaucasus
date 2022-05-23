@@ -144,12 +144,12 @@ export async function descriptionPage(req, res) {
 // получение данных конкретного маршрута для формирования страницы description
 export async function getDescriptionData(req, res) {
   try {
-    const user = req.user;
+    const userRole = req.user.roles;
     const userId = req.user.id;
 
     const id = req.query.id;
     let kudos;
-    // console.log(kudos);
+
     if (userId === '6274b392673579dda1aa2d42') {
       kudos = await Kudos.findOne({ cardId: id });
     } else {
@@ -183,13 +183,11 @@ export async function getDescriptionData(req, res) {
     const photo = await Photo.findOne({ cardId: id });
 
     if (!photo) {
-      return res
-        .status(400)
-        .json({ message: 'В базе данных нет данной коллекции! (photo)' });
+      return res.status(400).json({ message: 'В базе данных нет данной коллекции! (photo)' });
     }
 
     const data = {
-      user,
+      userRole,
       descPhoto: photo.descPhoto,
       authorPhoto: photo.authorPhoto,
       card,
@@ -217,24 +215,19 @@ export async function postDescriptionComment(req, res) {
     //проверка прав использования роутера
     if (req.user.roles[0] !== 'user') {
       return res.status(401).json({
-        message:
-          'Комментарии могут добавлять только авторизованные пользователи',
+        message: 'Комментарии могут добавлять только авторизованные пользователи',
         noAuthorization: true,
       });
     }
 
     const postedBy = req.user.id;
-    const username = await User.findOne({ _id: postedBy }).then(
-      (user) => user.username
-    );
+    const username = await User.findOne({ _id: postedBy }).then((user) => user.username);
     const text = req.body.text;
     const date = req.body.date;
     const cardId = req.body.cardId;
 
     const commentNew = Comment({ cardId, text, postedBy, username, date });
-    const commentSaved = await commentNew
-      .save()
-      .catch((error) => console.log(error));
+    const commentSaved = await commentNew.save().catch((error) => console.log(error));
 
     const card = await Card.findOneAndUpdate(
       { _id: cardId },
@@ -252,8 +245,7 @@ export async function postDescriptionCommentEdit(req, res) {
     //проверка прав использования роутера
     if (req.user.roles[0] !== 'user') {
       return res.status(401).json({
-        message:
-          'Комментарии могут добавлять только авторизованные пользователи',
+        message: 'Комментарии могут добавлять только авторизованные пользователи',
         noAuthorization: true,
       });
     }
@@ -287,10 +279,7 @@ export async function postDescriptionCommentRemove(req, res) {
 
     const commentNew = await Comment.findOneAndDelete({ _id: commentId });
 
-    const card = await Card.findOneAndUpdate(
-      { _id: cardId },
-      { $pull: { comments: commentId } }
-    );
+    const card = await Card.findOneAndUpdate({ _id: cardId }, { $pull: { comments: commentId } });
 
     res.status(201).json({ message: 'Ваш комментарий изменён!' });
   } catch (error) {
@@ -339,10 +328,7 @@ export async function sendFormCard(req, res) {
     const kudos = new Kudos({ cardId: cardSaved._id });
     const kudosSaved = await kudos.save();
 
-    await Card.findOneAndUpdate(
-      { _id: cardSaved._id },
-      { $set: { kudoses: kudosSaved._id } }
-    );
+    await Card.findOneAndUpdate({ _id: cardSaved._id }, { $set: { kudoses: kudosSaved._id } });
 
     res.status(201).send({ dispatched: true });
   } catch (error) {
@@ -403,9 +389,7 @@ export async function postTrailEdited(req, res) {
 
     res.status(201).send({ dispatched: true });
   } catch (error) {
-    res
-      .status(400)
-      .json({ message: 'Ошибка при сохранении изменений в маршруте' });
+    res.status(400).json({ message: 'Ошибка при сохранении изменений в маршруте' });
     console.log(error);
   }
 }
@@ -429,18 +413,10 @@ export async function postDescriptionTrailRemove(req, res) {
   try {
     const cardId = req.body.cardId;
 
-    const card = await Card.findOneAndDelete({ _id: cardId }).catch((error) =>
-      console.log(error)
-    );
-    const photo = await Photo.findOneAndDelete({ cardId }).catch((error) =>
-      console.log(error)
-    );
-    const kudos = await Kudos.findOneAndDelete({ cardId }).catch((error) =>
-      console.log(error)
-    );
-    const comments = await Comment.deleteMany({ cardId }).catch((error) =>
-      console.log(error)
-    );
+    const card = await Card.findOneAndDelete({ _id: cardId }).catch((error) => console.log(error));
+    const photo = await Photo.findOneAndDelete({ cardId }).catch((error) => console.log(error));
+    const kudos = await Kudos.findOneAndDelete({ cardId }).catch((error) => console.log(error));
+    const comments = await Comment.deleteMany({ cardId }).catch((error) => console.log(error));
 
     res.status(201).json({ deleted: true, message: 'удаление карточки' });
   } catch (error) {
@@ -579,8 +555,7 @@ export async function takeKudos(req, res) {
         });
         return res.status(200).json({
           message: 'Кудос снят',
-          kudosGoodQuantity:
-            kudosDb.usersIdLike.length - kudosDb.usersIdDisLike.length,
+          kudosGoodQuantity: kudosDb.usersIdLike.length - kudosDb.usersIdDisLike.length,
           remove: true,
         });
       } else {
@@ -595,8 +570,7 @@ export async function takeKudos(req, res) {
         });
         return res.status(200).json({
           message: 'Кудос получен',
-          kudosGoodQuantity:
-            kudosDb.usersIdLike.length - kudosDb.usersIdDisLike.length,
+          kudosGoodQuantity: kudosDb.usersIdLike.length - kudosDb.usersIdDisLike.length,
           remove: false,
         });
       }
@@ -612,8 +586,7 @@ export async function takeKudos(req, res) {
         );
         return res.status(200).json({
           message: 'Дизлайк снят',
-          kudosGoodQuantity:
-            kudosDb.usersIdLike.length - kudosDb.usersIdDisLike.length,
+          kudosGoodQuantity: kudosDb.usersIdLike.length - kudosDb.usersIdDisLike.length,
           remove: true,
         });
       } else {
@@ -626,8 +599,7 @@ export async function takeKudos(req, res) {
         );
         return res.status(200).json({
           message: 'Дизлайк получен',
-          kudosGoodQuantity:
-            kudosDb.usersIdLike.length - kudosDb.usersIdDisLike.length,
+          kudosGoodQuantity: kudosDb.usersIdLike.length - kudosDb.usersIdDisLike.length,
           remove: false,
         });
       }

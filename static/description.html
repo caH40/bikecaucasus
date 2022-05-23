@@ -361,7 +361,7 @@
         {{/each}}
 
         </div>
-        {{#if (isAuth userId)}}
+        {{#if (isAuthorized userRole)}}
         <div class="comment description__text">
             <div class="comment__inner">
                 <h4 class="comment__title comment__title-pointer " id="comment__title">Оставьте комментарий к маршруту</h4>
@@ -846,7 +846,7 @@
             {{/each}}
     
             </div>
-            {{#if (isAuth userId)}}
+            {{#if (isAuthorized userRole)}}
             <div class="comment description__text">
                 <div class="comment__inner">
                     <h4 class="comment__title comment__title-pointer " id="comment__title">Оставьте комментарий к маршруту</h4>

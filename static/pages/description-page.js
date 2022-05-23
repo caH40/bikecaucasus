@@ -2,25 +2,13 @@ import { host } from '../utilities/host.js';
 import { render } from '../view/viewer.js';
 import prepData from '../utilities/prep-data.js';
 import router from '../routes/router-description.js';
+import helpersUser from '../view/helpersUser.js';
 
-Handlebars.registerHelper('isAuthor', function (items, options) {
-  let result = false;
-  const authUser = localStorage.getItem('userBikeCaucasus');
-  if (items === authUser) {
-    result = true;
-  }
-  return result;
-});
-Handlebars.registerHelper('isAuth', function (items, options) {
-  if (items) {
-    return true;
-  } else {
-    return false;
-  }
-});
+helpersUser();
 
 async function descriptionPage() {
   try {
+    //для копирования урла
     let id = document.location.search;
     const data = await fetch(`${host}/description/getdata${id}`, {
       headers: {
@@ -37,12 +25,11 @@ async function descriptionPage() {
           card: data.card,
           kudos: data.kudos,
           listComment: data.card.comments,
-          userId: data.user.id,
-          userRole: data.user.roles,
+          userRole: data.userRole,
         },
         '#descriptionTemplate'
       );
-      router.getKudos(data.card._id, data.user.id);
+      router.getKudos(data.card._id, data.userRole);
     } else {
       render(
         {
@@ -50,12 +37,11 @@ async function descriptionPage() {
           card: data.card,
           kudos: data.kudos,
           listComment: data.card.comments,
-          userId: data.user.id,
-          userRole: data.user.roles,
+          userRole: data.userRole,
         },
         '#descriptionTemplateMobile'
       );
-      router.getKudos(data.card._id, data.user.id);
+      router.getKudos(data.card._id, data.userRole);
     }
   } catch (error) {
     console.log(error);
