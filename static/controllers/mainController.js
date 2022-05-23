@@ -58,7 +58,7 @@ export default {
           }
         }
       });
-      console.log(dataFormDb);
+
       const dataTemplate = { list: dataFormDb.news, userRole: dataFormDb.userRole };
       render(dataTemplate, '#mainTemplate');
       //если не было ни одной опубликованной новости
@@ -289,6 +289,7 @@ export default {
     const areaComment = document.querySelector(`#comments-news__area-${newsId}`);
     const boxComments = document.querySelector(`#comments-news__box-comment-${newsId}`);
     const commentsQuantity = document.querySelector(`#commentsQuantity-${newsId}`);
+    const commentsIconPath = document.querySelector(`#icon-span__comment-path-${newsId}`);
 
     const newComment = areaComment.value;
     const commentsFromDb = await myFetch.fetchPost('/main/post-comment', { newComment, newsId });
@@ -297,8 +298,16 @@ export default {
       console.log(commentsFromDb.message);
       return;
     }
+
     const lengthComments = commentsFromDb.comments.length;
     commentsQuantity.innerHTML = lengthComments;
+
+    //закраска иконки комментариев
+    if (lengthComments !== 0) {
+      commentsIconPath.classList.add('icon-fill');
+    } else {
+      commentsIconPath.classList.remove('icon-fill');
+    }
 
     boxComments.innerHTML = '';
     commentsFromDb.comments.forEach((comment) => {
@@ -333,11 +342,19 @@ export default {
   async removeComment(newsId, commentId) {
     const boxComments = document.querySelector(`#comments-news__box-comment-${newsId}`);
     const commentsQuantity = document.querySelector(`#commentsQuantity-${newsId}`);
+    const commentsIconPath = document.querySelector(`#icon-span__comment-path-${newsId}`);
 
     const commentsFromDb = await myFetch.fetchPost('/main/remove-comment', { newsId, commentId });
 
     const lengthComments = commentsFromDb.comments.length;
     commentsQuantity.innerHTML = lengthComments;
+
+    //закраска иконки комментариев
+    if (lengthComments !== 0) {
+      commentsIconPath.classList.add('icon-fill');
+    } else {
+      commentsIconPath.classList.remove('icon-fill');
+    }
 
     boxComments.innerHTML = '';
     commentsFromDb.comments.forEach((comment) => {
