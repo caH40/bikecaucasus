@@ -27,6 +27,13 @@ Handlebars.registerHelper('isAuth', function (items, options) {
     return false;
   }
 });
+Handlebars.registerHelper('isComment', function (items, options) {
+  if (items !== 0) {
+    return true;
+  } else {
+    return false;
+  }
+});
 
 export default {
   async main() {
@@ -51,7 +58,7 @@ export default {
           }
         }
       });
-
+      console.log(dataFormDb);
       const dataTemplate = { list: dataFormDb.news, userRole: dataFormDb.userRole };
       render(dataTemplate, '#mainTemplate');
       //если не было ни одной опубликованной новости
@@ -213,14 +220,27 @@ export default {
     const likeNumber = document.querySelector(`#likesQuantity-${newsId}`);
     likeNumber.innerHTML = addPlus(likesQuantity);
 
-    const iconLiked = document.querySelector(`#icon-path__liked-${newsId}`);
-    const iconDisliked = document.querySelector(`#icon-path__disliked-${newsId}`);
+    const iconLiked_path_2 = document.querySelector(
+      `#icon-img__like-${newsId} > path:nth-child(2)`
+    );
+    const iconLiked_path_3 = document.querySelector(
+      `#icon-img__like-${newsId} > path:nth-child(3)`
+    );
+    const iconDisliked_path_2 = document.querySelector(
+      `#icon-img__dislike-${newsId} > path:nth-child(2)`
+    );
+    const iconDisliked_path_3 = document.querySelector(
+      `#icon-img__dislike-${newsId} > path:nth-child(3)`
+    );
 
     if (isUserPostLike) {
-      iconLiked.classList.add('icon-fill');
-      iconDisliked.classList.remove('icon-fill');
+      iconLiked_path_2.classList.add('icon-fill');
+      iconLiked_path_3.classList.add('icon-fill');
+      iconDisliked_path_2.classList.remove('icon-fill');
+      iconDisliked_path_3.classList.remove('icon-fill');
     } else {
-      iconLiked.classList.remove('icon-fill');
+      iconLiked_path_2.classList.remove('icon-fill');
+      iconLiked_path_3.classList.remove('icon-fill');
     }
   },
 
@@ -230,18 +250,32 @@ export default {
 
     const likesQuantity = response.likesQuantity;
     const isUserPostDislike = response.isUserPostDislike;
+    console.log(isUserPostDislike);
 
     const likeNumber = document.querySelector(`#likesQuantity-${newsId}`);
     likeNumber.innerHTML = addPlus(likesQuantity);
 
-    const iconLiked = document.querySelector(`#icon-path__liked-${newsId}`);
-    const iconDisliked = document.querySelector(`#icon-path__disliked-${newsId}`);
+    const iconLiked_path_2 = document.querySelector(
+      `#icon-img__like-${newsId} > path:nth-child(2)`
+    );
+    const iconLiked_path_3 = document.querySelector(
+      `#icon-img__like-${newsId} > path:nth-child(3)`
+    );
+    const iconDisliked_path_2 = document.querySelector(
+      `#icon-img__dislike-${newsId} > path:nth-child(2)`
+    );
+    const iconDisliked_path_3 = document.querySelector(
+      `#icon-img__dislike-${newsId} > path:nth-child(3)`
+    );
 
     if (isUserPostDislike) {
-      iconDisliked.classList.add('icon-fill');
-      iconLiked.classList.remove('icon-fill');
+      iconLiked_path_2.classList.remove('icon-fill');
+      iconLiked_path_3.classList.remove('icon-fill');
+      iconDisliked_path_2.classList.add('icon-fill');
+      iconDisliked_path_3.classList.add('icon-fill');
     } else {
-      iconDisliked.classList.remove('icon-fill');
+      iconDisliked_path_2.classList.remove('icon-fill');
+      iconDisliked_path_3.classList.remove('icon-fill');
     }
   },
   comments(newsId) {

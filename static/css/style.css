@@ -351,22 +351,28 @@ body {
 .icon-fill {
   fill: #747e87;
 }
-#icon-span__like:hover > svg > path:nth-child(3) {
-  fill: #747e87;
+#icon-span__like:hover > svg > path:nth-child(1) {
+  fill: green;
 }
 #icon-span__like:active > svg > path:nth-child(2) {
   fill: #747e87;
 }
-#icon-span__comment:hover > svg > path:nth-child(2) {
+#icon-span__like:active > svg > path:nth-child(3) {
   fill: #747e87;
 }
-#icon-span__share:hover > svg > path:nth-child(2) {
-  fill: #747e87;
+#icon-span__comment:hover > svg > path:nth-child(1) {
+  fill: green;
 }
-#icon-span__dislike:hover > svg > path:nth-child(3) {
-  fill: #747e87;
+#icon-span__share:hover > svg > path:nth-child(1) {
+  fill: green;
+}
+#icon-span__dislike:hover > svg > path:nth-child(1) {
+  fill: red;
 }
 #icon-span__dislike:active > svg > path:nth-child(2) {
+  fill: #747e87;
+}
+#icon-span__dislike:active > svg > path:nth-child(3) {
   fill: #747e87;
 }
 

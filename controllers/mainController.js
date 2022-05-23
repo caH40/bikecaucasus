@@ -30,11 +30,11 @@ export async function getNews(req, res) {
     news.forEach((oneNews) => {
       if (oneNews.kudoses.usersIdLike.includes(userId)) {
         oneNews.likeUser = true;
-        oneNews.DislikeUser = false;
+        oneNews.dislikeUser = false;
       }
       if (oneNews.kudoses.usersIdDislike.includes(userId)) {
         oneNews.likeUser = false;
-        oneNews.DislikeUser = true;
+        oneNews.dislikeUser = true;
       }
       oneNews.kudosQuantity =
         oneNews.kudoses.usersIdLike.length - oneNews.kudoses.usersIdDislike.length;
