@@ -155,3 +155,24 @@ export async function confirmUser(req, res) {
     res.status(400).send('<h3>Ошибка при активации аккаунта.</h3>');
   }
 }
+//сброс пароля
+export async function resetPassword(req, res) {
+  try {
+    const email = req.body.email;
+    const user = await User.findOne({ email });
+
+    if (user) {
+      res.status(200).json({
+        isEmailCorrect: true,
+        message: 'На email отправлена инструкция для сброса пароля',
+      });
+    } else {
+      res
+        .status(400)
+        .json({ isEmailCorrect: false, message: 'Пользователя с таким email не существует' });
+    }
+    // res.status(201).json({ message: 'Пароль сброшен' });
+  } catch (error) {
+    res.status(400).json('<h3>Ошибка при активации аккаунта.</h3>');
+  }
+}
