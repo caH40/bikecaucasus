@@ -19,9 +19,7 @@ export default {
       const hour = Math.trunc(seconds / 3600);
       const minutes = Math.trunc((seconds - hour * 3600) / 60);
       const second = seconds - hour * 3600 - minutes * 60;
-      return `${this.addNull(hour)}:${this.addNull(minutes)}:${this.addNull(
-        second
-      )}`;
+      return `${this.addNull(hour)}:${this.addNull(minutes)}:${this.addNull(second)}`;
     }
     if (seconds < 3600) {
       const minutes = Math.trunc(seconds / 60);
