@@ -7,6 +7,7 @@ import mailer from '../app_modules/nodemailer.js';
 import Role from '../Model/Role.js';
 import User from '../Model/User.js';
 import UserConfirm from '../Model/User-confirm.js';
+import PasswordReset from '../Model/password-reset.js';
 
 const secret = process.env.SECRET;
 const generateAccessToken = (id, roles) => {
@@ -67,7 +68,9 @@ export async function registration(req, res) {
       email,
     });
     await confirm.save();
-    mailer(mailToken, email, username, password);
+
+    const target = 'registration';
+    mailer(target, mailToken, email, username, password);
     res.status(200).json({ isRegistrationCorrect: true, message: 'Регистрация прошла успешно!' });
     //блок отправки email с кодом подтверждения
   } catch (error) {
@@ -162,6 +165,19 @@ export async function resetPassword(req, res) {
     const user = await User.findOne({ email });
 
     if (user) {
+      const dateRequest = new Date().getTime();
+      const mailToken = bcrypt.hashSync(String(dateRequest), 1);
+      const target = 'resetPassword';
+
+      mailer(target, mailToken, email);
+
+      const passwordReset = await PasswordReset({
+        dateRequest,
+        token: mailToken,
+        email,
+      });
+      await passwordReset.save();
+
       res.status(200).json({
         isEmailCorrect: true,
         message: 'На email отправлена инструкция для сброса пароля',
@@ -173,6 +189,7 @@ export async function resetPassword(req, res) {
     }
     // res.status(201).json({ message: 'Пароль сброшен' });
   } catch (error) {
-    res.status(400).json('<h3>Ошибка при активации аккаунта.</h3>');
+    res.status(400).json({ message: 'Ошибка при сбросе пароля' });
+    console.log(error);
   }
 }

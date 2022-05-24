@@ -75,6 +75,8 @@ export default {
     const isCorrectEmail = dataAuth.validatorState.email;
     if (isCorrectEmail) {
       const dataFromDb = await myFetch.fetchPost('/auth/reset-password', { email });
+
+      console.log(dataFromDb);
       validationAll.style.color = 'red';
       validationAll.textContent = dataFromDb.message;
     }
