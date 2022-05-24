@@ -1,4 +1,4 @@
-export default function modalAnswer(answer, timer = 1500) {
+export default function modalAnswer(answer, timer = 1500, reload = true) {
   const modalAnswer = document.querySelector('#modal__answer');
   const serverAnswer = document.querySelector('#server__answer');
 
@@ -6,6 +6,8 @@ export default function modalAnswer(answer, timer = 1500) {
   serverAnswer.innerHTML = answer;
   setTimeout(() => {
     modalAnswer.classList.remove('visible');
-    window.location.reload();
+    if (reload) {
+      window.location.reload();
+    }
   }, timer);
 }

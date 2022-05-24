@@ -26,7 +26,7 @@ async function profile() {
     const dataFromDb = await response.json();
     // console.log(dataFromDb);
     if (!response.ok) {
-      modalAnswer(dataFromDb.message);
+      modalAnswer(dataFromDb.message, 1500, false);
       return;
     }
     const dataProfile = dataFromDb.profile;
