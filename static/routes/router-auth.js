@@ -14,6 +14,7 @@ export default {
     svgCross.onclick = handlerCloseModal;
     function handlerCloseModal() {
       popupAuth.classList.remove('modal-visible');
+      popupAuth.classList.remove('visible');
     }
 
     //закрытие модального окна при нажатии на esc
@@ -33,13 +34,16 @@ export default {
     const authRegistration = document.querySelector('#auth__registration');
 
     authLogin.onclick = controller.loginPage;
-    authRegistration.onclick = controller.registrationPage;
+    if (authRegistration) {
+      authRegistration.onclick = controller.registrationPage;
+    }
   },
 
   button(dataAuth) {
+    this.enterKeyDown(dataAuth);
     const button = document.querySelector('#auth__btn');
-    button.onclick = handlerButton;
 
+    button.onclick = handlerButton;
     function handlerButton(event) {
       if (event.target.textContent === 'Вход') {
         controller.sendAuthorization(dataAuth);
@@ -49,6 +53,28 @@ export default {
       }
       if (event.target.textContent === 'Сброс пароля') {
         controller.resetPassword(dataAuth);
+      }
+      if (event.target.textContent === 'Обновить') {
+        controller.saveNewPassword(dataAuth);
+      }
+    }
+  },
+  enterKeyDown(dataAuth) {
+    document.onkeydown = handlerButton;
+    function handlerButton(event) {
+      if (event.keyCode !== 13) return;
+      const buttonText = document.querySelector('#auth__btn').textContent;
+      if (buttonText === 'Вход') {
+        controller.sendAuthorization(dataAuth);
+      }
+      if (buttonText === 'Регистрация') {
+        controller.sendRegistration(dataAuth);
+      }
+      if (buttonText === 'Сброс пароля') {
+        controller.resetPassword(dataAuth);
+      }
+      if (buttonText === 'Обновить') {
+        controller.saveNewPassword(dataAuth);
       }
     }
   },

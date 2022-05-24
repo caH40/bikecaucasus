@@ -71,7 +71,10 @@ export async function registration(req, res) {
 
     const target = 'registration';
     mailer(target, mailToken, email, username, password);
-    res.status(200).json({ isRegistrationCorrect: true, message: 'Регистрация прошла успешно!' });
+    res.status(200).json({
+      isRegistrationCorrect: true,
+      message: 'На e-mail отправлено письмо для активации аккаунта!',
+    });
     //блок отправки email с кодом подтверждения
   } catch (error) {
     console.log(error);
@@ -158,7 +161,7 @@ export async function confirmUser(req, res) {
     res.status(400).send('<h3>Ошибка при активации аккаунта.</h3>');
   }
 }
-//сброс пароля
+//запрос на сброс пароля
 export async function resetPassword(req, res) {
   try {
     const email = req.body.email;
@@ -170,6 +173,8 @@ export async function resetPassword(req, res) {
       const target = 'resetPassword';
 
       mailer(target, mailToken, email);
+
+      await PasswordReset.findOneAndDelete({ email });
 
       const passwordReset = await PasswordReset({
         dateRequest,
@@ -190,6 +195,34 @@ export async function resetPassword(req, res) {
     // res.status(201).json({ message: 'Пароль сброшен' });
   } catch (error) {
     res.status(400).json({ message: 'Ошибка при сбросе пароля' });
+    console.log(error);
+  }
+}
+
+//сброс пароля
+export async function savePassword(req, res) {
+  try {
+    const { token, password } = req.body;
+
+    const passwordForReset = await PasswordReset.findOneAndDelete({ token });
+
+    if (!passwordForReset) {
+      return res.status(400).json({ isSaved: false, message: 'Запрос на сброс пароля не найден' });
+    }
+
+    const email = passwordForReset.email;
+
+    //кодируем пароль для хранения в базе данных
+    const saltRounds = 8;
+    const hashPassword = bcrypt.hashSync(password, saltRounds);
+
+    const user = await User.findOneAndUpdate({ email }, { $set: { password: hashPassword } });
+    const username = user.username;
+    const target = 'savedNewPassword';
+    mailer(target, 'nullToken', email, username, password);
+    res.status(201).json({ isSaved: true, message: 'Новый пароль сохранён' });
+  } catch (error) {
+    res.status(400).json({ isSaved: false, message: 'Ошибка при сохранении нового пароля' });
     console.log(error);
   }
 }

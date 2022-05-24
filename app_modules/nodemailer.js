@@ -23,7 +23,7 @@ export default async function (target, token, mail, username, password) {
       subject = 'Подтверждение регистрации на сайте bike-caucasus.ru';
       html = `Здравствуйте!<br>
     ${date} была произведена регистрация на сайте bike-caucasus.ru, где был указан данный e-mail ${mail}.<br>
-    Для активации учетной записи перейдите по ссылке https://bike-caucasus.ru/auth/activation/?token=${token} <br><br>
+    Для активации учетной записи перейдите по ссылке https://bike-caucasus.ru/auth/activation?token=${token} <br><br>
     Логин: ${username}<br>
     Пароль: ${password}<br><br>
     <b>Внимание!</b> Ссылка действительна 48 часов. Без активации аккаунт будет удалён.<br><br>С уважением, команда Bike-Caucasus.`;
@@ -32,8 +32,16 @@ export default async function (target, token, mail, username, password) {
       subject = 'Сброс пароля на сайте bike-caucasus.ru';
       html = `Здравствуйте!<br>
     ${date} был произведен запрос на сброс пароля профиля на сайте bike-caucasus.ru, где был указан данный e-mail ${mail}.<br>
-    Для сброса пароля перейдите по ссылке https://bike-caucasus.ru/auth/reset-password-affirmed/?token=${token} <br><br>
+    Для сброса пароля перейдите по ссылке https://bike-caucasus.ru/password-reset?token=${token} <br><br>
     <b>Внимание!</b> Ссылка действительна 48 часов. Если Вы не делали данного запроса, то просто проигнорируйте это письмо.<br><br>С уважением, команда Bike-Caucasus.`;
+    }
+    if (target === 'savedNewPassword') {
+      subject = 'Обновление пароля профиля на сайте bike-caucasus.ru';
+      html = `Здравствуйте!<br>
+    ${date} было произведено обновления пароля профиля на сайте bike-caucasus.ru<br><br>
+    Логин: ${username}<br>
+    Новый пароль: ${password}<br><br>
+    С уважением, команда Bike-Caucasus.`;
     }
 
     const from = 'bikecaucasus@mail.ru';

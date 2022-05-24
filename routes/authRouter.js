@@ -7,6 +7,7 @@ import {
   checkToken,
   confirmUser,
   resetPassword,
+  savePassword,
 } from '../controllers/authController.js';
 
 const router = new Router();
@@ -26,6 +27,7 @@ router.post('/login', login);
 router.post('/check-token', checkToken);
 //активация нового аккаунта
 router.get('/activation', confirmUser);
-router.post('/reset-password', resetPassword);
+router.post('/password-reset', resetPassword);
+router.post('/password-save', savePassword);
 
 export default router;

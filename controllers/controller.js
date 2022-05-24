@@ -35,6 +35,14 @@ export function nonPage(req, res) {
     console.log(error);
   }
 }
+export function passwordReset(req, res) {
+  try {
+    res.status(200);
+    res.sendFile(path.resolve(__dirname, 'static', 'password-reset.html'));
+  } catch (error) {
+    console.log(error);
+  }
+}
 export function galleryPage(req, res) {
   try {
     res.status(200);

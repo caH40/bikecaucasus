@@ -1,6 +1,6 @@
 import router from '../routes/router-auth.js';
 import myFetch from '../utilities/myfetch.js';
-import { login, registration, remember } from '../view/auth-html.js';
+import { login, registration, remember, createNewPassword, saved } from '../view/auth-html.js';
 import authIcon from '../utilities/auth-icon.js';
 import validation from '../utilities/auth-validation.js';
 import modalAnswer from '../utilities/modal-answer.js';
@@ -10,9 +10,6 @@ const popupAuth = document.querySelector('.popup__auth');
 const authTemplate = document.querySelector('#auth__template');
 
 export default {
-  test() {
-    console.log('test');
-  },
   async modalAuth(event) {
     //включение модального окна
     if (event.target.id === 'logout') {
@@ -71,20 +68,27 @@ export default {
 
   async resetPassword(dataAuth) {
     const validationAll = document.querySelector('#validation__all');
+    const authBlock = document.querySelector('#auth__block');
     const email = dataAuth.user.email;
+    console.log(email);
     const isCorrectEmail = dataAuth.validatorState.email;
     if (isCorrectEmail) {
-      const dataFromDb = await myFetch.fetchPost('/auth/reset-password', { email });
+      const dataFromDb = await myFetch.fetchPost('/auth/password-reset', { email });
 
-      console.log(dataFromDb);
-      validationAll.style.color = 'red';
-      validationAll.textContent = dataFromDb.message;
+      if (dataFromDb.isEmailCorrect) {
+        modalAnswer(dataFromDb.message, 3000);
+        popupAuth.classList.add('invisible');
+      } else {
+        validationAll.style.color = 'red';
+        validationAll.textContent = dataFromDb.message;
+      }
     }
   },
 
   async sendAuthorization(dataAuth) {
     const validationAll = document.querySelector('#validation__all');
-    const boxRemember = document.querySelector('#remember-box');
+    const rememberBox = document.querySelector('#remember-box');
+    const button = document.querySelector('#auth__btn');
     //блок авторизации
     //проверка валидности всех полей
     const isCorrectNickname = dataAuth.validatorState.nickname;
@@ -108,11 +112,11 @@ export default {
         validationAll.style.color = 'red';
         if (dataFromDb.message === 'Неверный пароль') {
           validationAll.textContent = dataFromDb.message;
-          boxRemember.innerHTML = `
-              <div class="auth__box auth-remember__box" id="auth__remember">
-              <div class="auth__btn auth-remember__btn" id="auth-remember__btn">Забыли пароль?</div>
+          rememberBox.innerHTML = `
+          <div class="auth__box auth-remember__box" id="auth__remember">
+          	<div class="auth__btn auth-remember__btn" id="auth-remember__btn">Забыли пароль?</div>
           </div>
-              `;
+          `;
 
           router.rememberButton();
         } else {
@@ -146,7 +150,7 @@ export default {
 
       if (dataFromDb.isRegistrationCorrect) {
         popupAuth.classList.remove('modal-visible');
-        modalAnswer(dataFromDb.message, 1000);
+        modalAnswer(dataFromDb.message, 3000);
       } else {
         validationAll.style.color = 'red';
         validationAll.textContent = dataFromDb.message;
@@ -154,6 +158,47 @@ export default {
     } else {
       validationAll.style.color = 'red';
       validationAll.textContent = 'Введенные данные некорректны';
+    }
+  },
+
+  createNewPassword() {
+    try {
+      authTemplate.innerHTML = createNewPassword;
+
+      const dataAuth = validation();
+
+      router.button(dataAuth);
+      router.closeModal();
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  async saveNewPassword(dataAuth) {
+    try {
+      const validationAll = document.querySelector('#validation__all');
+      const isCorrectPassword = dataAuth.validatorState.password;
+      const password = dataAuth.user.password;
+
+      // const dataUser = dataAuth.user
+      if (isCorrectPassword) {
+        const token = document.location.href.split('token=')[1];
+
+        const dataFromDb = await myFetch.fetchPost('/auth/password-save', { token, password });
+        if (dataFromDb.isSaved) {
+          const authBlock = document.querySelector('#auth__block');
+          //отрисовка сообщения об успешном сохранении пароля
+          authBlock.innerHTML = saved;
+        } else {
+          validationAll.style.color = 'red';
+          validationAll.textContent = dataFromDb.message;
+        }
+      } else {
+        validationAll.style.color = 'red';
+        validationAll.textContent = 'Введенные данные некорректны';
+      }
+    } catch (error) {
+      console.log(error);
     }
   },
 };

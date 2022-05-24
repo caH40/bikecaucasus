@@ -5,6 +5,7 @@ import {
   mainPage,
   trailPage,
   nonPage,
+  passwordReset,
   galleryPage,
   dzhilsuPage,
   descriptionPage,
@@ -38,30 +39,19 @@ router.get('/', mainPage);
 router.get('/main', mainPage);
 router.get('/trail', trailPage);
 router.get('/login', nonPage);
+router.get('/password-reset', passwordReset);
 router.get('/gallery', galleryPage);
 //страница описания маршрута
 router.get('/description', descriptionPage);
 router.get('/description/getdata', authMiddleware, getDescriptionData);
 router.get('/users', authMiddleware, getUsers);
 router.post('/description/comment', authMiddleware, postDescriptionComment);
-router.post(
-  '/description/comment-edit',
-  authMiddleware,
-  postDescriptionCommentEdit
-);
-router.post(
-  '/description/comment-remove',
-  authMiddleware,
-  postDescriptionCommentRemove
-);
+router.post('/description/comment-edit', authMiddleware, postDescriptionCommentEdit);
+router.post('/description/comment-remove', authMiddleware, postDescriptionCommentRemove);
 
 router.get('/description/trail-edit', authMiddleware, getDescriptionTrailEdit);
 router.post('/trail-edited', authMiddleware, postTrailEdited);
-router.post(
-  '/description/trail-remove',
-  authMiddleware,
-  postDescriptionTrailRemove
-);
+router.post('/description/trail-remove', authMiddleware, postDescriptionTrailRemove);
 //страница создания маршрута
 router.get('/create-trail', createTrailPage);
 //запись данных о маршруте в базу
