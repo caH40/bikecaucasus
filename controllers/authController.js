@@ -7,7 +7,7 @@ import mailer from '../app_modules/nodemailer.js';
 import Role from '../Model/Role.js';
 import User from '../Model/User.js';
 import UserConfirm from '../Model/User-confirm.js';
-import PasswordReset from '../Model/password-reset.js';
+import PasswordReset from '../Model/Password-reset.js';
 
 const secret = process.env.SECRET;
 const generateAccessToken = (id, roles) => {
