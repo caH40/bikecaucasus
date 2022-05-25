@@ -8,6 +8,7 @@ import serverRoutes from './routes/routes.js';
 import authRouter from './routes/authRouter.js';
 import mainRouter from './routes/mainRouter.js';
 import controlRegistration from './app_modules/control-registration.js';
+import controlNewPassword from './app_modules/control-newpassword.js';
 
 const __dirname = path.resolve();
 const app = express();
@@ -22,10 +23,7 @@ app.use(cors());
 // CORS;
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 
@@ -34,9 +32,11 @@ app.use('/auth', authRouter);
 app.use('/main', mainRouter);
 
 //опрос неактивированных аккаунтов
+
 const millisecondsInFourHours = 1440000;
 setTimeout(() => {
   controlRegistration();
+  controlNewPassword();
 }, millisecondsInFourHours);
 
 const start = async () => {
