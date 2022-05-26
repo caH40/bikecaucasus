@@ -160,6 +160,12 @@
     </section>
 
     <script id="descriptionTemplate" type="text/x-handlebars-template">
+
+        <meta property="og:title" content="Bike-Caucasus" />
+        <meta property="og:description"
+            content="Велосипедные маршруты по Кавказу. Маршруты для шоссейных и горных велосипедов. {{card.nameRoute}}" />
+        <meta property="og:image" content="{{paragraphPhoto}}" />
+        <!--необходим абсолютый путь до изобажения -->
         <div class="title__page-inner">
             <h3 class="title__page title__page-description">{{card.nameRoute}}<br>({{card.state}})</h3>
             <div class="comment__popap popap-comment popap__edit-trail" id="popap-card-{{card._id}}">
