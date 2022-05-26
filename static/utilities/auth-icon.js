@@ -19,7 +19,9 @@ export default async function () {
 
   const json = await response.json();
   if (json.authorized) {
-    loginBox.innerHTML = `<img class="login__icon" id="logout" src="../images/ico/logout.svg" alt="Выход">`;
+    loginBox.innerHTML = `<img class="login__icon" id="logout" src="../images/ico/logout.svg" 
+    alt="Выход">`;
+    localStorage.setItem('photoProfileBikeCaucasus', json.photoProfile);
   } else {
     loginBox.innerHTML = `<img class="login__icon" id="login" src="images/ico/login.svg" alt="Вход">`;
   }
