@@ -23,13 +23,14 @@ async function descriptionPage() {
       <meta property="og:locale="ru_RU, en_US" />
       <meta property="og:title" content="Bike-Caucasus" />
       <meta property="og:type" content="website" />
-      <meta property="og:description"
-          content="Маршрут:  ${data.card.nameRoute}. Дистанция ${data.card.distance} км., общий набор высоты ${data.card.ascent} м." />
-          <meta name="twitter:image" content="${data.descPhoto[0]}" />
-      <meta property="og:image" content="${data.descPhoto[0]}">
-      <!--необходим абсолютый путь до изображения -->
+      
       `
     );
+    // <meta property="og:description"
+    //       content="Маршрут:  ${data.card.nameRoute}. Дистанция ${data.card.distance} км., общий набор высоты ${data.card.ascent} м." />
+    //       <meta name="twitter:image" content="${data.descPhoto[0]}" />
+    //   <meta property="og:image" content="${data.descPhoto[0]}">
+    //   <!--необходим абсолютый путь до изображения --></meta>
     console.log(data);
     const textPhoto = prepData.description(data);
     if (window.innerWidth >= 992) {
