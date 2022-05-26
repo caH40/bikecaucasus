@@ -16,16 +16,10 @@ async function descriptionPage() {
       },
     }).then((data) => data.json());
 
-    const head = document.querySelector('head');
-    head.insertAdjacentHTML(
-      'afterbegin',
-      `
-      <meta property="og:locale="ru_RU, en_US" />
-      <meta property="og:title" content="Bike-Caucasus" />
-      <meta property="og:type" content="website" />
-      
-      `
-    );
+    // const head = document.querySelector('head');
+    // head.insertAdjacentHTML(
+    //   'afterbegin',
+    // );
     // <meta property="og:description"
     //       content="Маршрут:  ${data.card.nameRoute}. Дистанция ${data.card.distance} км., общий набор высоты ${data.card.ascent} м." />
     //       <meta name="twitter:image" content="${data.descPhoto[0]}" />
