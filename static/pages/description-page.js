@@ -19,9 +19,13 @@ async function descriptionPage() {
     const head = document.querySelector('head');
     head.insertAdjacentHTML(
       'afterbegin',
-      `<meta property="og:description"
+      `
+      <meta property="og:locale=" ru_RU" />
+      <meta property="og:title" content="Bike-Caucasus" />
+      <meta property="og:type" content="website" />
+      <meta property="og:description"
       content="Маршрут:  ${data.card.nameRoute}. Дистанция ${data.card.distance} км., общий набор высоты ${data.card.ascent} м." />
-    <meta property="og:image" content="https://funart.pro/uploads/posts/2021-07/1626126282_4-funart-pro-p-tolstii-morskoi-kotik-zhivotnie-krasivo-fo-6.jpg}">`
+    <meta property="og:image" content="https://funart.pro/uploads/posts/2021-07/1626126282_4-funart-pro-p-tolstii-morskoi-kotik-zhivotnie-krasivo-fo-6.jpg">`
     );
     // <meta property="og:image" content="${data.descPhoto[0]}">
 
