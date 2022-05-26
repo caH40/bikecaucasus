@@ -16,6 +16,18 @@ async function descriptionPage() {
       },
     }).then((data) => data.json());
 
+    const head = document.querySelector('head');
+    head.insertAdjacentHTML(
+      'afterbegin',
+      `
+      <meta property="og:title" content="Bike-Caucasus" />
+      <meta property="og:description"
+          content="Велосипедные маршруты по Кавказу. Маршруты для шоссейных и горных велосипедов. ${data.card.nameRoute} " />
+      <meta property="og:image" content=" ${data.card.cardPhoto}" />
+      <!--необходим абсолютый путь до изобажения -->
+      `
+    );
+    console.log(data);
     const textPhoto = prepData.description(data);
     if (window.innerWidth >= 992) {
       render(
