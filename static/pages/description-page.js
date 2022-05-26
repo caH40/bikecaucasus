@@ -23,7 +23,7 @@ async function descriptionPage() {
       <meta property="og:title" content="Bike-Caucasus" />
       <meta property="og:description"
           content="Велосипедные маршруты по Кавказу. Маршруты для шоссейных и горных велосипедов. ${data.card.nameRoute} " />
-      <meta property="og:image" content=" ${data.card.cardPhoto}" />
+      
       <!--необходим абсолютый путь до изобажения -->
       `
     );
