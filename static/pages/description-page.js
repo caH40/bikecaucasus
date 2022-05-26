@@ -16,17 +16,17 @@ async function descriptionPage() {
       },
     }).then((data) => data.json());
 
-    const head = document.querySelector('head');
-    head.insertAdjacentHTML(
-      'afterbegin',
-      `
-      <meta property="og:locale=" ru_RU" />
-      <meta property="og:title" content="Проверка работы" />
-      <meta property="og:type" content="website" />
-      <meta property="og:description" content="Маршрут2" />
-      <meta property="og:image" content="https://otomosem.com/wp-content/uploads/2020/03/4mor.jpg" />
-      `
-    );
+    // const head = document.querySelector('head');
+    // head.insertAdjacentHTML(
+    //   'afterbegin',
+    //   `
+    //   <meta property="og:locale=" ru_RU" />
+    //   <meta property="og:title" content="Проверка работы" />
+    //   <meta property="og:type" content="website" />
+    //   <meta property="og:description" content="Маршрут2" />
+    //   <meta property="og:image" content="${data.descPhoto[0]}" />
+    //   `
+    // );
     //   <meta property="og:locale=" ru_RU" />
     //   <meta property="og:title" content="Bike-Caucasus" />
     //   <meta property="og:type" content="website" />
