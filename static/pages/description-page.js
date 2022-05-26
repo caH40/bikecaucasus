@@ -20,11 +20,14 @@ async function descriptionPage() {
     head.insertAdjacentHTML(
       'afterbegin',
       `
+      <meta property="og:locale="ru_RU, en_US" />
       <meta property="og:title" content="Bike-Caucasus" />
+      <meta property="og:type" content="website" />
       <meta property="og:description"
-          content="Велосипедные маршруты по Кавказу. Маршруты для шоссейных и горных велосипедов. ${data.card.nameRoute} " />
+          content="Маршрут:  ${data.card.nameRoute}. Дистанция ${data.card.distance} км., общий набор высоты ${data.card.ascent} м." />
+          <meta name="twitter:image" content="${data.descPhoto[0]}" />
       <meta property="og:image" content="${data.descPhoto[0]}">
-      <!--необходим абсолютый путь до изобажения -->
+      <!--необходим абсолютый путь до изображения -->
       `
     );
     console.log(data);
