@@ -24,7 +24,7 @@ async function descriptionPage() {
     //   <meta property="og:title" content="Проверка работы" />
     //   <meta property="og:type" content="website" />
     //   <meta property="og:description" content="Маршрут2" />
-    //   <meta property="og:image" content="${data.descPhoto[0]}" />
+    //   <meta property="og:image" content="https://funart.pro/uploads/posts/2021-07/1626126282_4-funart-pro-p-tolstii-morskoi-kotik-zhivotnie-krasivo-fo-6.jpg" />
     //   `
     // );
     //   <meta property="og:locale=" ru_RU" />
