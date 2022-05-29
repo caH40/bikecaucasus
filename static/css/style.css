@@ -255,9 +255,10 @@ body {
 }
 
 .main__block-news {
-	width: 900px;
+	width: 1100px;
 	min-height: 274px;
 	background: rgba(255, 255, 255, 0.1);
+	box-shadow: 1px 1px 5px rgb(0, 0, 0);
 	border-radius: 7px;
 	padding: 10px;
 	margin: 0px 20px 20px 0px;
@@ -297,9 +298,8 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	width: 490px;
+	width: 690px;
 	min-height: 254px;
-	box-shadow: 1px 1px 5px rgb(0, 0, 0);
 	border-radius: 7px;
 	font-family: 'Roboto';
 	font-style: normal;
@@ -308,7 +308,7 @@ body {
 	line-height: 20px;
 	letter-spacing: 0.05em;
 	color: #ffffff;
-	padding: 10px 20px;
+	padding: 10px;
 }
 
 .box-news__title {
