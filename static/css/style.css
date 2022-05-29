@@ -272,7 +272,7 @@ body {
   display: none;
   width: 381px;
   height: 254px;
-  border: 1px solid #f1f1f1;
+  /* border: 1px solid #f1f1f1; */
   border-radius: 7px;
   overflow: hidden;
   margin-right: 10px;
@@ -299,7 +299,7 @@ body {
   justify-content: space-between;
   width: 700px;
   min-height: 254px;
-  background: rgba(255, 255, 255, 0.1);
+  /* background: rgba(255, 255, 255, 0.1); */
   border-radius: 7px;
   font-family: 'Roboto';
   font-style: normal;
@@ -384,22 +384,21 @@ body {
 }
 
 .main__block-column {
-  width: 445px;
+  max-width: 420px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 7px;
   padding: 10px;
 }
 .column-main__box {
   display: block;
-  width: 425px;
-  height: 238px;
-  background: rgba(255, 255, 255, 0.1);
+  width: 400px;
+  height: 219px;
   border-radius: 7px;
   overflow: hidden;
 }
 .camera__img {
-  width: 425px;
-  height: 238px;
+  width: 400px;
+  height: 219px;
   object-fit: cover;
   object-position: center center;
 }
