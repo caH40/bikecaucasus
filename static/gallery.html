@@ -1,198 +1,210 @@
 <!DOCTYPE html>
 <html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="yandex-verification" content="bccbba4d470fdd1c" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="css/grid-gallery.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/style_mobile.css" />
+		<link rel="stylesheet" href="css/null.css" />
+		<link rel="stylesheet" href="css/slick.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;600;700;900&family=Montserrat:wght@400;500;600;700;900&family=Roboto:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png" />
+		<link rel="manifest" href="/images/favicon/site.webmanifest" />
+		<link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+		<meta name="msapplication-TileColor" content="#ffc40d" />
+		<meta name="theme-color" content="#ffffff" />
+		<script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+		<title>Bike-Caucasus</title>
+		<!-- Yandex.Metrika counter -->
+		<script type="text/javascript">
+			;(function (m, e, t, r, i, k, a) {
+				m[i] =
+					m[i] ||
+					function () {
+						;(m[i].a = m[i].a || []).push(arguments)
+					}
+				m[i].l = 1 * new Date()
+				;(k = e.createElement(t)),
+					(a = e.getElementsByTagName(t)[0]),
+					(k.async = 1),
+					(k.src = r),
+					a.parentNode.insertBefore(k, a)
+			})(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/grid-gallery.min.css" />
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/style_mobile.css">
-	<link rel="stylesheet" href="css/null.css">
-	<link rel="stylesheet" href="css/slick.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;600;700;900&family=Montserrat:wght@400;500;600;700;900&family=Roboto:wght@400;500&display=swap"
-		rel="stylesheet">
-	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
-	<link rel="manifest" href="/images/favicon/site.webmanifest">
-	<link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
-	<meta name="msapplication-TileColor" content="#ffc40d">
-	<meta name="theme-color" content="#ffffff">
-	<script src="https://unpkg.com/validator@latest/validator.min.js"></script>
-	<title>Bike-Caucasus</title>
-	<!-- Yandex.Metrika counter -->
-	<script type="text/javascript">
-		(function (m, e, t, r, i, k, a) {
-			m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-			m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-		})
-			(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+			ym(88492388, 'init', {
+				clickmap: true,
+				trackLinks: true,
+				accurateTrackBounce: true,
+			})
+		</script>
+		<noscript>
+			<div>
+				<img
+					src="https://mc.yandex.ru/watch/88492388"
+					style="position: absolute; left: -9999px"
+					alt=""
+				/>
+			</div>
+		</noscript>
+		<!-- /Yandex.Metrika counter -->
+	</head>
 
-		ym(88492388, "init", {
-			clickmap: true,
-			trackLinks: true,
-			accurateTrackBounce: true
-		});
-	</script>
-	<noscript>
-		<div><img src="https://mc.yandex.ru/watch/88492388" style="position:absolute; left:-9999px;" alt="" /></div>
-	</noscript>
-	<!-- /Yandex.Metrika counter -->
-</head>
-
-<body data-id-page="gallery">
-	<header class="header">
-		<div class="container">
-			<div class="header__top section__top">
-				<div class="hamb">
-					<div class="hamb__field" id="hamb">
-						<span class="bar"></span>
-						<span class="bar"></span>
-						<span class="bar"></span>
+	<body data-id-page="gallery">
+		<header class="header">
+			<div class="container">
+				<div class="header__top section__top">
+					<div class="hamb">
+						<div class="hamb__field" id="hamb">
+							<span class="bar"></span>
+							<span class="bar"></span>
+							<span class="bar"></span>
+						</div>
+					</div>
+					<img class="logo" src="images/ico/logo.svg" alt="" />
+					<nav class="menu" id="menu">
+						<ul class="list">
+							<li class="list__item">
+								<a class="list__link" data-id-nav="main" href="/">Главная</a>
+							</li>
+							<li class="list__item">
+								<a class="list__link" data-id-nav="trail" href="trail">Маршруты</a>
+							</li>
+							<li class="list__item">
+								<a class="list__link" data-id-nav="gallery" href="gallery">Галерея</a>
+							</li>
+							<li class="list__item">
+								<a class="list__link" data-id-nav="dzhilsu" href="dzhilsu">Джилы-Су</a>
+							</li>
+							<li class="list__item list__item-profile">
+								<a class="list__link" data-id-nav="profile" href="profile">Профиль</a>
+							</li>
+							<li class="list__item login__item-inner">
+								<a class="link__profile" href="/profile" id="profile-img"
+									><img class="profile-link__img" src="images/avatar.svg" alt="avatar"
+								/></a>
+								<div class="login__box" id="login__box">
+									<img
+										class="login__icon"
+										id="login"
+										src="images/ico/logclear.svg"
+										alt="Пустышка"
+									/>
+								</div>
+							</li>
+						</ul>
+					</nav>
+					<div class="popup" id="popup"></div>
+				</div>
+			</div>
+		</header>
+		<section class="main">
+			<div class="container">
+				<h3 class="title__page">Галерея фотографий</h3>
+				<div class="gg-container">
+					<div class="gg-box">
+						<img src="img/IMG_20210828_081130.jpg" />
+						<img src="img/IMG_20210828_081734.jpg" />
+						<img src="img/IMG_20210828_082209.jpg" />
+						<img src="img/IMG_20210828_083111.jpg" />
+						<img src="img/IMG_20210828_083340.jpg" />
+						<img src="img/IMG_20210828_084132.jpg" />
+						<img src="img/IMG_20210828_085909.jpg" />
+						<img src="img/IMG_20210828_102349.jpg" />
+						<img src="img/IMG_20210828_111224.jpg" />
+						<img src="img/IMG_20210828_111605.jpg" />
+						<img src="img/IMG_20210828_112434.jpg" />
+						<img src="img/IMG_20210828_113637.jpg" />
+						<img src="img/IMG_20210828_121904.jpg" />
+						<img src="img/IMG_20210828_122926.jpg" />
+						<img src="img/IMG_20210828_124407.jpg" />
+						<img src="img/IMG_20210828_124747.jpg" />
+						<img src="img/IMG_20210828_125119.jpg" />
+						<img src="img/IMG_20210828_125701.jpg" />
+						<img src="img/IMG_20210828_130458.jpg" />
+						<img src="img/IMG_20210828_130853.jpg" />
 					</div>
 				</div>
-				<img class="logo" src="images/ico/logo.svg" alt="" />
-				<nav class="menu" id="menu">
-					<ul class="list">
-						<li class="list__item">
-							<a class="list__link" data-id-nav="main" href="/">Главная</a>
+			</div>
+		</section>
+
+		<footer class="footer">
+			<div class="container">
+				<div class="footer__column">
+					<img class="logo" src="images/ico/logo.svg" alt="Logo" />
+					<div class="social__mobile">
+						<a class="social__link" href="https://t.me/velokmv">
+							<img class="social__img" src="images/ico/telegram.svg" alt="telegram" />
+						</a>
+					</div>
+					<ul class="footer__list">
+						<li class="footer__item">
+							<a class="footer__link" href="/">Главная</a>
 						</li>
-						<li class="list__item">
-							<a class="list__link" data-id-nav="trail" href="trail">Маршруты</a>
+						<li class="footer__item">
+							<a me class="footer__link" href="trail">Маршруты</a>
 						</li>
-						<li class="list__item">
-							<a class="list__link" data-id-nav="gallery" href="gallery">Галерея</a>
+					</ul>
+					<ul class="footer__list">
+						<li class="footer__item">
+							<a class="footer__link" href="dzhilsu">Джилы-Су</a>
 						</li>
-						<li class="list__item">
-							<a class="list__link" data-id-nav="dzhilsu" href="dzhilsu">Джилы-Су</a>
+						<li class="footer__item">
+							<a class="footer__link" href="gallery">Галерея</a>
 						</li>
-						<li class="list__item list__item-profile">
-							<a class="list__link" data-id-nav="profile" href="profile">Профиль</a>
-						</li>
-						<li class="list__item login__item-inner">
-							<a class="link__profile" href="/profile" id="profile-img"><img class="profile-link__img"
-									src="images/avatar.svg" alt="avatar"></a>
-							<div class="login__box" id="login__box">
-								<img class="login__icon" id="login" src="images/ico/logclear.svg" alt="Пустышка">
+					</ul>
+					<ul class="footer__list">
+						<li class="footer__item">Социальные сети:</li>
+						<li class="footer__item">
+							<div class="social">
+								<a class="social__link" href="https://t.me/velokmv">
+									<img class="social__img" src="images/ico/telegram.svg" alt="telegram" />
+								</a>
+								<!-- <a class="social__link" href="https://www.youtube.com/user/caH40yc/">
+														<img class="social__img" src="images/ico/youtube.svg" alt="youtube" />
+												</a> -->
 							</div>
 						</li>
 					</ul>
-				</nav>
-				<div class="popup" id="popup">
 				</div>
+				<div class="copyright">Copyright © 2022 Bike-Caucasus</div>
 			</div>
-		</div>
-	</header>
-	<section class="main">
-		<div class="container">
-			<h3 class="title__page">
-				Галерея фотографий
-			</h3>
-			<div class="gg-container">
-				<div class="gg-box">
-					<img src="img/IMG_20210828_081130.jpg">
-					<img src="img/IMG_20210828_081734.jpg">
-					<img src="img/IMG_20210828_082209.jpg">
-					<img src="img/IMG_20210828_083111.jpg">
-					<img src="img/IMG_20210828_083340.jpg">
-					<img src="img/IMG_20210828_084132.jpg">
-					<img src="img/IMG_20210828_085909.jpg">
-					<img src="img/IMG_20210828_102349.jpg">
-					<img src="img/IMG_20210828_111224.jpg">
-					<img src="img/IMG_20210828_111605.jpg">
-					<img src="img/IMG_20210828_112434.jpg">
-					<img src="img/IMG_20210828_113637.jpg">
-					<img src="img/IMG_20210828_121904.jpg">
-					<img src="img/IMG_20210828_122926.jpg">
-					<img src="img/IMG_20210828_124407.jpg">
-					<img src="img/IMG_20210828_124747.jpg">
-					<img src="img/IMG_20210828_125119.jpg">
-					<img src="img/IMG_20210828_125701.jpg">
-					<img src="img/IMG_20210828_130458.jpg">
-					<img src="img/IMG_20210828_130853.jpg">
-				</div>
-			</div>
-		</div>
-	</section>
+		</footer>
 
-	<footer class="footer">
-		<div class="container">
-			<div class="footer__column">
-				<img class="logo" src="images/ico/logo.svg" alt="Logo" />
-				<div class="social__mobile">
-					<a class="social__link" href="https://t.me/velokmv">
-						<img class="social__img" src="images/ico/telegram.svg" alt="telegram" />
-					</a>
-				</div>
-				<ul class="footer__list">
-					<li class="footer__item">
-						<a class="footer__link" href="/">Главная</a>
-					</li>
-					<li class="footer__item">
-						<a me class="footer__link" href="trail">Маршруты</a>
-					</li>
-				</ul>
-				<ul class="footer__list">
-					<li class="footer__item">
-						<a class="footer__link" href="dzhilsu">Джилы-Су</a>
-					</li>
-					<li class="footer__item">
-						<a class="footer__link" href="gallery">Галерея</a>
-					</li>
-				</ul>
-				<ul class="footer__list">
-					<li class="footer__item">
-						Социальные сети:
-					</li>
-					<li class="footer__item">
-						<div class="social">
-							<a class="social__link" href="https://t.me/velokmv">
-								<img class="social__img" src="images/ico/telegram.svg" alt="telegram" />
-							</a>
-							<!-- <a class="social__link" href="https://www.youtube.com/user/caH40yc/">
-														<img class="social__img" src="images/ico/youtube.svg" alt="youtube" />
-												</a> -->
-						</div>
-					</li>
-				</ul>
-			</div>
-			<div class="copyright">Copyright © 2022 Bike-Caucasus</div>
-		</div>
-	</footer>
-
-	<div class="modal__answer invisible" id="modal__answer">
-		<div class="modal__container">
-			<div class="modal__block" id="server__answer"></div>
-		</div>
-	</div>
-
-	<section class="popup__auth" id="popup__auth">
-
-		<div class="auth__container">
-			<div class="auth__block" id="auth__block">
-				<div class="auth__title" id="auth__title">
-					<span class="auth__login" id="auth__login">Вход</span>/<span class="auth__login auth__gray"
-						id="auth__registration">Регистрация</span>
-				</div>
-				<div class="auth__template" id="auth__template"></div>
+		<div class="modal__answer invisible" id="modal__answer">
+			<div class="modal__container">
+				<div class="modal__block" id="server__answer"></div>
 			</div>
 		</div>
 
-	</section>
+		<section class="popup__auth" id="popup__auth">
+			<div class="auth__container">
+				<div class="auth__block" id="auth__block">
+					<div class="auth__title" id="auth__title">
+						<span class="auth__login" id="auth__login">Вход</span>/<span
+							class="auth__login auth__gray"
+							id="auth__registration"
+							>Регистрация</span
+						>
+					</div>
+					<div class="auth__template" id="auth__template"></div>
+				</div>
+			</div>
+		</section>
 
-
-
-
-
-	<script type="module" src="./utilities/dataid.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script type="text/javascript" src="js/slick.min.js"></script>
-	<script type="text/javascript" src="js/slick-theme.js"></script>
-	<script type="text/javascript" src="js/grid-gallery.min.js"></script>
-</body>
-
+		<script type="module" src="./utilities/dataid.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript" src="js/slick.min.js"></script>
+		<script type="text/javascript" src="js/slick-theme.js"></script>
+		<script type="text/javascript" src="js/grid-gallery.min.js"></script>
+	</body>
 </html>

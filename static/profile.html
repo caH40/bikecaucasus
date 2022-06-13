@@ -1,393 +1,423 @@
 <!DOCTYPE html>
 <html lang="ru" prefix="og: https://ogp.me/ns#">
+	<head>
+		<meta name="yandex-verification" content="bccbba4d470fdd1c" />
+		<meta property="og:title" content="Bike-Caucasus" />
+		<meta
+			property="og:description"
+			content="Велосипедные маршруты по Кавказу. Маршруты для шоссейных и горных велосипедов."
+		/>
+		<meta property="og:image" content="images/main-slider-2.jpg" />
+		<!--необходим абсолютый путь до изобажения -->
 
-<head>
-    <meta property="og:title" content="Bike-Caucasus" />
-    <meta property="og:description"
-        content="Велосипедные маршруты по Кавказу. Маршруты для шоссейных и горных велосипедов." />
-    <meta property="og:image" content="images/main-slider-2.jpg" />
-    <!--необходим абсолютый путь до изобажения -->
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/style_mobile.css" />
+		<link rel="stylesheet" href="css/null.css" />
+		<link rel="stylesheet" href="css/slick.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;600;700;900&family=Montserrat:wght@400;500;600;700;900&family=Roboto:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png" />
+		<link rel="manifest" href="/images/favicon/site.webmanifest" />
+		<link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+		<meta name="msapplication-TileColor" content="#ffc40d" />
+		<meta name="theme-color" content="#ffffff" />
+		<script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+		<script src="./utilities/handlebars.min-v4.7.7.js"></script>
+		<title>Bike-Caucasus</title>
+		<!-- Yandex.Metrika counter -->
+		<script type="text/javascript">
+			;(function (m, e, t, r, i, k, a) {
+				m[i] =
+					m[i] ||
+					function () {
+						;(m[i].a = m[i].a || []).push(arguments)
+					}
+				m[i].l = 1 * new Date()
+				;(k = e.createElement(t)),
+					(a = e.getElementsByTagName(t)[0]),
+					(k.async = 1),
+					(k.src = r),
+					a.parentNode.insertBefore(k, a)
+			})(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
 
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/style_mobile.css" />
-    <link rel="stylesheet" href="css/null.css" />
-    <link rel="stylesheet" href="css/slick.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;600;700;900&family=Montserrat:wght@400;500;600;700;900&family=Roboto:wght@400;500&display=swap"
-        rel="stylesheet" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/images/favicon/site.webmanifest">
-    <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#ffc40d">
-    <meta name="theme-color" content="#ffffff">
-    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
-    <script src="./utilities/handlebars.min-v4.7.7.js"></script>
-    <title>Bike-Caucasus</title>
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function (m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-            m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-        })
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+			ym(88492388, 'init', {
+				clickmap: true,
+				trackLinks: true,
+				accurateTrackBounce: true,
+			})
+		</script>
+		<noscript>
+			<div>
+				<img
+					src="https://mc.yandex.ru/watch/88492388"
+					style="position: absolute; left: -9999px"
+					alt=""
+				/>
+			</div>
+		</noscript>
+		<!-- /Yandex.Metrika counter -->
+	</head>
 
-        ym(88492388, "init", {
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true
-        });
-    </script>
-    <noscript>
-        <div><img src="https://mc.yandex.ru/watch/88492388" style="position:absolute; left:-9999px;" alt="" /></div>
-    </noscript>
-    <!-- /Yandex.Metrika counter -->
-</head>
+	<body data-id-page="profile">
+		<header class="header">
+			<div class="container">
+				<div class="header__top section__top">
+					<div class="hamb">
+						<div class="hamb__field" id="hamb">
+							<span class="bar"></span>
+							<span class="bar"></span>
+							<span class="bar"></span>
+						</div>
+					</div>
+					<img class="logo" src="images/ico/logo.svg" alt="" />
+					<nav class="menu" id="menu">
+						<ul class="list">
+							<li class="list__item">
+								<a class="list__link" data-id-nav="main" href="/">Главная</a>
+							</li>
+							<li class="list__item">
+								<a class="list__link" data-id-nav="trail" href="trail">Маршруты</a>
+							</li>
+							<li class="list__item">
+								<a class="list__link" data-id-nav="gallery" href="gallery">Галерея</a>
+							</li>
+							<li class="list__item">
+								<a class="list__link" data-id-nav="dzhilsu" href="dzhilsu">Джилы-Су</a>
+							</li>
+							<li class="list__item list__item-profile">
+								<a class="list__link" data-id-nav="profile" href="profile">Профиль</a>
+							</li>
+							<li class="list__item login__item-inner">
+								<a class="link__profile" data-id-nav="profile" href="/profile" id="profile-img"
+									><img class="profile-link__img" src="images/avatar.svg" alt="avatar"
+								/></a>
+								<div class="login__box" id="login__box">
+									<img
+										class="login__icon"
+										id="login"
+										src="images/ico/logclear.svg"
+										alt="Пустышка"
+									/>
+								</div>
+							</li>
+						</ul>
+					</nav>
+					<div class="popup" id="popup"></div>
+				</div>
+			</div>
+		</header>
 
-<body data-id-page="profile">
+		<main class="main profile">
+			<div class="container">
+				<div class="handlebars"></div>
+			</div>
+		</main>
 
-    <header class="header">
-        <div class="container">
-            <div class="header__top section__top">
-                <div class="hamb">
-                    <div class="hamb__field" id="hamb">
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                    </div>
-                </div>
-                <img class="logo" src="images/ico/logo.svg" alt="" />
-                <nav class="menu" id="menu">
-                    <ul class="list">
-                        <li class="list__item">
-                            <a class="list__link" data-id-nav="main" href="/">Главная</a>
-                        </li>
-                        <li class="list__item">
-                            <a class="list__link" data-id-nav="trail" href="trail">Маршруты</a>
-                        </li>
-                        <li class="list__item">
-                            <a class="list__link" data-id-nav="gallery" href="gallery">Галерея</a>
-                        </li>
-                        <li class="list__item">
-                            <a class="list__link" data-id-nav="dzhilsu" href="dzhilsu">Джилы-Су</a>
-                        </li>
-                        <li class="list__item list__item-profile">
-                            <a class="list__link" data-id-nav="profile" href="profile">Профиль</a>
-                        </li>
-                        <li class="list__item login__item-inner">
-                            <a class="link__profile" data-id-nav="profile" href="/profile" id="profile-img"><img
-                                    class="profile-link__img" src="images/avatar.svg" alt="avatar"></a>
-                            <div class="login__box" id="login__box">
-                                <img class="login__icon" id="login" src="images/ico/logclear.svg" alt="Пустышка">
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="popup" id="popup">
-                </div>
-            </div>
-        </div>
-    </header>
+		<footer class="footer">
+			<div class="container">
+				<div class="footer__column">
+					<img class="logo" src="images/ico/logo.svg" alt="Logo" />
+					<div class="social__mobile">
+						<a class="social__link" href="https://t.me/velokmv">
+							<img class="social__img" src="images/ico/telegram.svg" alt="telegram" />
+						</a>
+					</div>
+					<ul class="footer__list">
+						<li class="footer__item">
+							<a class="footer__link" href="/">Главная</a>
+						</li>
+						<li class="footer__item">
+							<a me class="footer__link" href="trail">Маршруты</a>
+						</li>
+					</ul>
+					<ul class="footer__list">
+						<li class="footer__item">
+							<a class="footer__link" href="dzhilsu">Джилы-Су</a>
+						</li>
+						<li class="footer__item">
+							<a class="footer__link" href="gallery">Галерея</a>
+						</li>
+					</ul>
+					<ul class="footer__list">
+						<li class="footer__item">Социальные сети:</li>
+						<li class="footer__item">
+							<div class="social">
+								<a class="social__link" href="https://t.me/velokmv">
+									<img class="social__img" src="images/ico/telegram.svg" alt="telegram" />
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="copyright">Copyright © 2022 Bike-Caucasus</div>
+			</div>
+		</footer>
 
-    <main class="main profile">
-        <div class="container">
-            <div class="handlebars"> </div>
-        </div>
-    </main>
+		<div class="modal__answer invisible" id="modal__answer">
+			<div class="modal__container">
+				<div class="modal__block" id="server__answer"></div>
+			</div>
+		</div>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__column">
-                <img class="logo" src="images/ico/logo.svg" alt="Logo" />
-                <div class="social__mobile">
-                    <a class="social__link" href="https://t.me/velokmv">
-                        <img class="social__img" src="images/ico/telegram.svg" alt="telegram" />
-                    </a>
-                </div>
-                <ul class="footer__list">
-                    <li class="footer__item">
-                        <a class="footer__link" href="/">Главная</a>
-                    </li>
-                    <li class="footer__item">
-                        <a me class="footer__link" href="trail">Маршруты</a>
-                    </li>
-                </ul>
-                <ul class="footer__list">
-                    <li class="footer__item">
-                        <a class="footer__link" href="dzhilsu">Джилы-Су</a>
-                    </li>
-                    <li class="footer__item">
-                        <a class="footer__link" href="gallery">Галерея</a>
-                    </li>
-                </ul>
-                <ul class="footer__list">
-                    <li class="footer__item">
-                        Социальные сети:
-                    </li>
-                    <li class="footer__item">
-                        <div class="social">
-                            <a class="social__link" href="https://t.me/velokmv">
-                                <img class="social__img" src="images/ico/telegram.svg" alt="telegram" />
-                            </a>
+		<section class="popup__auth" id="popup__auth">
+			<div class="auth__container">
+				<div class="auth__block" id="auth__block">
+					<div class="auth__title" id="auth__title">
+						<span class="auth__login" id="auth__login">Вход</span>/<span
+							class="auth__login auth__gray"
+							id="auth__registration"
+							>Регистрация</span
+						>
+					</div>
+					<div class="auth__template" id="auth__template"></div>
+				</div>
+			</div>
+		</section>
 
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="copyright">Copyright © 2022 Bike-Caucasus</div>
-        </div>
-    </footer>
+		<script id="profileTemplate" type="text/x-handlebars-template">
+			<h3 class='title__page'>
+				Личный профиль
+			</h3>
+			<div class='profile__inner'>
 
-    <div class="modal__answer invisible" id="modal__answer">
-        <div class="modal__container">
-            <div class="modal__block" id="server__answer"></div>
-        </div>
-    </div>
+				<div class='profile__block'>
+					{{#if photoProfile}}
+						<img class='profile__img' src='{{photoProfile}}' alt='Фотография профиля' />
+					{{else}}
+						<img class='profile__img' src='images/avatar.svg' alt='Фотография профиля' />
+					{{/if}}
+					<div class='profile__contacts'>
+						<p class='profile__head-data'>Логин:</p>
+						<span class='profile__data'>{{username}}</span>
+					</div>
+					<div class='profile__contacts'>
+						<p class='profile__head-data'>Телефон:</p>
+						<span class='profile__data'>{{phone}}</span>
+					</div>
+					<div class='profile__contacts'>
+						<p class='profile__head-data'>E-mail:</p>
+						<span class='profile__data'>{{email}}</span>
+					</div>
+					<div class='box__btn div__btn' id='profile__edit-btn'>Изменить профиль
+					</div>
+				</div>
 
-    <section class="popup__auth" id="popup__auth">
+				<div class='profile__block'>
+					<h4 class='profile__block-title'>{{lastName}} {{firstName}}<br />{{patronymic}}</h4>
+					<div class='profile__contacts'>
+						<p class='profile__head-data'>Год рождения:</p>
+						<span class='profile__data'>{{birthday}}</span>
+					</div>
+					<div class='profile__contacts'>
+						<p class='profile__head-data'>Пол:</p>
+						<span class='profile__data'>{{gender}}</span>
+					</div>
+					<div class='profile__contacts'>
+						<p class='profile__head-data'>Возрастная группа:</p>
+						<span class='profile__data'>{{ageGroup}}</span>
+					</div>
+					<div class='profile__contacts'>
+						<p class='profile__head-data'>Город:</p>
+						<span class='profile__data'>{{city}}</span>
+					</div>
+					<div class='profile__contacts'>
+						<p class='profile__head-data'>Команда:</p>
+						<span class='profile__data'>{{team}}</span>
+					</div>
+				</div>
 
-        <div class="auth__container">
-            <div class="auth__block" id="auth__block">
-                <div class="auth__title" id="auth__title">
-                    <span class="auth__login" id="auth__login">Вход</span>/<span class="auth__login auth__gray"
-                        id="auth__registration">Регистрация</span>
-                </div>
-                <div class="auth__template" id="auth__template"></div>
-            </div>
-        </div>
+				<div class='profile__block'>
+					<h4 class='profile__block-title'>История участие в соревнованиях:</h4>
+					<table class='table profile__table'>
+						<thead>
+							<tr>
+								<th scope='col'>Дата</th>
+								<th scope='col'>Соревнование</th>
+								<th class='display-non' scope='col' id=''>Дистанция</th>
+								<th scope='col' id='place'>Место</th>
+								<th class='display-non' scope='col' id=''>Время</th>
+								<th scope='col' id=''>Сегмент в Страве</th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each list}}
+								<tr>
+									<td id='{{eventId}}'>{{eventDate}}</td>
+									<td id='{{eventId}}'>{{eventName}}</td>
+									<td class='display-non' id='{{eventId}}'>{{distance}}</td>
+									<td id='{{eventId}}'>{{place}}</td>
+									<td class='display-non' id='{{eventId}}'>{{timeTotal}}</td>
+									<td class='td__link' id='{{eventId}}'><a
+											class='link__btn'
+											href='{{segmentStrava}}'
+											target='_blank'
+										>Strava</a></td>
+								</tr>
+							{{/each}}
+						</tbody>
+					</table>
 
-    </section>
+					<h4 class='profile__block-title'>Регистрация в соревнованиях:</h4>
+					<table class='table profile__table'>
+						<thead>
+							<tr>
+								<th scope='col'>Дата</th>
+								<th scope='col'>Соревнование</th>
+								<th class='display-non' scope='col' id=''>Дистанция</th>
+								<th scope='col' id='place'>Участники</th>
+								<th scope='col' id=''>Сегмент в Страве</th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each list-future}}
+								<tr>
+									<td id='{{eventId}}'>{{eventDate}}</td>
+									<td id='{{eventId}}'>{{eventName}}</td>
+									<td class='display-non' id='{{eventId}}'>{{distance}}</td>
+									<td id='{{eventId}}'>{{quantity}}</td>
+									<td class='td__link' id='{{eventId}}'><a
+											class='link__btn'
+											href='{{segmentStrava}}'
+											target='_blank'
+										>Strava</a></td>
+								</tr>
+							{{/each}}
+						</tbody>
+					</table>
+					<p class='profile__head-data'>
+						<span style='color:red'>Внимание!</span>
+						Если вы уже участвовали в высокогорной гонке-тренировке на Джилы-Су, то для привязки
+						вашего аккаунта к результатам заезда необходимо написать в телеграмм,
+						<a class='social__link' href='https://t.me/aleksandr_BV'>
+							https://t.me/aleksandr_BV
+						</a>
+						<a class='social__link' href='https://t.me/aleksandr_BV'>
+							<img class='social__img' src='images/ico/telegram.svg' alt='telegram' />
+						</a>
+						указав ФИО в результатах заезда и ваш логин аккаунта. Также укажите необходимость
+						корректировки данных в таблице результатов (команда, город).
+					</p>
+				</div>
+			</div>
+		</script>
 
-    <script id="profileTemplate" type="text/x-handlebars-template">
-        <h3 class="title__page">
-            Личный профиль
-        </h3>
-        <div class="profile__inner">
+		<script id="profileEditTemplate" type="text/x-handlebars-template">
+			<h3 class="title__page">
+			    Личные данные
+			</h3>
+			<form class="" method="post" action="">
+			    <div class="profile-edit__inner">
+			        <!-- <div class="profile-edit__inner"> -->
+			        <div class="profile-edit__block">
+			            <h4 class="profile-edit__title">Фамилия*</h4>
+			            <input class="input profile-edit__input" value="{{lastName}}" name="lastname" id="lastname" type="text"
+			                placeholder="Фамилия" maxlength="20" />
+			            <h4 class="profile-edit__title">Имя*</h4>
+			            <input class="input profile-edit__input" value="{{firstName}}" name="firstname" id="firstname" type="text"
+			                placeholder="Имя" maxlength="20" />
+			            <h4 class="profile-edit__title">Отчество</h4>
+			            <input class="input profile-edit__input" value="{{patronymic}}" name="patronymic" id="patronymic" type="text"
+			                placeholder="Отчество" maxlength="20" />
+			        </div>
 
-            <div class="profile__block">
-                {{#if photoProfile}}
-                <img class="profile__img" src="{{photoProfile}}" 
-                alt="Фотография профиля" />
-                {{else}}
-                <img class="profile__img" src="images/avatar.svg" 
-                alt="Фотография профиля" />
-                {{/if}}
-                <div class="profile__contacts">
-                    <p class="profile__head-data">Логин:</p>
-                    <span class="profile__data">{{username}}</span>
-                </div>
-                <div class="profile__contacts">
-                    <p class="profile__head-data">Телефон:</p>
-                    <span class="profile__data">{{phone}}</span>
-                </div>
-                <div class="profile__contacts">
-                    <p class="profile__head-data">E-mail:</p>
-                    <span class="profile__data">{{email}}</span>
-                </div>
-                <div class="box__btn div__btn" id="profile__edit-btn">Изменить профиль
-                </div>
-            </div>
+			        <div class="profile-edit__block">
+			            <h4 class="profile-edit__title">Год рождения*</h4>
+			            <input class="input profile-edit__input" value="{{birthday}}" name="birthday" id="birthday" type="tel"
+			                placeholder="Год рождения" maxlength="4" />
+			            <h4 class="profile-edit__title">Пол*</h4>
+			            <select class="input select profile-edit__input" name="gender" id="gender">
+			                <option {{#if (male gender)}}selected="selected"{{/if}} value="мужской">мужской</option>
+			                <option {{#if (female gender)}}selected="selected"{{/if}} value="женский">женский</option>
+			            </select>
+			        </div>
 
-            <div class="profile__block">
-                <h4 class="profile__block-title">{{lastName}} {{firstName}}<br>{{patronymic}}</h4>
-                <div class="profile__contacts">
-                    <p class="profile__head-data">Год рождения:</p>
-                    <span class="profile__data">{{birthday}}</span>
-                </div>
-                <div class="profile__contacts">
-                    <p class="profile__head-data">Пол:</p>
-                    <span class="profile__data">{{gender}}</span>
-                </div>
-                <div class="profile__contacts">
-                    <p class="profile__head-data">Возрастная группа:</p>
-                    <span class="profile__data">{{ageGroup}}</span>
-                </div>
-                <div class="profile__contacts">
-                    <p class="profile__head-data">Город:</p>
-                    <span class="profile__data">{{city}}</span>
-                </div>
-                <div class="profile__contacts">
-                    <p class="profile__head-data">Команда:</p>
-                    <span class="profile__data">{{team}}</span>
-                </div>
-            </div>
+			        <div class="profile-edit__block">
+			            <h4 class="profile-edit__title">Город</h4>
+			            <input class="input profile-edit__input" value="{{city}}" name="city" id="city" type="text" placeholder="Город"
+			                maxlength="20" />
+			            <h4 class="profile-edit__title">Команда</h4>
+			            <input class="input profile-edit__input" value="{{team}}" name="team" id="team" type="text" placeholder="Команда"
+			                maxlength="20" />
+			        </div>
 
-            <div class="profile__block">
-                <h4 class="profile__block-title">История участие в соревнованиях:</h4>
-                <table class="table profile__table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Дата</th>
-                            <th scope="col">Соревнование</th>
-                            <th class="display-non" scope="col" id="">Дистанция</th>
-                            <th scope="col" id="place">Место</th>
-                            <th class="display-non" scope="col" id="">Время</th>
-                            <th scope="col" id="">Сегмент в Страве</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each list}}
-                        <tr>
-                            <td id="{{eventId}}">{{eventDate}}</td>
-                            <td id="{{eventId}}">{{eventName}}</td>
-                            <td class="display-non" id="{{eventId}}">{{distance}}</td>
-                            <td id="{{eventId}}">{{place}}</td>
-                            <td class="display-non" id="{{eventId}}">{{timeTotal}}</td>
-                            <td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}"
-                                    target="_blank">Strava</a></td>
-                        </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
+			        <div class="profile-edit__block">
+			            <h4 class="profile-edit__title">E-mail (не изменяется)</h4>
+			            <input class="input profile-edit__input" value="{{email}}" name="email" id="email" type="text " readonly
+			                placeholder="e-mail" maxlength="25" />
+			            <h4 class="profile-edit__title">Контактный телефон</h4>
+			            <input class="input profile-edit__input" value="{{phone}}" name="phone" id="phone" type="text"
+			                placeholder="Контактный телефон" maxlength="20" />
+			        </div>
 
-                <h4 class="profile__block-title">Регистрация в соревнованиях:</h4>
-                <table class="table profile__table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Дата</th>
-                            <th scope="col">Соревнование</th>
-                            <th class="display-non" scope="col" id="">Дистанция</th>
-                            <th scope="col" id="place">Участники</th>
-                            <th scope="col" id="">Сегмент в Страве</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each list-future}}
-                        <tr>
-                            <td id="{{eventId}}">{{eventDate}}</td>
-                            <td id="{{eventId}}">{{eventName}}</td>
-                            <td class="display-non" id="{{eventId}}">{{distance}}</td>
-                            <td id="{{eventId}}">{{quantity}}</td>
-                            <td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}"
-                                    target="_blank">Strava</a></td>
-                        </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
-                <p class="profile__head-data">
-                    <span style="color:red">Внимание!</span>    Если вы уже участвовали в высокогорной гонке-тренировке на Джилы-Су, то для привязки вашего аккаунта к результатам заезда необходимо написать в телеграмм, 
-                    <a class="social__link" href="https://t.me/aleksandr_BV">
-                        https://t.me/aleksandr_BV
-                    </a>
-                    <a class="social__link" href="https://t.me/aleksandr_BV">
-                        <img class="social__img" src="images/ico/telegram.svg" alt="telegram" />
-                    </a>
-                    указав ФИО в результатах заезда и ваш логин аккаунта. Также укажите необходимость корректировки данных в таблице результатов (команда, город).
-                </p>
-            </div>
-        </div>
-    </script>
+			        <div class="profile-edit__block">
+			            <h4 class="profile-edit__title">Фотография профиля</h4>
+			            <div class="profile__img-box" id="profile__img-box" >
+			                {{#if photoProfile}}
+			                <img class="profile__img" src="{{photoProfile}}"
+			                alt="Фотография профиля" />
+			                {{else}}
+			                <img class="profile__img" src="images/avatar.svg"
+			                alt="Фотография профиля" />
+			                {{/if}}
+			            </div>
 
-    <script id="profileEditTemplate" type="text/x-handlebars-template">
-        <h3 class="title__page">
-            Личные данные
-        </h3>
-        <form class="" method="post" action="">
-            <div class="profile-edit__inner">
-                <!-- <div class="profile-edit__inner"> -->
-                <div class="profile-edit__block">
-                    <h4 class="profile-edit__title">Фамилия*</h4>
-                    <input class="input profile-edit__input" value="{{lastName}}" name="lastname" id="lastname" type="text"
-                        placeholder="Фамилия" maxlength="20" />
-                    <h4 class="profile-edit__title">Имя*</h4>
-                    <input class="input profile-edit__input" value="{{firstName}}" name="firstname" id="firstname" type="text"
-                        placeholder="Имя" maxlength="20" />
-                    <h4 class="profile-edit__title">Отчество</h4>
-                    <input class="input profile-edit__input" value="{{patronymic}}" name="patronymic" id="patronymic" type="text"
-                        placeholder="Отчество" maxlength="20" />
-                </div>
+			            <div class="box__btn div__btn profile-edit__btn" id="profile__edit-btn-file">выбрать фотографию
+			            </div>
+			            <input class="profile__img-input" type="file" accept=".jpg, .jpeg, .png, .webp"  id="profile__img-input">
+			        </div>
+			    </div>
+			    <button class="box__btn div__btn profile-edit__btn profile-edit__button" id="profile-edit__send-form"
+			        type="submit">Сохранить</button>
 
-                <div class="profile-edit__block">
-                    <h4 class="profile-edit__title">Год рождения*</h4>
-                    <input class="input profile-edit__input" value="{{birthday}}" name="birthday" id="birthday" type="tel"
-                        placeholder="Год рождения" maxlength="4" />
-                    <h4 class="profile-edit__title">Пол*</h4>
-                    <select class="input select profile-edit__input" name="gender" id="gender">
-                        <option {{#if (male gender)}}selected="selected"{{/if}} value="мужской">мужской</option>
-                        <option {{#if (female gender)}}selected="selected"{{/if}} value="женский">женский</option>
-                    </select>
-                </div>
+			</form>
+		</script>
 
-                <div class="profile-edit__block">
-                    <h4 class="profile-edit__title">Город</h4>
-                    <input class="input profile-edit__input" value="{{city}}" name="city" id="city" type="text" placeholder="Город"
-                        maxlength="20" />
-                    <h4 class="profile-edit__title">Команда</h4>
-                    <input class="input profile-edit__input" value="{{team}}" name="team" id="team" type="text" placeholder="Команда"
-                        maxlength="20" />
-                </div>
+		<script id="tableEventsTemplate" type="text/x-handlebars-template">
+			<h3 class='title__page'>
+				Высокогорные соревнования Джилы-Су
+			</h3>
+			<table class='table tableEvents' id='table-events'>
+				<thead>
+					<tr>
+						<th scope='col'>#</th>
+						<th scope='col'>Дата</th>
+						<th scope='col'>Соревнование</th>
+						<th class='display-non' scope='col'>Город</th>
+						<th scope='col'>Участники</th>
+						<th scope='col'>Сегмент в Страве</th>
 
-                <div class="profile-edit__block">
-                    <h4 class="profile-edit__title">E-mail (не изменяется)</h4>
-                    <input class="input profile-edit__input" value="{{email}}" name="email" id="email" type="text " readonly
-                        placeholder="e-mail" maxlength="25" />
-                    <h4 class="profile-edit__title">Контактный телефон</h4>
-                    <input class="input profile-edit__input" value="{{phone}}" name="phone" id="phone" type="text"
-                        placeholder="Контактный телефон" maxlength="20" />
-                </div>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each list}}
+						<tr>
+							<td id='{{eventId}}'>{{tableNumber}}</td>
+							<td id='{{eventId}}'>{{eventDate}}</td>
+							<td id='{{eventId}}'>{{eventName}}</td>
+							<td class='display-non' id='{{eventId}}'>{{eventCity}}</td>
+							<td id='{{eventId}}'>{{quantity}}</td>
+							<td class='td__link' id='{{eventId}}'><a
+									class='link__btn'
+									href='{{segmentStrava}}'
+									target='_blank'
+								>Strava</a></td>
 
-                <div class="profile-edit__block">
-                    <h4 class="profile-edit__title">Фотография профиля</h4>
-                    <div class="profile__img-box" id="profile__img-box" >
-                        {{#if photoProfile}}
-                        <img class="profile__img" src="{{photoProfile}}" 
-                        alt="Фотография профиля" />
-                        {{else}}
-                        <img class="profile__img" src="images/avatar.svg" 
-                        alt="Фотография профиля" />
-                        {{/if}}
-                    </div>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</script>
 
-                    <div class="box__btn div__btn profile-edit__btn" id="profile__edit-btn-file">выбрать фотографию
-                    </div>
-                    <input class="profile__img-input" type="file" accept=".jpg, .jpeg, .png, .webp"  id="profile__img-input">
-                </div>
-            </div>
-            <button class="box__btn div__btn profile-edit__btn profile-edit__button" id="profile-edit__send-form"
-                type="submit">Сохранить</button>
-
-        </form>
-    </script>
-
-    <script id="tableEventsTemplate" type="text/x-handlebars-template">
-		<h3 class="title__page">
-			Высокогорные соревнования Джилы-Су
-		</h3>
-		<table class="table tableEvents" id="table-events">
-			<thead>
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">Дата</th>
-					<th scope="col">Соревнование</th>
-					<th class="display-non" scope="col">Город</th>
-					<th scope="col">Участники</th>
-					<th scope="col">Сегмент в Страве</th>
-
-				</tr>
-			</thead>
-			<tbody>
-				{{#each list}}
-				<tr>
- 					<td id="{{eventId}}">{{tableNumber}}</td>
-					<td id="{{eventId}}">{{eventDate}}</td>
-					<td id="{{eventId}}">{{eventName}}</td>
-					<td class="display-non" id="{{eventId}}">{{eventCity}}</td>
-					<td id="{{eventId}}">{{quantity}}</td>
-					<td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}" target="_blank">Strava</a></td>
-
-				</tr>
-				{{/each}}
-			</tbody>
-		</table>
-	</script>
-
-    <script id="tableResultTemplate" type="text/x-handlebars-template">
+		<script id="tableResultTemplate" type="text/x-handlebars-template">
 			<h3 class="title__page">{{eventName}}, {{eventDate}}, город {{eventCity}}</h3>
 			<table class="table tableResult">
 				<thead>
@@ -445,38 +475,39 @@
 			</table>
 		</script>
 
-    <script id="tableUserTemplate" type="text/x-handlebars-template">
-		<h3 class="title__page">{{athlete}}, Команда: {{athleteTeam}}, город {{athleteCity}}</h3>
-		<table class="table tableUser">
-			<thead>
-				<tr>
-					<th scope="col">Дата</th>
-					<th scope="col">Соревнование</th>
-					<th class="display-non" scope="col" id="">Дистанция</th>
-					<th scope="col" id="place">Место</th>
-					<th class="display-non" scope="col" id="">Время</th>
-					<th scope="col" id="">Сегмент в Страве</th>
-				</tr>
-			</thead>
-			<tbody>
-				{{#each list}}
-				<tr>
-					<td id="{{eventId}}">{{eventDate}}</td>
-					<td id="{{eventId}}">{{eventName}}</td>
-					<td class="display-non" id="{{eventId}}">{{distance}}</td>
-					<td id="{{eventId}}">{{place}}</td>
-					<td class="display-non" id="{{eventId}}">{{timeTotal}}</td>
-					<td class="td__link" id="{{eventId}}"><a class="link__btn" href="{{segmentStrava}}" target="_blank">Strava</a></td>
-				</tr>
-				{{/each}}
-			</tbody>
-		</table>
+		<script id="tableUserTemplate" type="text/x-handlebars-template">
+			<h3 class='title__page'>{{athlete}}, Команда: {{athleteTeam}}, город {{athleteCity}}</h3>
+			<table class='table tableUser'>
+				<thead>
+					<tr>
+						<th scope='col'>Дата</th>
+						<th scope='col'>Соревнование</th>
+						<th class='display-non' scope='col' id=''>Дистанция</th>
+						<th scope='col' id='place'>Место</th>
+						<th class='display-non' scope='col' id=''>Время</th>
+						<th scope='col' id=''>Сегмент в Страве</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each list}}
+						<tr>
+							<td id='{{eventId}}'>{{eventDate}}</td>
+							<td id='{{eventId}}'>{{eventName}}</td>
+							<td class='display-non' id='{{eventId}}'>{{distance}}</td>
+							<td id='{{eventId}}'>{{place}}</td>
+							<td class='display-non' id='{{eventId}}'>{{timeTotal}}</td>
+							<td class='td__link' id='{{eventId}}'><a
+									class='link__btn'
+									href='{{segmentStrava}}'
+									target='_blank'
+								>Strava</a></td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</script>
 
-	</script>
-
-
-    <script type="module" src="./utilities/dataid.js"></script>
-    <script type="module" src="./pages/profile.js"></script>
-</body>
-
+		<script type="module" src="./utilities/dataid.js"></script>
+		<script type="module" src="./pages/profile.js"></script>
+	</body>
 </html>
