@@ -767,7 +767,6 @@ body {
 	height: 419px;
 	background-color: rgb(255, 255, 255, 0.1);
 	border-radius: 7px;
-	padding: 22px 19px;
 	margin: 0px 15px 15px 0px;
 	transition: all 0.5s;
 	display: block;
@@ -792,11 +791,12 @@ body {
 	font-size: 24px;
 	line-height: 25px;
 	letter-spacing: -0.5px;
+	margin: 15px 15px 0px 15px;
 }
 
 .card__title-sub {
 	font-size: 16px;
-	margin-bottom: 15px;
+	margin: 0px 15px 15px 15px;
 	color: rgba(225, 254, 255, 0.45);
 }
 
@@ -812,7 +812,7 @@ body {
 	font-size: 14px;
 	line-height: 14px;
 	/* letter-spacing: 0.08em; */
-	margin-bottom: 16px;
+	margin: 15px;
 }
 
 .card__description {
@@ -825,9 +825,9 @@ body {
 }
 
 .card__img {
-	width: 264px;
-	height: 154px;
-	border-radius: 10px;
+	width: 303px;
+	height: 184px;
+	border-radius: 7px 7px 0px 0px;
 }
 
 .trail__form-checkbox {
@@ -855,8 +855,8 @@ body {
 	position: absolute;
 	width: 30px;
 	height: 70px;
-	top: 155px;
-	right: 20px;
+	top: 333px;
+	right: 15px;
 	text-align: center;
 	padding-top: 4px;
 	border: solid 1px #f1f1f1;

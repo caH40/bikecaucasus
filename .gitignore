@@ -6,6 +6,6 @@ info.txt
 bootstrap.css
 table.json
 *.json
-appDB.js
+appDB*
 *.gpx
 *.fit

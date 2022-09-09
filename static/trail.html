@@ -31,25 +31,25 @@
 
 		<!-- Yandex.Metrika counter -->
 		<script type="text/javascript">
-			;(function (m, e, t, r, i, k, a) {
+			(function (m, e, t, r, i, k, a) {
 				m[i] =
 					m[i] ||
 					function () {
-						;(m[i].a = m[i].a || []).push(arguments)
-					}
-				m[i].l = 1 * new Date()
-				;(k = e.createElement(t)),
+						(m[i].a = m[i].a || []).push(arguments);
+					};
+				m[i].l = 1 * new Date();
+				(k = e.createElement(t)),
 					(a = e.getElementsByTagName(t)[0]),
 					(k.async = 1),
 					(k.src = r),
-					a.parentNode.insertBefore(k, a)
-			})(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+					a.parentNode.insertBefore(k, a);
+			})(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
 
 			ym(88492388, 'init', {
 				clickmap: true,
 				trackLinks: true,
 				accurateTrackBounce: true,
-			})
+			});
 		</script>
 		<noscript>
 			<div>
@@ -235,6 +235,7 @@
 					{{#each list}}
 
 					<a class="card {{#type bikeType}}{{/type}} " href="description?id={{_id}}">
+						<img class="card__img" src="{{cardPhoto}}" alt="Photo">
 							<h4 class="card__title">{{nameRoute}}</h4>
 							<h4 class="card__title card__title-sub">{{state}}</h4>
 							<div class="card__text">
@@ -263,7 +264,6 @@
 											<span class="card__names">Тип:</span><span class="card__names-data">{{bikeType}}</span>
 									</div>
 							</div>
-							<img class="card__img" src="{{cardPhoto}}" alt="Photo">
 							<div class="card__frame-kudos frame-kudos">
 								<div class="frame-kudos__kudos" id="frame-kudos__kudos">
 									<img class="frame-kudus__kudos-img" src="images/ico/kudos.svg" alt="">
